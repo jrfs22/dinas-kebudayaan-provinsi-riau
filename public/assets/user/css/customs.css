@@ -1,0 +1,12 @@
+:root {
+    --bg-breadcrumb: #42a33f6b;
+}
+
+.bg-breadcrumb {
+    background-color: var(--bg-breadcrumb);
+}
+
+.w-200px {
+    max-width: 200px;
+    text-wrap: wrap;
+}
