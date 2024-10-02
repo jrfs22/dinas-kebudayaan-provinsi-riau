@@ -26,6 +26,17 @@
                                         <span class="hide-menu">Home</span>
                                     </li>
                                     <li class="sidebar-item">
+                                        <a class="sidebar-link {{ isRouteActive('news') ? 'active' : '' }}" href="{{ route('news') }}"
+                                            aria-expanded="false">
+                                            <span>
+                                                <i class="ti ti-news"></i>
+                                            </span>
+                                            <span class="hide-menu">
+                                                Berita
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-item">
                                         <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                             aria-expanded="false">
                                             <span class="d-flex">
@@ -35,16 +46,7 @@
                                         </a>
                                         <ul aria-expanded="false" class="collapse first-level">
                                             <li class="sidebar-item">
-                                                <a href="{{ route('visi-misi') }}" class="sidebar-link {{ isRouteActive('visi-misi') ? 'active' : '' }}">
-                                                    <div
-                                                        class="round-16 d-flex align-items-center justify-content-center">
-                                                        <i class="ti ti-circle"></i>
-                                                    </div>
-                                                    <span class="hide-menu">Profile</span>
-                                                </a>
-                                            </li>
-                                            <li class="sidebar-item">
-                                                <a href="../main/frontend-landingpage.html" class="sidebar-link">
+                                                <a href="{{ route('profiles', ['type' => 'visi-misi']) }}" class="sidebar-link {{ isRouteActive('visi-misi') ? 'active' : '' }}">
                                                     <div
                                                         class="round-16 d-flex align-items-center justify-content-center">
                                                         <i class="ti ti-circle"></i>
@@ -53,12 +55,21 @@
                                                 </a>
                                             </li>
                                             <li class="sidebar-item">
-                                                <a href="../main/frontend-landingpage.html" class="sidebar-link">
+                                                <a href="{{ route('profiles', ['type' => 'kata-sambutan']) }}" class="sidebar-link">
                                                     <div
                                                         class="round-16 d-flex align-items-center justify-content-center">
                                                         <i class="ti ti-circle"></i>
                                                     </div>
                                                     <span class="hide-menu">Kata Sambutan</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-item">
+                                                <a href="{{ route('profiles', ['type' => 'kontak']) }}" class="sidebar-link">
+                                                    <div
+                                                        class="round-16 d-flex align-items-center justify-content-center">
+                                                        <i class="ti ti-circle"></i>
+                                                    </div>
+                                                    <span class="hide-menu">Kontak</span>
                                                 </a>
                                             </li>
                                         </ul>

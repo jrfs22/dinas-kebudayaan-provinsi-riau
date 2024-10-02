@@ -1,17 +1,17 @@
 @extends('layouting.auth.main')
 
-@section('title', 'Visi & Misi')
+@section('title', 'Kata Sambutan')
 
 @section('breadcrumb')
-    <x-card.breadcrumb title="Home" subtitle="Visi & Misi" route="{{ route('profiles', ['type' => 'visi-misi']) }}" />
+<x-card.breadcrumb title="Home" subtitle="Kata Sambutan" route="{{ route('profiles', ['type' => 'kata-sambutan']) }}" />
 @endsection
 
 @section('content')
     <div class="row">
         <div class="col-md-6 col-lg-6 d-flex align-items-stretch">
             <div class="card card-body">
-                <h4 class="card-title">Edit Visi & Misi</h4>
-                <form action="{{ route('profiles.update', ['id' => $content->id]) }}" method="POST">
+                <h4 class="card-title">Edit Kata Sambutan</h4>
+                <form action="{{ route('profiles.update', ['id' => $content->id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row">
@@ -20,6 +20,13 @@
                                 name="content" value="{!! $content->content !!}">
                                 {!! $content->content !!}
                             </x-forms.richeditor>
+                        </div>
+                        <div class="col-12">
+                            <x-forms.input
+                                name="image_path"
+                                label="Gambar"
+                                type="file"
+                            />
                         </div>
                         <div class="col-12">
                             <x-forms.select
@@ -36,8 +43,9 @@
                 </form>
             </div>
         </div>
-        <div class="col-md-6 col-lg-6 d-flex align-items-stretch ">
+        <div class="col-md-6 col-lg-6 d-flex align-items-stretch">
             <div class="card card-body position-relative">
+                <img class="img-fluid mb-2" src="{{ asset('storage/' . $content->image_path) }}" alt="Gambar {{ $content->title }}" style="max-height: 250px; object-fit: cover;">
                 {!! $content->content !!}
             </div>
         </div>

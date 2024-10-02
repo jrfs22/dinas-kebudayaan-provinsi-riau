@@ -17079,6 +17079,7 @@ ul {
     transform: rotate(-135deg) translate(0,-50%)
 }
 
+
 .dataTables_paginate {
     margin-top: 20px!important;
 }
@@ -17104,4 +17105,7 @@ ul {
     color: #fff;
     background-color: var(--bs-primary);
     border-color: var(--bs-primary)
+}
+.dataTables_empty {
+    text-align: center;
 }
