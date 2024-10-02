@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('contents', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
-            $table->text('desccolumn: ription')->nullable();
+            $table->text('description')->nullable();
             $table->text('content')->nullable();
             $table->date('date')->nullable();
             $table->string('status')->nullable();
