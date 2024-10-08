@@ -12,29 +12,46 @@ class ProfilesController extends Controller
     use ManageFiles;
     public function profiles(string $type)
     {
-        switch ($type) {
-            case 'visi-misi':
-                $content = $this->getContent('visi & misi')->first();
-                $view = 'after-login.profiles.visimisi';
-                break;
-            case 'kata-sambutan':
-                $content = $this->getContent('sambutan')->first();
-                $view = 'after-login.profiles.sambutan';
-                break;
-            case 'kontak':
-                $content = $this->getContent('kontak')->get();
-                $view = 'after-login.profiles.kontak';
-                break;
-            default:
-                break;
+        try {
+            $content = new ContentModel();
+            switch ($type) {
+                case 'profil':
+                    $content = $content->where('category', 'profil')->first();
+                    $view = 'after-login.profiles.profil';
+                    break;
+                case 'struktur-organisasi':
+                    $content = $content->where('category', 'struktur organisasi')->first();
+                    $view = 'after-login.profiles.struktur';
+                    break;
+                case 'tugas-pokok':
+                    $content = $content->where('category', 'tugas pokok & fungsi')->first();
+                    $view = 'after-login.profiles.tugas-pokok';
+                    break;
+                case 'visi-misi':
+                    $content = $content->where('category', 'visi & misi')->first();
+                    $view = 'after-login.profiles.visimisi';
+                    break;
+                case 'kata-sambutan':
+                    $content = $content->where('category', 'sambutan')->first();
+                    $view = 'after-login.profiles.sambutan';
+                    break;
+                case 'kontak':
+                    $content = $content->whereIn('category', ['media sosial', 'kontak', 'telepon', 'email'])->get();
+                    $view = 'after-login.profiles.kontak';
+                    break;
+                default:
+                    break;
+            }
+
+            return view($view, compact('content'));
+        } catch (Exception $e) {
+            $this->alert(
+                'Halaman tidak ditemukan',
+                '',
+                'error'
+            );
+            return redirect()->back();
         }
-
-        return view($view, compact('content'));
-    }
-
-    public function getContent($category)
-    {
-        return ContentModel::where('category', $category);
     }
 
     public function store(Request $request, string $type)
@@ -52,6 +69,9 @@ class ProfilesController extends Controller
             ]));
 
             $contents->category = $type;
+            if ($request->has('category')) {
+                $contents->category = $request->category;
+            }
             $contents->save();
 
             $this->alert(
@@ -103,14 +123,14 @@ class ProfilesController extends Controller
             $contents->save();
 
             $this->alert(
-                'Update Successfully',
+                'Perubahan berhasil',
                 '',
                 'success'
             );
             return redirect()->back();
         } catch (Exception $e) {
             $this->alert(
-                'Update Failed',
+                'Perubahan Gagal',
                 $e->getMessage(),
                 'error'
             );

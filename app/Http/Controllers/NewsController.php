@@ -44,14 +44,14 @@ class NewsController extends Controller
             $news->save();
 
             $this->alert(
-                'Insert Successfuly',
+                'Berita berhasil ditambahkan.',
                 '',
                 'success'
             );
             return redirect()->back();
         } catch (Exception $e) {
             $this->alert(
-                'Insert Failed',
+                'Berita tidak berhasil ditambahkan.',
                 $e->getMessage(),
                 'error'
             );
@@ -80,6 +80,7 @@ class NewsController extends Controller
             ]);
 
             $news = NewsModel::findOrFail($id);
+
             $news->fill($request->only([
                 'title',
                 'slug',
@@ -92,17 +93,18 @@ class NewsController extends Controller
                 'news',
                 $news->image_path
             );
+            
             $news->update();
 
             $this->alert(
-                'Update Successfuly',
+                'Perubahan berhasil dilakukan.',
                 '',
                 'success'
             );
             return redirect()->back();
         } catch (Exception $e) {
             $this->alert(
-                'Update Failed',
+                'Perubahan tidak berhasil dilakukan.',
                 $e->getMessage(),
                 'error'
             );
@@ -119,15 +121,15 @@ class NewsController extends Controller
             $this->deleteFile($news->image_path);
 
             $this->alert(
-                'News',
-                'Berhasil menghapus News.',
+                'Berita',
+                'Berhasil menghapus berita.',
                 'success'
             );
 
             return redirect()->back();
         } catch (Exception $e) {
             $this->alert(
-                'News',
+                'Berita',
                 $e->getMessage(),
                 'error'
             );

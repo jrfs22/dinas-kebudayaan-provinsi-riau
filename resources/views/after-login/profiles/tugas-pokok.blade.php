@@ -1,13 +1,13 @@
 @extends('layouting.auth.main')
 
-@section('title', 'Kata Sambutan')
+@section('title', 'Tugas Pokok & Fungsi')
 
 @section('breadcrumb')
-<x-card.breadcrumb title="Home" subtitle="Kata Sambutan" route="{{ route('profiles', ['type' => 'kata-sambutan']) }}" />
+<x-card.breadcrumb title="Home" subtitle="Tugas Pokok & Fungsi" route="{{ route('profiles', ['type' => 'tugas-pokok']) }}" />
 @endsection
 
 @section('content')
-    <x-card.profile header="Edit Kata Sambutan" :content="$content">
+    <x-card.profile header="Edit Tugas Pokok & Fungsi" :content="$content">
         @slot('slotForm')
         <div class="row">
             <div class="col-12">
@@ -15,13 +15,6 @@
                     name="content" value="{!! $content->content !!}">
                     {!! $content->content !!}
                 </x-forms.richeditor>
-            </div>
-            <div class="col-12">
-                <x-forms.input
-                    name="image_path"
-                    label="Gambar"
-                    type="file"
-                />
             </div>
             <div class="col-12">
                 <x-forms.select
@@ -38,8 +31,7 @@
         @endslot
 
         @slot('slotResult')
-            <img class="img-fluid mb-2" src="{{ asset('storage/' . $content->image_path) }}" alt="Gambar {{ $content->title }}" style="max-height: 250px; object-fit: cover;">
-                    {!! $content->content !!}
+            {!! $content->content !!}
         @endslot
     </x-card.profile>
 @endsection

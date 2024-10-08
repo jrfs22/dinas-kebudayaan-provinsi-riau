@@ -26,15 +26,33 @@
                                         <span class="hide-menu">Home</span>
                                     </li>
                                     <li class="sidebar-item">
-                                        <a class="sidebar-link {{ isRouteActive('news') ? 'active' : '' }}" href="{{ route('news') }}"
+                                        <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                             aria-expanded="false">
-                                            <span>
+                                            <span class="d-flex">
                                                 <i class="ti ti-news"></i>
                                             </span>
-                                            <span class="hide-menu">
-                                                Berita
-                                            </span>
+                                            <span class="hide-menu">Berita</span>
                                         </a>
+                                        <ul aria-expanded="false" class="collapse first-level">
+                                            <li class="sidebar-item">
+                                                <a href="{{ route('news.category') }}" class="sidebar-link">
+                                                    <div
+                                                        class="round-16 d-flex align-items-center justify-content-center">
+                                                        <i class="ti ti-circle"></i>
+                                                    </div>
+                                                    <span class="hide-menu">Kategori</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-item">
+                                                <a href="{{ route('news') }}" class="sidebar-link">
+                                                    <div
+                                                        class="round-16 d-flex align-items-center justify-content-center">
+                                                        <i class="ti ti-circle"></i>
+                                                    </div>
+                                                    <span class="hide-menu">Berita</span>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </li>
                                     <li class="sidebar-item">
                                         <a class="sidebar-link has-arrow" href="javascript:void(0)"
@@ -46,7 +64,25 @@
                                         </a>
                                         <ul aria-expanded="false" class="collapse first-level">
                                             <li class="sidebar-item">
-                                                <a href="{{ route('profiles', ['type' => 'visi-misi']) }}" class="sidebar-link {{ isRouteActive('visi-misi') ? 'active' : '' }}">
+                                                <a href="{{ route('profiles', ['type' => 'profil']) }}" class="sidebar-link">
+                                                    <div
+                                                        class="round-16 d-flex align-items-center justify-content-center">
+                                                        <i class="ti ti-circle"></i>
+                                                    </div>
+                                                    <span class="hide-menu">Profil</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-item">
+                                                <a href="{{ route('profiles', ['type' => 'struktur-organisasi']) }}" class="sidebar-link">
+                                                    <div
+                                                        class="round-16 d-flex align-items-center justify-content-center">
+                                                        <i class="ti ti-circle"></i>
+                                                    </div>
+                                                    <span class="hide-menu">Struktur Organisasi</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-item">
+                                                <a href="{{ route('profiles', ['type' => 'visi-misi']) }}" class="sidebar-link">
                                                     <div
                                                         class="round-16 d-flex align-items-center justify-content-center">
                                                         <i class="ti ti-circle"></i>
@@ -61,6 +97,15 @@
                                                         <i class="ti ti-circle"></i>
                                                     </div>
                                                     <span class="hide-menu">Kata Sambutan</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-item">
+                                                <a href="{{ route('profiles', ['type' => 'tugas-pokok']) }}" class="sidebar-link">
+                                                    <div
+                                                        class="round-16 d-flex align-items-center justify-content-center">
+                                                        <i class="ti ti-circle"></i>
+                                                    </div>
+                                                    <span class="hide-menu">Fungsi & Tugas</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-item">

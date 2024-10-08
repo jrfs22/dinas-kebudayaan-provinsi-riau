@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewsCategoryController;
 use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfilesController;
@@ -23,11 +24,21 @@ Route::middleware('auth')->group(function () {
         Route::delete('{id}', action: [ProfilesController::class, 'destroy'])->name('profiles.destroy');
     });
 
-    Route::prefix('news')->group(function () {
+    Route::prefix('berita')->group(function () {
         Route::get('', [NewsController::class, 'index'])->name('news');
         Route::post('', [NewsController::class, 'store'])->name('news.store');
         Route::put('{id?}', [NewsController::class, 'update'])->name('news.update');
         Route::delete('{id}', action: [NewsController::class, 'destroy'])->name('news.destroy');
+
+        Route::prefix('kategory')->group(function () {
+            Route::get('', [NewsCategoryController::class, 'index'])->name('news.category');
+
+            Route::post('', [NewsCategoryController::class, 'store'])->name('news.category.store');
+
+            Route::put('{id?}', [NewsCategoryController::class, 'update'])->name('news.category.update');
+
+            Route::delete('{id}', [NewsCategoryController::class, 'destroy'])->name('news.category.destroy');
+        });
     });
 });
 

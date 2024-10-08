@@ -12,7 +12,12 @@ class NewsModel extends Model
     protected $table = 'news';
 
     protected $fillable = [
-        'title', 'content',
-        'slug', 'date', 'image_path'
+        'title',
+        'content',
+        'slug',
+        'date',
+        'image_path',
+        'cover_image_path',
+        'category_id'
     ];
 }

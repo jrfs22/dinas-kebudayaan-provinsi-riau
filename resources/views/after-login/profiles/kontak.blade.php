@@ -25,6 +25,7 @@
         <x-table.basic>
             @slot('slotHead')
                 <th>Kontak</th>
+                <th>Kategori</th>
                 <th>Status</th>
                 <th>Aksi</th>
             @endslot
@@ -34,6 +35,9 @@
                     <tr class="search-items">
                         <td>
                             <a href="{{ $item->url_path }}">{{ $item->content }}</a>
+                        </td>
+                        <td class="text-capitalize">
+                            {{ $item->category }}
                         </td>
                         <td>
                             <span class="badge text-capitalize {{ $item->status == 'draft' ? 'bg-danger' : 'bg-success' }}">{{ $item->status }}</span>
@@ -61,6 +65,16 @@
 
         <x-modal.basic title="Tambah Kontak" action="{{ route('profiles.store', ['type' => 'kontak']) }}">
             <div class="row">
+                <div class="col-12">
+                    <x-forms.select
+                        name="category"
+                        label="Kategori"
+                        default=1>
+                        <option value="telepon">Telepon</option>
+                        <option value="email">Email</option>
+                        <option value="media sosial">Media Sosial</option>
+                    </x-forms.select>
+                </div>
                 <div class="col-12">
                     <x-forms.input
                         name="content"
@@ -121,6 +135,25 @@
 
 @push('scripts')
     <script>
+        $("#category").on('change', function () {
+            var content = "08123456";
+            var url_path = "https://wa.me/628121212";
+
+            if ($(this).val() == "email") {
+                content = "disbudparpku@gmail.com";
+                url_path = "mailto:disbudparpku@gmail.com";
+            } else if ($(this).val() == "media sosial") {
+                content = "disbud.provriau";
+                url_path = "https://www.instagram.com/disbud.provriau/";
+            } else {
+                content = "08123456";
+                url_path = "https://wa.me/628121212";
+            }
+
+            $("#input-content").attr("placeholder", content);
+            $("#input-url_path").attr("placeholder", url_path);
+        })
+
         function modalEditKontak(element) {
             var id = $(element).data('id');
             var url_path = $(element).data('url_path');

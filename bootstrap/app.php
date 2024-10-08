@@ -15,7 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->redirectGuestsTo('login');
 
         RedirectIfAuthenticated::redirectUsing(function () {
-            return route('profiles', ['type' => 'visi-misi']);
+            return route('news');
         });
     })
     ->withExceptions(function (Exceptions $exceptions) {
