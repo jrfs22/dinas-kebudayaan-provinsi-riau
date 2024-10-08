@@ -1,13 +1,13 @@
 @extends('layouting.auth.main')
 
-@section('title', 'Kata Sambutan')
+@section('title', 'Struktur Organisasi')
 
 @section('breadcrumb')
-<x-card.breadcrumb title="Home" subtitle="Kata Sambutan" route="{{ route('profiles', ['type' => 'kata-sambutan']) }}" />
+<x-card.breadcrumb title="Home" subtitle="Struktur Organisasi" route="{{ route('profiles', ['type' => 'struktur-organisasi']) }}" />
 @endsection
 
 @section('content')
-    <x-card.profile header="Edit Kata Sambutan" :content="$content">
+    <x-card.profile header="Edit Struktur Organisasi" :content="$content">
         @slot('slotForm')
         <div class="row">
             <div class="col-12">
@@ -39,7 +39,7 @@
 
         @slot('slotResult')
             <img class="img-fluid mb-2" src="{{ asset('storage/' . $content->image_path) }}" alt="Gambar {{ $content->title }}" style="max-height: 250px; object-fit: cover;">
-                    {!! $content->content !!}
+            {!! $content->content !!}
         @endslot
     </x-card.profile>
 @endsection

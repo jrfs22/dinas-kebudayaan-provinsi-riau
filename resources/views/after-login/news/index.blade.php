@@ -1,21 +1,21 @@
 @extends('layouting.auth.main')
 
-@section('title', 'News')
+@section('title', 'Berita')
 
 @section('breadcrumb')
-    <x-card.breadcrumb title="Home" subtitle="News" route="{{ route('news') }}" />
+    <x-card.breadcrumb title="Home" subtitle="Berita" route="{{ route('news') }}" />
 @endsection
 
 @section('content')
     <div class="card card-body">
         <div class="row">
             <div class="col-md-4 col-xl-3">
-                <x-search.basic placeholder="News" />
+                <x-search.basic placeholder="Berita" />
             </div>
             <div class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
                 <button class="btn btn-primary d-flex align-items-center ms-3" data-bs-toggle="modal"
                     data-bs-target="#defaultModal">
-                    <i class="ti ti-plus text-white me-1 fs-5"></i> News
+                    <i class="ti ti-plus text-white me-1 fs-5"></i> Berita
                 </button>
             </div>
         </div>
@@ -25,7 +25,7 @@
         <x-table.basic>
             @slot('slotHead')
                 <th>Judul</th>
-                <th>Slug</th>
+                <th>Ringkasan Berita</th>
                 <th>Aksi</th>
             @endslot
 
