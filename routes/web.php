@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\GalleryCategoryController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\NewsCategoryController;
 use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +42,25 @@ Route::middleware('auth')->group(function () {
             Route::put('{id?}', [NewsCategoryController::class, 'update'])->name('news.category.update');
 
             Route::delete('{id}', [NewsCategoryController::class, 'destroy'])->name('news.category.destroy');
+        });
+    });
+
+    Route::prefix('galleries')->group(function () {
+        Route::get('', [GalleryController::class, 'index'])->name('gallery');
+        Route::get('create', [GalleryController::class, 'create'])->name('gallery.create');
+        
+        Route::post('', [GalleryController::class, 'store'])->name('gallery.store');
+        Route::put('{id?}', [GalleryController::class, 'update'])->name('gallery.update');
+        Route::delete('{id}', action: [GalleryController::class, 'destroy'])->name('gallery.destroy');
+
+        Route::prefix('kategori')->group(function () {
+            Route::get('', [GalleryCategoryController::class, 'index'])->name('gallery.category');
+
+            Route::post('', [GalleryCategoryController::class, 'store'])->name('gallery.category.store');
+
+            Route::put('{id?}', [GalleryCategoryController::class, 'update'])->name('gallery.category.update');
+
+            Route::delete('{id}', [GalleryCategoryController::class, 'destroy'])->name('gallery.category.destroy');
         });
     });
 });
