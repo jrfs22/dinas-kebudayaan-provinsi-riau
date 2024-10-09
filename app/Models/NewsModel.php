@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class NewsModel extends Model
 {
@@ -18,6 +19,12 @@ class NewsModel extends Model
         'date',
         'image_path',
         'cover_image_path',
-        'category_id'
+        'category_id',
+        'hashtags'
     ];
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(NewsCategoryModel::class);
+    }
 }

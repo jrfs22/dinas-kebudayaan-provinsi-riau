@@ -26,12 +26,14 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('berita')->group(function () {
         Route::get('', [NewsController::class, 'index'])->name('news');
+        Route::get('create', [NewsController::class, 'create'])->name('news.create');
+        Route::get('{id}', [NewsController::class, 'edit'])->name('news.edit');
         Route::post('', [NewsController::class, 'store'])->name('news.store');
         Route::put('{id?}', [NewsController::class, 'update'])->name('news.update');
         Route::delete('{id}', action: [NewsController::class, 'destroy'])->name('news.destroy');
 
-        Route::prefix('kategory')->group(function () {
-            Route::get('', [NewsCategoryController::class, 'index'])->name('news.category');
+        Route::prefix('kategori')->group(function () {
+            Route::get('list', [NewsCategoryController::class, 'index'])->name('news.category');
 
             Route::post('', [NewsCategoryController::class, 'store'])->name('news.category.store');
 

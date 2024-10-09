@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('cover_image_path');
             $table->text('image_path');
             $table->unsignedBigInteger('category_id');
+            $table->json('hashtags');
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('news_categories');

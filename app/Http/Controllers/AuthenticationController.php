@@ -43,7 +43,7 @@ class AuthenticationController extends Controller
                     'success'
                 );
 
-                return redirect()->route('profiles', ['type' => 'visi-misi']);
+                return redirect()->route('news');
             }
 
             $this->alert(

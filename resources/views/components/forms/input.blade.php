@@ -6,6 +6,7 @@
     'required' => false,
     'message' => '',
     'label' => '',
+    'value' => ''
 ])
 
 <div class="mb-3" id="container-{{ $name }}">
@@ -17,7 +18,7 @@
         </label>
     @endif
     <input type="{{ $type }}" id="input-{{ $id }}" name="{{ $name }}" class="form-control"
-        placeholder="{{ $placeholder }}" @if ($required) required @endif>
+        placeholder="{{ $placeholder }}" value="{{ $value }}" @if ($required) required @endif>
     <div class="invalid-feedback">
         {{ $message }}
     </div>

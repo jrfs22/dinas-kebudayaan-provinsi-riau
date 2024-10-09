@@ -26,14 +26,15 @@
                                         <span class="hide-menu">Home</span>
                                     </li>
                                     <li class="sidebar-item">
-                                        <a class="sidebar-link has-arrow" href="javascript:void(0)"
-                                            aria-expanded="false">
+                                        <a class="sidebar-link has-arrow {{ isRouteActive('news.create') ? 'active' : (isRouteActive('news.edit') ? 'active' : '') }}"
+                                            href="javascript:void(0)" aria-expanded="false">
                                             <span class="d-flex">
                                                 <i class="ti ti-news"></i>
                                             </span>
                                             <span class="hide-menu">Berita</span>
                                         </a>
-                                        <ul aria-expanded="false" class="collapse first-level">
+                                        <ul aria-expanded="false"
+                                            class="collapse first-level {{ isRouteActive('news.create') ? 'in' : (isRouteActive('news.edit') ? 'in' : '') }}">
                                             <li class="sidebar-item">
                                                 <a href="{{ route('news.category') }}" class="sidebar-link">
                                                     <div
@@ -44,7 +45,8 @@
                                                 </a>
                                             </li>
                                             <li class="sidebar-item">
-                                                <a href="{{ route('news') }}" class="sidebar-link">
+                                                <a href="{{ route('news') }}"
+                                                    class="sidebar-link {{ isRouteActive('news.create') ? 'active' : (isRouteActive('news.edit') ? 'active' : '') }}">
                                                     <div
                                                         class="round-16 d-flex align-items-center justify-content-center">
                                                         <i class="ti ti-circle"></i>
@@ -64,7 +66,8 @@
                                         </a>
                                         <ul aria-expanded="false" class="collapse first-level">
                                             <li class="sidebar-item">
-                                                <a href="{{ route('profiles', ['type' => 'profil']) }}" class="sidebar-link">
+                                                <a href="{{ route('profiles', ['type' => 'profil']) }}"
+                                                    class="sidebar-link">
                                                     <div
                                                         class="round-16 d-flex align-items-center justify-content-center">
                                                         <i class="ti ti-circle"></i>
@@ -73,7 +76,8 @@
                                                 </a>
                                             </li>
                                             <li class="sidebar-item">
-                                                <a href="{{ route('profiles', ['type' => 'struktur-organisasi']) }}" class="sidebar-link">
+                                                <a href="{{ route('profiles', ['type' => 'struktur-organisasi']) }}"
+                                                    class="sidebar-link">
                                                     <div
                                                         class="round-16 d-flex align-items-center justify-content-center">
                                                         <i class="ti ti-circle"></i>
@@ -82,7 +86,8 @@
                                                 </a>
                                             </li>
                                             <li class="sidebar-item">
-                                                <a href="{{ route('profiles', ['type' => 'visi-misi']) }}" class="sidebar-link">
+                                                <a href="{{ route('profiles', ['type' => 'visi-misi']) }}"
+                                                    class="sidebar-link">
                                                     <div
                                                         class="round-16 d-flex align-items-center justify-content-center">
                                                         <i class="ti ti-circle"></i>
@@ -91,7 +96,8 @@
                                                 </a>
                                             </li>
                                             <li class="sidebar-item">
-                                                <a href="{{ route('profiles', ['type' => 'kata-sambutan']) }}" class="sidebar-link">
+                                                <a href="{{ route('profiles', ['type' => 'kata-sambutan']) }}"
+                                                    class="sidebar-link">
                                                     <div
                                                         class="round-16 d-flex align-items-center justify-content-center">
                                                         <i class="ti ti-circle"></i>
@@ -100,7 +106,8 @@
                                                 </a>
                                             </li>
                                             <li class="sidebar-item">
-                                                <a href="{{ route('profiles', ['type' => 'tugas-pokok']) }}" class="sidebar-link">
+                                                <a href="{{ route('profiles', ['type' => 'tugas-pokok']) }}"
+                                                    class="sidebar-link">
                                                     <div
                                                         class="round-16 d-flex align-items-center justify-content-center">
                                                         <i class="ti ti-circle"></i>
@@ -109,7 +116,8 @@
                                                 </a>
                                             </li>
                                             <li class="sidebar-item">
-                                                <a href="{{ route('profiles', ['type' => 'kontak']) }}" class="sidebar-link">
+                                                <a href="{{ route('profiles', ['type' => 'kontak']) }}"
+                                                    class="sidebar-link">
                                                     <div
                                                         class="round-16 d-flex align-items-center justify-content-center">
                                                         <i class="ti ti-circle"></i>
@@ -120,7 +128,6 @@
                                         </ul>
                                     </li>
                                 </ul>
-
                             </div>
                         </div>
                     </div>

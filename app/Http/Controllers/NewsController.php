@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NewsCategoryModel;
 use App\Models\NewsModel;
 use App\Traits\ManageFiles;
 use Exception;
@@ -12,8 +13,16 @@ class NewsController extends Controller
     use ManageFiles;
     public function index()
     {
-        $news = NewsModel::all();
-        return view('after-login.news.index', compact('news'));
+        $news = NewsModel::with('category')->get();
+
+        $categories = NewsCategoryModel::all();
+        return view('after-login.news.index', compact('news', 'categories'));
+    }
+
+    public function create()
+    {
+        $categories = NewsCategoryModel::all();
+        return view('after-login.news.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -23,24 +32,49 @@ class NewsController extends Controller
                 'title' => 'required|max:50',
                 'slug' => 'required|max:75',
                 'date' => 'required',
+                'category_id' => 'required|exists:news_categories,id',
                 'image_path' => 'required|mimes:jpeg,jpg,png|max:512',
-                'content' => 'required'
+                'cover_image_path' => 'required|mimes:jpeg,jpg,png|max:512',
+                'content' => 'required',
+                'hashtags' => 'required'
             ], [
                 'title.required' => 'Judul berita harus ada',
                 'title.max' => 'Judul berita maksimal 50 kata',
                 'slug.required' => 'Ringakasan Berita harus ada',
                 'slug.max' => 'Ringkasan maksimal 75 kata',
+                'category_id.required' => 'Kategori berita harus ada.',
+                'category_id.exists' => 'Kategori berita tidak sesuai.',
                 'date.required' => 'Tanggal harus ada',
+                'cover_image_path.required' => 'Gambar Cover berita harus ada',
+                'cover_image_path.mimes' => 'Hanya menerima file ekstension (jpg, png, jpeg)',
                 'image_path.required' => 'Gambar berita harus ada',
                 'image_path.mimes' => 'Hanya menerima file ekstension (jpg, png, jpeg)',
-                'content.required' => 'Isi berita harus ada'
+                'content.required' => 'Isi berita harus ada',
+                'hashtags.required' => 'Hastag harus di isi.'
             ]);
 
-            $news = NewsModel::create($request->all());
+            $news = new NewsModel();
+
+            $news->fill($request->only([
+                'title',
+                'slug',
+                'date',
+                'category_id',
+                'content'
+            ]));
+
             $news->image_path = $this->storeFile(
                 $request->image_path,
                 'images/news'
             );
+
+            $news->cover_image_path = $this->storeFile(
+                $request->cover_image_path,
+                'images/news'
+            );
+
+            $news->hashtags = $this->parseToJson($request->hashtags);
+
             $news->save();
 
             $this->alert(
@@ -48,10 +82,26 @@ class NewsController extends Controller
                 '',
                 'success'
             );
-            return redirect()->back();
+            return redirect()->route('news');
         } catch (Exception $e) {
             $this->alert(
                 'Berita tidak berhasil ditambahkan.',
+                $e->getMessage(),
+                'error'
+            );
+            return redirect()->back();
+        }
+    }
+
+    public function edit(string $id)
+    {
+        try {
+            $categories = NewsCategoryModel::all();
+            $news = NewsModel::findOrFail($id);
+            return view('after-login.news.edit', compact('categories', 'news'));
+        } catch (Exception $e) {
+            $this->alert(
+                'Terjadi kesalahan',
                 $e->getMessage(),
                 'error'
             );
@@ -66,17 +116,23 @@ class NewsController extends Controller
                 'title' => 'required|max:50',
                 'slug' => 'required|max:75',
                 'date' => 'required',
+                'category_id' => 'required|exists:news_categories,id',
                 'image_path' => 'sometimes|mimes:jpeg,jpg,png|max:512',
-                'content' => 'required'
+                'cover_image_path' => 'sometimes|mimes:jpeg,jpg,png|max:512',
+                'content' => 'required',
+                'hashtags' => 'required'
             ], [
                 'title.required' => 'Judul berita harus ada',
                 'title.max' => 'Judul berita maksimal 50 kata',
                 'slug.required' => 'Ringakasan Berita harus ada',
                 'slug.max' => 'Ringkasan maksimal 75 kata',
+                'category_id.required' => 'Kategori berita harus ada.',
+                'category_id.exists' => 'Kategori berita tidak sesuai.',
                 'date.required' => 'Tanggal harus ada',
+                'cover_image_path.mimes' => 'Hanya menerima file ekstension (jpg, png, jpeg)',
                 'image_path.mimes' => 'Hanya menerima file ekstension (jpg, png, jpeg)',
-                'image_path.max' => 'Maksimal file berukuran 512kb',
-                'content.required' => 'Isi berita harus ada'
+                'content.required' => 'Isi berita harus ada',
+                'hashtags.required' => 'Hastag harus di isi.'
             ]);
 
             $news = NewsModel::findOrFail($id);
@@ -85,15 +141,30 @@ class NewsController extends Controller
                 'title',
                 'slug',
                 'date',
+                'category_id',
                 'content'
             ]));
 
-            $news->image_path = $this->updateFile(
-                $request->image_path,
-                'news',
-                $news->image_path
-            );
-            
+            if($request->has('cover_image_path')) {
+                $news->cover_image_path = $this->updateFile(
+                    $request->cover_image_path,
+                    'news',
+                    $news->cover_image_path
+                );
+            }
+
+            if($request->has('image_path')) {
+                $news->image_path = $this->updateFile(
+                    $request->image_path,
+                    'news',
+                    $news->image_path
+                );
+            }
+
+            $news->hashtags = $this->parseToJson($request->hashtags);
+
+            // dd($news);
+
             $news->update();
 
             $this->alert(
@@ -136,5 +207,10 @@ class NewsController extends Controller
 
             return redirect()->back();
         }
+    }
+
+    public function parseToJson($data)
+    {
+        return json_encode(collect(json_decode($data))->pluck('value')->toArray());
     }
 }

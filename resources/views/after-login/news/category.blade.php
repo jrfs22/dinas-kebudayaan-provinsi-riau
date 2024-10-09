@@ -35,18 +35,12 @@
                             {{ $item->name }}
                         </td>
                         <td class="action-btn d-flex gap-2">
-                            <a href="javascript:void(0)" class="text-success edit"
-                                data-id="{{ $item->id }}"
-                                data-name="{{ $item->name }}"
-
-                                onclick="modalEditNews(this)"
-                            >
+                            <a href="javascript:void(0)" class="text-success edit" data-id="{{ $item->id }}"
+                                data-name="{{ $item->name }}" onclick="modalEditNews(this)">
                                 <i class="ti ti-pencil fs-5"></i>
                             </a>
 
-                            <x-card.deleted
-                                    route="{{ route('news.category.destroy', ['id'=>$item->id]) }}"
-                                />
+                            <x-card.deleted route="{{ route('news.category.destroy', ['id' => $item->id]) }}" />
                         </td>
                     </tr>
                 @endforeach
@@ -56,11 +50,18 @@
         <x-modal.basic title="Tambah Kategori" action="{{ route('news.category.store') }}">
             <div class="row">
                 <div class="col-12">
-                    <x-forms.input
-                        name="name"
-                        label="Nama Kategori"
-                        placeholder="Nama Kategori"
-                    />
+                    <x-forms.input name="name" label="Nama Kategori" placeholder="Nama Kategori" />
+                </div>
+                <div class="col-12 mb-3">
+                    <label class="fw-bold mb-1">Hak Akses</label>
+                    @foreach ($roles as $key => $item)
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="{{ $item->id }}" id="flexCheckChecked-{{ $key+1 }}" name="roles[]">
+                            <label class="form-check-label text-capitalize" for="flexCheckChecked-{{ $key+1 }}">
+                                {{ $item->name }}
+                            </label>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </x-modal.basic>
@@ -68,12 +69,18 @@
         <x-modal.basic id="EditNews" title="Edit News" action="{{ route('news.category.store') }}" isUpdate=1>
             <div class="row">
                 <div class="col-12">
-                    <x-forms.input
-                        name="name"
-                        id="edt_name"
-                        label="Nama Kategori"
-                        placeholder="Nama Kategori"
-                    />
+                    <x-forms.input name="name" id="edt_name" label="Nama Kategori" placeholder="Nama Kategori" />
+                </div>
+                <div class="col-12 mb-3">
+                    <label class="fw-bold mb-1">Hak Akses</label>
+                    @foreach ($roles as $key => $item)
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="{{ $item->id }}" id="flexCheckChecked-{{ $key+1 }}" name="roles[]">
+                            <label class="form-check-label text-capitalize" for="flexCheckChecked-{{ $key+1 }}">
+                                {{ $item->name }}
+                            </label>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </x-modal.basic>
