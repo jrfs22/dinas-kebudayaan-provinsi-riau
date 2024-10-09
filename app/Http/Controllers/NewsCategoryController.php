@@ -5,27 +5,47 @@ namespace App\Http\Controllers;
 use Exception;
 use Illuminate\Http\Request;
 use App\Models\NewsCategoryModel;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use App\Traits\ManageRolesAndPermissionTrait;
 
 class NewsCategoryController extends Controller
 {
+    use ManageRolesAndPermissionTrait;
     public function index()
     {
         $categories = NewsCategoryModel::all();
 
-        return view('after-login.news.category', compact('categories'));
+        $roles = Role::where('name', '!=', 'super-admin')->get();
+
+        return view('after-login.news.category', compact('categories', 'roles'));
     }
 
     public function store(Request $request)
     {
         try {
             $request->validate([
-                'name' => 'required|unique:news_categories,name'
+                'name' => 'required|unique:news_categories,name',
+                'roles' => 'sometimes|exists:roles,id'
             ], [
                 'name.required' => 'Nama Kategori tidak boleh kosong',
                 'name.unique' => 'Nama Kategori sudah ada',
+                'roles.exists' => 'Hak Akses tidak ditemukan',
             ]);
 
-            NewsCategoryModel::create($request->all());
+            $category = NewsCategoryModel::create($request->all());
+
+            // if ($category) {
+            //     if ($request->has('roles')) {
+            //         $permission = Permission::create(['name' => "view news " . $request->name]);
+
+            //         foreach ($request->roles as $item) {
+            //             $role = Role::findById($item);
+            //             $role->givePermissionTo($permission);
+            //         }
+            //     }
+            // }
 
             $this->alert(
                 'Kategori Berita',
@@ -35,7 +55,7 @@ class NewsCategoryController extends Controller
             return redirect()->back();
         } catch (Exception $e) {
             $this->alert(
-                'Kategori Berita tidak berhasil ditambahkan.',
+                'Kategori Berita',
                 $e->getMessage(),
                 'error'
             );
@@ -47,10 +67,12 @@ class NewsCategoryController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'required|unique:news_categories,name'
+                'name' => 'required|unique:news_categories,name',
+                'roles' => 'required'
             ], [
                 'name.required' => 'Nama Kategori tidak boleh kosong',
                 'name.unique' => 'Nama Kategori sudah ada',
+                'roles.required' => 'Hak Akses harus di pilih',
             ]);
 
             $updateNewsCategory = NewsCategoryModel::findOrFail($id);
@@ -64,20 +86,26 @@ class NewsCategoryController extends Controller
             return redirect()->back();
         } catch (Exception $e) {
             $this->alert(
-                'Kategori Berita tidak berhasil diubah.',
+                'Kategori Berita',
                 $e->getMessage(),
                 'error'
             );
             return redirect()->back();
         }
     }
-
     public function destroy(string $id)
     {
         try {
-            $news = NewsCategoryModel::findOrFail($id);
-            $news->delete();
+            $category = NewsCategoryModel::findOrFail($id);
 
+            $category->delete();
+            // DB::beginTransaction();
+
+            // if () {
+            //     $this->delete("view news " . $category->name);
+            // }
+
+            // DB::commit();
             $this->alert(
                 'Kategori Berita',
                 'Kategori Berita berhasil dihapus.',
@@ -86,6 +114,7 @@ class NewsCategoryController extends Controller
 
             return redirect()->back();
         } catch (Exception $e) {
+            // DB::rollBack();
             $this->alert(
                 'Kategori Berita tidak berhasil dihapus.',
                 $e->getMessage(),

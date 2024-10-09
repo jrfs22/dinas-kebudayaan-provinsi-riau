@@ -13,10 +13,14 @@
                 <x-search.basic placeholder="Berita" />
             </div>
             <div class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
-                <button class="btn btn-primary d-flex align-items-center ms-3" data-bs-toggle="modal"
-                    data-bs-target="#defaultModal">
+                <x-search.filter>
+                    @foreach ($categories as $item)
+                        <option value="{{ $item->name }}">{{ $item->name }}</option>
+                    @endforeach
+                </x-search.filter>
+                <a href="{{ route('news.create') }}" class="btn btn-primary d-flex align-items-center ms-3">
                     <i class="ti ti-plus text-white me-1 fs-5"></i> Berita
-                </button>
+                </a>
             </div>
         </div>
     </div>
@@ -24,8 +28,10 @@
     <div class="card card-body">
         <x-table.basic>
             @slot('slotHead')
+                <th>Kategori</th>
                 <th>Judul</th>
                 <th>Ringkasan Berita</th>
+                <th>Tanggal</th>
                 <th>Aksi</th>
             @endslot
 
@@ -33,28 +39,29 @@
                 @foreach ($news as $item)
                     <tr class="search-items">
                         <td>
+                            {{ $item->category->name }}
+                        </td>
+                        <td style="word-break: break-all;">
                             {{ $item->title }}
                         </td>
-                        <td>
+                        <td style="word-break: break-all;">
                             {{ $item->slug }}
                         </td>
+                        <td>
+                            {{ indonesianDate($item->date) }}
+                        </td>
                         <td class="action-btn d-flex gap-2">
-                            <a href="javascript:void(0)" class="text-success edit"
-                                data-id="{{ $item->id }}"
-                                data-date="{{ $item->date }}"
-                                data-title="{{ $item->title }}"
-                                data-slug="{{ $item->slug }}"
-                                data-image_path="{{ $item->image_path }}"
-                                data-content="{{ $item->content }}"
-
-                                onclick="modalEditNews(this)"
-                            >
+                            <a href="{{ route('news.edit', ['id' => $item->id]) }}" class="text-success edit">
                                 <i class="ti ti-pencil fs-5"></i>
                             </a>
+                            {{-- <a href="javascript:void(0)" class="text-success edit" data-id="{{ $item->id }}"
+                                data-date="{{ $item->date }}" data-title="{{ $item->title }}" data-slug="{{ $item->slug }}"
+                                data-image_path="{{ $item->image_path }}" data-content="{{ $item->content }}"
+                                onclick="modalEditNews(this)">
+                                <i class="ti ti-pencil fs-5"></i>
+                            </a> --}}
 
-                            <x-card.deleted
-                                    route="{{ route('news.destroy', ['id'=>$item->id]) }}"
-                                />
+                            <x-card.deleted route="{{ route('news.destroy', ['id' => $item->id]) }}" />
                         </td>
                     </tr>
                 @endforeach
@@ -64,36 +71,19 @@
         <x-modal.lg title="Tambah Kontak" action="{{ route('news.store') }}">
             <div class="row">
                 <div class="col-12">
-                    <x-forms.input
-                        name="title"
-                        label="Judul"
-                        placeholder="Penemuan Budaya"
-                    />
+                    <x-forms.input name="title" label="Judul" placeholder="Penemuan Budaya" />
                 </div>
                 <div class="col-12">
-                    <x-forms.input
-                        name="slug"
-                        label="Ringkasan Berita"
-                        placeholder="Penemuan Budaya Baru"
-                    />
+                    <x-forms.input name="slug" label="Ringkasan Berita" placeholder="Penemuan Budaya Baru" />
                 </div>
                 <div class="col-12">
-                    <x-forms.input
-                        name="image_path"
-                        label="Gambar Berita"
-                        type="file"
-                    />
+                    <x-forms.input name="image_path" label="Gambar Berita" type="file" />
                 </div>
                 <div class="col-12">
-                    <x-forms.input
-                        name="date"
-                        label="Tanggal"
-                        type="date"
-                    />
+                    <x-forms.input name="date" label="Tanggal" type="date" />
                 </div>
                 <div class="col-12">
-                    <x-forms.richeditor
-                        name="content" label="Konten Berita">
+                    <x-forms.richeditor name="content" label="Konten Berita">
                     </x-forms.richeditor>
                 </div>
             </div>
@@ -105,40 +95,20 @@
                     <img class="img-fluid mb-3" src="" id="edtNewImage" alt="">
                 </div>
                 <div class="col-12">
-                    <x-forms.input
-                        name="title"
-                        id="edt_title"
-                        label="Judul"
-                        placeholder="Penemuan Budaya"
-                    />
+                    <x-forms.input name="title" id="edt_title" label="Judul" placeholder="Penemuan Budaya" />
                 </div>
                 <div class="col-12">
-                    <x-forms.input
-                        name="slug"
-                        id="edt_slug"
-                        label="Ringkasan Berita"
-                        placeholder="Penemuan Budaya Baru"
-                    />
+                    <x-forms.input name="slug" id="edt_slug" label="Ringkasan Berita"
+                        placeholder="Penemuan Budaya Baru" />
                 </div>
                 <div class="col-12">
-                    <x-forms.input
-                        name="image_path"
-                        id="edt_image_path"
-                        label="Gambar Berita"
-                        type="file"
-                    />
+                    <x-forms.input name="image_path" id="edt_image_path" label="Gambar Berita" type="file" />
                 </div>
                 <div class="col-12">
-                    <x-forms.input
-                        name="date"
-                        id="edt_date"
-                        label="Tanggal"
-                        type="date"
-                    />
+                    <x-forms.input name="date" id="edt_date" label="Tanggal" type="date" />
                 </div>
                 <div class="col-12">
-                    <x-forms.richeditor
-                        name="content" id="edt_content" label="Konten Berita">
+                    <x-forms.richeditor name="content" id="edt_content" label="Konten Berita">
                     </x-forms.richeditor>
                 </div>
             </div>
@@ -162,7 +132,7 @@
 
             $("#EditNews form").attr('action', route)
             $("#input-edt_title").val(title)
-            $("#edtNewImage").attr("src", "{{ asset('') }}"+"storage/"+image_path)
+            $("#edtNewImage").attr("src", "{{ asset('') }}" + "storage/" + image_path)
             $("#input-edt_slug").val(slug)
             $("#input-edt_date").val(date)
             $("#hidden-edt_content").val(content)

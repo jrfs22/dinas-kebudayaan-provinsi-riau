@@ -38,7 +38,7 @@
         @endslot
 
         @slot('slotResult')
-            <img class="img-fluid mb-2" src="{{ asset('storage/' . $content->image_path) }}" alt="Gambar {{ $content->title }}" style="max-height: 250px; object-fit: cover;">
+            <img class="img-fluid mb-2" src="{{ asset('storage/' . $content->image_path) }}" alt="Gambar {{ $content->title }}" style="max-height: 250px; object-fit: contain;">
                     {!! $content->content !!}
         @endslot
     </x-card.profile>
