@@ -26,36 +26,24 @@
                                         <span class="hide-menu">Home</span>
                                     </li>
                                     <li class="sidebar-item">
-                                        <a class="sidebar-link has-arrow {{ isRouteActive('news.create') ? 'active' : (isRouteActive('news.edit') ? 'active' : '') }}"
-                                            href="javascript:void(0)" aria-expanded="false">
-                                            <span class="d-flex">
+                                        <a class="sidebar-link {{ isRouteActive('news.create') ? 'active' : (isRouteActive('news.edit') ? 'active' : '') }}"
+                                            href="{{ route('news') }}" aria-expanded="false">
+                                            <span>
                                                 <i class="ti ti-news"></i>
                                             </span>
                                             <span class="hide-menu">Berita</span>
                                         </a>
-                                        <ul aria-expanded="false"
-                                            class="collapse first-level {{ isRouteActive('news.create') ? 'in' : (isRouteActive('news.edit') ? 'in' : '') }}">
-                                            <li class="sidebar-item">
-                                                <a href="{{ route('news.category') }}" class="sidebar-link">
-                                                    <div
-                                                        class="round-16 d-flex align-items-center justify-content-center">
-                                                        <i class="ti ti-circle"></i>
-                                                    </div>
-                                                    <span class="hide-menu">Kategori</span>
-                                                </a>
-                                            </li>
-                                            <li class="sidebar-item">
-                                                <a href="{{ route('news') }}"
-                                                    class="sidebar-link {{ isRouteActive('news.create') ? 'active' : (isRouteActive('news.edit') ? 'active' : '') }}">
-                                                    <div
-                                                        class="round-16 d-flex align-items-center justify-content-center">
-                                                        <i class="ti ti-circle"></i>
-                                                    </div>
-                                                    <span class="hide-menu">Berita</span>
-                                                </a>
-                                            </li>
-                                        </ul>
                                     </li>
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link"
+                                            href="{{ route('gallery') }}" aria-expanded="false">
+                                            <span>
+                                                <i class="ti ti-photo"></i>
+                                            </span>
+                                            <span class="hide-menu">Gallery</span>
+                                        </a>
+                                    </li>
+
                                     <li class="sidebar-item">
                                         <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                             aria-expanded="false">
@@ -123,6 +111,35 @@
                                                         <i class="ti ti-circle"></i>
                                                     </div>
                                                     <span class="hide-menu">Kontak</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                            aria-expanded="false">
+                                            <span class="d-flex">
+                                                <i class="ti ti-database"></i>
+                                            </span>
+                                            <span class="hide-menu">Master Data</span>
+                                        </a>
+                                        <ul aria-expanded="false" class="collapse first-level">
+                                            <li class="sidebar-item">
+                                                <a href="{{ route('news.category') }}" class="sidebar-link">
+                                                    <div
+                                                        class="round-16 d-flex align-items-center justify-content-center">
+                                                        <i class="ti ti-circle"></i>
+                                                    </div>
+                                                    <span class="hide-menu">Kategori Berita</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-item">
+                                                <a href="{{ route('gallery.category') }}" class="sidebar-link">
+                                                    <div
+                                                        class="round-16 d-flex align-items-center justify-content-center">
+                                                        <i class="ti ti-circle"></i>
+                                                    </div>
+                                                    <span class="hide-menu">Kategori Gallery</span>
                                                 </a>
                                             </li>
                                         </ul>
