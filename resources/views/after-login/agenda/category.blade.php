@@ -1,9 +1,9 @@
 @extends('layouting.auth.main')
 
-@section('title', 'Kategori Berita')
+@section('title', 'Kategori Agenda')
 
 @section('breadcrumb')
-    <x-card.breadcrumb title="Home" subtitle="Kategori Berita" route="{{ route('news.category') }}" />
+    <x-card.breadcrumb title="Home" subtitle="Kategori Agenda" route="{{ route('agenda.category') }}" />
 @endsection
 
 @section('content')
@@ -36,52 +36,30 @@
                         </td>
                         <td class="action-btn d-flex gap-2">
                             <a href="javascript:void(0)" class="text-success edit" data-id="{{ $item->id }}"
-                                data-name="{{ $item->name }}" onclick="modalEditNews(this)">
+                                data-name="{{ $item->name }}" onclick="modalEditagenda(this)">
                                 <i class="ti ti-pencil fs-5"></i>
                             </a>
 
-                            <x-card.deleted route="{{ route('news.category.destroy', ['id' => $item->id]) }}" />
+                            <x-card.deleted route="{{ route('agenda.category.destroy', ['id' => $item->id]) }}" />
                         </td>
                     </tr>
                 @endforeach
             @endslot
         </x-table.basic>
 
-        <x-modal.basic title="Tambah Kategori" action="{{ route('news.category.store') }}">
+        <x-modal.basic title="Tambah Kategori" action="{{ route('agenda.category.store') }}">
             <div class="row">
                 <div class="col-12">
                     <x-forms.input name="name" label="Nama Kategori" placeholder="Nama Kategori" />
                 </div>
-                {{-- <div class="col-12 mb-3">
-                    <label class="fw-bold mb-1">Hak Akses</label>
-                    @foreach ($roles as $key => $item)
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="{{ $item->id }}" id="flexCheckChecked-{{ $key+1 }}" name="roles[]">
-                            <label class="form-check-label text-capitalize" for="flexCheckChecked-{{ $key+1 }}">
-                                {{ $item->name }}
-                            </label>
-                        </div>
-                    @endforeach
-                </div> --}}
             </div>
         </x-modal.basic>
 
-        <x-modal.basic id="EditNews" title="Edit News" action="{{ route('news.category.store') }}" isUpdate=1>
+        <x-modal.basic id="Editagenda" title="Edit News" action="{{ route('agenda.category.store') }}" isUpdate=1>
             <div class="row">
                 <div class="col-12">
                     <x-forms.input name="name" id="edt_name" label="Nama Kategori" placeholder="Nama Kategori" />
                 </div>
-                {{-- <div class="col-12 mb-3">
-                    <label class="fw-bold mb-1">Hak Akses</label>
-                    @foreach ($roles as $key => $item)
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="{{ $item->id }}" id="flexCheckChecked-{{ $key+1 }}" name="roles[]">
-                            <label class="form-check-label text-capitalize" for="flexCheckChecked-{{ $key+1 }}">
-                                {{ $item->name }}
-                            </label>
-                        </div>
-                    @endforeach
-                </div> --}}
             </div>
         </x-modal.basic>
     </div>
@@ -90,17 +68,17 @@
 
 @push('scripts')
     <script>
-        function modalEditNews(element) {
+        function modalEditagenda(element) {
             var id = $(element).data('id');
             var name = $(element).data('name');
 
-            var route = {!! json_encode(route('news.category.update') . '/') !!} + id
+            var route = {!! json_encode(route('agenda.category.update') . '/') !!} + id
 
 
-            $("#EditNews form").attr('action', route)
+            $("#Editagenda form").attr('action', route)
             $("#input-edt_name").val(name)
 
-            $("#EditNews").modal('show')
+            $("#Editagenda").modal('show')
         }
     </script>
 @endpush

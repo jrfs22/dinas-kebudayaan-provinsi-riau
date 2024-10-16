@@ -65,12 +65,12 @@ class NewsController extends Controller
 
             $news->image_path = $this->storeFile(
                 $request->image_path,
-                'images/news'
+                'images/main/news'
             );
 
             $news->cover_image_path = $this->storeFile(
                 $request->cover_image_path,
-                'images/news'
+                'images/cover/news'
             );
 
             $news->hashtags = $this->parseToJson($request->hashtags);
@@ -148,7 +148,7 @@ class NewsController extends Controller
             if($request->has('cover_image_path')) {
                 $news->cover_image_path = $this->updateFile(
                     $request->cover_image_path,
-                    'news',
+                    'images/cover/news',
                     $news->cover_image_path
                 );
             }
@@ -156,14 +156,12 @@ class NewsController extends Controller
             if($request->has('image_path')) {
                 $news->image_path = $this->updateFile(
                     $request->image_path,
-                    'news',
+                    'images/main/news',
                     $news->image_path
                 );
             }
 
             $news->hashtags = $this->parseToJson($request->hashtags);
-
-            // dd($news);
 
             $news->update();
 

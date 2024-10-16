@@ -19,7 +19,7 @@
         });
 
         {{$id}}.on('text-change', function(delta, oldDelta, source) {
-            document.querySelector("input[name='{{ $name }}']").value = {{$id}}.root.innerHTML;
+            document.querySelector("#hidden-{{ $id }}").value = {{$id}}.root.innerHTML;
         });
     </script>
 @endpush
