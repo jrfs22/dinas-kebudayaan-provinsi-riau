@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Traits\ManageFiles;
+use App\Models\AgendaCategoryModel;
 use Exception;
-use App\Models\GalleryModel;
+use App\Models\AgendaModel;
+use App\Traits\ManageFiles;
 use Illuminate\Http\Request;
-use App\Models\GalleryCategoryModel;
 
-class GalleryController extends Controller
+class AgendaController extends Controller
 {
     use ManageFiles;
     public function index()
     {
-        $galleries = GalleryModel::with('category')->get();
+        $agenda = AgendaModel::with('category')->get();
 
-        $categories = GalleryCategoryModel::all();
-        return view('after-login.gallery.index', compact('galleries', 'categories'));
+        $categories = AgendaCategoryModel::all();
+        return view('after-login.agenda.index', compact('agenda', 'categories'));
     }
 
     public function store(Request $request)
@@ -24,42 +24,44 @@ class GalleryController extends Controller
         try {
             $request->validate([
                 'name' => 'required',
-                'image_path' => 'required|mimes:jpeg,jpg,png|max:512',
+                'location' => 'required',
+                'image_path' => 'sometimes|mimes:jpeg,jpg,png|max:512',
                 'date' => 'required',
-                'gallery_category_id' => 'required|exists:gallery_categories,id',
+                'agenda_category_id' => 'required|exists:agenda_categories,id',
             ], [
                 'name.required' => 'Nama Kegiatan tidak boleh kosong',
-                'gallery_category_id.required' => 'Kategori berita harus ada.',
-                'gallery_category_id.exists' => 'Kategori berita tidak sesuai.',
+                'location.required' => 'Lokasi Kegiatan tidak boleh kosong',
+                'agenda_category_id.required' => 'Kategori berita harus ada.',
+                'agenda_category_id.exists' => 'Kategori berita tidak sesuai.',
                 'date.required' => 'Tanggal harus ada',
-                'image_path.required' => 'Gambar Cover berita harus ada',
                 'image_path.mimes' => 'Hanya menerima file ekstension (jpg, png, jpeg)',
             ]);
 
-            $gallery = new GalleryModel();
+            $agenda = new AgendaModel();
 
-            $gallery->fill($request->only([
+            $agenda->fill($request->only([
                 'name',
+                'location',
                 'date',
-                'gallery_category_id'
+                'agenda_category_id'
             ]));
 
-            $gallery->image_path = $this->storeFile(
+            $agenda->image_path = $this->storeFile(
                 $request->image_path,
-                'images/gallery'
+                'images/agenda'
             );
 
-            $gallery->save();
+            $agenda->save();
 
             $this->alert(
-                'Gallery',
-                'Gallery berhasil ditambahkan.',
+                'Agenda',
+                'agenda berhasil ditambahkan.',
                 'success'
             );
             return redirect()->back();
         } catch (Exception $e) {
             $this->alert(
-                'Gallery',
+                'Agenda',
                 $e->getMessage(),
                 'error'
             );
@@ -72,44 +74,47 @@ class GalleryController extends Controller
         try {
             $request->validate([
                 'name' => 'required',
+                'location' => 'required',
                 'image_path' => 'sometimes|mimes:jpeg,jpg,png|max:512',
                 'date' => 'required',
-                'gallery_category_id' => 'required|exists:gallery_categories,id',
+                'agenda_category_id' => 'required|exists:agenda_categories,id',
             ], [
                 'name.required' => 'Nama Kegiatan tidak boleh kosong',
-                'gallery_category_id.required' => 'Kategori berita harus ada.',
-                'gallery_category_id.exists' => 'Kategori berita tidak sesuai.',
+                'location.required' => 'Lokasi Kegiatan tidak boleh kosong',
+                'agenda_category_id.required' => 'Kategori berita harus ada.',
+                'agenda_category_id.exists' => 'Kategori berita tidak sesuai.',
                 'date.required' => 'Tanggal harus ada',
                 'image_path.mimes' => 'Hanya menerima file ekstension (jpg, png, jpeg)',
             ]);
 
-            $gallery = GalleryModel::findOrFail($id);
+            $agenda = AgendaModel::findOrFail($id);
 
-            $gallery->fill($request->only([
+            $agenda->fill($request->only([
                 'name',
+                'location',
                 'date',
-                'gallery_category_id'
+                'agenda_category_id'
             ]));
 
             if($request->has('image_path')) {
-                $gallery->image_path = $this->updateFile(
+                $agenda->image_path = $this->updateFile(
                     $request->image_path,
-                    'images/gallery',
-                    $gallery->image_path
+                    'agenda',
+                    $agenda->image_path
                 );
             }
 
-            $gallery->save();
+            $agenda->save();
 
             $this->alert(
-                'Gallery',
-                'Gallery berhasil diubah.',
+                'Agenda',
+                'agenda berhasil diubah.',
                 'success'
             );
             return redirect()->back();
         } catch (Exception $e) {
             $this->alert(
-                'Gallery',
+                'Agenda',
                 $e->getMessage(),
                 'error'
             );
@@ -120,21 +125,21 @@ class GalleryController extends Controller
     public function destroy(string $id)
     {
         try {
-            $gallery = GalleryModel::findOrFail($id);
-            $gallery->delete();
+            $agenda = AgendaModel::findOrFail($id);
+            $agenda->delete();
 
-            $this->deleteFile($gallery->image_path);
+            $this->deleteFile($agenda->image_path);
 
             $this->alert(
-                'Gallery',
-                'Berhasil menghapus gallery.',
+                'Agenda',
+                'Berhasil menghapus agenda.',
                 'success'
             );
 
             return redirect()->back();
         } catch (Exception $e) {
             $this->alert(
-                'Gallery',
+                'Agenda',
                 $e->getMessage(),
                 'error'
             );

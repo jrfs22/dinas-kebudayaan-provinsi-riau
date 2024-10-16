@@ -1,9 +1,16 @@
 <?php
 
+use App\Http\Controllers\AgendaCategoryController;
+use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\ContactUSController;
+use App\Http\Controllers\FaqsController;
 use App\Http\Controllers\GalleryCategoryController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\NewsCategoryController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PPIDCategoryController;
+use App\Http\Controllers\PPIDController;
+use App\Http\Controllers\PpidFileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\AuthenticationController;
@@ -48,7 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('galleries')->group(function () {
         Route::get('', [GalleryController::class, 'index'])->name('gallery');
         Route::get('create', [GalleryController::class, 'create'])->name('gallery.create');
-        
+
         Route::post('', [GalleryController::class, 'store'])->name('gallery.store');
         Route::put('{id?}', [GalleryController::class, 'update'])->name('gallery.update');
         Route::delete('{id}', action: [GalleryController::class, 'destroy'])->name('gallery.destroy');
@@ -61,6 +68,51 @@ Route::middleware('auth')->group(function () {
             Route::put('{id?}', [GalleryCategoryController::class, 'update'])->name('gallery.category.update');
 
             Route::delete('{id}', [GalleryCategoryController::class, 'destroy'])->name('gallery.category.destroy');
+        });
+    });
+
+    Route::prefix('agenda')->group(function () {
+        Route::get('', [AgendaController::class, 'index'])->name('agenda');
+        Route::get('create', [AgendaController::class, 'create'])->name('agenda.create');
+
+        Route::post('', [AgendaController::class, 'store'])->name('agenda.store');
+        Route::put('{id?}', [AgendaController::class, 'update'])->name('agenda.update');
+        Route::delete('{id}', action: [AgendaController::class, 'destroy'])->name('agenda.destroy');
+
+        Route::prefix('kategori')->group(function () {
+            Route::get('', [AgendaCategoryController::class, 'index'])->name('agenda.category');
+
+            Route::post('', [AgendaCategoryController::class, 'store'])->name('agenda.category.store');
+
+            Route::put('{id?}', [AgendaCategoryController::class, 'update'])->name('agenda.category.update');
+
+            Route::delete('{id}', [AgendaCategoryController::class, 'destroy'])->name('agenda.category.destroy');
+        });
+    });
+
+    Route::resource('contact_us', ContactUSController::class)->names([
+        'index' => 'contact_us',
+        'store' => 'contact_us.store',
+    ]);
+
+    Route::prefix('ppid')->group(function () {
+        Route::get('{id}', [PPIDController::class, 'index'])->name('ppid');
+        Route::post('', [PPIDController::class, 'store'])->name('ppid.store');
+        Route::put('{id?}', [PPIDController::class, 'update'])->name('ppid.update');
+        Route::delete('{id}', [PPIDController::class, 'destroy'])->name('ppid.destroy');
+
+        Route::prefix('category')->group(function () {
+            Route::get('list', [PPIDCategoryController::class, 'index'])->name('ppid.category');
+            Route::post('', [PPIDCategoryController::class, 'store'])->name('ppid.category.store');
+            Route::put('{id?}', [PPIDCategoryController::class, 'update'])->name('ppid.category.update');
+            Route::delete('{id}', [PPIDCategoryController::class, 'destroy'])->name('ppid.category.destroy');
+        });
+
+        Route::prefix('files')->group(function () {
+            Route::get('list/{id}', [PpidFileController::class, 'index'])->name('ppid.files');
+            Route::post('', [PpidFileController::class, 'store'])->name('ppid.files.store');
+            Route::put('{id?}', [PpidFileController::class, 'update'])->name('ppid.files.update');
+            Route::delete('{id}', [PpidFileController::class, 'destroy'])->name('ppid.files.destroy');
         });
     });
 });
