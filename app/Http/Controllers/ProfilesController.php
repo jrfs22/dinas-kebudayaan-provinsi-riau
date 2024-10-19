@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ContentModel;
-use App\Traits\ManageFiles;
 use Exception;
+use App\Traits\ManageFiles;
+use App\Models\ContentModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfilesController extends Controller
 {
@@ -14,43 +15,80 @@ class ProfilesController extends Controller
     {
         try {
             $content = new ContentModel();
-            switch ($type) {
-                case 'profil':
-                    $content = $content->where('category', 'profil')->first();
-                    $view = 'after-login.profiles.profil';
-                    break;
-                case 'struktur-organisasi':
-                    $content = $content->where('category', 'struktur organisasi')->first();
-                    $view = 'after-login.profiles.struktur';
-                    break;
-                case 'tugas-pokok':
-                    $content = $content->where('category', 'tugas pokok & fungsi')->first();
-                    $view = 'after-login.profiles.tugas-pokok';
-                    break;
-                case 'visi-misi':
-                    $content = $content->where('category', 'visi & misi')->first();
-                    $view = 'after-login.profiles.visimisi';
-                    break;
-                case 'kata-sambutan':
-                    $content = $content->where('category', 'sambutan')->first();
-                    $view = 'after-login.profiles.sambutan';
-                    break;
-                case 'kontak':
-                    $content = $content->whereIn('category', ['media sosial', 'kontak', 'telepon', 'email'])->get();
-                    $view = 'after-login.profiles.kontak';
-                    break;
-                case 'banner':
-                    $content = $content->whereIn('category', [
-                        'banner-description', 'banner-main-image',
-                        'banner-secondary-image',
-                    ])->get();
-                    $view = 'after-login.settings.banner';
-                    break;
-                default:
-                    break;
-            }
 
-            return view($view, compact('content'));
+            if (Auth::check()) {
+                switch ($type) {
+                    case 'sejarah':
+                        $content = $content->where('category', 'sejarah')->first();
+                        $view = 'after-login.profiles.sejarah';
+                        break;
+                    case 'struktur-organisasi':
+                        $content = $content->where('category', 'struktur organisasi')->first();
+                        $view = 'after-login.profiles.struktur';
+                        break;
+                    case 'tugas-pokok':
+                        $content = $content->where('category', 'tugas pokok & fungsi')->first();
+                        $view = 'after-login.profiles.tugas-pokok';
+                        break;
+                    case 'visi':
+                        $content = $content->where('category', 'visi')->first();
+                        $view = 'after-login.profiles.visi';
+                        break;
+                    case 'misi':
+                        $content = $content->where('category', 'misi')->first();
+                        $view = 'after-login.profiles.misi';
+                        break;
+                    case 'kata-sambutan':
+                        $content = $content->where('category', 'sambutan')->first();
+                        $view = 'after-login.profiles.sambutan';
+                        break;
+                    case 'kontak':
+                        $content = $content->whereIn('category', ['media sosial', 'kontak', 'telepon', 'email'])->get();
+                        $view = 'after-login.profiles.kontak';
+                        break;
+                    case 'banner':
+                        $content = $content->whereIn('category', [
+                            'banner-description',
+                            'banner-main-image',
+                            'banner-secondary-image',
+                        ])->get();
+                        $view = 'after-login.settings.banner';
+                        break;
+                    default:
+                        break;
+                }
+
+                return view($view, compact('content'));
+            } else {
+                switch ($type) {
+                    case 'sejarah':
+                        $content = $content->where('status', 'published')->where('category', 'sejarah')->first();
+
+                        return view('before-login.profile.sejarah', compact('content'));
+                    case 'about':
+                        $about = $content->where('category', 'about')->first();
+
+                        $sambutan = $content->where('category', 'sambutan')->first();
+
+                        return view('before-login.profile.about-us', compact('content', 'sambutan'));
+                    case 'struktur-organisasi':
+                        $content = $content->where('category', 'struktur organisasi')->first();
+
+                        return view('before-login.profile.struktur-organisasi', compact('content'));
+                    case 'visi-misi':
+                        $visi = $content->where('status', 'published')->where('category', 'visi')->first();
+
+                        $misi = $content->where('status', 'published')->where('category', 'misi')->first();
+
+                        return view('before-login.profile.visimisi', compact('visi', 'misi'));
+                    case 'kontak':
+                        $content = $content->whereIn('category', ['media sosial', 'kontak', 'telepon', 'email'])->get();
+                        $view = 'after-login.profiles.kontak';
+
+                        return view($view, compact('content'));
+                    default:
+                }
+            }
         } catch (Exception $e) {
             $this->alert(
                 'Halaman tidak ditemukan',

@@ -11,12 +11,6 @@
         @slot('slotForm')
         <div class="row">
             <div class="col-12">
-                <x-forms.richeditor
-                    name="content" value="{!! $content->content !!}">
-                    {!! $content->content !!}
-                </x-forms.richeditor>
-            </div>
-            <div class="col-12">
                 <x-forms.input
                     name="image_path"
                     label="Gambar"
@@ -39,7 +33,6 @@
 
         @slot('slotResult')
             <img class="img-fluid mb-2" src="{{ asset('storage/' . $content->image_path) }}" alt="Gambar {{ $content->title }}" style="max-height: 250px; object-fit: contain;">
-            {!! $content->content !!}
         @endslot
     </x-card.profile>
 @endsection

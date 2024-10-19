@@ -19,21 +19,11 @@ class CompanyProfilesSeeder extends Seeder
                 'title' => 'Visi dan Misi Kebudayaan Melayu',
                 'description' => 'Visi dan Misi Dinas Kebudayaan dalam pengembangan budaya Melayu.',
                 'content' => '
-                    <p><strong>VISI</strong></p>
                     <p>Terwujudnya Dinas Kebudayaan Sebagai Pusat Pelestarian, Pendokumentasian, dan Pengembangan Budaya Melayu guna memperkuat karakter dan jati diri bangsa menuju masyarakat berbudaya dan sejahtera, berbasis teknologi informasi dalam lingkup masyarakat Agamis.</p>
-
-                    <p><strong>MISI</strong></p>
-                    <ul>
-                        <li>Mewujudkan pelestarian adat, nilai budaya dan masyarakatnya melalui inventarisasi dan pendokumentasian.</li>
-                        <li>Menjadikan Riau sebagai pusat bahasa dan seni budaya Melayu di Asia Tenggara.</li>
-                        <li>Menjadikan diplomasi dan publikasi budaya Melayu berbasis teknologi informasi.</li>
-                        <li>Menjadikan Riau sebagai pusat sejarah, cagar budaya, dan pengembangan permuseuman.</li>
-                        <li>Menjadikan Riau sebagai pengumpul, perawat serta penyaji warisan benda dan takbenda seni budaya Melayu.</li>
-                    </ul>
                 ',
                 'date' => now(),
                 'status' => 'published',
-                'category' => 'visi & misi',
+                'category' => 'visi',
                 'url_path' => 'visi-misi-kebudayaan-melayu',
                 'image_path' => 'images/culture-vision.jpg',
             ],
@@ -56,14 +46,14 @@ class CompanyProfilesSeeder extends Seeder
             ],
             [
                 'id' => 3,
-                'title' => 'Profil',
-                'description' => 'Profil Singkat',
+                'title' => 'sejarah',
+                'description' => 'Sejarah Singkat',
                 'content' => '
-                    <p><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">Dinas Kebudayaan Provinsi Riau sebelumnya tergabung dalam Dinas Pendidikan dan Kebudayaan Provinsi Riau, Namun sejak keluarnya Peraturan Gubernur Riau No 4 tahun 2016 tentang Kedudukan, Susunan Organisasi, Tugas dan Fungsi, serta Tata Kerja Dinas Kebudayaan Provinsi Riau. Maka Dinas Kebudayaan berpisah dari Dinas Pendidikan dan diberi nama menjadi Dinas Kebudayaan Provinsi Riau.</span></p><p><br></p><p><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">Adapun susunan kelembagaan Dinas Kebudayaan Provinsi Riau sebagai berikut :</span></p><ol><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">Kepala Dinas Kebudayaan</span></li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">Sekretariat, terdiri dari:</span></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">Subbagian Perencanaan Program</span></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">Subbagian Keuangan, Perlengkapan dan Pengelolaan barang Milik&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Daerah</span></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">Subbagian Kepegawaian dan Umum.</span></li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">Bidang Bahasa dan Seni, Terdiri dari :</span></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;Seksi Bahasa dan Sastra</span></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;Seksi Kesenian</span></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;Seksi Perfilman.</span></li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">Bidang Pelestarian Adat dan Nilai Budaya, terdiri atas :</span></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;Seksi Pelestarian Adat dan Tradisi</span></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;Seksi Nilai Budaya</span></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;Seksi Inventarisasi dan Dokumentasi Budaya.</span></li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">Bidang Sejarah, Pelestarian Cagar Budaya dan Permuseuman, terdiri dari :</span></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">Seksi Sejarah</span></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">Seksi Pelestarian Cagar Budaya</span></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">Seksi Permuseuman.</span></li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">Bidang Rekayasa Budaya, terdiri dari :</span></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;Seksi Diplomasi Budaya</span></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;Seksi Pengembangan teknologi Budaya</span></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><span style="background-color: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;Seksi Publikasi Budaya.</span></li></ol>
+                    <p><span style="color: rgb(0, 0, 0); background-color: rgba(255, 255, 255, 0.5);">Dinas Kebudayaan Provinsi Riau sebelumnya tergabung dalam Dinas Pendidikan dan Kebudayaan Provinsi Riau, Namun sejak keluarnya Peraturan Gubernur Riau No 4 tahun 2016 tentang Kedudukan, Susunan Organisasi, Tugas dan Fungsi, serta Tata Kerja Dinas Kebudayaan Provinsi Riau. Maka Dinas Kebudayaan berpisah dari Dinas Pendidikan dan diberi nama menjadi Dinas Kebudayaan Provinsi Riau</span></p>
                 ',
                 'date' => now(),
                 'status' => 'published',
-                'category' => 'profil',
+                'category' => 'sejarah',
                 'url_path' => null,
                 'image_path' => 'images/director-speech.jpg',
             ],
@@ -135,6 +125,17 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'breadcrumb',
                 'url_path' => 'https://raw.githack.com/RakadityaElshando/Official-Website-Disbud/refs/heads/main/ppid.html',
                 'image_path' => 'images/settings/breadcrumb-bg.jpg',
+            ],
+            [
+                'id' => 10,
+                'title' => 'Misi Kebudayaan Melayu',
+                'description' => 'Misi Dinas Kebudayaan dalam pengembangan budaya Melayu.',
+                'content' => '<ol><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>Mewujudkan pelestarian adat, nilai budaya dan masyarakatnya melalui inventarisasi dan pendokumentasian.</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>Menjadikan Riau sebagai pusat bahasa dan seni budaya Melayu di Asia Tenggara.</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>Menjadikan diplomasi dan publikasi budaya Melayu berbasis teknologi informasi.</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>Menjadikan Riau sebagai pusat sejarah, cagar budaya, dan pengembangan permuseuman.</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>Menjadikan Riau sebagai pengumpul, perawat serta penyaji warisan benda dan takbenda seni budaya Melayu.</li></ol>',
+                'date' => now(),
+                'status' => 'published',
+                'category' => 'misi',
+                'url_path' => 'visi-misi-kebudayaan-melayu',
+                'image_path' => 'images/culture-vision.jpg',
             ],
         ]);
     }
