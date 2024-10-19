@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BeforeLoginController;
+use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\SurveyQuestionController;
 use App\Models\SurveyModel;
 use Illuminate\Support\Facades\Route;
@@ -23,13 +25,12 @@ Route::middleware('guest')->group(function () {
     Route::post('signin', [AuthenticationController::class, 'signin'])->name('signin');
 });
 
+Route::get('profil/{type}', [ProfilesController::class, 'profiles'])->name('profiles');
+
 Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthenticationController::class, 'logout'])->name('logout');
 
-    Route::prefix('profiles')->group(function () {
-        Route::get('{type}', [ProfilesController::class, 'profiles'])->name('profiles');
-
-
+    Route::prefix('profil')->group(function () {
         Route::put('{id?}', action: [ProfilesController::class, 'update'])->name('profiles.update');
 
         Route::post('{type}', action: [ProfilesController::class, 'store'])->name(name: 'profiles.store');
@@ -37,7 +38,6 @@ Route::middleware('auth')->group(function () {
         Route::delete('{id}', action: [ProfilesController::class, 'destroy'])->name('profiles.destroy');
 
         Route::get('edit/{id}', [ProfilesController::class, 'editSettings'])->name('settings.edit');
-
     });
 
     Route::prefix('berita')->group(function () {
@@ -138,4 +138,10 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/test', function () {
     return view('test');
+});
+
+Route::middleware('guest')->group(function () {
+    Route::get('', [BerandaController::class, 'index'])->name('beranda');
+
+    Route::get('kontak', [BeforeLoginController::class, 'kontak'])->name('kontak');
 });

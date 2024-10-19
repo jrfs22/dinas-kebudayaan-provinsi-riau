@@ -7,6 +7,22 @@ function isRouteActive($route)
     return request()->route()->getName() === $route;
 }
 
+function isRouteParamActive($route, $param, $value)
+{
+    $currentRoute = request()->route()->getName();
+    $currentParam = request()->route($param);
+
+    if ($currentRoute !== $route) {
+        return false;
+    }
+
+    if ($param && $value) {
+        return $currentParam === $value;
+    }
+
+    return true;
+}
+
 function isUtama($utama)
 {
     return $utama == 1 ? 'Utama' : 'Cabang';
@@ -16,6 +32,15 @@ function indonesianDate($date) {
     $carbonDate = Carbon::parse($date);
 
     return $carbonDate->translatedFormat('d F Y');
+}
+
+function isFileExist($path, $default)
+{
+    if (file_exists(public_path($path))) {
+        return asset($path);
+    } else {
+        return $default;
+    }
 }
 
 function category($category)

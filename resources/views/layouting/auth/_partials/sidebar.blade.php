@@ -177,13 +177,13 @@
                                         </a>
                                         <ul aria-expanded="false" class="collapse first-level {{ isRouteActive('settings.edit') ? 'in' : '' }}">
                                             <li class="sidebar-item">
-                                                <a href="{{ route('profiles', ['type' => 'profil']) }}"
+                                                <a href="{{ route('profiles', ['type' => 'sejarah']) }}"
                                                     class="sidebar-link">
                                                     <div
                                                         class="round-16 d-flex align-items-center justify-content-center">
                                                         <i class="ti ti-circle"></i>
                                                     </div>
-                                                    <span class="hide-menu">Profil</span>
+                                                    <span class="hide-menu">Sejarah</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-item">
@@ -197,13 +197,23 @@
                                                 </a>
                                             </li>
                                             <li class="sidebar-item">
-                                                <a href="{{ route('profiles', ['type' => 'visi-misi']) }}"
+                                                <a href="{{ route('profiles', ['type' => 'visi']) }}"
                                                     class="sidebar-link">
                                                     <div
                                                         class="round-16 d-flex align-items-center justify-content-center">
                                                         <i class="ti ti-circle"></i>
                                                     </div>
-                                                    <span class="hide-menu">Visi & Misi</span>
+                                                    <span class="hide-menu">Visi</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-item">
+                                                <a href="{{ route('profiles', ['type' => 'misi']) }}"
+                                                    class="sidebar-link">
+                                                    <div
+                                                        class="round-16 d-flex align-items-center justify-content-center">
+                                                        <i class="ti ti-circle"></i>
+                                                    </div>
+                                                    <span class="hide-menu">Misi</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-item">

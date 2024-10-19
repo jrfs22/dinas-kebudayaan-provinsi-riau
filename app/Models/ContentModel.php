@@ -16,4 +16,9 @@ class ContentModel extends Model
         'content', 'date', 'status',
         'category', 'url_path', 'image_path'
     ];
+
+    public function scopePublish($query)
+    {
+        return $query->where('status', 'published');
+    }
 }
