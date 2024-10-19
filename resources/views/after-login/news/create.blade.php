@@ -19,10 +19,10 @@
                     <x-forms.input name="slug" label="Ringkasan Berita" placeholder="Penemuan Budaya Baru" />
                 </div>
                 <div class="col-6">
-                    <x-forms.input name="cover_image_path" label="Gambar Cover" type="file" />
+                    <x-forms.input name="cover_image_path" label="Gambar Cover" type="file" fileLabel="Maksimal 512kb & Dimensi 330 x 223"/>
                 </div>
                 <div class="col-6">
-                    <x-forms.input name="image_path" label="Gambar Utama" type="file" />
+                    <x-forms.input name="image_path" label="Gambar Utama" type="file" fileLabel="Maksimal 512kb & Dimensi 770 x 381"/>
                 </div>
                 <div class="col-6">
                     <x-forms.select name="category_id" label="Kategori">

@@ -98,23 +98,24 @@ class NewsCategoryController extends Controller
         try {
             $category = NewsCategoryModel::findOrFail($id);
 
-            $category->delete();
-            // DB::beginTransaction();
+            if($category->news()->exists()) {
+                $this->alert(
+                    'Kategori Berita',
+                    'Kategori ini memiliki berita, hapus terlebih dahulu berita yang berkategori ' . $category->name,
+                    'error'
+                );
+            } else {
+                $category->delete();
 
-            // if () {
-            //     $this->delete("view news " . $category->name);
-            // }
-
-            // DB::commit();
-            $this->alert(
-                'Kategori Berita',
-                'Kategori Berita berhasil dihapus.',
-                'success'
-            );
+                $this->alert(
+                    'Kategori Berita',
+                    'Kategori Berita berhasil dihapus.',
+                    'success'
+                );
+            }
 
             return redirect()->back();
         } catch (Exception $e) {
-            // DB::rollBack();
             $this->alert(
                 'Kategori Berita tidak berhasil dihapus.',
                 $e->getMessage(),

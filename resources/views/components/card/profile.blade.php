@@ -15,7 +15,7 @@
             </form>
         </div>
     </div>
-    <div class="col-12 col-md-6 col-lg-6 d-flex align-items-stretch ">
+    <div class="col-12 col-md-6 col-lg-6 d-flex align-items-stretch">
         <div class="card card-body position-relative">
             {{ $slotResult }}
         </div>

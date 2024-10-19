@@ -75,13 +75,21 @@ class AgendaCategoryController extends Controller
         try {
             $category = AgendaCategoryModel::findOrFail($id);
 
-            $category->delete();
+            if($category->agenda()->exists()) {
+                $this->alert(
+                    'Kategori agenda',
+                    'Kategori ini memiliki agenda, hapus terlebih dahulu agenda yang berkategori ' . $category->name,
+                    'error'
+                );
+            } else {
+                $category->delete();
 
-            $this->alert(
-                'Kategori agenda',
-                'Kategori agenda berhasil dihapus.',
-                'success'
-            );
+                $this->alert(
+                    'Kategori agenda',
+                    'Kategori agenda berhasil dihapus.',
+                    'success'
+                );
+            }
 
             return redirect()->back();
         } catch (Exception $e) {

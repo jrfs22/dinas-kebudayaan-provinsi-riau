@@ -18,6 +18,10 @@ class PPIDModel extends Model
         'name',
         'content',
         'file_path',
+        'responsible_person',
+        'year_of_publication',
+        'information_format',
+        'storage_duration',
         'ppid_category_id',
     ];
 

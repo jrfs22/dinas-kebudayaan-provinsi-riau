@@ -2,6 +2,10 @@
     --bg-breadcrumb: #f2bb15;
 }
 
+.text-breadcrumb-color {
+    color: var(--bg-breadcrumb);
+}
+
 .bg-breadcrumb {
     background-color: var(--bg-breadcrumb);
 }
@@ -10,7 +14,6 @@
     max-width: 200px;
     text-wrap: wrap;
 }
-
 
 
 .dataTables_paginate {

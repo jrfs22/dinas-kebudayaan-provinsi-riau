@@ -7,7 +7,7 @@
     'label' => ""
 ])
 @if($label != '')
-    <label class="fw-bold mb-1">{{ $label }}</label>
+    <label class="fw-bold mb-1">{{ $label }}  @if ($required) <span class="text-danger">*</span> @endif</label>
 @endif
 
 <div class="mb-3">

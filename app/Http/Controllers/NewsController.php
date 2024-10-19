@@ -70,7 +70,7 @@ class NewsController extends Controller
 
             $news->cover_image_path = $this->storeFile(
                 $request->cover_image_path,
-                'images/cover/news'
+                'images/cover/news/cover'
             );
 
             $news->hashtags = $this->parseToJson($request->hashtags);
@@ -131,6 +131,8 @@ class NewsController extends Controller
                 'date.required' => 'Tanggal harus ada',
                 'cover_image_path.mimes' => 'Hanya menerima file ekstension (jpg, png, jpeg)',
                 'image_path.mimes' => 'Hanya menerima file ekstension (jpg, png, jpeg)',
+                'cover_image_path.max' => 'Maksimal ukuran file 512 Kb',
+                'image_path.max' => 'Maksimal ukuran file 512 Kb',
                 'content.required' => 'Isi berita harus ada',
                 'hashtags.required' => 'Hastag harus di isi.'
             ]);
@@ -156,7 +158,7 @@ class NewsController extends Controller
             if($request->has('image_path')) {
                 $news->image_path = $this->updateFile(
                     $request->image_path,
-                    'images/main/news',
+                    'images/cover/news/cover',
                     $news->image_path
                 );
             }
@@ -170,7 +172,7 @@ class NewsController extends Controller
                 '',
                 'success'
             );
-            return redirect()->back();
+            return redirect()->route('news');
         } catch (Exception $e) {
             $this->alert(
                 'Perubahan tidak berhasil dilakukan.',

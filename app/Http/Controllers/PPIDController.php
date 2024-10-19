@@ -58,6 +58,10 @@ class PPIDController extends Controller
             $ppid->fill($request->only([
                 'name',
                 'content',
+                'responsible_person',
+                'year_of_publication',
+                'information_format',
+                'storage_duration',
                 'ppid_category_id'
             ]));
 
@@ -103,6 +107,10 @@ class PPIDController extends Controller
             $ppid->fill($request->only([
                 'name',
                 'content',
+                'responsible_person',
+                'year_of_publication',
+                'information_format',
+                'storage_duration',
                 'ppid_category_id'
             ]));
 

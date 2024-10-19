@@ -16,6 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->text('content')->nullable();
             $table->text('image_path')->nullable();
+            $table->string('responsible_person')->nullable();
+            $table->year('year_of_publication')->nullable();
+            $table->string('information_format')->nullable();
+            $table->string('storage_duration')->nullable();
             $table->unsignedBigInteger('ppid_category_id');
             $table->timestamps();
 

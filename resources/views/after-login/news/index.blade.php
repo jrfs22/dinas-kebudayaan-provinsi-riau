@@ -41,10 +41,10 @@
                         <td>
                             {{ $item->category->name }}
                         </td>
-                        <td style="word-break: break-all;">
+                        <td class="w-200px">
                             {{ $item->title }}
                         </td>
-                        <td style="word-break: break-all;">
+                        <td class="w-200px">
                             {{ $item->slug }}
                         </td>
                         <td>

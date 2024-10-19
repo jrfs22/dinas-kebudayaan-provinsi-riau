@@ -3,7 +3,7 @@
 <input type="hidden" id="hidden-{{ $id }}" name="{{ $name }}" value="{{ $value }}">
 <div class="mb-3" id="{{ $id }}">
     @if($label != '')
-    <label class="fw-bold mb-1">{{ $label }}</label>
+    <label class="fw-bold mb-1">{{ $label }} @if ($required) <span class="text-danger">*</span> @endif</label>
     @endif
     <div id="editor{{ $id }}" style="min-height: 100px;">
         {{ $slot }}
