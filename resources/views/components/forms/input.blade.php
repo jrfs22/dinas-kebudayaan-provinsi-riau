@@ -6,14 +6,15 @@
     'required' => false,
     'message' => '',
     'label' => '',
-    'value' => ''
+    'value' => '',
+    'fileLabel' => 'Maksimal 512kb'
 ])
 
 <div class="mb-3" id="container-{{ $name }}">
     @if ($label != '')
-        <label class="fw-bold mb-1">{{ $label }}
+        <label class="fw-bold mb-1">{{ $label }} @if ($required) <span class="text-danger">*</span> @endif
             @if ($type === 'file')
-                (<i class="text-danger">Maksimal 512kb</i>)
+                (<i class="text-danger">{{ $fileLabel }}</i>)
             @endif
         </label>
     @endif

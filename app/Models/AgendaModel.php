@@ -14,10 +14,18 @@ class AgendaModel extends Model
 
     protected $fillable = [
         'name',
-        'date',
+        'slug',
+        'content',
         'location',
+        'contact_person',
+        'email',
+        'start_time',
+        'end_time',
+        'cover_image_path',
         'image_path',
+        'date',
         'agenda_category_id',
+        'user_id',
     ];
 
     public function category(): BelongsTo

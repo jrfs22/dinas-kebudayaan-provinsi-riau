@@ -21,6 +21,34 @@
     </div>
 
     <div class="card card-body">
+        <h4>{{ $ppid->name }}</h4>
+        <table>
+            <thead>
+                <th>Penanggung Jawab</th>
+                <th>Pembuatan/ Penerbitan Informasi</th>
+                <th>Bentuk Informasi yang Tersedia</th>
+                <th>Jangka Waktu Penyimpanan</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        {{ $ppid->responsible_person }}
+                    </td>
+                    <td>
+                        {{ $ppid->year_of_publication }}
+                    </td>
+                    <td>
+                        {{ $ppid->information_format }}
+                    </td>
+                    <td>
+                        {{ $ppid->storage_duration }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card card-body">
         <x-table.basic>
             @slot('slotHead')
                 <th>Nama File</th>
@@ -73,7 +101,7 @@
                 <x-forms.input name="file_number" label="Nomor Surat" placeholder="No 12" />
             </div>
             <div class="col-12">
-                <x-forms.input name="file_path" type="file" label="File" />
+                <x-forms.input name="file_path" type="file" label="File" fileLabel="Maksimal 5mb"/>
             </div>
             <div class="col-12">
                 <x-forms.input name="release_date" type="date" label="Tanggal" />
@@ -91,7 +119,7 @@
                 <x-forms.input name="file_number" id="edt_file_number" label="Nomor Surat" placeholder="No 12" />
             </div>
             <div class="col-12">
-                <x-forms.input name="file_path" type="file" label="File" />
+                <x-forms.input name="file_path" type="file" label="File" fileLabel="Maksimal 5mb"/>
             </div>
             <div class="col-12">
                 <x-forms.input name="release_date" type="date" id="edt_release_date" label="Tanggal" />

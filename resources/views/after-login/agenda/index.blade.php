@@ -18,9 +18,9 @@
                         <option value="{{ $item->name }}">{{ $item->name }}</option>
                     @endforeach
                 </x-search.filter>
-                <button data-bs-toggle="modal" data-bs-target="#defaultModal" class="btn btn-primary d-flex align-items-center ms-3">
+                <a href="{{ route('agenda.create') }}" class="btn btn-primary d-flex align-items-center ms-3">
                     <i class="ti ti-plus text-white me-1 fs-5"></i> Agenda
-                </button>
+                </a>
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
                         <td>
                             {{ $item->category?->name }}
                         </td>
-                        <td>
+                        <td class="w-200px">
                             {{ $item->name }}
                         </td>
                         <td>
@@ -50,18 +50,14 @@
                         <td>
                             {{ indonesianDate($item->date) }}
                         </td>
-                        <td class="action-btn d-flex gap-2">
-                            <a href="javascript:void(0)" class="text-success edit" data-id="{{ $item->id }}"
-                                data-date="{{ $item->date }}"
-                                data-name="{{ $item->name }}"
-                                data-location="{{ $item->location }}"
-                                data-image_path="{{ $item->image_path }}"
-                                data-agenda_category_id="{{ $item->agenda_category_id }}"
-                                onclick="modalEditagenda(this)">
-                                <i class="ti ti-pencil fs-5"></i>
-                            </a>
+                        <td >
+                            <div class="action-btn d-flex gap-2">
+                                <a href="{{ route('agenda.edit', ['id' => $item->id]) }}" class="text-success edit" >
+                                    <i class="ti ti-pencil fs-5"></i>
+                                </a>
 
-                            <x-card.deleted route="{{ route('agenda.destroy', ['id' => $item->id]) }}" />
+                                <x-card.deleted route="{{ route('agenda.destroy', ['id' => $item->id]) }}" />
+                            </div>
                         </td>
                     </tr>
                 @endforeach

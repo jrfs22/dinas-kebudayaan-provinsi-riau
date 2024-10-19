@@ -1,19 +1,22 @@
 <?php
 
-use App\Http\Controllers\AgendaCategoryController;
-use App\Http\Controllers\AgendaController;
-use App\Http\Controllers\ContactUSController;
-use App\Http\Controllers\FaqsController;
-use App\Http\Controllers\GalleryCategoryController;
-use App\Http\Controllers\GalleryController;
-use App\Http\Controllers\NewsCategoryController;
-use App\Http\Controllers\NewsController;
-use App\Http\Controllers\PPIDCategoryController;
-use App\Http\Controllers\PPIDController;
-use App\Http\Controllers\PpidFileController;
+use App\Http\Controllers\SurveyQuestionController;
+use App\Models\SurveyModel;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FaqsController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PPIDController;
+use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\SurveyController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\PpidFileController;
 use App\Http\Controllers\ProfilesController;
+use App\Http\Controllers\ContactUSController;
+use App\Http\Controllers\NewsCategoryController;
+use App\Http\Controllers\PPIDCategoryController;
+use App\Http\Controllers\AgendaCategoryController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\GalleryCategoryController;
 
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthenticationController::class, 'index'])->name('login');
@@ -26,11 +29,15 @@ Route::middleware('auth')->group(function () {
     Route::prefix('profiles')->group(function () {
         Route::get('{type}', [ProfilesController::class, 'profiles'])->name('profiles');
 
+
         Route::put('{id?}', action: [ProfilesController::class, 'update'])->name('profiles.update');
 
         Route::post('{type}', action: [ProfilesController::class, 'store'])->name(name: 'profiles.store');
 
         Route::delete('{id}', action: [ProfilesController::class, 'destroy'])->name('profiles.destroy');
+
+        Route::get('edit/{id}', [ProfilesController::class, 'editSettings'])->name('settings.edit');
+
     });
 
     Route::prefix('berita')->group(function () {
@@ -74,6 +81,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('agenda')->group(function () {
         Route::get('', [AgendaController::class, 'index'])->name('agenda');
         Route::get('create', [AgendaController::class, 'create'])->name('agenda.create');
+        Route::get('edit/{id}', [AgendaController::class, 'edit'])->name('agenda.edit');
 
         Route::post('', [AgendaController::class, 'store'])->name('agenda.store');
         Route::put('{id?}', [AgendaController::class, 'update'])->name('agenda.update');
@@ -113,6 +121,17 @@ Route::middleware('auth')->group(function () {
             Route::post('', [PpidFileController::class, 'store'])->name('ppid.files.store');
             Route::put('{id?}', [PpidFileController::class, 'update'])->name('ppid.files.update');
             Route::delete('{id}', [PpidFileController::class, 'destroy'])->name('ppid.files.destroy');
+        });
+    });
+
+    Route::prefix('surveys')->group(function () {
+        Route::get('', [SurveyController::class, 'index'])->name('survey');
+        Route::post('', [SurveyController::class, 'store'])->name('survey.store');
+        Route::put('{id?}', [SurveyController::class, 'update'])->name('survey.update');
+        Route::delete('{id}', [SurveyController::class, 'destroy'])->name('survey.destroy');
+
+        Route::prefix('questions')->group(function () {
+            Route::get('{id}', [SurveyQuestionController::class, 'index'])->name('survey.questions');
         });
     });
 });

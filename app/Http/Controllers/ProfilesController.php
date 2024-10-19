@@ -39,6 +39,13 @@ class ProfilesController extends Controller
                     $content = $content->whereIn('category', ['media sosial', 'kontak', 'telepon', 'email'])->get();
                     $view = 'after-login.profiles.kontak';
                     break;
+                case 'banner':
+                    $content = $content->whereIn('category', [
+                        'banner-description', 'banner-main-image',
+                        'banner-secondary-image',
+                    ])->get();
+                    $view = 'after-login.settings.banner';
+                    break;
                 default:
                     break;
             }
@@ -83,6 +90,22 @@ class ProfilesController extends Controller
         } catch (Exception $e) {
             $this->alert(
                 'Insert Failed',
+                $e->getMessage(),
+                'error'
+            );
+            return redirect()->back();
+        }
+    }
+
+    public function editSettings(string $id)
+    {
+        try {
+            $content = ContentModel::findOrFail($id);
+
+            return view('after-login.settings.edit', compact('content'));
+        } catch (Exception $e) {
+            $this->alert(
+                'Terjadi kesalahan',
                 $e->getMessage(),
                 'error'
             );

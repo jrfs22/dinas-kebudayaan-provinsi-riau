@@ -84,14 +84,14 @@
                                         </ul>
                                     </li>
                                     <li class="sidebar-item">
-                                        <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                        <a class="sidebar-link has-arrow {{ isRouteActive('agenda.create') ? 'active' : (isRouteActive('agenda.edit') ? 'active' : '') }}" href="javascript:void(0)"
                                             aria-expanded="false">
                                             <span class="d-flex">
                                                 <i class="ti ti-calendar"></i>
                                             </span>
                                             <span class="hide-menu">Agenda</span>
                                         </a>
-                                        <ul aria-expanded="false" class="collapse first-level">
+                                        <ul aria-expanded="false" class="collapse first-level {{ isRouteActive('agenda.create') ? 'in' : (isRouteActive('agenda.edit') ? 'in' : '') }}">
                                             <li class="sidebar-item">
                                                 <a href="{{ route('agenda.category') }}" class="sidebar-link">
                                                     <div
@@ -102,7 +102,7 @@
                                                 </a>
                                             </li>
                                             <li class="sidebar-item">
-                                                <a href="{{ route('agenda') }}" class="sidebar-link">
+                                                <a href="{{ route('agenda') }}" class="sidebar-link {{ isRouteActive('agenda.create') ? 'active' : (isRouteActive('agenda.edit') ? 'active' : '') }}">
                                                     <div
                                                         class="round-16 d-flex align-items-center justify-content-center">
                                                         <i class="ti ti-circle"></i>
@@ -128,7 +128,7 @@
                                                         class="round-16 d-flex align-items-center justify-content-center">
                                                         <i class="ti ti-circle"></i>
                                                     </div>
-                                                    <span class="hide-menu">Kategori PPID</span>
+                                                    <span class="hide-menu">Kategori</span>
                                                 </a>
                                             </li>
                                             @foreach ($ppid_categories as $item)
@@ -148,6 +148,16 @@
                                     </li>
 
                                     <li class="sidebar-item">
+                                        <a class="sidebar-link {{ isRouteActive('survey.questions') ? 'active' : '' }}"
+                                            href="{{ route('survey') }}" aria-expanded="false">
+                                            <span>
+                                                <i class="ti ti-zoom-question"></i>
+                                            </span>
+                                            <span class="hide-menu">Survey</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="sidebar-item">
                                         <a class="sidebar-link"
                                             href="{{ route('contact_us') }}" aria-expanded="false">
                                             <span>
@@ -157,16 +167,15 @@
                                         </a>
                                     </li>
 
-
                                     <li class="sidebar-item">
-                                        <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                        <a class="sidebar-link has-arrow {{ isRouteActive('settings.edit') ? 'active' : '' }}" href="javascript:void(0)"
                                             aria-expanded="false">
                                             <span class="d-flex">
                                                 <i class="ti ti-building"></i>
                                             </span>
                                             <span class="hide-menu">Profiles</span>
                                         </a>
-                                        <ul aria-expanded="false" class="collapse first-level">
+                                        <ul aria-expanded="false" class="collapse first-level {{ isRouteActive('settings.edit') ? 'in' : '' }}">
                                             <li class="sidebar-item">
                                                 <a href="{{ route('profiles', ['type' => 'profil']) }}"
                                                     class="sidebar-link">
@@ -225,6 +234,16 @@
                                                         <i class="ti ti-circle"></i>
                                                     </div>
                                                     <span class="hide-menu">Kontak</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-item">
+                                                <a href="{{ route('profiles', ['type' => 'banner']) }}"
+                                                    class="sidebar-link {{ isRouteActive('settings.edit') ? 'active' : '' }}">
+                                                    <div
+                                                        class="round-16 d-flex align-items-center justify-content-center">
+                                                        <i class="ti ti-circle"></i>
+                                                    </div>
+                                                    <span class="hide-menu">Layout</span>
                                                 </a>
                                             </li>
                                         </ul>

@@ -42,7 +42,9 @@
                 <div class="col-12 col-lg-6">
                     <x-forms.select name="category_id" label="Kategori">
                         @foreach ($categories as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            <option value="{{ $item->id }}" @if ($item->id === $news->category_id) selected @endif>
+                                {{ $item->name }}
+                            </option>
                         @endforeach
                     </x-forms.select>
                 </div>
