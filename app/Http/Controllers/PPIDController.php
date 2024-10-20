@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PPIDCategoryModel;
-use App\Models\PpidFilesModel;
+use Exception;
 use App\Models\PPIDModel;
 use App\Traits\ManageFiles;
-use Exception;
 use Illuminate\Http\Request;
+use App\Models\PpidFilesModel;
+use App\Models\PPIDCategoryModel;
+use Illuminate\Support\Facades\Auth;
 
 class PPIDController extends Controller
 {
@@ -17,19 +18,36 @@ class PPIDController extends Controller
         try {
             $ppid_category = PPIDCategoryModel::findOrFail($id);
 
-            if($ppid_category->type === 'dokumen') {
-                $ppid = PPIDModel::with([
-                    'category', 'files'
-                ])->where('ppid_category_id', $id)->get();
+            if(Auth::check()) {
+                if($ppid_category->type === 'dokumen') {
+                    $ppid = PPIDModel::with([
+                        'category', 'files'
+                    ])->where('ppid_category_id', $id)->get();
 
-                foreach ($ppid as $item) {
-                    $item->file_summary = $item->files->count();
+                    foreach ($ppid as $item) {
+                        $item->file_summary = $item->files->count();
+                    }
+                } else {
+                    $ppid = PPIDModel::with('category')->where('ppid_category_id', $id)->get();
                 }
+
+                return view('after-login.ppid.index', compact('ppid_category', 'ppid'));
             } else {
-                $ppid = PPIDModel::with('category')->where('ppid_category_id', $id)->get();
+                if($ppid_category->type === 'dokumen') {
+                    $ppid = PPIDModel::with([
+                        'category', 'files'
+                    ])->where('ppid_category_id', $id)->get();
+
+                    return view('before-login.ppid.document', compact('ppid_category', 'ppid'));
+                } else {
+                    $ppid = PPIDModel::with('category')->where('ppid_category_id', $id)->get();
+
+
+                    return view('before-login.ppid.non-document', compact('ppid_category', 'ppid'));
+                }
+
             }
 
-            return view('after-login.ppid.index', compact('ppid_category', 'ppid'));
         } catch (Exception $e) {
             $this->alert(
                 'Kategori Berita',

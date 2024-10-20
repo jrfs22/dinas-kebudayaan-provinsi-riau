@@ -2,27 +2,53 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AgendaCategoryModel;
 use Exception;
 use App\Models\AgendaModel;
 use App\Traits\ManageFiles;
 use Illuminate\Http\Request;
+use App\Models\AgendaCategoryModel;
+use Illuminate\Support\Facades\Auth;
 
 class AgendaController extends Controller
 {
     use ManageFiles;
     public function index()
     {
-        $agenda = AgendaModel::with('category')->get();
+        if (Auth::check()) {
+            $agenda = AgendaModel::with('category')->get();
 
-        $categories = AgendaCategoryModel::all();
-        return view('after-login.agenda.index', compact('agenda', 'categories'));
+            $categories = AgendaCategoryModel::all();
+            return view('after-login.agenda.index', compact('agenda', 'categories'));
+        } else {
+            $agenda = AgendaModel::with('category')->paginate(3);
+
+            $categories = AgendaCategoryModel::paginate(3);
+
+            return view('before-login.agenda.list', compact('agenda', 'categories'));
+        }
     }
 
     public function create()
     {
         $categories = AgendaCategoryModel::all();
         return view('after-login.agenda.create', compact('categories'));
+    }
+
+    public function show($id)
+    {
+        try {
+            $agenda = AgendaModel::findOrFail($id);
+
+            $agendaCategories = AgendaCategoryModel::all();
+
+            $recent = AgendaModel::where('id', '!=', $id)->orderBy('date', 'desc')->take(3)->get();
+
+            return view('before-login.detail.agenda', compact(
+                'agenda', 'agendaCategories', 'recent'
+            ));
+        } catch (Exception $e) {
+            return redirect()->route('beranda');
+        }
     }
 
     public function store(Request $request)
@@ -61,8 +87,6 @@ class AgendaController extends Controller
                     'slug',
                     'content',
                     'location',
-                    'contact_person',
-                    'email',
                     'start_time',
                     'end_time',
                     'date',
@@ -142,8 +166,6 @@ class AgendaController extends Controller
             $agenda->fill($request->only([
                 'name',
                 'location',
-                'contact_person',
-                'email',
                 'start_time',
                 'end_time',
                 'date',

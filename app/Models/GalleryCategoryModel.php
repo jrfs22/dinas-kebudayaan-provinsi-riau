@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class GalleryCategoryModel extends Model
 {
@@ -14,4 +15,9 @@ class GalleryCategoryModel extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function gallery(): HasMany
+    {
+        return $this->hasMany(GalleryModel::class, 'id');
+    }
 }

@@ -101,12 +101,7 @@ class="relative z-[1] before:absolute before:inset-0 before:-z-[1] before:bg-[ur
 
     <!-- footer bottom -->
     <div class="flex flex-wrap items-center justify-between gap-[15px] pt-[20px] pb-[50px] text-[#d9d9d9]">
-        <p>&copy; All Copyright 2024 by Edutics</p>
-
-        <div class="flex flex-wrap gap-[40px] xxs:gap-[15px]">
-            <a href="#" class="hover:text-edyellow">Terms & Conditions</a>
-            <a href="#" class="hover:text-edyellow">Privacy Policy</a>
-        </div>
+        <p>&copy; Copyright {{ now()->year }} by {{ config('app.name') }}</p>
     </div>
 </div>
 </footer>

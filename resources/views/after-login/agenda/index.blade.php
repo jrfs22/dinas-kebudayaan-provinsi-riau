@@ -30,7 +30,6 @@
             @slot('slotHead')
                 <th>Kategori</th>
                 <th>Judul</th>
-                <th>Lokasi</th>
                 <th>Tanggal</th>
                 <th>Aksi</th>
             @endslot
@@ -42,10 +41,7 @@
                             {{ $item->category?->name }}
                         </td>
                         <td class="w-200px">
-                            {{ $item->name }}
-                        </td>
-                        <td>
-                            {{ $item->location }}
+                            <a href="{{ $item->location }}">{{ $item->name }}</a>
                         </td>
                         <td>
                             {{ indonesianDate($item->date) }}

@@ -27,6 +27,10 @@ Route::middleware('guest')->group(function () {
 
 Route::get('profil/{type}', [ProfilesController::class, 'profiles'])->name('profiles');
 
+Route::get('ppid/{id}', [PPIDController::class, 'index'])->name('ppid');
+
+Route::get('galleries', [GalleryController::class, 'index'])->name('gallery');
+
 Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthenticationController::class, 'logout'])->name('logout');
 
@@ -60,7 +64,6 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('galleries')->group(function () {
-        Route::get('', [GalleryController::class, 'index'])->name('gallery');
         Route::get('create', [GalleryController::class, 'create'])->name('gallery.create');
 
         Route::post('', [GalleryController::class, 'store'])->name('gallery.store');
@@ -104,7 +107,6 @@ Route::middleware('auth')->group(function () {
     ]);
 
     Route::prefix('ppid')->group(function () {
-        Route::get('{id}', [PPIDController::class, 'index'])->name('ppid');
         Route::post('', [PPIDController::class, 'store'])->name('ppid.store');
         Route::put('{id?}', [PPIDController::class, 'update'])->name('ppid.update');
         Route::delete('{id}', [PPIDController::class, 'destroy'])->name('ppid.destroy');
@@ -141,7 +143,16 @@ Route::get('/test', function () {
 });
 
 Route::middleware('guest')->group(function () {
-    Route::get('', [BerandaController::class, 'index'])->name('beranda');
+    Route::get('', [BeforeLoginController::class, 'beranda'])->name('beranda');
+    Route::get('museum', [BeforeLoginController::class, 'museum'])->name('museum');
 
     Route::get('kontak', [BeforeLoginController::class, 'kontak'])->name('kontak');
+
+    Route::prefix('informasi')->group(function () {
+        Route::get('event-budaya',  [AgendaController::class, 'index'])->name('public.agenda');
+    });
+
+    Route::get('news/detil/{id}', [NewsController::class, 'show'])->name('news.detail');
+
+    Route::get('agenda/detil/{id}', [AgendaController::class, 'show'])->name('agenda.detail');
 });
