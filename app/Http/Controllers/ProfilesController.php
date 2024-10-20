@@ -55,7 +55,12 @@ class ProfilesController extends Controller
                         $view = 'after-login.settings.banner';
                         break;
                     default:
-                        break;
+                        $this->alert(
+                            'Halaman tidak ditemukan',
+                            '',
+                            'error'
+                        );
+                        return redirect()->back();
                 }
 
                 return view($view, compact('content'));
@@ -87,6 +92,12 @@ class ProfilesController extends Controller
 
                         return view($view, compact('content'));
                     default:
+                        $this->alert(
+                            'Halaman tidak ditemukan',
+                            '',
+                            'error'
+                        );
+                        return redirect()->back();
                 }
             }
         } catch (Exception $e) {

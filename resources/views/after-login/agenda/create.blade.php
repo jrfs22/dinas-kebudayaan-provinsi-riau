@@ -23,7 +23,7 @@
                     </x-forms.richeditor>
                 </div>
                 <div class="col-12">
-                    <x-forms.input name="location" label="Lokasi Kegiatan" placeholder="Hotel Pangeran" required=1/>
+                    <x-forms.input name="location" label="Lokasi Kegiatan (Iframe Google Maps)" placeholder="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.6693315389807!2d101.45222477605746!3d0.4951527995000009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d5aedd2565414f%3A0x61f21d93f231fbf!2sDinas%20Kebudayaan%20Riau!5e0!3m2!1sen!2sid!4v1728827441163!5m2!1sen!2sid" required=1/>
                 </div>
                 <div class="col-12 col-md-6">
                     <x-forms.select name="agenda_category_id" label="Kategori Kegiatan" required=1>
@@ -34,12 +34,6 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <x-forms.input name="date" label="Tanggal Kegiatan" type="date" required=1/>
-                </div>
-                <div class="col-12 col-md-6">
-                    <x-forms.input name="contact_person" label="Kontak Penanggung Jawab" placeholder="081250301020 (Supriadi)"/>
-                </div>
-                <div class="col-12 col-md-6">
-                    <x-forms.input name="email" label="Email Penanggung Jawab" placeholder="disbud@gmail.com"/>
                 </div>
                 <div class="col-12 col-md-6">
                     <x-forms.input name="start_time" type="time" label="Waktu Mulai"  required=1/>

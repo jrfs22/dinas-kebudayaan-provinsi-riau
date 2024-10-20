@@ -25,6 +25,21 @@ class NewsController extends Controller
         return view('after-login.news.create', compact('categories'));
     }
 
+    public function show($id)
+    {
+        try {
+            $news = NewsModel::findOrFail($id);
+
+            $newsCategories = NewsCategoryModel::all();
+
+            return view('before-login.detail.news', compact(
+                'news', 'newsCategories'
+            ));
+        } catch (Exception $e) {
+            return redirect()->route('beranda');
+        }
+    }
+
     public function store(Request $request)
     {
         try {

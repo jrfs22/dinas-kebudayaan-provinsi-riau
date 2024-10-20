@@ -32,29 +32,32 @@
                     </ul>
                 </li>
 
+                @if ($ppid_categories->count() > 0)
+                    <li class="has-sub-menu relative">
+                        <a {{ isRouteActive('ppid') ? 'class=active' : '' }} role="button">PPID</a>
+
+                        <ul class="ed-header-submenu">
+                            @foreach ($ppid_categories as $item)
+                                <li>
+                                    <a {{ isRouteParamActive('ppid', 'id', $item->id) ? 'class=active' : '' }} href="{{ route('ppid', ['id' => $item->id]) }}">{{ $item->name }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                @endif
                 <li class="has-sub-menu relative">
-                    <a role="button">PPID</a>
+                    <a {{ isRouteActive('museum') ? 'class=active' : '' }}  href="{{ route('museum') }}">UPT Museum</a>
+                </li>
+                <li class="has-sub-menu relative">
+                    <a {{ isRouteActive('public.agenda') ? 'class=active' : (isRouteActive('gallery') ? 'class=active' : '') }} role="button">Informasi</a>
 
                     <ul class="ed-header-submenu">
                         <li>
-                            <a href="ppid.html">Dokumen PPID</a>
+                            <a {{ isRouteActive('public.agenda') ? 'class=active' : '' }}  href="{{ route('public.agenda') }}">Event Budaya</a>
                         </li>
                         <li>
-                            <a href="daftar-informasi-publik.html">Informasi Publik</a>
+                            <a {{ isRouteActive('gallery') ? 'class=active' : '' }} href="{{ route('gallery') }}">Gallery</a>
                         </li>
-                    </ul>
-                </li>
-                <li class="has-sub-menu relative">
-                    <a href="upt-museum.html">UPT Museum</a>
-                </li>
-                <li class="has-sub-menu relative">
-                    <a role="button">Informasi</a>
-
-                    <ul class="ed-header-submenu">
-                        <li>
-                            <a href="event-budaya.html">Event Budaya</a>
-                        </li>
-                        <li><a href="kegiatan-disbud.html">Kegiatan DISBUD</a></li>
                     </ul>
                 </li>
 

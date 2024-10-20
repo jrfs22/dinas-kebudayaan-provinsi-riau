@@ -17,8 +17,6 @@ return new class extends Migration
             $table->text('slug');
             $table->text('content');
             $table->text('location');
-            $table->string('contact_person')->nullable();
-            $table->string('email')->nullable();
             $table->time('start_time')->nullable();
             $table->time('end_time')->nullable();
             $table->text('cover_image_path')->nullable();

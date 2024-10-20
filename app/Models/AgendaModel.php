@@ -17,8 +17,6 @@ class AgendaModel extends Model
         'slug',
         'content',
         'location',
-        'contact_person',
-        'email',
         'start_time',
         'end_time',
         'cover_image_path',
@@ -31,5 +29,10 @@ class AgendaModel extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(AgendaCategoryModel::class, 'agenda_category_id');
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

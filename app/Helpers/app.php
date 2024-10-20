@@ -7,20 +7,30 @@ function isRouteActive($route)
     return request()->route()->getName() === $route;
 }
 
+// function isRouteParamActive($route, $param, $value)
+// {
+//     $currentRoute = request()->route()->getName();
+//     $currentParam = request()->route($param);
+
+//     if ($currentRoute !== $route) {
+//         return false;
+//     }
+
+//     if ($param && $value) {
+//         return $currentParam === $value;
+//     }
+
+//     return true;
+// }
+
+function getTime($time)
+{
+    return Carbon::parse($time)->format('H:i');
+}
+
 function isRouteParamActive($route, $param, $value)
 {
-    $currentRoute = request()->route()->getName();
-    $currentParam = request()->route($param);
-
-    if ($currentRoute !== $route) {
-        return false;
-    }
-
-    if ($param && $value) {
-        return $currentParam === $value;
-    }
-
-    return true;
+    return request()->routeIs($route) && request()->route($param) == $value;
 }
 
 function isUtama($utama)
@@ -28,10 +38,25 @@ function isUtama($utama)
     return $utama == 1 ? 'Utama' : 'Cabang';
 }
 
-function indonesianDate($date) {
+function indonesianDate($date)
+{
     $carbonDate = Carbon::parse($date);
 
     return $carbonDate->translatedFormat('d F Y');
+}
+
+function getDay($date)
+{
+    $carbonDate = Carbon::parse($date);
+
+    return $carbonDate->translatedFormat('d');
+}
+
+function getMonth($date)
+{
+    $carbonDate = Carbon::parse($date);
+
+    return $carbonDate->translatedFormat('F');
 }
 
 function isFileExist($path, $default)
@@ -55,7 +80,7 @@ function category($category)
     }
 }
 
-function surveyStatus ($status, $type)
+function surveyStatus($status, $type)
 {
     switch ($status) {
         case 'inactive':

@@ -2,21 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Traits\ManageFiles;
 use Exception;
+use App\Traits\ManageFiles;
 use App\Models\GalleryModel;
 use Illuminate\Http\Request;
 use App\Models\GalleryCategoryModel;
+use Illuminate\Support\Facades\Auth;
 
 class GalleryController extends Controller
 {
     use ManageFiles;
     public function index()
     {
-        $galleries = GalleryModel::with('category')->get();
 
-        $categories = GalleryCategoryModel::all();
-        return view('after-login.gallery.index', compact('galleries', 'categories'));
+        if (Auth::check()) {
+            $galleries = GalleryModel::with('category')->get();
+
+            $categories = GalleryCategoryModel::all();
+            return view('after-login.gallery.index', compact('galleries', 'categories'));
+        } else {
+            $galleries = GalleryModel::with('category')->paginate(6);
+
+            $categories = GalleryCategoryModel::whereHas('gallery')->get();
+            return view('before-login.galleries', compact('galleries', 'categories'));
+        }
     }
 
     public function store(Request $request)
@@ -91,7 +100,7 @@ class GalleryController extends Controller
                 'gallery_category_id'
             ]));
 
-            if($request->has('image_path')) {
+            if ($request->has('image_path')) {
                 $gallery->image_path = $this->updateFile(
                     $request->image_path,
                     'images/gallery',
