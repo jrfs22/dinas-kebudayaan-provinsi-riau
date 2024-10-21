@@ -168,14 +168,14 @@
                                     </li>
 
                                     <li class="sidebar-item">
-                                        <a class="sidebar-link has-arrow {{ isRouteActive('settings.edit') ? 'active' : '' }}" href="javascript:void(0)"
+                                        <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                             aria-expanded="false">
                                             <span class="d-flex">
                                                 <i class="ti ti-building"></i>
                                             </span>
                                             <span class="hide-menu">Profiles</span>
                                         </a>
-                                        <ul aria-expanded="false" class="collapse first-level {{ isRouteActive('settings.edit') ? 'in' : '' }}">
+                                        <ul aria-expanded="false" class="collapse first-level">
                                             <li class="sidebar-item">
                                                 <a href="{{ route('profiles', ['type' => 'sejarah']) }}"
                                                     class="sidebar-link">
@@ -246,7 +246,7 @@
                                                     <span class="hide-menu">Kontak</span>
                                                 </a>
                                             </li>
-                                            <li class="sidebar-item">
+                                            {{-- <li class="sidebar-item">
                                                 <a href="{{ route('profiles', ['type' => 'banner']) }}"
                                                     class="sidebar-link {{ isRouteActive('settings.edit') ? 'active' : '' }}">
                                                     <div
@@ -254,6 +254,77 @@
                                                         <i class="ti ti-circle"></i>
                                                     </div>
                                                     <span class="hide-menu">Layout</span>
+                                                </a>
+                                            </li> --}}
+                                        </ul>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link has-arrow {{ isRouteActive('settings.edit') ? 'active' : '' }}" href="javascript:void(0)"
+                                            aria-expanded="false">
+                                            <span class="d-flex">
+                                                <i class="ti ti-settings"></i>
+                                            </span>
+                                            <span class="hide-menu">Settings</span>
+                                        </a>
+                                        <ul aria-expanded="false" class="collapse first-level {{ isRouteActive('settings.edit') ? 'in' : '' }}">
+                                            <li class="sidebar-item">
+                                                <a href="{{ route('settings', ['type' => 'breadcrumb']) }}"
+                                                    class="sidebar-link">
+                                                    <div
+                                                        class="round-16 d-flex align-items-center justify-content-center">
+                                                        <i class="ti ti-circle"></i>
+                                                    </div>
+                                                    <span class="hide-menu">Breadcrumb</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-item">
+                                                <a href="{{ route('settings', ['type' => 'hero']) }}"
+                                                    class="sidebar-link">
+                                                    <div
+                                                        class="round-16 d-flex align-items-center justify-content-center">
+                                                        <i class="ti ti-circle"></i>
+                                                    </div>
+                                                    <span class="hide-menu">Hero Section</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-item">
+                                                <a href="{{ route('settings', ['type' => 'tentang-kami']) }}"
+                                                    class="sidebar-link">
+                                                    <div
+                                                        class="round-16 d-flex align-items-center justify-content-center">
+                                                        <i class="ti ti-circle"></i>
+                                                    </div>
+                                                    <span class="hide-menu">Tentang Kami</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-item">
+                                                <a href="{{ route('settings', ['type' => 'museum']) }}"
+                                                    class="sidebar-link">
+                                                    <div
+                                                        class="round-16 d-flex align-items-center justify-content-center">
+                                                        <i class="ti ti-circle"></i>
+                                                    </div>
+                                                    <span class="hide-menu">UPT Museum</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-item">
+                                                <a href="{{ route('settings', ['type' => 'sitari']) }}"
+                                                    class="sidebar-link">
+                                                    <div
+                                                        class="round-16 d-flex align-items-center justify-content-center">
+                                                        <i class="ti ti-circle"></i>
+                                                    </div>
+                                                    <span class="hide-menu">Sitari</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-item">
+                                                <a href="{{ route('settings', ['type' => 'footer']) }}"
+                                                    class="sidebar-link">
+                                                    <div
+                                                        class="round-16 d-flex align-items-center justify-content-center">
+                                                        <i class="ti ti-circle"></i>
+                                                    </div>
+                                                    <span class="hide-menu">Footer</span>
                                                 </a>
                                             </li>
                                         </ul>

@@ -72,7 +72,12 @@
                         default=1>
                         <option value="telepon">Telepon</option>
                         <option value="email">Email</option>
-                        <option value="media sosial">Media Sosial</option>
+                        <option value="facebook">Facebook</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="tiktok">Tiktok</option>
+                        <option value="youtube">Youtube</option>
+                        <option value="twitter">Twitter</option>
+                        <option value="linkedin">Linkedin</option>
                     </x-forms.select>
                 </div>
                 <div class="col-12">
@@ -139,10 +144,12 @@
             var content = "08123456";
             var url_path = "https://wa.me/628121212";
 
+            let validValues = ["facebook", "instagram", "tiktok", "youtube", "linkedin", "twitter"];
+
             if ($(this).val() == "email") {
                 content = "disbudparpku@gmail.com";
                 url_path = "mailto:disbudparpku@gmail.com";
-            } else if ($(this).val() == "media sosial") {
+            } else if (validValues.includes($(this).val())) {
                 content = "disbud.provriau";
                 url_path = "https://www.instagram.com/disbud.provriau/";
             } else {

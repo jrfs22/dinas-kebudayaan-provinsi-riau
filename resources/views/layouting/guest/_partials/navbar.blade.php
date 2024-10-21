@@ -1,4 +1,5 @@
 <header
+    style="background-color: white;"
     class="bg-edyellow ed-header--2 relative z-[2] px-[7.9%] xxxxl:px-[6.5%] xxxl:px-[1%] lg:px-[15px] py-[25px] xxs:py-[16px] flex items-center justify-between to-be-fixed">
     <div class="logo xxs:max-w-[40%]">
         <a href="{{ route('beranda') }}" class="flex space-x-2">
@@ -46,7 +47,7 @@
                     </li>
                 @endif
                 <li class="has-sub-menu relative">
-                    <a {{ isRouteActive('museum') ? 'class=active' : '' }}  href="{{ route('museum') }}">UPT Museum</a>
+                    <a {{ isRouteActive('museum') ? 'class=active' : (isRouteActive('museum.klasifikasi') ? 'class=active' : '') }}  href="{{ route('museum') }}">UPT Museum</a>
                 </li>
                 <li class="has-sub-menu relative">
                     <a {{ isRouteActive('public.agenda') ? 'class=active' : (isRouteActive('gallery') ? 'class=active' : '') }} role="button">Informasi</a>

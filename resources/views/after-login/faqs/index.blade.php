@@ -30,8 +30,8 @@
                             <h6>{{ $item->name }}</h6>
                             <p>{{ $item->email }}</p>
                         </td>
-                        <td>
-                            {{ $item->name }}
+                        <td class="w-200px">
+                            {{ $item->messages }}
                         </td>
                         <td>
                             {{ indonesianDate($item->created_at) }}

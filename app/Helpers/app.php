@@ -99,3 +99,31 @@ function surveyStatus($status, $type)
 
     return $type == 'status' ? $status : $bg;
 }
+
+function mediaSocial($platform)
+{
+    switch ($platform) {
+        case 'facebook':
+            $icon = 'fa-facebook-f';
+            break;
+        case 'twitter':
+            $icon = 'fa-x-twitter';
+            break;
+        case 'youtube':
+            $icon = 'fa-youtube';
+            break;
+        case 'linkedin':
+            $icon = 'fa-linkedin-in';
+            break;
+        case 'instagram':
+            $icon = 'fa-instagram';
+            break;
+        case 'tiktok':
+            $icon = 'fa-tiktok';
+            break;
+        default:
+            $icon = 'fa-globe';
+    }
+
+    return $icon;
+}

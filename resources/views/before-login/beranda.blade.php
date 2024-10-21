@@ -19,9 +19,7 @@
                             Provinsi Riau</span>
                     </h1>
                     <p class="text-edgray font-medium mb-[41px]">
-                        Temukan pesona budaya Melayu Riau yang kaya dengan tradisi dan
-                        sejarah. Dari seni hingga adat istiadat, mari kita lestarikan
-                        bersama keindahan yang tak lekang oleh waktu.
+                        {!! $heroDescription !!}
                     </p>
                     <div class="flex flex-wrap gap-[10px]">
                         <!-- <a href="course-filter.html"
@@ -35,9 +33,9 @@
                 <!-- banner image -->
                 <div class="max-w-[51%] md:max-w-full">
                     <div class="w-max relative z-[1] flex gap-[30px] items-center">
-                        <img src="{{ asset('assets/guest/img/banner-2-img-1.jpg') }}" alt="banner image"
+                        <img src="{{ isFileExist('storage/' . $heroSecondaryImage, asset('assets/guest/img/banner-2-img-1.jpg')) }}" alt="banner image"
                             class="border-[10px] border-white rounded-[20px] max-w-[241px] aspect-[261/366]" />
-                        <img src="{{ asset('assets/guest/img/banner-2-img-2.jpg') }}" alt="banner image"
+                        <img src="{{ isFileExist('storage/' . $heroMainImage, asset('assets/guest/img/banner-2-img-2.jpg')) }}" alt="Main image"
                             class="rounded-[20px]" />
 
                         <!-- vectors -->
@@ -73,7 +71,7 @@
             class="mx-[15.8%] xxxl:mx-[9.8%] xxl:mx-[3.5%] bg-white p-[40px] sm:p-[30px] xxs:p-[20px] rounded-[20px] shadow-[0_4px_25px_rgba(0,0,0,0.06)]">
             <div class="grid grid-cols-4 xl:grid-cols-3 md:grid-cols-2 xxs:grid-cols-1 gap-[20px]">
                 <!-- single category -->
-                <a href="course-grid.html"
+                <a href="javascript:void(0)"
                     class="border border-[#e5e5e5] rounded-[10px] py-[16px] px-[20px] flex sm:flex-col items-center sm:items-start gap-y-[15px] gap-x-[20px] hover:bg-[#F8B81F] hover:border-[#F8B81F] group">
                     <!-- icon -->
                     <div
@@ -97,7 +95,7 @@
                 </a>
 
                 <!-- single category -->
-                <a href="course-grid.html"
+                <a href="javascript:void(0)"
                     class="border border-[#e5e5e5] rounded-[10px] py-[16px] px-[20px] flex sm:flex-col items-center sm:items-start gap-y-[15px] gap-x-[20px] hover:bg-[#39C0FA] hover:border-[#39C0FA] group">
                     <!-- icon -->
                     <div
@@ -127,7 +125,7 @@
                 </a>
 
                 <!-- single category -->
-                <a href="course-grid.html"
+                <a href="javascript:void(0)"
                     class="border border-[#e5e5e5] rounded-[10px] py-[16px] px-[20px] flex sm:flex-col items-center sm:items-start gap-y-[15px] gap-x-[20px] hover:bg-[#F92596] hover:border-[#F92596] group">
                     <!-- icon -->
                     <div
@@ -164,7 +162,7 @@
                 </a>
 
                 <!-- single category -->
-                <a href="course-grid.html"
+                <a href="javascript:void(0)"
                     class="border border-[#e5e5e5] rounded-[10px] py-[16px] px-[20px] flex sm:flex-col items-center sm:items-start gap-y-[15px] gap-x-[20px] hover:bg-[#5866EB] hover:border-[#5866EB] group">
                     <!-- icon -->
                     <div
@@ -238,14 +236,14 @@
                 <!-- left -->
                 <div class="max-w-[46%] md:max-w-full grow shrink-0">
                     <div class="relative flex items-end">
-                        <img src="{{ asset('assets/guest/img/about-2-image-1.png') }}" alt="About Image"
+                        <img src="{{ isFileExist('storage/'.$aboutMainImage, asset('assets/guest/img/about-2-image-1.png')) }}" alt="About Image"
                             class="border-[12px] border-white rounded-full" />
 
                         <!-- video btn -->
                         <div class="relative shrink-0 -ml-[202px] lg:-ml-[262px] md:-ml-[202px] xs:-ml-[242px] -mb-[24px]">
-                            <img src="{{ asset('assets/guest/img/about-2-image-2.png') }}" alt="About Image"
+                            <img src="{{ isFileExist('storage/'.$aboutThumnailImage, asset('assets/guest/img/about-2-image-2.png')) }}" alt="About Image"
                                 class="border-[8px] border-white rounded-full w-[292px] xs:w-[252px] aspect-square" />
-                            <a href="https://youtu.be/K88OhAy7x9c" data-fslightbox="gallery"
+                            <a href="{{ $aboutYt }}" data-fslightbox="gallery"
                                 class="flex items-center justify-center w-[60px] aspect-square bg-white rounded-full text-edyellow absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] before:border before:absolute before:top-[50%] before:-translate-y-[50%] before:left-[50%] before:-translate-x-[50%] before:w-[calc(100%+15px)] before:h-[calc(100%+15px)] before:rounded-full before:transition before:duration-[400ms] hover:bg-edgreen hover:text-white hover:before:border-edgreen"><i
                                     class="fa-solid fa-play"></i></a>
                         </div>
@@ -271,10 +269,7 @@
                         untuk Masa Depan
                     </h2>
                     <p class="text-edgray mb-[34px]">
-                        Dinas Kebudayaan Provinsi Riau berkomitmen untuk melestarikan
-                        dan mengembangkan kebudayaan Melayu yang kaya. Kami mengajak
-                        masyarakat untuk terlibat dalam menjaga tradisi, seni, dan adat
-                        istiadat yang merupakan identitas kita bersama.
+                        {!! $aboutDescription !!}
                     </p>
                     <ul
                         class="ed-about-list font-medium text-[18px] text-edblue grid grid-cols-2 xxs:grid-cols-1 gap-[20px] xxs:gap-[15px] mb-[52px] *:pl-[40px] *:relative *:before:absolute *:before:left-0 *:before:-top-[3px] *:before:w-[30px] *:before:aspect-square *:before:border *:before:border-edgreen *:before:rounded-full *:before:bg-[url(../assets/img/icon/checkmark.svg)] *:before:bg-no-repeat *:before:bg-[length:15px_13px] *:before:bg-center">
@@ -315,18 +310,20 @@
             <!-- events slider -->
             <div class="ed-2-events-slider swiper">
                 <div class="swiper-wrapper">
-                    @foreach ($agenda->chunk(2) as $chunkAgenda)
-                        <div class="swiper-slide w-[50%]">
-                            <div class="space-y-[30px]">
-                                @foreach ($chunkAgenda as $item)
-                                    <x-card.guest.event title="{{ $item->name }}" slug="{{ $item->slug }}"
-                                        detail="{{ route('agenda.detail', ['id' => $item->id]) }}"
-                                        image="{{ asset('storage/' . $item->image_path) }}"
-                                        time="{{ getTime($item->start_time) . ' - ' . getTime($item->end_time) }}" />
-                                @endforeach
+                    @if ($agenda != null)
+                        @foreach ($agenda->chunk(1) as $chunkAgenda)
+                            <div class="swiper-slide w-[50%]">
+                                <div class="space-y-[30px]">
+                                    @foreach ($chunkAgenda as $item)
+                                        <x-card.guest.event title="{{ $item->name }}" slug="{{ $item->slug }}"
+                                            detail="{{ route('agenda.detail', ['id' => $item->id]) }}"
+                                            image="{{ asset('storage/' . $item->image_path) }}"
+                                            time="{{ getTime($item->start_time) . ' - ' . getTime($item->end_time) }}" />
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
@@ -342,10 +339,10 @@
                 <div class="max-w-[600px] md:max-w-full shrink-0 relative">
                     <h3
                         class="font-semibold text-[36px] sm:text-[32px] xxs:text-[28px] text-white leading-[1.4] mb-[41px] xxs:mb-[31px]">
-                        Sistem Informasi Tanah Riau - Si-Tari
+                        {{ $sitari->title }}
                     </h3>
                     <!-- <p class="text-gray-50">menyajikan virtual tour dan informasi cgara budaya</p> -->
-                    <a href="http://sitari.disbud.riau.go.id/"
+                    <a href="{{ $sitari->url_path }}"
                         class="ed-btn !h-[56px] !bg-white !text-black gap-[10px] hover:!bg-edyellow hover:!text-edblue">Kunjungi
                         <span class="icon"><i class="fa-solid fa-arrow-right-long"></i></span></a>
 
@@ -356,7 +353,7 @@
 
                 <!-- image -->
                 <div class="mr-[40px] lg:mr-0 relative z-[1] shrink-0">
-                    <img src="{{ asset('assets/guest/img/cta-2-img.png') }}" alt="image" />
+                    <img src="{{ isFileExist('storage/' . $sitari->image_path, asset('assets/guest/img/cta-2-img.png')) }}" alt="image" />
                     <!-- vector -->
                     <div
                         class="aspect-square w-[386px] border-[57px] border-edyellow rounded-full absolute bottom-0 right-[25%] translate-y-[50%] -z-[1]">
@@ -386,25 +383,29 @@
 
             <!-- news cards -->
             <div class="grid grid-cols-2 md:grid-cols-1 gap-[30px]">
-                @if ($museumNews->count() > 0)
-                    <x-card.guest.newsBig
-                        image="{{ asset('storage/' . $museumNews[0]->image_path) }}"
-                        title="{{ $museumNews[0]->title }}"
-                        date="{{ $museumNews[0]->date }}"
-                        author="Josep"
-                    />
-                @endif
-
-                <!-- right / news small cards -->
-                <div class="bg-edoffwhite rounded-[20px] p-[30px] xxs:p-[20px] space-y-[26px]">
-                    @foreach ($museumNews->slice(1) as $item)
-                        <x-card.guest.newsSmall
-                            image="{{ asset('storage/' . $museumNews[0]->cover_image_path) }}"
+                @if ($museumNews != null)
+                    @if ($museumNews->count() > 0)
+                        <x-card.guest.newsBig
+                            image="{{ asset('storage/' . $museumNews[0]->image_path) }}"
                             title="{{ $museumNews[0]->title }}"
                             date="{{ $museumNews[0]->date }}"
                             author="Josep"
                         />
-                    @endforeach
+                    @endif
+                @endif
+
+                <!-- right / news small cards -->
+                <div class="bg-edoffwhite rounded-[20px] p-[30px] xxs:p-[20px] space-y-[26px]">
+                    @if ($museumNews != null)
+                        @foreach ($museumNews->slice(1) as $item)
+                            <x-card.guest.newsSmall
+                                image="{{ asset('storage/' . $museumNews[0]->cover_image_path) }}"
+                                title="{{ $museumNews[0]->title }}"
+                                date="{{ $museumNews[0]->date }}"
+                                author="Josep"
+                            />
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>

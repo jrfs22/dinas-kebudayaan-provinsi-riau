@@ -1,36 +1,16 @@
 @extends('layouting.auth.main')
 
-@section('title', 'Profil')
+@section('title', 'Settings')
 
 @section('breadcrumb')
-    <x-card.breadcrumb title="Home" subtitle="Profil" route="{{ route('profiles', ['type' => 'profil']) }}" />
+    <x-card.breadcrumb title="Home" subtitle="Settings" route="{{ route('profiles', ['type' => 'profil']) }}" />
 @endsection
 
-@push('headers')
-<style>
-    .iframe-container {
-        width: 100%;
-        max-height: 300px;
-        height: auto;
-        overflow: hidden;
-        position: relative;
-    }
-
-    .iframe-container iframe {
-        width: 1920px;
-        height: 1080px;
-        transform: scale(0.25);
-        transform-origin: 0 0;
-        border: 0;
-    }
-</style>
-@endpush
-
 @section('content')
-    <x-card.profile header="Edit {{ category($content->category) }}" :content="$content">
+    <x-card.profile header="Edit Settings" route="{{ route('settings.update', ['id' => $content->id, 'type' => $type]) }}" :content="$content">
         @slot('slotForm')
         <div class="row">
-            @if (in_array($content->category, ['banner-description']))
+            @if ($content->content != null)
                 <div class="col-12">
                     <x-forms.richeditor
                         name="content" value="{!! $content->content !!}">
@@ -39,12 +19,21 @@
                 </div>
             @endif
 
-            @if (in_array($content->category, ['banner-secondary-image', 'banner-main-image', 'breadcrumb']) )
+            @if ($content->url_path != null)
+                <x-forms.textarea
+                    name="url_path"
+                    label="Url"
+                    value="{{ $content->url_path }}"
+                />
+            @endif
+
+            @if ($content->image_path != null)
                 <div class="col-12">
                     <x-forms.input
                         name="image_path"
                         label="Gambar"
                         type="file"
+                        fileLabel="Maksimal 512kb & Dimensi {{ $content->description }}"
                     />
                 </div>
             @endif
@@ -63,14 +52,17 @@
         @endslot
 
         @slot('slotResult')
-            <h4 class="card-title">Preview</h4>
-            <div class="iframe-container" style="flex-grow: 1;">
-                <iframe src="{{ $content->url_path }}" frameborder="0"></iframe>
-            </div>
-            <h4 class="card-title">Detail</h4>
-            <a href="{{ $content->url_path }}">
+            @if ($content->content != null)
+                {!! $content->content !!}
+            @endif
+
+            @if ($content->image_path != null)
+                <img class="img-fluid mb-2" src="{{ asset('storage/' . $content->image_path) }}" alt="Gambar {{ $content->title }}" style="max-height: 250px; object-fit: contain;">
+            @endif
+
+            @if ($content->url_path != null)
                 {{ $content->url_path }}
-            </a>
+            @endif
         @endslot
     </x-card.profile>
 @endsection

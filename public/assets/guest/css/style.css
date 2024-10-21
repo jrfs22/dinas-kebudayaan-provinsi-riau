@@ -182,7 +182,7 @@ p {
     display: block;
     line-height: 3;
     font-weight: 500;
-    color: var(--ed-blue);
+    color: var(--ed-yellow);
 }
 @media screen and (max-width: 1199px) {
     .ed-header-nav a {
@@ -193,7 +193,7 @@ p {
     }
 }
 .ed-header-nav a:hover {
-    color: var(--ed-purple);
+    color: var(--ed-blue);
 }
 .ed-header-nav .has-sub-menu {
     display: grid;
@@ -288,14 +288,14 @@ p {
     }
 }
 .ed-header--2 .ed-header-nav > li > a {
-    color: var(--white);
+    color: var(--ed-yellow);
 }
 .ed-header--2 .ed-header-nav > li > a:hover {
-    color: var(--ed-yellow);
+    color: var(--ed-blue);
 }
 
 .ed-header--2 .ed-header-nav li .active {
-    color: var(--ed-yellow);
+    color: var(--ed-blue);
 }
 
 .capitalize {
@@ -402,3 +402,16 @@ p {
     height: auto;
     pointer-events: all;
 } /*# sourceMappingURL=style.css.map */
+
+.background::before {
+    content: '';
+    background-size: cover;
+    background-position: center;
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
