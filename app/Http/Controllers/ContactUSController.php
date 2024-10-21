@@ -22,18 +22,18 @@ class ContactUSController extends Controller
             $request->validate([
                 'name' => 'required',
                 'email' => 'required',
-                'content' => 'required'
+                'messages' => 'required'
             ], [
                 'name.required' => 'Nama tidak boleh kosong.',
                 'email.required' => 'Email tidak boleh kosong.',
-                'content.required' => 'Pesan tidak boleh kosong.',
+                'messages.required' => 'Pesan tidak boleh kosong.',
             ]);
 
             ContactUSModel::create($request->all());
 
             $this->alert(
-                'Contact Us',
-                'Contact Us berhasil ditambahkan.',
+                'Pesan',
+                'Terimakasih telah mengirimkan pesan.',
                 'success'
             );
             return redirect()->back();

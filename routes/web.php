@@ -40,9 +40,14 @@ Route::middleware('auth')->group(function () {
         Route::post('{type}', action: [ProfilesController::class, 'store'])->name(name: 'profiles.store');
 
         Route::delete('{id}', action: [ProfilesController::class, 'destroy'])->name('profiles.destroy');
-
-        Route::get('edit/{id}', [ProfilesController::class, 'editSettings'])->name('settings.edit');
     });
+
+    Route::prefix('settings')->group(function () {
+        Route::get('{type}', [ProfilesController::class, 'settings'])->name('settings');
+        Route::get('edit/{id}/{type}', [ProfilesController::class, 'editSettings'])->name('settings.edit');
+        Route::put('{id?}/{type?}', action: [ProfilesController::class, 'updateWithType'])->name('settings.update');
+    });
+
 
     Route::prefix('berita')->group(function () {
         Route::get('', [NewsController::class, 'index'])->name('news');
@@ -101,10 +106,7 @@ Route::middleware('auth')->group(function () {
         });
     });
 
-    Route::resource('contact_us', ContactUSController::class)->names([
-        'index' => 'contact_us',
-        'store' => 'contact_us.store',
-    ]);
+    Route::get('contact_us', [ContactUSController::class, 'index'])->name('contact_us');
 
     Route::prefix('ppid')->group(function () {
         Route::post('', [PPIDController::class, 'store'])->name('ppid.store');
@@ -144,7 +146,10 @@ Route::get('/test', function () {
 
 Route::middleware('guest')->group(function () {
     Route::get('', [BeforeLoginController::class, 'beranda'])->name('beranda');
-    Route::get('museum', [BeforeLoginController::class, 'museum'])->name('museum');
+    Route::prefix('museum')->group(function () {
+        Route::get('', [BeforeLoginController::class, 'museum'])->name('museum');
+        Route::get('klasifikasi', [BeforeLoginController::class, 'klasifikasi'])->name('museum.klasifikasi');
+    });
 
     Route::get('kontak', [BeforeLoginController::class, 'kontak'])->name('kontak');
 
@@ -155,4 +160,7 @@ Route::middleware('guest')->group(function () {
     Route::get('news/detil/{id}', [NewsController::class, 'show'])->name('news.detail');
 
     Route::get('agenda/detil/{id}', [AgendaController::class, 'show'])->name('agenda.detail');
+
+
+    Route::post('contact_us', [ContactUSController::class, 'store'])->name('contact_us.store');
 });

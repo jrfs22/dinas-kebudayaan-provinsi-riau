@@ -46,7 +46,7 @@
                     </li>
                 @endif
                 <li class="has-sub-menu relative">
-                    <a {{ isRouteActive('museum') ? 'class=active' : '' }}  href="{{ route('museum') }}">UPT Museum</a>
+                    <a {{ isRouteActive('museum') ? 'class=active' : (isRouteActive('museum.klasifikasi') ? 'class=active' : '') }}  href="{{ route('museum') }}">UPT Museum</a>
                 </li>
                 <li class="has-sub-menu relative">
                     <a {{ isRouteActive('public.agenda') ? 'class=active' : (isRouteActive('gallery') ? 'class=active' : '') }} role="button">Informasi</a>

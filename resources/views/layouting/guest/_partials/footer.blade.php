@@ -10,19 +10,18 @@ class="relative z-[1] before:absolute before:inset-0 before:-z-[1] before:bg-[ur
                     src="http://sitari.disbud.riau.go.id/assets/img/logo1.png" style="width: 100px"
                     alt="logo" /></a>
             <p class="text-[#D9D9D9] mb-[19px]">
-                Nullam interdum libero vitae pretium aliquam donec nibh purus
-                laoreet in ullamcorper vel malesuada sit amet enim.
+                {{ $aboutDescription }}
             </p>
 
             <ul class="space-y-[17px]">
                 <li class="flex items-center gap-[8px]">
                     <span class="icon"><img src="{{ asset('assets/guest/img/call-icon-yellow.sv') }}g" alt="icon" /></span>
-                    <a href="tel:+6108-666-0112" class="hover:text-edyellow">+6108-666-0112</a>
+                    <a href="{{ $telepon->url_path }}" class="hover:text-edyellow">{{ $telepon->content }}</a>
                 </li>
 
                 <li class="flex items-center gap-[8px]">
                     <span class="icon"><img src="{{ asset('assets/guest/img/message-yellow.svg') }}" alt="icon" /></span>
-                    <a href="mailto:info@gmail.com" class="hover:text-edyellow">info@gmail.com</a>
+                    <a href="{{ $email->url_path }}" class="hover:text-edyellow">{{ $email->content }}</a>
                 </li>
             </ul>
         </div>
@@ -35,25 +34,21 @@ class="relative z-[1] before:absolute before:inset-0 before:-z-[1] before:bg-[ur
             </h6>
 
             <div class="space-y-[18px]">
-                <a href="#" class="flex items-center gap-[10px] opacity-80 hover:text-edyellow"><span
+                <a href="{{ route('beranda') }}" class="flex items-center gap-[10px] opacity-80 hover:text-edyellow"><span
                         class="icon"><img src="{{ asset('assets/guest/img/double-arrow.svg') }}" alt="icon" /></span>
                     Beranda</a>
-                <a href="tentang-kami.html"
+                <a href="{{ route('profiles', ['type' => 'about']) }}"
                     class="flex items-center gap-[10px] opacity-80 hover:text-edyellow"><span
                         class="icon"><img src="{{ asset('assets/guest/img/double-arrow.svg') }}" alt="icon" /></span>
                     Tentang Kami</a>
-                <a href="kalender-event-budaya.html"
+                <a href="{{ route('public.agenda') }}"
                     class="flex items-center gap-[10px] opacity-80 hover:text-edyellow"><span
                         class="icon"><img src="{{ asset('assets/guest/img/double-arrow.svg') }}" alt="icon" /></span>
-                    Kalender Event Budaya</a>
-                <a href="berita-kegiatan.html"
+                    Event Budaya</a>
+                <a href="{{ route('gallery') }}"
                     class="flex items-center gap-[10px] opacity-80 hover:text-edyellow"><span
                         class="icon"><img src="{{ asset('assets/guest/img/double-arrow.svg') }}" alt="icon" /></span>
-                    Berita Kegiatan</a>
-                <a href="lihat-semua-blog.html"
-                    class="flex items-center gap-[10px] opacity-80 hover:text-edyellow"><span
-                        class="icon"><img src="{{ asset('assets/guest/img/double-arrow.svg') }}" alt="icon" /></span>
-                    Berita</a>
+                    Gallery</a>
             </div>
         </div>
 

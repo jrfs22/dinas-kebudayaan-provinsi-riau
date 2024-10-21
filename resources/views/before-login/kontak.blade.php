@@ -73,12 +73,11 @@
                         Kirim Pesan
                     </h2>
                     <p class="text-edgray font-normal text-[16px] mb-[38px]">
-                        Nullam varius, erat quis iaculis dictum, eros urna varius eros,
-                        ut blandit felis odio in turpis. Quisque rhoncus, eros in auctor
-                        ultrices,
+                        Jika Anda memiliki pertanyaan atau membutuhkan informasi lebih lanjut, jangan ragu untuk menghubungi kami. Tim kami akan dengan senang hati membantu Anda.
                     </p>
 
-                    <form action="#" class="grid grid-cols-2 xxs:grid-cols-1 gap-[30px] xs:gap-[20px] text-[16px]">
+                    <form action="{{ route('contact_us.store') }}" method="POST" class="grid grid-cols-2 xxs:grid-cols-1 gap-[30px] xs:gap-[20px] text-[16px]">
+                        @csrf
                         <div>
                             <label for="ed-contact-name"
                                 class="font-lato font-semibold text-edblue block mb-[12px]">Nama*</label>
@@ -94,7 +93,7 @@
                         <div class="col-span-2 xxs:col-span-1">
                             <label for="ed-contact-message"
                                 class="font-lato font-semibold text-edblue block mb-[12px]">Pesan*</label>
-                            <textarea name="message" id="ed-contact-message" placeholder="Tulis Pesan"
+                            <textarea name="messages" id="ed-contact-message" placeholder="Tulis Pesan"
                                 class="border border-[#ECECEC] h-[145px] p-[20px] rounded-[4px] w-full focus:outline-none"></textarea>
                         </div>
                         <div>

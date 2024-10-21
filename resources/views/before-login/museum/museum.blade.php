@@ -114,7 +114,7 @@
                         class="font-semibold text-[36px] sm:text-[32px] xxs:text-[28px] text-white leading-[1.4] mb-[41px] xxs:mb-[31px]">
                         Klasifikasi Filologi
                     </h3>
-                    <a href="klasifikasi-filologi.html"
+                    <a href="{{ route('museum.klasifikasi') }}"
                         class="ed-btn !h-[56px] !bg-white !text-black gap-[10px] hover:!bg-edyellow hover:!text-edblue">Kunjungi
                         <span class="icon"><i class="fa-solid fa-arrow-right-long"></i></span></a>
 
@@ -145,117 +145,29 @@
                     <h6 class="ed-section-sub-title">Berita Kegiatan</h6>
                     <h2 class="ed-section-title">UPT Museum</h2>
                 </div>
-
-                <!-- right -->
-                <a href="upt-museum.html"
-                    class="ed-btn !h-[56px] gap-[10px] border border-[#E5E5E5] !bg-transparent !text-edgreen hover:!bg-edgreen hover:!border-edgreen hover:!text-white">Selengkapnya
-                    <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
             </div>
 
             <!-- news cards -->
             <div class="grid grid-cols-2 md:grid-cols-1 gap-[30px]">
-                <!-- news big card -->
-                <div class="rounded-[20px] bg-edoffwhite overflow-hidden">
-                    <!-- img -->
-                    <div class="relative">
-                        <img src="{{ asset('assets/guest/img/blog-big.jpg') }}" alt="blog cover"
-                            class="w-full aspect-[570/290]" />
-                        <!-- date -->
-                        <div
-                            class="absolute top-[30px] left-[30px] bg-[#ECF0F5] rounded-[10px] font-medium text-[14px] text-black inline-block uppercase overflow-hidden text-center">
-                            <span class="bg-edgreen text-white block py-[3px] rounded-[10px]">10</span>
-                            <span class="px-[11px] py-[2px] block">June</span>
-                        </div>
-                    </div>
-
-                    <!-- txt -->
-                    <div class="px-[30px] xxs:px-[20px] py-[22px] pt-[27px]">
-                        <!-- infos -->
-                        <div class="flex items-center gap-[16px] mb-[9px]">
-                            <!-- single info -->
-                            <div class="flex items-center gap-[10px] font-medium text-[12px] text-edgray">
-                                <span><img src="{{ asset('assets/guest/img/icon/user-filled-purple.svg') }}"
-                                        alt="icon" /></span>
-                                <span>Admin Disbud</span>
-                            </div>
-                        </div>
-                        <h5 class="font-medium text-[20px]">
-                            <a href="kegiatan-disbud.html" class="hover:text-edgreen line-clamp-2">Disbud Adakan Workshop
-                                Seni dan Budaya untuk Generasi
-                                Muda</a>
-                        </h5>
-                    </div>
-                </div>
+                @if ($museumNews->count() > 0)
+                    <x-card.guest.newsBig
+                        image="{{ asset('storage/' . $museumNews[0]->image_path) }}"
+                        title="{{ $museumNews[0]->title }}"
+                        date="{{ $museumNews[0]->date }}"
+                        author="Josep"
+                    />
+                @endif
 
                 <!-- right / news small cards -->
                 <div class="bg-edoffwhite rounded-[20px] p-[30px] xxs:p-[20px] space-y-[26px]">
-                    <!-- single news -->
-                    <div
-                        class="flex xxs:flex-col gap-x-[25px] gap-y-[15px] items-center xxs:items-start border-b last:border-0 pb-[26px] last:pb-0">
-                        <!-- img -->
-                        <div class="shrink-0 rounded-[10px] overflow-hidden">
-                            <img src="{{ asset('assets/guest/img/news-2-img-2.jpg') }}" alt="blog cover"
-                                class="w-[142px] aspect-[142/153] object-cover" />
-                        </div>
-
-                        <!-- txt -->
-                        <div>
-                            <!-- infos -->
-                            <div class="flex items-center gap-[16px] mb-[9px]">
-                                <!-- single info -->
-                                <div class="flex items-center gap-[10px] font-medium text-[12px] text-edgray">
-                                    <span><img src="{{ asset('assets/guest/img/icon/user-filled-purple.svg') }}"
-                                            alt="icon" /></span>
-                                    <span>Admin Disbud</span>
-                                </div>
-                            </div>
-                            <h5 class="font-medium text-[20px] mb-[17px]">
-                                <a href="kegiatan-disbud.html" class="hover:text-edgreen line-clamp-2">Disbud Riau Gelar
-                                    Festival Seni dan Budaya Tradisional</a>
-                            </h5>
-
-                            <!-- date -->
-                            <div
-                                class="bg-[#ECF0F5] rounded-[10px] font-medium text-[14px] text-black inline-block uppercase overflow-hidden text-center">
-                                <span class="bg-edgreen text-white block py-[3px] rounded-[10px]">10</span>
-                                <span class="px-[11px] py-[2px] block">June</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- single news -->
-                    <div
-                        class="flex xxs:flex-col gap-x-[25px] gap-y-[15px] items-center xxs:items-start border-b last:border-0 pb-[26px] last:pb-0">
-                        <!-- img -->
-                        <div class="shrink-0 rounded-[10px] overflow-hidden">
-                            <img src="{{ asset('assets/guest/img/news-2-img-3.jpg') }}" alt="blog cover"
-                                class="w-[142px] aspect-[142/153] object-cover" />
-                        </div>
-
-                        <!-- txt -->
-                        <div>
-                            <!-- infos -->
-                            <div class="flex items-center gap-[16px] mb-[9px]">
-                                <!-- single info -->
-                                <div class="flex items-center gap-[10px] font-medium text-[12px] text-edgray">
-                                    <span><img src="{{ asset('assets/guest/img/icon/user-filled-purple.svg') }}"
-                                            alt="icon" /></span>
-                                    <span>Admin Disbud</span>
-                                </div>
-                            </div>
-                            <h5 class="font-medium text-[20px] mb-[17px]">
-                                <a href="kegiatan-disbud.html" class="hover:text-edgreen line-clamp-2">Disbud Luncurkan
-                                    Program Pelestarian Budaya Lokal</a>
-                            </h5>
-
-                            <!-- date -->
-                            <div
-                                class="bg-[#ECF0F5] rounded-[10px] font-medium text-[14px] text-black inline-block uppercase overflow-hidden text-center">
-                                <span class="bg-edgreen text-white block py-[3px] rounded-[10px]">10</span>
-                                <span class="px-[11px] py-[2px] block">June</span>
-                            </div>
-                        </div>
-                    </div>
+                    @foreach ($museumNews->slice(1) as $item)
+                        <x-card.guest.newsSmall
+                            image="{{ asset('storage/' . $museumNews[0]->cover_image_path) }}"
+                            title="{{ $museumNews[0]->title }}"
+                            date="{{ $museumNews[0]->date }}"
+                            author="Josep"
+                        />
+                    @endforeach
                 </div>
             </div>
         </div>
