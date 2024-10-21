@@ -41,7 +41,16 @@ protected static function clearContentCache()
         'tentang-kami-channel-yt',
         'sitari',
         'email',
-        'telepon'
+        'telepon',
+        'upt-museum-gambar-utama',
+        'upt-museum-deskripsi',
+        'upt-museum-background',
+        'upt-museum-gambar-thumnail',
+        'upt-museum-channel-yt',
+        'klasifikasi',
+        'footer-background',
+        'breadcrumb',
+        'media-social',
     ];
 
     foreach ($keys as $key) {

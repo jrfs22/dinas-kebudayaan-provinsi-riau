@@ -43,7 +43,7 @@ class ProfilesController extends Controller
                         $view = 'after-login.profiles.sambutan';
                         break;
                     case 'kontak':
-                        $content = $content->whereIn('category', ['media sosial', 'kontak', 'telepon', 'email'])->get();
+                        $content = $content->whereIn('category', ['youtube', 'linkedin', 'facebook', 'instagram', 'twitter', 'tiktok', 'kontak', 'telepon', 'email'])->get();
                         $view = 'after-login.profiles.kontak';
                         break;
                     case 'banner':
@@ -141,6 +141,7 @@ class ProfilesController extends Controller
                 case 'museum':
                     $content = $content->whereIn('category', [
                         'upt-museum-background', 'upt-museum-gambar-utama', 'upt-museum-gambar-thumnail', 'upt-museum-channel-yt',
+                        'upt-museum-klasifikasi'
                     ])->get();
 
                     $pageTitle = 'UPT Museum';
@@ -157,11 +158,11 @@ class ProfilesController extends Controller
                 case 'footer':
                     $content = $content->whereIn('category', [
                         'footer-background'
-                    ])->get();
+                    ])->first();
 
                     $pageTitle = 'Footer';
 
-                    return view('after-login.settings.index', compact('content', 'pageTitle', 'type'));
+                    return view('after-login.settings.footer', compact('content', ));
                 default:
                     $this->alert(
                         'Halaman tidak ditemukan',
@@ -192,7 +193,7 @@ class ProfilesController extends Controller
                 'content',
                 'date',
                 'status',
-                'url_paths'
+                'url_path'
             ]));
 
             $contents->category = $type;

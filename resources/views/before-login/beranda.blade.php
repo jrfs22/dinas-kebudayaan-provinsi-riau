@@ -33,9 +33,9 @@
                 <!-- banner image -->
                 <div class="max-w-[51%] md:max-w-full">
                     <div class="w-max relative z-[1] flex gap-[30px] items-center">
-                        <img src="{{ asset('storage/' . $heroSecondaryImage) }}" alt="banner image"
+                        <img src="{{ isFileExist('storage/' . $heroSecondaryImage, asset('assets/guest/img/banner-2-img-1.jpg')) }}" alt="banner image"
                             class="border-[10px] border-white rounded-[20px] max-w-[241px] aspect-[261/366]" />
-                        <img src="{{ asset('storage/' . $heroMainImage) }}" alt="Main image"
+                        <img src="{{ isFileExist('storage/' . $heroMainImage, asset('assets/guest/img/banner-2-img-2.jpg')) }}" alt="Main image"
                             class="rounded-[20px]" />
 
                         <!-- vectors -->
@@ -71,7 +71,7 @@
             class="mx-[15.8%] xxxl:mx-[9.8%] xxl:mx-[3.5%] bg-white p-[40px] sm:p-[30px] xxs:p-[20px] rounded-[20px] shadow-[0_4px_25px_rgba(0,0,0,0.06)]">
             <div class="grid grid-cols-4 xl:grid-cols-3 md:grid-cols-2 xxs:grid-cols-1 gap-[20px]">
                 <!-- single category -->
-                <a href="course-grid.html"
+                <a href="javascript:void(0)"
                     class="border border-[#e5e5e5] rounded-[10px] py-[16px] px-[20px] flex sm:flex-col items-center sm:items-start gap-y-[15px] gap-x-[20px] hover:bg-[#F8B81F] hover:border-[#F8B81F] group">
                     <!-- icon -->
                     <div
@@ -95,7 +95,7 @@
                 </a>
 
                 <!-- single category -->
-                <a href="course-grid.html"
+                <a href="javascript:void(0)"
                     class="border border-[#e5e5e5] rounded-[10px] py-[16px] px-[20px] flex sm:flex-col items-center sm:items-start gap-y-[15px] gap-x-[20px] hover:bg-[#39C0FA] hover:border-[#39C0FA] group">
                     <!-- icon -->
                     <div
@@ -125,7 +125,7 @@
                 </a>
 
                 <!-- single category -->
-                <a href="course-grid.html"
+                <a href="javascript:void(0)"
                     class="border border-[#e5e5e5] rounded-[10px] py-[16px] px-[20px] flex sm:flex-col items-center sm:items-start gap-y-[15px] gap-x-[20px] hover:bg-[#F92596] hover:border-[#F92596] group">
                     <!-- icon -->
                     <div
@@ -162,7 +162,7 @@
                 </a>
 
                 <!-- single category -->
-                <a href="course-grid.html"
+                <a href="javascript:void(0)"
                     class="border border-[#e5e5e5] rounded-[10px] py-[16px] px-[20px] flex sm:flex-col items-center sm:items-start gap-y-[15px] gap-x-[20px] hover:bg-[#5866EB] hover:border-[#5866EB] group">
                     <!-- icon -->
                     <div
@@ -236,12 +236,12 @@
                 <!-- left -->
                 <div class="max-w-[46%] md:max-w-full grow shrink-0">
                     <div class="relative flex items-end">
-                        <img src="{{ isFileExist($aboutMainImage, asset('assets/guest/img/about-2-image-1.png')) }}" alt="About Image"
+                        <img src="{{ isFileExist('storage/'.$aboutMainImage, asset('assets/guest/img/about-2-image-1.png')) }}" alt="About Image"
                             class="border-[12px] border-white rounded-full" />
 
                         <!-- video btn -->
                         <div class="relative shrink-0 -ml-[202px] lg:-ml-[262px] md:-ml-[202px] xs:-ml-[242px] -mb-[24px]">
-                            <img src="{{ isFileExist($aboutThumnailImage, asset('assets/guest/img/about-2-image-2.png')) }}" alt="About Image"
+                            <img src="{{ isFileExist('storage/'.$aboutThumnailImage, asset('assets/guest/img/about-2-image-2.png')) }}" alt="About Image"
                                 class="border-[8px] border-white rounded-full w-[292px] xs:w-[252px] aspect-square" />
                             <a href="{{ $aboutYt }}" data-fslightbox="gallery"
                                 class="flex items-center justify-center w-[60px] aspect-square bg-white rounded-full text-edyellow absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] before:border before:absolute before:top-[50%] before:-translate-y-[50%] before:left-[50%] before:-translate-x-[50%] before:w-[calc(100%+15px)] before:h-[calc(100%+15px)] before:rounded-full before:transition before:duration-[400ms] hover:bg-edgreen hover:text-white hover:before:border-edgreen"><i

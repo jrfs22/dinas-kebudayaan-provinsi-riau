@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="{{ asset('assets/guest/src/output.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/guest/css/style.css') }}" />
 
+@stack('headers')
+
 @vite('resources/css/app.css')
 
-@stack('headers')

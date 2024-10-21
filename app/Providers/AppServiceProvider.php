@@ -41,23 +41,30 @@ class AppServiceProvider extends ServiceProvider
                     return ContentModel::where('category', 'email')->first();
                 });
 
+                $footer = Cache::rememberForever('footer-background', function () {
+                    return ContentModel::where('category', 'footer-background')->first();
+                });
+
+                $breadcrumb = Cache::rememberForever('breadcrumb', function () {
+                    return ContentModel::where('category', 'breadcrumb')->first();
+                });
+
+                $mediaSocial = Cache::rememberForever('media-social', function () {
+                    return ContentModel::whereIn('category', [
+                        'youtube', 'linkedin', 'facebook', 'instagram', 'twitter', 'tiktok',
+                    ])->get();
+                });
+
                 $view->with([
                     'ppid_categories' => $ppid_categories,
                     'aboutDescription' => $aboutDescription,
                     'telepon' => $telepon,
                     'email' => $email,
+                    'footer' => $footer,
+                    'breadcrumb' => $breadcrumb,
+                    'mediaSocial' => $mediaSocial,
                 ]);
             }
-
-            // if (in_array(Route::currentRouteName(), ['beranda'])) {
-            //     $heroDescription = Cache::rememberForever('hero-deskripsi', function () {
-            //         return ContentModel::where('category', 'hero-deskripsi')->first()->content;
-            //     });
-
-            //     $view->with([
-            //         'heroDescription', $heroDescription
-            //     ]);
-            // }
         });
     }
 }

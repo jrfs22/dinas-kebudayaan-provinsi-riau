@@ -175,7 +175,7 @@
                                             </span>
                                             <span class="hide-menu">Profiles</span>
                                         </a>
-                                        <ul aria-expanded="false" class="collapse first-level\">
+                                        <ul aria-expanded="false" class="collapse first-level">
                                             <li class="sidebar-item">
                                                 <a href="{{ route('profiles', ['type' => 'sejarah']) }}"
                                                     class="sidebar-link">

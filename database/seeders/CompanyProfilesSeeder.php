@@ -210,7 +210,7 @@ class CompanyProfilesSeeder extends Seeder
             [
                 'title' => 'UPT Museum',
                 'description' => 'Deskripsi',
-                'content' => null,
+                'content' => 'Museum Sang Nila Utama berkomitmen untuk melestarikan warisan budaya Riau yang kaya. Kami mengundang masyarakat untuk ikut serta dalam menjaga sejarah, seni, dan tradisi yang menjadi bagian dari identitas kita.',
                 'date' => now(),
                 'status' => 'published',
                 'category' => 'upt-museum-deskripsi',
@@ -256,6 +256,16 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'upt-museum-channel-yt',
                 'url_path' => 'https://youtu.be/K88OhAy7x9c',
                 'image_path' => null,
+            ],
+            [
+                'title' => 'Klasifikasi Filologi',
+                'description' => '353x413',
+                'content' => null,
+                'date' => now(),
+                'status' => 'published',
+                'category' => 'upt-museum-klasifikasi',
+                'url_path' => null,
+                'image_path' => 'assets/guest/img/about-2-image-2.png',
             ],
             [
                 'title' => 'Background Footer 1920x515',

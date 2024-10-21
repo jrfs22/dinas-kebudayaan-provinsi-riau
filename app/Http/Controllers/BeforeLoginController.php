@@ -108,8 +108,41 @@ class BeforeLoginController extends Controller
             $agenda = AgendaModel::with('category')->get();
         }
 
-        return view('before-login.museum.museum', compact('agenda', 'museumNews'
+        list($aboutMuseumMainImage, $aboutMuseumThumnailImage, $aboutMuseumYt, $aboutMuseumDescription, $aboutMuseumBackground, $klasifikasi) = $this->museumLayout();
+
+        return view('before-login.museum.museum', compact('agenda', 'museumNews', 'aboutMuseumMainImage',     'aboutMuseumThumnailImage', 'aboutMuseumYt', 'aboutMuseumDescription', 'aboutMuseumBackground','klasifikasi'
         ));
+    }
+
+    public function museumLayout()
+    {
+        $content = new ContentModel();
+
+        $aboutMuseumMainImage = Cache::rememberForever('upt-museum-gambar-utama', function () use ($content) {
+            return $content->where('category', 'upt-museum-gambar-utama')->first()->image_path;
+        });
+
+        $aboutMuseumDescription = Cache::rememberForever('upt-museum-deskripsi', function () use ($content) {
+            return $content->where('category', 'upt-museum-deskripsi')->first()->content;
+        });
+
+        $aboutMuseumBackground = Cache::rememberForever('upt-museum-background', function () use ($content) {
+            return $content->where('category', 'upt-museum-background')->first()->image_path;
+        });
+
+        $aboutMuseumThumnailImage = Cache::rememberForever('upt-museum-gambar-thumnail', function () use ($content) {
+            return $content->where('category', 'upt-museum-gambar-thumnail')->first()->image_path;
+        });
+
+        $aboutMuseumYt = Cache::rememberForever('upt-museum-channel-yt', function () use ($content) {
+            return $content->where('category', 'upt-museum-channel-yt')->first()->url_path;
+        });
+
+        $klasifikasi = Cache::rememberForever('klasifikasi', function () use ($content) {
+            return $content->where('category', 'upt-museum-klasifikasi')->first();
+        });
+
+        return [$aboutMuseumMainImage, $aboutMuseumThumnailImage, $aboutMuseumYt, $aboutMuseumDescription, $aboutMuseumBackground, $klasifikasi];
     }
 
     public function klasifikasi()
