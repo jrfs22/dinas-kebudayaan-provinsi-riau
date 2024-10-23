@@ -112,6 +112,35 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link has-arrow {{ isRouteActive('klasifikasi.create') ? 'active' : (isRouteActive('klasifikasi.edit') ? 'active' : '') }}" href="javascript:void(0)"
+                                            aria-expanded="false">
+                                            <span class="d-flex">
+                                                <i class="ti ti-wall"></i>
+                                            </span>
+                                            <span class="hide-menu">Klasifikasi</span>
+                                        </a>
+                                        <ul aria-expanded="false" class="collapse first-level {{ isRouteActive('klasifikasi.create') ? 'in' : (isRouteActive('klasifikasi.edit') ? 'in' : '') }}">
+                                            <li class="sidebar-item">
+                                                <a href="{{ route('klasifikasi.category') }}" class="sidebar-link">
+                                                    <div
+                                                        class="round-16 d-flex align-items-center justify-content-center">
+                                                        <i class="ti ti-circle"></i>
+                                                    </div>
+                                                    <span class="hide-menu">Kategori</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-item">
+                                                <a href="{{ route('klasifikasi') }}" class="sidebar-link {{ isRouteActive('klasifikasi.create') ? 'active' : (isRouteActive('klasifikasi.edit') ? 'active' : '') }}">
+                                                    <div
+                                                        class="round-16 d-flex align-items-center justify-content-center">
+                                                        <i class="ti ti-circle"></i>
+                                                    </div>
+                                                    <span class="hide-menu">List</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
 
                                     <li class="sidebar-item">
                                         <a class="sidebar-link has-arrow {{ isRouteActive('ppid.files') ? 'active' : '' }}" href="javascript:void(0)"
@@ -147,7 +176,7 @@
                                         </ul>
                                     </li>
 
-                                    <li class="sidebar-item">
+                                    {{-- <li class="sidebar-item">
                                         <a class="sidebar-link {{ isRouteActive('survey.questions') ? 'active' : '' }}"
                                             href="{{ route('survey') }}" aria-expanded="false">
                                             <span>
@@ -155,7 +184,7 @@
                                             </span>
                                             <span class="hide-menu">Survey</span>
                                         </a>
-                                    </li>
+                                    </li> --}}
 
                                     <li class="sidebar-item">
                                         <a class="sidebar-link"
@@ -244,6 +273,16 @@
                                                         <i class="ti ti-circle"></i>
                                                     </div>
                                                     <span class="hide-menu">Kontak</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-item">
+                                                <a href="{{ route('profiles', ['type' => 'sop']) }}"
+                                                    class="sidebar-link">
+                                                    <div
+                                                        class="round-16 d-flex align-items-center justify-content-center">
+                                                        <i class="ti ti-circle"></i>
+                                                    </div>
+                                                    <span class="hide-menu">SOP</span>
                                                 </a>
                                             </li>
                                             {{-- <li class="sidebar-item">

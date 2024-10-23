@@ -127,3 +127,8 @@ function mediaSocial($platform)
 
     return $icon;
 }
+
+function isDataNull($data)
+{
+    return $data === null ? 'sda' : $data;
+}

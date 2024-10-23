@@ -33,9 +33,9 @@
                 <!-- banner image -->
                 <div class="max-w-[51%] md:max-w-full">
                     <div class="w-max relative z-[1] flex gap-[30px] items-center">
-                        <img src="{{ isFileExist('storage/' . $heroSecondaryImage, asset('assets/guest/img/banner-2-img-1.jpg')) }}" alt="banner image"
+                        <img src="{{ isFileExist('storage/' . isDataNull($heroSecondaryImage), asset('assets/guest/img/banner-2-img-1.jpg')) }}" alt="banner image"
                             class="border-[10px] border-white rounded-[20px] max-w-[241px] aspect-[261/366]" />
-                        <img src="{{ isFileExist('storage/' . $heroMainImage, asset('assets/guest/img/banner-2-img-2.jpg')) }}" alt="Main image"
+                        <img src="{{ isFileExist('storage/' . isDataNull($heroMainImage), asset('assets/guest/img/banner-2-img-2.jpg')) }}" alt="Main image"
                             class="rounded-[20px]" />
 
                         <!-- vectors -->
@@ -218,7 +218,7 @@
             <div
                 class="ed-2-courses-container grid grid-cols-4 xl:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 gap-[30px] xxl:gap-[20px]">
                 @foreach ($news as $item)
-                    <x-card.guest.news image="{{ asset('storage/' . $item->cover_image_path) }}"
+                    <x-card.guest.news image="{{ asset('storage/' . isDataNukk($item->cover_image_path)) }}"
                         categoryName="{{ $item->category->name }}" date="{{ indonesianDate($item->date) }}"
                         title="{{ $item->title }}" slug="{{ $item->slug }}" author="admin disbud"
                         detail="{{ route('news.detail', ['id' => $item->id]) }}" />
@@ -236,12 +236,12 @@
                 <!-- left -->
                 <div class="max-w-[46%] md:max-w-full grow shrink-0">
                     <div class="relative flex items-end">
-                        <img src="{{ isFileExist('storage/'.$aboutMainImage, asset('assets/guest/img/about-2-image-1.png')) }}" alt="About Image"
+                        <img src="{{ isFileExist('storage/'. isDataNull($aboutMainImage), asset('assets/guest/img/about-2-image-1.png')) }}" alt="About Image"
                             class="border-[12px] border-white rounded-full" />
 
                         <!-- video btn -->
                         <div class="relative shrink-0 -ml-[202px] lg:-ml-[262px] md:-ml-[202px] xs:-ml-[242px] -mb-[24px]">
-                            <img src="{{ isFileExist('storage/'.$aboutThumnailImage, asset('assets/guest/img/about-2-image-2.png')) }}" alt="About Image"
+                            <img src="{{ isFileExist('storage/'. isDataNull($aboutThumnailImage), asset('assets/guest/img/about-2-image-2.png')) }}" alt="About Image"
                                 class="border-[8px] border-white rounded-full w-[292px] xs:w-[252px] aspect-square" />
                             <a href="{{ $aboutYt }}" data-fslightbox="gallery"
                                 class="flex items-center justify-center w-[60px] aspect-square bg-white rounded-full text-edyellow absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] before:border before:absolute before:top-[50%] before:-translate-y-[50%] before:left-[50%] before:-translate-x-[50%] before:w-[calc(100%+15px)] before:h-[calc(100%+15px)] before:rounded-full before:transition before:duration-[400ms] hover:bg-edgreen hover:text-white hover:before:border-edgreen"><i
@@ -317,7 +317,7 @@
                                     @foreach ($chunkAgenda as $item)
                                         <x-card.guest.event title="{{ $item->name }}" slug="{{ $item->slug }}"
                                             detail="{{ route('agenda.detail', ['id' => $item->id]) }}"
-                                            image="{{ asset('storage/' . $item->image_path) }}"
+                                            image="{{ asset('storage/' . isDataNull($item->image_path)) }}"
                                             time="{{ getTime($item->start_time) . ' - ' . getTime($item->end_time) }}" />
                                     @endforeach
                                 </div>
@@ -353,59 +353,11 @@
 
                 <!-- image -->
                 <div class="mr-[40px] lg:mr-0 relative z-[1] shrink-0">
-                    <img src="{{ isFileExist('storage/' . $sitari->image_path, asset('assets/guest/img/cta-2-img.png')) }}" alt="image" />
+                    <img src="{{ isFileExist('storage/' . isDataNull($sitari->image_path), asset('assets/guest/img/cta-2-img.png')) }}" alt="image" />
                     <!-- vector -->
                     <div
                         class="aspect-square w-[386px] border-[57px] border-edyellow rounded-full absolute bottom-0 right-[25%] translate-y-[50%] -z-[1]">
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- CTA SECTION END -->
-
-    <!-- NEWS SECTION START -->
-    <section class="py-[120px] xl:py-[80px] md:py-[60px]">
-        <div class="mx-[19.7%] xxxl:mx-[14.7%] xxl:mx-[9.7%] xl:mx-[3.2%] md:mx-[15px]">
-            <!-- heading -->
-            <div class="flex flex-wrap items-end justify-between mb-[60px] lg:mb-[40px] gap-[15px]">
-                <!-- left -->
-                <div class="max-w-[35%] md:max-w-[40%] sm:max-w-none">
-                    <h6 class="ed-section-sub-title">Berita Kegiatan</h6>
-                    <h2 class="ed-section-title">UPT Museum</h2>
-                </div>
-
-                <!-- right -->
-                <a href="{{ route('museum') }}"
-                    class="ed-btn !h-[56px] gap-[10px] border border-[#E5E5E5] !bg-transparent !text-edgreen hover:!bg-edgreen hover:!border-edgreen hover:!text-white">Selengkapnya
-                    <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
-            </div>
-
-            <!-- news cards -->
-            <div class="grid grid-cols-2 md:grid-cols-1 gap-[30px]">
-                @if ($museumNews != null)
-                    @if ($museumNews->count() > 0)
-                        <x-card.guest.newsBig
-                            image="{{ asset('storage/' . $museumNews[0]->image_path) }}"
-                            title="{{ $museumNews[0]->title }}"
-                            date="{{ $museumNews[0]->date }}"
-                            author="Josep"
-                        />
-                    @endif
-                @endif
-
-                <!-- right / news small cards -->
-                <div class="bg-edoffwhite rounded-[20px] p-[30px] xxs:p-[20px] space-y-[26px]">
-                    @if ($museumNews != null)
-                        @foreach ($museumNews->slice(1) as $item)
-                            <x-card.guest.newsSmall
-                                image="{{ asset('storage/' . $museumNews[0]->cover_image_path) }}"
-                                title="{{ $museumNews[0]->title }}"
-                                date="{{ $museumNews[0]->date }}"
-                                author="Josep"
-                            />
-                        @endforeach
-                    @endif
                 </div>
             </div>
         </div>

@@ -93,7 +93,7 @@
                         <div class="col-span-2 xxs:col-span-1">
                             <label for="ed-contact-message"
                                 class="font-lato font-semibold text-edblue block mb-[12px]">Pesan*</label>
-                            <textarea name="messages" id="ed-contact-message" placeholder="Tulis Pesan"
+                        <textarea name="messages" id="ed-contact-message" placeholder="Tulis Pesan"
                                 class="border border-[#ECECEC] h-[145px] p-[20px] rounded-[4px] w-full focus:outline-none"></textarea>
                         </div>
                         <div>

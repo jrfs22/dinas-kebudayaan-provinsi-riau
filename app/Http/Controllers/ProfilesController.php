@@ -46,6 +46,10 @@ class ProfilesController extends Controller
                         $content = $content->whereIn('category', ['youtube', 'linkedin', 'facebook', 'instagram', 'twitter', 'tiktok', 'kontak', 'telepon', 'email'])->get();
                         $view = 'after-login.profiles.kontak';
                         break;
+                    case 'sop':
+                        $content = $content->where('category', 'sop')->get();
+                        $view = 'after-login.profiles.sop';
+                        break;
                     case 'banner':
                         $content = $content->whereIn('category', [
                             'banner-description',
@@ -123,7 +127,9 @@ class ProfilesController extends Controller
                     return view($view, compact('content'));
                 case 'hero':
                     $content = $content->whereIn('category', [
-                        'hero-deskripsi', 'hero-main-image', 'hero-secondary-image'
+                        'hero-deskripsi',
+                        'hero-main-image',
+                        'hero-secondary-image'
                     ])->get();
 
                     $pageTitle = 'Hero Section';
@@ -131,7 +137,10 @@ class ProfilesController extends Controller
                     return view('after-login.settings.index', compact('content', 'pageTitle', 'type'));
                 case 'tentang-kami':
                     $content = $content->whereIn('category', [
-                        'tentang-kami-background', 'tentang-kami-gambar-utama', 'tentang-kami-gambar-thumnail', 'tentang-kami-channel-yt',
+                        'tentang-kami-background',
+                        'tentang-kami-gambar-utama',
+                        'tentang-kami-gambar-thumnail',
+                        'tentang-kami-channel-yt',
                         'tentang-kami-deskripsi'
                     ])->get();
 
@@ -140,7 +149,10 @@ class ProfilesController extends Controller
                     return view('after-login.settings.index', compact('content', 'pageTitle', 'type'));
                 case 'museum':
                     $content = $content->whereIn('category', [
-                        'upt-museum-background', 'upt-museum-gambar-utama', 'upt-museum-gambar-thumnail', 'upt-museum-channel-yt',
+                        'upt-museum-background',
+                        'upt-museum-gambar-utama',
+                        'upt-museum-gambar-thumnail',
+                        'upt-museum-channel-yt',
                         'upt-museum-klasifikasi'
                     ])->get();
 
@@ -199,6 +211,13 @@ class ProfilesController extends Controller
             $contents->category = $type;
             if ($request->has('category')) {
                 $contents->category = $request->category;
+            }
+
+            if ($request->has('image_path')) {
+                $contents->image_path = $this->storeFile(
+                    $request->file('image_path'),
+                    'images/content/' . $contents->category
+                );
             }
             $contents->save();
 
@@ -337,15 +356,15 @@ class ProfilesController extends Controller
             $content->delete();
 
             $this->alert(
-                'Kontak',
-                'Berhasil menghapus Kontak.',
+                'Konten',
+                'Berhasil menghapus',
                 'success'
             );
 
             return redirect()->back();
         } catch (Exception $e) {
             $this->alert(
-                'Kontak',
+                'Konten',
                 $e->getMessage(),
                 'error'
             );
