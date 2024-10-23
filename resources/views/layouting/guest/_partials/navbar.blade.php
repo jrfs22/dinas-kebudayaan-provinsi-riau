@@ -47,7 +47,7 @@
                     </li>
                 @endif
                 <li class="has-sub-menu relative">
-                    <a {{ isRouteActive('museum') ? 'class=active' : (isRouteActive('museum.klasifikasi') ? 'class=active' : '') }}  href="{{ route('museum') }}">UPT Museum</a>
+                    <a {{ isRouteActive('museum') ? 'class=active' : (isRouteActive('klasifikasi') ? 'class=active' : '') }}  href="{{ route('museum') }}">UPT Museum</a>
                 </li>
                 <li class="has-sub-menu relative">
                     <a {{ isRouteActive('public.agenda') ? 'class=active' : (isRouteActive('gallery') ? 'class=active' : '') }} role="button">Informasi</a>
@@ -69,7 +69,7 @@
 
             <!-- right actions -->
             <div class="flex items-center gap-x-[60px] xxl:gap-x-[25px] lg:gap-x-[20px]">
-                <a href="http://sitari.disbud.riau.go.id/"
+                <a target="_blank" href="http://sitari.disbud.riau.go.id/"
                     class="ed-btn to-go-to-sidebar-in-mobile lg:m-[20px]">Si-Tari</a>
             </div>
         </div>

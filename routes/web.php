@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\BeforeLoginController;
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\KlasifikasiCategoryController;
+use App\Http\Controllers\KlasifikasiController;
 use App\Http\Controllers\SurveyQuestionController;
 use App\Models\SurveyModel;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +32,8 @@ Route::get('profil/{type}', [ProfilesController::class, 'profiles'])->name('prof
 Route::get('ppid/{id}', [PPIDController::class, 'index'])->name('ppid');
 
 Route::get('galleries', [GalleryController::class, 'index'])->name('gallery');
+
+Route::get('klasifikasi', [KlasifikasiController::class, 'index'])->name('klasifikasi');
 
 Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthenticationController::class, 'logout'])->name('logout');
@@ -138,6 +142,24 @@ Route::middleware('auth')->group(function () {
             Route::get('{id}', [SurveyQuestionController::class, 'index'])->name('survey.questions');
         });
     });
+
+    Route::prefix('klasifikasi')->group(function () {
+        Route::get('create', [KlasifikasiController::class, 'create'])->name('klasifikasi.create');
+
+        Route::post('', [KlasifikasiController::class, 'store'])->name('klasifikasi.store');
+        Route::put('{id?}', [KlasifikasiController::class, 'update'])->name('klasifikasi.update');
+        Route::delete('{id}', action: [KlasifikasiController::class, 'destroy'])->name('klasifikasi.destroy');
+
+        Route::prefix('kategori')->group(function () {;
+            Route::get('', [KlasifikasiCategoryController::class, 'index'])->name('klasifikasi.category');
+
+            Route::post('', [KlasifikasiCategoryController::class, 'store'])->name('klasifikasi.category.store');
+
+            Route::put('{id?}', [KlasifikasiCategoryController::class, 'update'])->name('klasifikasi.category.update');
+
+            Route::delete('{id}', [KlasifikasiCategoryController::class, 'destroy'])->name('klasifikasi.category.destroy');
+        });
+    });
 });
 
 Route::get('/test', function () {
@@ -148,7 +170,6 @@ Route::middleware('guest')->group(function () {
     Route::get('', [BeforeLoginController::class, 'beranda'])->name('beranda');
     Route::prefix('museum')->group(function () {
         Route::get('', [BeforeLoginController::class, 'museum'])->name('museum');
-        Route::get('klasifikasi', [BeforeLoginController::class, 'klasifikasi'])->name('museum.klasifikasi');
     });
 
     Route::get('kontak', [BeforeLoginController::class, 'kontak'])->name('kontak');

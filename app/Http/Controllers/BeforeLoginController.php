@@ -27,13 +27,8 @@ class BeforeLoginController extends Controller
 
         if(isset($newsCategory)) {
             $news = NewsModel::with('category')->where('category_id', '!=', $newsCategory->id)->get();
-
-            $museumNews = NewsModel::where('category_id',optional($newsCategory)->id)->take(3)->get();
-
         } else {
             $news = NewsModel::with('category')->get();
-
-            $museumNews = null;
         }
 
         $agendaCategory = AgendaCategoryModel::whereIn('name', [
@@ -51,7 +46,7 @@ class BeforeLoginController extends Controller
         list($heroDescription, $heroMainImage, $heroSecondaryImage, $aboutMainImage, $aboutThumnailImage, $aboutYt, $sitari) = $this->berandaLayout();
 
         return view('before-login.beranda', compact(
-            'newsCategories', 'news', 'agenda', 'museumNews', 'heroDescription', 'heroMainImage', 'heroSecondaryImage', 'aboutMainImage', 'aboutThumnailImage', 'aboutYt', 'sitari'
+            'newsCategories', 'news', 'agenda', 'heroDescription', 'heroMainImage', 'heroSecondaryImage', 'aboutMainImage', 'aboutThumnailImage', 'aboutYt', 'sitari'
         ));
     }
 
@@ -60,31 +55,31 @@ class BeforeLoginController extends Controller
         $content = new ContentModel();
 
         $heroDescription = Cache::rememberForever('hero-deskripsi', function () use ($content) {
-            return $content->where('category', 'hero-deskripsi')->first()->content;
+            return $content->publish()->where('category', 'hero-deskripsi')->first()?->content;
         });
 
         $heroMainImage = Cache::rememberForever('hero-main-image', function () use ($content) {
-            return $content->where('category', 'hero-main-image')->first()->image_path;
+            return $content->publish()->where('category', 'hero-main-image')->first()?->image_path;
         });
 
         $heroSecondaryImage = Cache::rememberForever('hero-secondary-image', function () use ($content) {
-            return $content->where('category', 'hero-secondary-image')->first()->image_path;
+            return $content->publish()->where('category', 'hero-secondary-image')->first()?->image_path;
         });
 
         $aboutMainImage = Cache::rememberForever('tentang-kami-gambar-utama', function () use ($content) {
-            return $content->where('category', 'tentang-kami-gambar-utama')->first()->image_path;
+            return $content->publish()->where('category', 'tentang-kami-gambar-utama')->first()?->image_path;
         });
 
         $aboutThumnailImage = Cache::rememberForever('tentang-kami-gambar-thumnail', function () use ($content) {
-            return $content->where('category', 'tentang-kami-gambar-thumnail')->first()->image_path;
+            return $content->publish()->where('category', 'tentang-kami-gambar-thumnail')->first()?->image_path;
         });
 
         $aboutYt = Cache::rememberForever('tentang-kami-channel-yt', function () use ($content) {
-            return $content->where('category', 'tentang-kami-channel-yt')->first()->url_path;
+            return $content->publish()->where('category', 'tentang-kami-channel-yt')->first()?->url_path;
         });
 
         $sitari = Cache::rememberForever('sitari', function () use ($content) {
-            return $content->where('category', 'sitari')->first();
+            return $content->publish()->where('category', 'sitari')->first();
         });
 
         return [$heroDescription, $heroMainImage, $heroSecondaryImage, $aboutMainImage, $aboutThumnailImage, $aboutYt, $sitari];
@@ -119,23 +114,23 @@ class BeforeLoginController extends Controller
         $content = new ContentModel();
 
         $aboutMuseumMainImage = Cache::rememberForever('upt-museum-gambar-utama', function () use ($content) {
-            return $content->where('category', 'upt-museum-gambar-utama')->first()->image_path;
+            return $content->where('category', 'upt-museum-gambar-utama')->first()?->image_path;
         });
 
         $aboutMuseumDescription = Cache::rememberForever('upt-museum-deskripsi', function () use ($content) {
-            return $content->where('category', 'upt-museum-deskripsi')->first()->content;
+            return $content->where('category', 'upt-museum-deskripsi')->first()?->content;
         });
 
         $aboutMuseumBackground = Cache::rememberForever('upt-museum-background', function () use ($content) {
-            return $content->where('category', 'upt-museum-background')->first()->image_path;
+            return $content->where('category', 'upt-museum-background')->first()?->image_path;
         });
 
         $aboutMuseumThumnailImage = Cache::rememberForever('upt-museum-gambar-thumnail', function () use ($content) {
-            return $content->where('category', 'upt-museum-gambar-thumnail')->first()->image_path;
+            return $content->where('category', 'upt-museum-gambar-thumnail')->first()?->image_path;
         });
 
         $aboutMuseumYt = Cache::rememberForever('upt-museum-channel-yt', function () use ($content) {
-            return $content->where('category', 'upt-museum-channel-yt')->first()->url_path;
+            return $content->where('category', 'upt-museum-channel-yt')->first()?->url_path;
         });
 
         $klasifikasi = Cache::rememberForever('klasifikasi', function () use ($content) {
@@ -143,10 +138,5 @@ class BeforeLoginController extends Controller
         });
 
         return [$aboutMuseumMainImage, $aboutMuseumThumnailImage, $aboutMuseumYt, $aboutMuseumDescription, $aboutMuseumBackground, $klasifikasi];
-    }
-
-    public function klasifikasi()
-    {
-        return view('before-login.museum.klasifikasi');
     }
 }

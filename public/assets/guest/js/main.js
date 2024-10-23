@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // BANNER SLIDER JS END
 
 
-    // GALLERY SLIDER JS START 
+    // GALLERY SLIDER JS START
     new Swiper(".ed-gallery-slider", {
         slidesPerView: "auto",
         centeredSlides: true,
@@ -235,25 +235,25 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    // cart js
-    const edCartOpenerBtn = document.querySelector(".ed-cart-opener-btn");
-    const edCart = document.querySelector(".ed-cart-bar");
+    // // cart js
+    // const edCartOpenerBtn = document.querySelector(".ed-cart-opener-btn");
+    // const edCart = document.querySelector(".ed-cart-bar");
 
-    if (edCartOpenerBtn) {
-        edCartOpenerBtn.addEventListener("click", () => {
-            edCart.classList.add("active");
-            edOverlay.classList.add("active");
-            document.body.style.overflow = "hidden";
-        });
-    };
+    // if (edCartOpenerBtn) {
+    //     edCartOpenerBtn.addEventListener("click", () => {
+    //         edCart.classList.add("active");
+    //         edOverlay.classList.add("active");
+    //         document.body.style.overflow = "hidden";
+    //     });
+    // };
 
-    document.addEventListener("click", (e) => {
-        if (!edCart.contains(e.target) && edCart.classList.contains("active") && !edCartOpenerBtn.contains(e.target)) {
-            edCart.classList.remove("active");
-            edOverlay.classList.remove("active");
-            document.body.style.overflow = "";
-        }
-    });
+    // document.addEventListener("click", (e) => {
+    //     if (!edCart.contains(e.target) && edCart.classList.contains("active") && !edCartOpenerBtn.contains(e.target)) {
+    //         edCart.classList.remove("active");
+    //         edOverlay.classList.remove("active");
+    //         document.body.style.overflow = "";
+    //     }
+    // });
 
     // search js
     const edSearchOpenerBtn = document.querySelector(".ed-search-opener-btn");

@@ -12,12 +12,10 @@
                 <!-- left -->
                 <div class="max-w-[46%] md:max-w-full grow shrink-0">
                     <div class="relative flex items-end">
-                        <img src="{{ isFileExist('storage/'.$aboutMuseumMainImage,asset('assets/guest/img/about-2-image-1.png')) }}" alt="About Image"
+                        <img src="{{ isFileExist('storage/'. isDataNull($aboutMuseumMainImage),asset('assets/guest/img/about-2-image-1.png')) }}" alt="About Image"
                             class="border-[12px] border-white rounded-full" />
-                        {{-- @dd($aboutMuseumMainImage) --}}
-                        <!-- video btn -->
                         <div class="relative shrink-0 -ml-[202px] lg:-ml-[262px] md:-ml-[202px] xs:-ml-[242px] -mb-[24px]">
-                            <img src="{{ isFileExist('storage/'.$aboutMuseumThumnailImage,asset('assets/guest/img/about-2-image-2.png')) }}" alt="About Image"
+                            <img src="{{ isFileExist('storage/'.isDataNull($aboutMuseumThumnailImage),asset('assets/guest/img/about-2-image-2.png')) }}" alt="About Image"
                                 class="border-[8px] border-white rounded-full w-[292px] xs:w-[252px] aspect-square" />
                             <a href="{{ $aboutMuseumYt }}" data-fslightbox="gallery"
                                 class="flex items-center justify-center w-[60px] aspect-square bg-white rounded-full text-edyellow absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] before:border before:absolute before:top-[50%] before:-translate-y-[50%] before:left-[50%] before:-translate-x-[50%] before:w-[calc(100%+15px)] before:h-[calc(100%+15px)] before:rounded-full before:transition before:duration-[400ms] hover:bg-edgreen hover:text-white hover:before:border-edgreen"><i
@@ -91,7 +89,7 @@
                                 @foreach ($chunkAgenda as $item)
                                     <x-card.guest.event title="{{ $item->name }}" slug="{{ $item->slug }}"
                                         detail="{{ route('agenda.detail', ['id' => $item->id]) }}"
-                                        image="{{ asset('storage/' . $item->image_path) }}"
+                                        image="{{ asset('storage/' . isDataNull($item->image_path)) }}"
                                         time="{{ getTime($item->start_time) . ' - ' . getTime($item->end_time) }}" />
                                 @endforeach
                             </div>
@@ -113,18 +111,15 @@
                         class="font-semibold text-[36px] sm:text-[32px] xxs:text-[28px] text-white leading-[1.4] mb-[41px] xxs:mb-[31px]">
                         {{ $klasifikasi->title }}
                     </h3>
-                    <a href="{{ route('museum.klasifikasi') }}"
+                    <!-- <p class="text-gray-50">menyajikan virtual tour dan informasi cgara budaya</p> -->
+                    <a href="{{ route('klasifikasi') }}"
                         class="ed-btn !h-[56px] !bg-white !text-black gap-[10px] hover:!bg-edyellow hover:!text-edblue">Kunjungi
                         <span class="icon"><i class="fa-solid fa-arrow-right-long"></i></span></a>
-
-                    <!-- vector -->
-                    <img src="{{ asset('assets/guest/img/cta-2-txt-vector.svg') }}" alt="vector"
-                        class="absolute bottom-[10px] left-[55%] xs:left-[75%]">
                 </div>
 
                 <!-- image -->
                 <div class="mr-[40px] lg:mr-0 relative z-[1] shrink-0">
-                    <img src="{{ isFileExist('storage/' . $klasifikasi->image_path ,asset('assets/guest/img/cta-2-txt-vector.svg')) }}" alt="image">
+                    <img src="{{ isFileExist('storage/' . isDataNull($klasifikasi->image_path), asset('assets/guest/img/cta-2-img.png')) }}" alt="image" />
                     <!-- vector -->
                     <div
                         class="aspect-square w-[386px] border-[57px] border-edyellow rounded-full absolute bottom-0 right-[25%] translate-y-[50%] -z-[1]">
@@ -150,7 +145,7 @@
             <div class="grid grid-cols-2 md:grid-cols-1 gap-[30px]">
                 @if ($museumNews->count() > 0)
                     <x-card.guest.newsBig
-                        image="{{ asset('storage/' . $museumNews[0]->image_path) }}"
+                        image="{{ asset('storage/' . isDataNull($museumNews[0]->image_path)) }}"
                         title="{{ $museumNews[0]->title }}"
                         date="{{ $museumNews[0]->date }}"
                         author="Josep"
