@@ -13,6 +13,7 @@ use App\Traits\ManageRolesAndPermissionTrait;
 class NewsCategoryController extends Controller
 {
     use ManageRolesAndPermissionTrait;
+    
     public function index()
     {
         $categories = NewsCategoryModel::all();

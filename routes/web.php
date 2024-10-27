@@ -5,6 +5,7 @@ use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\KlasifikasiCategoryController;
 use App\Http\Controllers\KlasifikasiController;
 use App\Http\Controllers\SurveyQuestionController;
+use App\Http\Controllers\UserController;
 use App\Models\SurveyModel;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FaqsController;
@@ -38,21 +39,6 @@ Route::get('klasifikasi', [KlasifikasiController::class, 'index'])->name('klasif
 Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthenticationController::class, 'logout'])->name('logout');
 
-    Route::prefix('profil')->group(function () {
-        Route::put('{id?}', action: [ProfilesController::class, 'update'])->name('profiles.update');
-
-        Route::post('{type}', action: [ProfilesController::class, 'store'])->name(name: 'profiles.store');
-
-        Route::delete('{id}', action: [ProfilesController::class, 'destroy'])->name('profiles.destroy');
-    });
-
-    Route::prefix('settings')->group(function () {
-        Route::get('{type}', [ProfilesController::class, 'settings'])->name('settings');
-        Route::get('edit/{id}/{type}', [ProfilesController::class, 'editSettings'])->name('settings.edit');
-        Route::put('{id?}/{type?}', action: [ProfilesController::class, 'updateWithType'])->name('settings.update');
-    });
-
-
     Route::prefix('berita')->group(function () {
         Route::get('', [NewsController::class, 'index'])->name('news');
         Route::get('create', [NewsController::class, 'create'])->name('news.create');
@@ -61,7 +47,7 @@ Route::middleware('auth')->group(function () {
         Route::put('{id?}', [NewsController::class, 'update'])->name('news.update');
         Route::delete('{id}', action: [NewsController::class, 'destroy'])->name('news.destroy');
 
-        Route::prefix('kategori')->group(function () {
+        Route::prefix('kategori')->middleware('role:super admin')->group(function () {
             Route::get('list', [NewsCategoryController::class, 'index'])->name('news.category');
 
             Route::post('', [NewsCategoryController::class, 'store'])->name('news.category.store');
@@ -79,7 +65,7 @@ Route::middleware('auth')->group(function () {
         Route::put('{id?}', [GalleryController::class, 'update'])->name('gallery.update');
         Route::delete('{id}', action: [GalleryController::class, 'destroy'])->name('gallery.destroy');
 
-        Route::prefix('kategori')->group(function () {
+        Route::prefix('kategori')->middleware('role:super admin')->group(function () {
             Route::get('', [GalleryCategoryController::class, 'index'])->name('gallery.category');
 
             Route::post('', [GalleryCategoryController::class, 'store'])->name('gallery.category.store');
@@ -99,7 +85,7 @@ Route::middleware('auth')->group(function () {
         Route::put('{id?}', [AgendaController::class, 'update'])->name('agenda.update');
         Route::delete('{id}', action: [AgendaController::class, 'destroy'])->name('agenda.destroy');
 
-        Route::prefix('kategori')->group(function () {
+        Route::prefix('kategori')->middleware('role:super admin')->group(function () {
             Route::get('', [AgendaCategoryController::class, 'index'])->name('agenda.category');
 
             Route::post('', [AgendaCategoryController::class, 'store'])->name('agenda.category.store');
@@ -110,39 +96,6 @@ Route::middleware('auth')->group(function () {
         });
     });
 
-    Route::get('contact_us', [ContactUSController::class, 'index'])->name('contact_us');
-
-    Route::prefix('ppid')->group(function () {
-        Route::post('', [PPIDController::class, 'store'])->name('ppid.store');
-        Route::put('{id?}', [PPIDController::class, 'update'])->name('ppid.update');
-        Route::delete('{id}', [PPIDController::class, 'destroy'])->name('ppid.destroy');
-
-        Route::prefix('category')->group(function () {
-            Route::get('list', [PPIDCategoryController::class, 'index'])->name('ppid.category');
-            Route::post('', [PPIDCategoryController::class, 'store'])->name('ppid.category.store');
-            Route::put('{id?}', [PPIDCategoryController::class, 'update'])->name('ppid.category.update');
-            Route::delete('{id}', [PPIDCategoryController::class, 'destroy'])->name('ppid.category.destroy');
-        });
-
-        Route::prefix('files')->group(function () {
-            Route::get('list/{id}', [PpidFileController::class, 'index'])->name('ppid.files');
-            Route::post('', [PpidFileController::class, 'store'])->name('ppid.files.store');
-            Route::put('{id?}', [PpidFileController::class, 'update'])->name('ppid.files.update');
-            Route::delete('{id}', [PpidFileController::class, 'destroy'])->name('ppid.files.destroy');
-        });
-    });
-
-    Route::prefix('surveys')->group(function () {
-        Route::get('', [SurveyController::class, 'index'])->name('survey');
-        Route::post('', [SurveyController::class, 'store'])->name('survey.store');
-        Route::put('{id?}', [SurveyController::class, 'update'])->name('survey.update');
-        Route::delete('{id}', [SurveyController::class, 'destroy'])->name('survey.destroy');
-
-        Route::prefix('questions')->group(function () {
-            Route::get('{id}', [SurveyQuestionController::class, 'index'])->name('survey.questions');
-        });
-    });
-
     Route::prefix('klasifikasi')->group(function () {
         Route::get('create', [KlasifikasiController::class, 'create'])->name('klasifikasi.create');
 
@@ -150,7 +103,8 @@ Route::middleware('auth')->group(function () {
         Route::put('{id?}', [KlasifikasiController::class, 'update'])->name('klasifikasi.update');
         Route::delete('{id}', action: [KlasifikasiController::class, 'destroy'])->name('klasifikasi.destroy');
 
-        Route::prefix('kategori')->group(function () {;
+        Route::prefix('kategori')->group(function () {
+            ;
             Route::get('', [KlasifikasiCategoryController::class, 'index'])->name('klasifikasi.category');
 
             Route::post('', [KlasifikasiCategoryController::class, 'store'])->name('klasifikasi.category.store');
@@ -158,6 +112,60 @@ Route::middleware('auth')->group(function () {
             Route::put('{id?}', [KlasifikasiCategoryController::class, 'update'])->name('klasifikasi.category.update');
 
             Route::delete('{id}', [KlasifikasiCategoryController::class, 'destroy'])->name('klasifikasi.category.destroy');
+        });
+    });
+
+    Route::middleware('role:super admin')->group(function () {
+        Route::get('contact_us', [ContactUSController::class, 'index'])->name('contact_us');
+
+        Route::prefix('ppid')->group(function () {
+            Route::post('', [PPIDController::class, 'store'])->name('ppid.store');
+            Route::put('{id?}', [PPIDController::class, 'update'])->name('ppid.update');
+            Route::delete('{id}', [PPIDController::class, 'destroy'])->name('ppid.destroy');
+
+            Route::prefix('category')->group(function () {
+                Route::get('list', [PPIDCategoryController::class, 'index'])->name('ppid.category');
+                Route::post('', [PPIDCategoryController::class, 'store'])->name('ppid.category.store');
+                Route::put('{id?}', [PPIDCategoryController::class, 'update'])->name('ppid.category.update');
+                Route::delete('{id}', [PPIDCategoryController::class, 'destroy'])->name('ppid.category.destroy');
+            });
+
+            Route::prefix('files')->group(function () {
+                Route::get('list/{id}', [PpidFileController::class, 'index'])->name('ppid.files');
+                Route::post('', [PpidFileController::class, 'store'])->name('ppid.files.store');
+                Route::put('{id?}', [PpidFileController::class, 'update'])->name('ppid.files.update');
+                Route::delete('{id}', [PpidFileController::class, 'destroy'])->name('ppid.files.destroy');
+            });
+        });
+
+        Route::prefix('surveys')->group(function () {
+            Route::get('', [SurveyController::class, 'index'])->name('survey');
+            Route::post('', [SurveyController::class, 'store'])->name('survey.store');
+            Route::put('{id?}', [SurveyController::class, 'update'])->name('survey.update');
+            Route::delete('{id}', [SurveyController::class, 'destroy'])->name('survey.destroy');
+
+            Route::prefix('questions')->group(function () {
+                Route::get('{id}', [SurveyQuestionController::class, 'index'])->name('survey.questions');
+                Route::post('', [SurveyQuestionController::class, 'store'])->name('survey.questions.store');
+            });
+        });
+
+        Route::prefix('profil')->group(function () {
+            Route::put('{id?}', action: [ProfilesController::class, 'update'])->name('profiles.update');
+
+            Route::post('{type}', action: [ProfilesController::class, 'store'])->name(name: 'profiles.store');
+
+            Route::delete('{id}', action: [ProfilesController::class, 'destroy'])->name('profiles.destroy');
+        });
+
+        Route::prefix('settings')->group(function () {
+            Route::get('{type}', [ProfilesController::class, 'settings'])->name('settings');
+            Route::get('edit/{id}/{type}', [ProfilesController::class, 'editSettings'])->name('settings.edit');
+            Route::put('{id?}/{type?}', action: [ProfilesController::class, 'updateWithType'])->name('settings.update');
+        });
+
+        Route::prefix('pengguna')->group(function () {
+            Route::get('', [UserController::class, 'index'])->name('pengguna');
         });
     });
 });
@@ -175,7 +183,7 @@ Route::middleware('guest')->group(function () {
     Route::get('kontak', [BeforeLoginController::class, 'kontak'])->name('kontak');
 
     Route::prefix('informasi')->group(function () {
-        Route::get('event-budaya',  [AgendaController::class, 'index'])->name('public.agenda');
+        Route::get('event-budaya', [AgendaController::class, 'index'])->name('public.agenda');
     });
 
     Route::get('news/detil/{id}', [NewsController::class, 'show'])->name('news.detail');

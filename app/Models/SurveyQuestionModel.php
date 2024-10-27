@@ -15,5 +15,8 @@ class SurveyQuestionModel extends Model
         'question_text',
         'question_type',
         'options',
+        'survey_id',
+        'min_value',
+        'max_value',
     ];
 }

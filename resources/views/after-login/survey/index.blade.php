@@ -44,10 +44,10 @@
                             {{ $item->slug }}
                         </td>
                         <td>
-                            <a href="{{ route('survey.questions', ['id' => $item->id]) }}" class="btn btn-info btn-sm">Detail {{ $item->questions()->count() }}</a>
+                            <a href="{{ route('survey.questions', ['id' => $item->id]) }}" class="btn btn-info btn-sm">Detail <b>{{ $item->questions()->count() }}</b></a>
                         </td>
                         <td>
-                            <a href="" class="btn btn-info btn-sm">Detail {{ $item->responses()->count() }}</a>
+                            <a href="" class="btn btn-info btn-sm">Detail <b>{{ $item->responses()->count() }}</b></a>
                         </td>
                         <td>
                             <span class="badge {{ surveyStatus($item->status, 'bg') }}">{{ surveyStatus($item->status, 'status') }}</span>

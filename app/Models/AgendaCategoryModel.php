@@ -12,7 +12,7 @@ class AgendaCategoryModel extends Model
     protected $table = 'agenda_categories';
 
     protected $fillable = [
-        'name',
+        'name', 'role'
     ];
 
     public function agenda(): HasMany

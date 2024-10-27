@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
+use App\Models\Permission;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Spatie\Permission\Models\Role;
 
 class RolesAndPermissionSeeder extends Seeder
 {
@@ -16,36 +16,83 @@ class RolesAndPermissionSeeder extends Seeder
     {
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
-        // Permission
-        Permission::create(['name' => 'create news']);
-        Permission::create(['name' => 'read news']);
-        Permission::create(['name' => 'update news']);
-        Permission::create(['name' => 'delete news']);
+        // Berita
+        $permissionBerita = ['tambah berita', 'lihat berita', 'ubah berita', 'hapus berita'];
+        $permissionKategoriBerita = ['tambah kategory berita', 'lihat kategory berita', 'ubah kategory berita', 'hapus kategory berita'];
 
-        Permission::create(['name' => 'create news_categories']);
-        Permission::create(['name' => 'read news_categories']);
-        Permission::create(['name' => 'update news_categories']);
-        Permission::create(['name' => 'delete news_categories']);
+        // Berita
+        $permissionGallery = ['tambah gallery', 'lihat gallery', 'ubah gallery', 'hapus gallery'];
+        $permissionKategoriGallery = ['tambah kategori gallery', 'lihat kategori gallery', 'ubah kategori gallery', 'hapus kategori gallery'];
 
-        Permission::create(['name' => 'create kontak']);
-        Permission::create(['name' => 'update profiles']);
-        Permission::create(['name' => 'delete profiles']);
+        // Agenda
+        $permissionAgenda = ['tambah agenda', 'lihat agenda', 'ubah agenda', 'hapus agenda'];
+        $permissionKategoriAgenda = ['tambah kategori agenda', 'lihat kategori agenda', 'ubah kategori agenda', 'hapus kategori agenda'];
 
-        Permission::create(['name' => 'read kontak']);
-        Permission::create(['name' => 'read sambutan']);
-        Permission::create(['name' => 'read struktur']);
-        Permission::create(['name' => 'read visimisi']);
-        Permission::create(['name' => 'read tugas_pokok']);
-        Permission::create(['name' => 'read profil']);
+        // klasifikasi
+        $permissionKlasifikasi = ['tambah klasifikasi', 'lihat klasifikasi', 'ubah klasifikasi', 'hapus klasifikasi'];
+        $permissionKategoriKlasifikasi = ['tambah kategori klasifikasi', 'lihat kategori klasifikasi', 'ubah kategori klasifikasi', 'hapus kategori klasifikasi'];
 
-        $role = Role::create(['name' => 'admin']);
-        $role->givePermissionTo('create news');
-        $role->givePermissionTo('read news');
-        $role->givePermissionTo('update news');
-        $role->givePermissionTo('delete news');
+        // PPID
+        $permissionPpid = ['tambah ppid', 'lihat ppid', 'ubah ppid', 'hapus ppid'];
+        $permissionKategoriPpid = ['tambah kategori ppid', 'lihat kategori ppid', 'ubah kategori ppid', 'hapus kategori ppid'];
+        $permissionPpidFiles= ['tambah ppid files', 'lihat ppid files', 'ubah ppid files', 'hapus ppid files'];
 
+        // Survey
+        $permissionSurvey = ['tambah survey', 'lihat survey', 'ubah survey', 'hapus survey'];
+        $permissionPertanyaanSurvey = ['tambah pertanyaan survey', 'lihat pertanyaan survey', 'ubah pertanyaan survey', 'hapus pertanyaan survey'];
+        $permissionRepondenSurvey = ['lihat responden'];
+        $permissionRepondenPesan = ['lihat pesan'];
 
-        $role = Role::create(['name' => 'super-admin']);
-        $role->givePermissionTo(Permission::all());
+        $profiles = [
+            'ubah sejarah', 'ubah struktur', 'ubah visi', 'ubah misi', 'ubah sambutan', 'update fungsi', 'update kontak', 'tambah kontak', 'hapus kontak', 'tambah sop', 'ubah sop', 'hapus sop'
+        ];
+
+        $settings = [
+            'ubah breadcrumb', 'ubah hero', 'ubah tentang kami', 'ubah upt museum', 'ubah sitari', 'ubah footer'
+        ];
+
+        $pengguna = [
+            'lihat pengguna', 'tambah pengguna', 'hapus pengguna', 'lihat hak akses', 'tambah hak akses', 'ubah hak akses', 'delete hak akses'
+        ];
+
+        $permissions = array_merge(
+            $permissionBerita,
+            $permissionKategoriBerita,
+            $permissionGallery,
+            $permissionKategoriGallery,
+            $permissionAgenda,
+            $permissionKategoriAgenda,
+            $permissionKlasifikasi,
+            $permissionKategoriKlasifikasi,
+            $permissionPpid,
+            $permissionKategoriPpid,
+            $permissionPpidFiles,
+            $permissionSurvey,
+            $permissionPertanyaanSurvey,
+            $permissionRepondenSurvey,
+            $permissionRepondenPesan,
+            $profiles,
+            $settings,
+            $pengguna,
+        );
+
+        foreach ($permissions as $permission) {
+            Permission::create(['name' => $permission]);
+        }
+
+        // Create roles and assign permissions
+        $adminRole = Role::create(['name' => 'admin']);
+        $AdminPermissions = array_merge(
+            $permissionBerita,
+            $permissionGallery,
+            $permissionGallery,
+            $permissionAgenda,
+            $permissionKlasifikasi
+        );
+
+        $adminRole->givePermissionTo($AdminPermissions);
+
+        $superAdminRole = Role::create(['name' => 'super admin']);
+        $superAdminRole->givePermissionTo(Permission::all());
     }
 }
