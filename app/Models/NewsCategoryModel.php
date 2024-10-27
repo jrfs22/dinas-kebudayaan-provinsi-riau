@@ -13,7 +13,7 @@ class NewsCategoryModel extends Model
     protected $table = 'news_categories';
 
     protected $fillable = [
-        'name',
+        'name', 'role'
     ];
 
     public function news(): HasMany

@@ -13,7 +13,7 @@ class GalleryCategoryModel extends Model
     protected $table = 'gallery_categories';
 
     protected $fillable = [
-        'name',
+        'name', 'role'
     ];
 
     public function gallery(): HasMany

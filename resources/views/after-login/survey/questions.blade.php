@@ -55,22 +55,26 @@
         <x-table.basic>
             @slot('slotHead')
                 <th>Pertanyaan</th>
-                <th>Tipe</th>
+                <th>Tipe Pertanyaan</th>
                 <th>Opsi</th>
                 <th>Aksi</th>
             @endslot
 
             @slot('slotBody')
-                @foreach ($survey->questions() as $item)
+                @foreach ($survey->questions as $item)
                     <tr class="search-items">
                         <td class="w-200px">
-                            <h6>{{ $item->question_text }}</h6>
+                            {!! $item->question_text !!}
                         </td>
-                        <td>
+                        <td class="text-capitalize">
                             {{ $item->question_type }}
                         </td>
                         <td>
-                            {{ $item->options }}
+                            @if ($item->question_type != 'text')
+                                {{ $item->options }}
+                            @else
+                                -
+                            @endif
                         </td>
                         <td>
                             <div class="action-btn d-flex gap-2">
@@ -90,8 +94,9 @@
         </x-table.basic>
     </div>
 
-    <x-modal.lg title="Tambah Pertanyaan Baru" action="{{ route('survey.store') }}">
+    <x-modal.lg title="Tambah Pertanyaan Baru" action="{{ route('survey.questions.store') }}">
         <div class="row">
+            <input type="hidden" name="survey_id" value="{{ $survey->id }}">
             <div class="col-12">
                 <x-forms.richeditor name="question_text" label="Pertanyaan" required=1>
                 </x-forms.richeditor>
@@ -110,8 +115,7 @@
                 <div id="repeater">
                     <div class="row">
                         <div class="col-md-10">
-                            <input type="text" name="options[]" class="form-control" placeholder="Masukkan opsi 1"
-                                required>
+                            <input type="text" name="options[]" class="form-control" placeholder="Masukkan opsi 1">
                         </div>
                         <div class="col-md-2">
                             <button type="button" class="btn btn-success add-row">
@@ -126,11 +130,11 @@
                 <div class="row mt-1">
                     <div class="col-md-6">
                         <label for="range_min">Range Minimum</label>
-                        <input type="number" name="range_min" id="range_min" class="form-control" placeholder="Nilai Minimum" required>
+                        <input type="number" name="range_min" id="range_min" class="form-control" placeholder="Nilai Minimum">
                     </div>
                     <div class="col-md-6">
                         <label for="range_max">Range Maksimal</label>
-                        <input type="number" name="range_max" id="range_max" class="form-control" placeholder="Nilai Maksimal" required>
+                        <input type="number" name="range_max" id="range_max" class="form-control" placeholder="Nilai Maksimal">
                     </div>
                 </div>
             </div>
@@ -139,6 +143,7 @@
 
     <x-modal.lg id="EditSurvey" title="Tambah Survey Baru" action="{{ route('gallery.store') }}" isUpdate=1>
         <div class="row">
+            <input type="hidden" name="survey_id" value="{{ $survey->id }}">
             <div class="col-12">
                 <x-forms.input name="title" id="edt_title" label="Judul Survey" placeholder="Survey Kepuasan" />
             </div>
