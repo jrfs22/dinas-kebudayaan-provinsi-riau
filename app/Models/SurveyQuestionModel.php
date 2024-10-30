@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class SurveyQuestionModel extends Model
 {
@@ -19,4 +20,9 @@ class SurveyQuestionModel extends Model
         'min_value',
         'max_value',
     ];
+
+    public function answer(): BelongsTo
+    {
+        return $this->belongsTo(SurveyResponseQuestionModel::class, 'id');
+    }
 }

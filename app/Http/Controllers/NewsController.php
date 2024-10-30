@@ -78,6 +78,8 @@ class NewsController extends Controller
                 'content'
             ]));
 
+            $news->user_id = auth()->user()->id;
+
             $news->image_path = $this->storeFile(
                 $request->image_path,
                 'images/main/news'

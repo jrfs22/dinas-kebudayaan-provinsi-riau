@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('survey_id');
             $table->text('question_text');
             $table->enum('question_type', [
-                'text', 'range', 'checkbox'
+                'text', 'range', 'checkbox', 'radio'
             ]);
             $table->json('options')->nullable();
             $table->integer('min_value')->nullable();

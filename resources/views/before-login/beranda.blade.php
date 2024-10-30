@@ -213,14 +213,13 @@
                     </button>
                 @endforeach
             </div>
-
             <!-- course cards -->
             <div
                 class="ed-2-courses-container grid grid-cols-4 xl:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 gap-[30px] xxl:gap-[20px]">
                 @foreach ($news as $item)
-                    <x-card.guest.news image="{{ asset('storage/' . isDataNukk($item->cover_image_path)) }}"
+                    <x-card.guest.news image="{{ asset('storage/' . isDataNull($item->cover_image_path)) }}"
                         categoryName="{{ $item->category->name }}" date="{{ indonesianDate($item->date) }}"
-                        title="{{ $item->title }}" slug="{{ $item->slug }}" author="admin disbud"
+                        title="{{ $item->title }}" slug="{{ $item->slug }}" author="admin {{ $item->author->departement }}"
                         detail="{{ route('news.detail', ['id' => $item->id]) }}" />
                 @endforeach
             </div>

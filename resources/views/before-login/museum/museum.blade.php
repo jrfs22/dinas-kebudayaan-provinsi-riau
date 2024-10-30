@@ -148,7 +148,8 @@
                         image="{{ asset('storage/' . isDataNull($museumNews[0]->image_path)) }}"
                         title="{{ $museumNews[0]->title }}"
                         date="{{ $museumNews[0]->date }}"
-                        author="Josep"
+                        author="admin {{ $museumNews[0]->author->departement }}"
+                        detail="{{ route('news.detail', ['id' => $museumNews[0]->id]) }}"
                     />
                 @endif
 
@@ -156,10 +157,11 @@
                 <div class="bg-edoffwhite rounded-[20px] p-[30px] xxs:p-[20px] space-y-[26px]">
                     @foreach ($museumNews->slice(1) as $item)
                         <x-card.guest.newsSmall
-                            image="{{ asset('storage/' . $museumNews[0]->cover_image_path) }}"
-                            title="{{ $museumNews[0]->title }}"
-                            date="{{ $museumNews[0]->date }}"
-                            author="Josep"
+                            image="{{ asset('storage/' . $item[0]->cover_image_path) }}"
+                            title="{{ $item[0]->title }}"
+                            date="{{ $item[0]->date }}"
+                            author="admin {{ $item->author->departement }}"
+                            detail="{{ route('news.detail', ['id' => $item->id]) }}"
                         />
                     @endforeach
                 </div>

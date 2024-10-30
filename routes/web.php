@@ -5,6 +5,7 @@ use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\KlasifikasiCategoryController;
 use App\Http\Controllers\KlasifikasiController;
 use App\Http\Controllers\SurveyQuestionController;
+use App\Http\Controllers\SurveyRespondenController;
 use App\Http\Controllers\UserController;
 use App\Models\SurveyModel;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,8 @@ Route::get('ppid/{id}', [PPIDController::class, 'index'])->name('ppid');
 Route::get('galleries', [GalleryController::class, 'index'])->name('gallery');
 
 Route::get('klasifikasi', [KlasifikasiController::class, 'index'])->name('klasifikasi');
+
+Route::get('surveys', [SurveyController::class, 'index'])->name('survey');
 
 Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthenticationController::class, 'logout'])->name('logout');
@@ -139,14 +142,20 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::prefix('surveys')->group(function () {
-            Route::get('', [SurveyController::class, 'index'])->name('survey');
             Route::post('', [SurveyController::class, 'store'])->name('survey.store');
             Route::put('{id?}', [SurveyController::class, 'update'])->name('survey.update');
             Route::delete('{id}', [SurveyController::class, 'destroy'])->name('survey.destroy');
 
             Route::prefix('questions')->group(function () {
                 Route::get('{id}', [SurveyQuestionController::class, 'index'])->name('survey.questions');
+
                 Route::post('', [SurveyQuestionController::class, 'store'])->name('survey.questions.store');
+
+                Route::delete('{id}', [SurveyQuestionController::class, 'destroy'])->name('survey.questions.destroy');
+            });
+
+            Route::prefix('responden')->group(function () {
+                Route::get('{id}', [SurveyRespondenController::class, 'index'])->name('survey.responden');
             });
         });
 
@@ -190,6 +199,9 @@ Route::middleware('guest')->group(function () {
 
     Route::get('agenda/detil/{id}', [AgendaController::class, 'show'])->name('agenda.detail');
 
+    Route::get('surveys/detil/{id}/{slugs}', [SurveyController::class, 'show'])->name('survey.detail');
 
     Route::post('contact_us', [ContactUSController::class, 'store'])->name('contact_us.store');
+
+    Route::post('survey/responden/{survey_id}', [SurveyRespondenController::class, 'store'])->name('survey.responden.store');
 });

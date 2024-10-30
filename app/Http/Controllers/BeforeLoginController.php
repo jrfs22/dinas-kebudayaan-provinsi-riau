@@ -19,21 +19,19 @@ class BeforeLoginController extends Controller
 
     public function beranda()
     {
-        $newsCategories = NewsCategoryModel::whereHas('news')->get();
+        $museumName = ['UPT Museum', 'Museum', 'museum'];
 
-        $newsCategory = NewsCategoryModel::whereIn('name', [
-            'UPT Museum', 'Museum', 'museum'
-        ])->first();
+        $newsCategories = NewsCategoryModel::whereHas('news')->whereNotIn('name', $museumName)->get();
+
+        $newsCategory = NewsCategoryModel::whereIn('name', $museumName)->first();
 
         if(isset($newsCategory)) {
             $news = NewsModel::with('category')->where('category_id', '!=', $newsCategory->id)->get();
         } else {
-            $news = NewsModel::with('category')->get();
+            $news = NewsModel::with(['category', 'author'])->get();
         }
 
-        $agendaCategory = AgendaCategoryModel::whereIn('name', [
-            'UPT Museum', 'Museum', 'museum'
-        ])->first();
+        $agendaCategory = AgendaCategoryModel::whereIn('name', $museumName)->first();
 
         if(isset($agendaCategory)) {
             $agenda = AgendaModel::where('agenda_category_id', '!=', $agendaCategory->id)->get();
@@ -87,20 +85,18 @@ class BeforeLoginController extends Controller
 
     public function museum()
     {
-        $category = AgendaCategoryModel::whereIn('name', [
-            'UPT Museum', 'Museum', 'museum'
-        ])->first();
+        $museumName = ['UPT Museum', 'Museum', 'museum'];
 
-        $newsCategory = NewsCategoryModel::whereIn('name', [
-            'UPT Museum', 'Museum', 'museum'
-        ])->first();
+        $category = AgendaCategoryModel::whereIn('name', $museumName)->first();
 
-        $museumNews = NewsModel::where('category_id',optional($newsCategory)->id)->take(3)->get();
+        $newsCategory = NewsCategoryModel::whereIn('name', $museumName)->first();
+
+        $museumNews = NewsModel::with('author')->where('category_id',optional($newsCategory)->id)->take(3)->get();
 
         if(isset($category)) {
             $agenda = AgendaModel::where('agenda_category_id', $category->id)->get();
         } else {
-            $agenda = AgendaModel::with('category')->get();
+            $agenda = AgendaModel::with(['category'])->get();
         }
 
         list($aboutMuseumMainImage, $aboutMuseumThumnailImage, $aboutMuseumYt, $aboutMuseumDescription, $aboutMuseumBackground, $klasifikasi) = $this->museumLayout();

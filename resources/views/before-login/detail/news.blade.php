@@ -8,7 +8,7 @@
         gambar="{{ asset('assets/' . $news->image_path) }}"
         categoryName="{{ $news->category->name }}"
         title="{{ $news->name }}"
-        author="admin disbud"
+        author="admin {{ $news->author->departement }}"
         date="{{ $news->date }}"
         content="{!! $news->content !!}"
     />
@@ -30,5 +30,5 @@
     </x-widget.guest.category>
 
     <!-- Recent Post widget -->
-    <x-widget.guest.recent />
+    <x-widget.guest.recent widgetTitle="Berita Terkini"/>
 @endsection

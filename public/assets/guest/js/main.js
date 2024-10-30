@@ -256,21 +256,21 @@ document.addEventListener("DOMContentLoaded", () => {
     // });
 
     // search js
-    const edSearchOpenerBtn = document.querySelector(".ed-search-opener-btn");
-    const edSearch = document.querySelector(".ed-search");
+    // const edSearchOpenerBtn = document.querySelector(".ed-search-opener-btn");
+    // const edSearch = document.querySelector(".ed-search");
 
 
-    if (edSearchOpenerBtn) {
-        edSearchOpenerBtn.addEventListener("click", () => {
-            edSearch.classList.add("active");
-            edOverlay.classList.add("active");
-        });
-    };
+    // if (edSearchOpenerBtn) {
+    //     edSearchOpenerBtn.addEventListener("click", () => {
+    //         edSearch.classList.add("active");
+    //         edOverlay.classList.add("active");
+    //     });
+    // };
 
-    document.addEventListener("click", (e) => {
-        if (!edSearch.contains(e.target) && edSearch.classList.contains("active") && !edSearchOpenerBtn.contains(e.target)) {
-            edSearch.classList.remove("active");
-            edOverlay.classList.remove("active");
-        }
-    });
+    // document.addEventListener("click", (e) => {
+    //     if (!edSearch.contains(e.target) && edSearch.classList.contains("active") && !edSearchOpenerBtn.contains(e.target)) {
+    //         edSearch.classList.remove("active");
+    //         edOverlay.classList.remove("active");
+    //     }
+    // });
 });
