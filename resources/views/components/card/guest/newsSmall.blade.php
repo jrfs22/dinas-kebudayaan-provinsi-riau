@@ -2,7 +2,8 @@
     'title',
     'image',
     'date',
-    'author'
+    'author',
+    'detail'
 ])
 
 <div
@@ -19,7 +20,7 @@
             </div>
         </div>
         <h5 class="font-medium text-[20px] mb-[17px]">
-            <a href="kegiatan-disbud.html" class="hover:text-edgreen line-clamp-2">{{ $title }}</a>
+            <a href="{{ $detail }}" class="hover:text-edgreen line-clamp-2">{{ $title }}</a>
         </h5>
 
         <!-- date -->

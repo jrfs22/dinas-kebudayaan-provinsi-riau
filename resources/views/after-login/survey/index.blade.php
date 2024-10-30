@@ -26,7 +26,7 @@
                 <th>Judul</th>
                 <th>Ringkasan</th>
                 <th>Jumlah Pertanyaan</th>
-                <th>Jumlah Respon</th>
+                <th>Jumlah Responden</th>
                 <th>Status</th>
                 <th>Aksi</th>
             @endslot
@@ -47,7 +47,7 @@
                             <a href="{{ route('survey.questions', ['id' => $item->id]) }}" class="btn btn-info btn-sm">Detail <b>{{ $item->questions()->count() }}</b></a>
                         </td>
                         <td>
-                            <a href="" class="btn btn-info btn-sm">Detail <b>{{ $item->responses()->count() }}</b></a>
+                            <a href="{{ route('survey.responden', ['id' => $item->id]) }}" class="btn btn-info btn-sm">Detail <b>{{ $item->responses()->count() }}</b></a>
                         </td>
                         <td>
                             <span class="badge {{ surveyStatus($item->status, 'bg') }}">{{ surveyStatus($item->status, 'status') }}</span>

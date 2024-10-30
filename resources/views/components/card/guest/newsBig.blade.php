@@ -2,7 +2,8 @@
     'title',
     'image',
     'date',
-    'author'
+    'author',
+    'detail'
 ])
 
 <div class="rounded-[20px] bg-edoffwhite overflow-hidden">
@@ -23,7 +24,7 @@
             </div>
         </div>
         <h5 class="font-medium text-[20px]">
-            <a href="kegiatan-disbud.html" class="hover:text-edgreen line-clamp-2">{{ $title }}</a>
+            <a href="{{ $detail }}" class="hover:text-edgreen line-clamp-2">{{ $title }}</a>
         </h5>
     </div>
 </div>

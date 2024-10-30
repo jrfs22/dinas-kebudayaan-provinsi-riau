@@ -132,3 +132,17 @@ function isDataNull($data)
 {
     return $data === null ? 'sda' : $data;
 }
+
+function surveyStatusOnGuest($status)
+{
+    switch ($status) {
+        case 'active':
+            $status = 'Berlangsung';
+            break;
+        case 'completed':
+            $status = 'Selesai';
+            break;
+    }
+
+    return $status;
+}

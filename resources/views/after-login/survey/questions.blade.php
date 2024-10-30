@@ -85,7 +85,7 @@
                                     onclick="modalEditSurvey(this)">
                                     <i class="ti ti-pencil fs-5"></i>
                                 </a>
-                                <x-card.deleted route="{{ route('survey.destroy', ['id' => $item->id]) }}" />
+                                <x-card.deleted route="{{ route('survey.questions.destroy', ['id' => $item->id]) }}" />
                             </div>
                         </td>
                     </tr>
@@ -130,11 +130,11 @@
                 <div class="row mt-1">
                     <div class="col-md-6">
                         <label for="range_min">Range Minimum</label>
-                        <input type="number" name="range_min" id="range_min" class="form-control" placeholder="Nilai Minimum">
+                        <input type="number" name="min_value" id="range_min" class="form-control" placeholder="Nilai Minimum">
                     </div>
                     <div class="col-md-6">
                         <label for="range_max">Range Maksimal</label>
-                        <input type="number" name="range_max" id="range_max" class="form-control" placeholder="Nilai Maksimal">
+                        <input type="number" name="max_value" id="range_max" class="form-control" placeholder="Nilai Maksimal">
                     </div>
                 </div>
             </div>

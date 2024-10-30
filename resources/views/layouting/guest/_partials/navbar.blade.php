@@ -50,7 +50,7 @@
                     <a {{ isRouteActive('museum') ? 'class=active' : (isRouteActive('klasifikasi') ? 'class=active' : '') }}  href="{{ route('museum') }}">UPT Museum</a>
                 </li>
                 <li class="has-sub-menu relative">
-                    <a {{ isRouteActive('public.agenda') ? 'class=active' : (isRouteActive('gallery') ? 'class=active' : '') }} role="button">Informasi</a>
+                    <a {{ isRouteActive('public.agenda') ? 'class=active' : (isRouteActive('gallery') ? 'class=active' : (isRouteActive('survey') ? 'class=active' : (isRouteActive('survey.detail') ? 'class=active' : ''))) }} role="button">Informasi</a>
 
                     <ul class="ed-header-submenu">
                         <li>
@@ -58,6 +58,9 @@
                         </li>
                         <li>
                             <a {{ isRouteActive('gallery') ? 'class=active' : '' }} href="{{ route('gallery') }}">Gallery</a>
+                        </li>
+                        <li>
+                            <a {{ isRouteActive('survey') ? 'class=active' : (isRouteActive('survey.detail') ? 'class=active' : '') }} href="{{ route('survey') }}">Survey</a>
                         </li>
                     </ul>
                 </li>
@@ -76,7 +79,7 @@
 
         <!-- mobile menu button -->
         <button type="button"
-            class="ed-mobile-menu-open-btn hidden lg:inline-block text-white text-[18px] hover:text-edyellow">
+            class="ed-mobile-menu-open-btn hidden lg:inline-block text-white text-[18px] text-edblue">
             <i class="fa-solid fa-bars"></i>
         </button>
     </div>

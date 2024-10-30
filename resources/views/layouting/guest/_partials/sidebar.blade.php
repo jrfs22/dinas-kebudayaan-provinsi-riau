@@ -5,8 +5,10 @@
         <!-- heading -->
         <div class="ed-sidebar-heading p-[20px] lg:p-[20px] border-b border-edgray/20">
             <div class="logo flex justify-between items-center">
-                <a href="{{ route('beranda') }}"><img src="{{ asset('assets/guest/img/logo.png') }}" alt="logo" /></a>
-
+                <a href="{{ route('beranda') }}" class="flex space-x-2">
+                    <img src="{{ asset('assets/guest/img/image/logo-riau.png') }}" class="w-[50px]" alt="logo-riau" />
+                    <img src="{{ asset('assets/guest/img/image/logo-disbud.png') }}" class="w-[50px]" alt="logo-disbud" />
+                </a>
                 <button type="button"
                     class="ed-sidebar-close-btn border border-edgray/20 w-[45px] aspect-square shrink-0 text-black text-[22px] rounded-full hover:text-edpurple">
                     <i class="fa-solid fa-xmark"></i>

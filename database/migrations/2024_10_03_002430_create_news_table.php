@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
+            $table->uuid('user_id');
             $table->string('title');
             $table->text('content');
             $table->string('slug');
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('news_categories');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

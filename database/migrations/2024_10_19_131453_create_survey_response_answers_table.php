@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('survey_response_id');
             $table->unsignedBigInteger('survey_question_id');
-            $table->text('answer');
+            $table->json('answer');
             $table->timestamps();
 
             $table->foreign('survey_response_id')->references('id')->on('survey_responses');

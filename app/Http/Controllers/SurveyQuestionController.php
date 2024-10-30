@@ -12,7 +12,7 @@ class SurveyQuestionController extends Controller
     public function index(string $id)
     {
         try {
-            $survey = SurveyModel::findOrFail($id);
+            $survey = SurveyModel::with('questions')->findOrFail($id);
 
             return view('after-login.survey.questions', compact('survey'));
         } catch (Exception $e) {
@@ -103,6 +103,24 @@ class SurveyQuestionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $survey = SurveyQuestionModel::findOrFail($id);
+            $survey->delete();
+
+            $this->alert(
+                'Pertanyaan',
+                'Pertanyaan berhasil dihapus.',
+                'success'
+            );
+            return redirect()->back();
+        } catch (Exception $e) {
+            $this->alert(
+                'Pertanyaan tidak berhasil dihapus',
+                $e->getMessage(),
+                'error'
+            );
+
+            return redirect()->back();
+        }
     }
 }

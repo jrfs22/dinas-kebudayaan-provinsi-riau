@@ -24,11 +24,11 @@ class SurveyModel extends Model
 
     public function questions(): HasMany
     {
-        return $this->hasMany(SurveyQuestionModel::class, 'id');
+        return $this->hasMany(SurveyQuestionModel::class, 'survey_id');
     }
 
     public function responses(): HasMany
     {
-        return $this->hasMany(SurveyResponseModel::class, 'id');
+        return $this->hasMany(SurveyResponseModel::class, 'survey_id');
     }
 }

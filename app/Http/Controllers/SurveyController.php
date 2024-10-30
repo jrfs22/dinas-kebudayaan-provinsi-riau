@@ -2,16 +2,62 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SurveyModel;
+use Carbon\Carbon;
 use Exception;
+use App\Models\SurveyModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Str;
 
 class SurveyController extends Controller
 {
     public function index()
     {
-        $surveys = SurveyModel::all();
-        return view('after-login.survey.index', compact('surveys'));
+        if(Auth::check()) {
+            $surveys = SurveyModel::all();
+            return view('after-login.survey.index', compact('surveys'));
+        } else {
+            $today = Carbon::today();
+
+            $surveys = SurveyModel::select('*')->orderByRaw("CASE WHEN start_date >= ? AND end_date <= ? THEN 1 ELSE 2 END", [$today, $today])->orderByDesc('created_at')->where('status', '!=', 'inactive')->whereHas('questions')->get();
+
+            if($surveys->isNotEmpty()) {
+                foreach ($surveys as $survey) {
+                    $survey->slugs = Str::slug($survey->title);
+                }
+            }
+
+            return view('before-login.survey.index', compact('surveys'));
+        }
+    }
+
+    public function show(string $id, string $slugs)
+    {
+        try {
+            $survey = SurveyModel::with('questions')->where('id', $id)
+            ->whereRaw('LOWER(REPLACE(title, " ", "-")) = ?', [strtolower($slugs)])
+            ->firstOrFail();
+
+            if (isset($survey)) {
+                $survey->question_summary = $survey->questions()->count() + 2;
+
+                foreach ($survey->questions as $item) {
+                    if(in_array($item->question_type, ['radio', 'checkbox'])) {
+                        $item->option_decode = json_decode($item->options, true);
+                    }
+                }
+            }
+
+            return view('before-login.survey.detail', compact('survey'));
+        } catch (Exception $e) {
+            $this->alert(
+                'Survey',
+                'Data tidak ditemukan',
+                'error'
+            );
+
+            return redirect()->back();
+        }
     }
 
     public function store(Request $request)
@@ -136,7 +182,7 @@ class SurveyController extends Controller
             return redirect()->back();
         } catch (Exception $e) {
             $this->alert(
-                'PPID tidak berhasil dihapus.',
+                'Survey tidak berhasil dihapus.',
                 $e->getMessage(),
                 'error'
             );

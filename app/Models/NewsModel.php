@@ -19,6 +19,7 @@ class NewsModel extends Model
         'date',
         'image_path',
         'cover_image_path',
+        'user_id',
         'category_id',
         'hashtags'
     ];
@@ -26,5 +27,10 @@ class NewsModel extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(NewsCategoryModel::class);
+    }
+
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
