@@ -15,12 +15,14 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->string('role');
-            $table->string('departement')->nullable();
+            $table->unsignedBigInteger('departement_id')->nullable();
             $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('departement_id')->references('id')->on('departement');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

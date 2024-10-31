@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('news_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('role')->default('super admin');
+            $table->unsignedBigInteger('departement_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('departement_id')->references('id')->on('departement');
         });
     }
 

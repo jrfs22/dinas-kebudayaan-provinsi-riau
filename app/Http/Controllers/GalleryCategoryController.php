@@ -4,25 +4,31 @@ namespace App\Http\Controllers;
 
 use Exception;
 use Illuminate\Http\Request;
+use App\Models\DepartementModel;
 use App\Models\GalleryCategoryModel;
 
 class GalleryCategoryController extends Controller
 {
     public function index()
     {
-        $categories = GalleryCategoryModel::all();
+        $categories = GalleryCategoryModel::with('departement')->get();
 
-        return view('after-login.gallery.category', compact('categories'));
+        $departement = DepartementModel::whereNot('name', 'Disbud')->get();
+
+        return view('after-login.gallery.category', compact('categories', 'departement'));
     }
 
     public function store(Request $request)
     {
         try {
             $request->validate([
-                'name' => 'required|unique:gallery_categories,name'
+                'name' => 'required|unique:news_categories,name',
+                'departement_id' => 'required|exists:departement,id'
             ], [
                 'name.required' => 'Nama Kategori tidak boleh kosong',
                 'name.unique' => 'Nama Kategori sudah ada',
+                'departement_id.required' => 'Departement ID harus ada',
+                'departement_id.exists' => 'Departement ID tidak sesuai',
             ]);
 
             GalleryCategoryModel::create($request->all());
@@ -47,9 +53,13 @@ class GalleryCategoryController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'required|unique:news_categories,name,' . $id
+                'name' => 'required|unique:news_categories,name,' . $id,
+                'departement_id' => 'required|exists:departement,id'
             ], [
                 'name.required' => 'Nama Kategori tidak boleh kosong',
+                'name.unique' => 'Nama Kategori sudah ada',
+                'departement_id.required' => 'Departement ID harus ada',
+                'departement_id.exists' => 'Departement ID tidak sesuai',
             ]);
 
             $updateNewsCategory = GalleryCategoryModel::findOrFail($id);

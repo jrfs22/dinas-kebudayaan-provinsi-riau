@@ -146,3 +146,8 @@ function surveyStatusOnGuest($status)
 
     return $status;
 }
+
+function isSuperAdmin()
+{
+    return auth()->user()->role === 'super admin' ? true : false;
+}

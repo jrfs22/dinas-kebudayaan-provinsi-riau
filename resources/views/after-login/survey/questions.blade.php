@@ -79,9 +79,9 @@
                         <td>
                             <div class="action-btn d-flex gap-2">
                                 <a href="javascript:void(0)" class="text-success edit" data-id="{{ $item->id }}"
-                                    data-title="{{ $item->title }}" data-slug="{{ $item->slug }}"
-                                    data-content="{{ $item->content }}" data-start_date="{{ $item->start_date }}"
-                                    data-end_date="{{ $item->end_date }}" data-status="{{ $item->status }}"
+                                    data-question_text="{{ $item->question_text }}"
+                                    data-question_type="{{ $item->question_type }}" data-options="{{ $item->options }}"
+                                    data-min_value="{{ $item->min_value }}" data-max_value="{{ $item->max_value }}"
                                     onclick="modalEditSurvey(this)">
                                     <i class="ti ti-pencil fs-5"></i>
                                 </a>
@@ -130,42 +130,47 @@
                 <div class="row mt-1">
                     <div class="col-md-6">
                         <label for="range_min">Range Minimum</label>
-                        <input type="number" name="min_value" id="range_min" class="form-control" placeholder="Nilai Minimum">
+                        <input type="number" name="min_value" id="range_min" class="form-control"
+                            placeholder="Nilai Minimum">
                     </div>
                     <div class="col-md-6">
                         <label for="range_max">Range Maksimal</label>
-                        <input type="number" name="max_value" id="range_max" class="form-control" placeholder="Nilai Maksimal">
+                        <input type="number" name="max_value" id="range_max" class="form-control"
+                            placeholder="Nilai Maksimal">
                     </div>
                 </div>
             </div>
         </div>
     </x-modal.lg>
 
-    <x-modal.lg id="EditSurvey" title="Tambah Survey Baru" action="{{ route('gallery.store') }}" isUpdate=1>
+    <x-modal.lg id="EditSurvey" title="Ubah Pertanyaan" action="{{ route('survey.questions.store') }}" isUpdate=1>
         <div class="row">
             <input type="hidden" name="survey_id" value="{{ $survey->id }}">
             <div class="col-12">
-                <x-forms.input name="title" id="edt_title" label="Judul Survey" placeholder="Survey Kepuasan" />
-            </div>
-            <div class="col-12">
-                <x-forms.input name="slug" id="edt_slug" label="Ringkasan Survey" placeholder="Survey Kepuasan" />
-            </div>
-            <div class="col-12">
-                <x-forms.richeditor name="content" id="edt_content" label="Detail Survey" required=1>
+                <x-forms.richeditor id="edt_content" name="question_text" label="Pertanyaan" required=1>
                 </x-forms.richeditor>
             </div>
-            <div class="col-12 col-lg-6">
-                <x-forms.input name="start_date" id="edt_start_date" label="Tanggal Mulai" type="datetime-local" />
+
+            <div id="edt-repeater-section" style="display: none;">
+                <label class="mb-1">Options:</label>
+                <div id="edt-repeater">
+
+                </div>
             </div>
-            <div class="col-12 col-lg-6">
-                <x-forms.input name="end_date" id="edt_end_date" label="Tanggal Berakhir" type="datetime-local" />
-            </div>
-            <div class="col-12">
-                <x-forms.select name="status" id="edt_status" label="Status">
-                    <option value="inactive">Tidak Aktif</option>
-                    <option value="active">Aktif</option>
-                    <option value="completed">Selesai</option>
-                </x-forms.select>
+
+            <div id="edt-range-section" style="display: none;">
+                <div class="row mt-1">
+                    <div class="col-md-6">
+                        <label for="edt-range_min">Range Minimum</label>
+                        <input type="number" name="min_value" id="edt-range_min" class="form-control"
+                            placeholder="Nilai Minimum">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="edt-range_max">Range Maksimal</label>
+                        <input type="number" name="max_value" id="edt-range_max" class="form-control"
+                            placeholder="Nilai Maksimal">
+                    </div>
+                </div>
             </div>
         </div>
     </x-modal.lg>
@@ -175,23 +180,44 @@
     <script>
         function modalEditSurvey(element) {
             var id = $(element).data('id');
-            var title = $(element).data('title');
-            var slug = $(element).data('slug');
-            var content = $(element).data('content');
-            var start_date = $(element).data('start_date');
-            var end_date = $(element).data('end_date');
-            var status = $(element).data('status');
+            var question_type = $(element).data('question_type');
+            var question_text = $(element).data('question_text');
+            var options = $(element).data('options');
+            var min_value = $(element).data('min_value');
+            var max_value = $(element).data('max_value');
 
-            var route = {!! json_encode(route('survey.update') . '/') !!} + id
+            var route = {!! json_encode(route('survey.questions.update') . '/') !!} + id
 
             $("#EditSurvey form").attr('action', route)
-            $("#input-edt_title").val(title)
-            $("#input-edt_slug").val(slug)
-            $("#input-edt_start_date").val(start_date)
-            $("#input-edt_end_date").val(end_date)
-            $("#edt_status").val(status).change()
+            $("#edt_question_type").val(question_type).change()
 
-            edt_content.root.innerHTML = content
+            if (question_type === 'radio' || question_type === 'checkbox') {
+                $('#edt-repeater').empty();
+
+                options.forEach(data => {
+                    var html = `
+                        <div class="row mt-2">
+                            <div class="col-md-12 mt-1">
+                                <input type="text" name="options[]" class="form-control" placeholder="Masukkan opsi ${data}" value="${data}" required>
+                            </div>
+                        </div>`;
+                    $('#edt-repeater').append(html);
+                });
+
+
+                $("#edt-repeater-section").show()
+                $("#edt-range-section").hide()
+            } else if (question_type === 'range') {
+                $("#edt-range-section").show()
+                $("#edt-repeater-section").hide()
+                $("#edt-range_max").val(max_value)
+                $("#edt-range_min").val(min_value)
+            } else {
+                $("#edt-repeater-section").hide()
+                $("#edt-range-section").hide()
+            }
+
+            edt_content.root.innerHTML = question_text
 
             $("#EditSurvey").modal('show')
         }
@@ -230,6 +256,7 @@
 
             $(document).on('click', '.remove-row', function() {
                 $(this).closest('.row').remove();
+                row--;
             });
         });
     </script>

@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="col-12 mb-3 fs-4">
-                    <a href="{{ route('news') }}" class="btn btn-secondary w-100">Batal & Kembali</a>
+                    <a href="{{ route('agenda') }}" class="btn btn-secondary w-100">Batal & Kembali</a>
                     <button type="submit" class="btn btn-primary w-100 mt-2">Save changes</button>
                 </div>
             </div>

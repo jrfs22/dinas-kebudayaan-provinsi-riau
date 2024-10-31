@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Log;
@@ -14,9 +15,10 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        foreach (\App\Models\Role::all() as $role) {
+        foreach (Role::all() as $role) {
             $user = User::factory()->create([
                 'role' => $role->name,
+                'departement_id' => $role->name == 'super admin' ? 1 : 2
             ]);
             $user->assignRole($role);
         }

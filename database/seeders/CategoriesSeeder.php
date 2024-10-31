@@ -18,18 +18,22 @@ class CategoriesSeeder extends Seeder
         AgendaCategoryModel::insert([
             [
                 'name' => 'Festival',
+                'departement_id' => 2
             ],
             [
                 'name' => 'Museum',
+                'departement_id' => 2
             ],
         ]);
 
         NewsCategoryModel::create([
-            'name' => 'UPT Museum'
+            'name' => 'UPT Museum',
+            'departement_id' => 2
         ]);
 
         GalleryCategoryModel::create([
-            'name' => 'UPT Museum'
+            'name' => 'UPT Museum',
+            'departement_id' => 2
         ]);
     }
 }

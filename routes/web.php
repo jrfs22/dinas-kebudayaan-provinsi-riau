@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BeforeLoginController;
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\KlasifikasiCategoryController;
 use App\Http\Controllers\KlasifikasiController;
 use App\Http\Controllers\SurveyQuestionController;
@@ -151,6 +152,8 @@ Route::middleware('auth')->group(function () {
 
                 Route::post('', [SurveyQuestionController::class, 'store'])->name('survey.questions.store');
 
+                Route::put('{id?}', [SurveyQuestionController::class, 'update'])->name('survey.questions.update');
+
                 Route::delete('{id}', [SurveyQuestionController::class, 'destroy'])->name('survey.questions.destroy');
             });
 
@@ -175,6 +178,13 @@ Route::middleware('auth')->group(function () {
 
         Route::prefix('pengguna')->group(function () {
             Route::get('', [UserController::class, 'index'])->name('pengguna');
+        });
+
+        Route::prefix('departement')->group(function () {
+            Route::get('', [DepartementController::class, 'index'])->name('departement');
+            Route::post('', [DepartementController::class, 'store'])->name('departement.store');
+            Route::put('{id?}', [DepartementController::class, 'update'])->name('departement.update');
+            Route::delete('{id}', [DepartementController::class, 'destroy'])->name('departement.destroy');
         });
     });
 });

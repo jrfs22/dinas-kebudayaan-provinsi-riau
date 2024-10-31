@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use Illuminate\Http\Request;
+use App\Models\DepartementModel;
 use App\Models\AgendaCategoryModel;
 
 class AgendaCategoryController extends Controller
@@ -12,17 +13,22 @@ class AgendaCategoryController extends Controller
     {
         $categories = AgendaCategoryModel::all();
 
-        return view('after-login.agenda.category', compact('categories'));
+        $departement = DepartementModel::whereNot('name', 'Disbud')->get();
+
+        return view('after-login.agenda.category', compact('categories', 'departement'));
     }
 
     public function store(Request $request)
     {
         try {
             $request->validate([
-                'name' => 'required|unique:agenda_categories,name'
+                'name' => 'required|unique:news_categories,name',
+                'departement_id' => 'required|exists:departement,id'
             ], [
                 'name.required' => 'Nama Kategori tidak boleh kosong',
                 'name.unique' => 'Nama Kategori sudah ada',
+                'departement_id.required' => 'Departement ID harus ada',
+                'departement_id.exists' => 'Departement ID tidak sesuai',
             ]);
 
             AgendaCategoryModel::create($request->all());
@@ -47,9 +53,13 @@ class AgendaCategoryController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'required|unique:agenda_categories,name,' . $id
+                'name' => 'required|unique:news_categories,name,' . $id,
+                'departement_id' => 'required|exists:departement,id'
             ], [
                 'name.required' => 'Nama Kategori tidak boleh kosong',
+                'name.unique' => 'Nama Kategori sudah ada',
+                'departement_id.required' => 'Departement ID harus ada',
+                'departement_id.exists' => 'Departement ID tidak sesuai',
             ]);
 
             $updateAgendaCategory = AgendaCategoryModel::findOrFail($id);
