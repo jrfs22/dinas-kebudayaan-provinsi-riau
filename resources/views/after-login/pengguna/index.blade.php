@@ -12,11 +12,11 @@
             <div class="col-md-4 col-xl-3">
                 <x-search.basic placeholder="Pengguna" />
             </div>
-            <div class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
+            {{-- <div class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
                 <a href="{{ route('pengguna') }}" class="btn btn-primary d-flex align-items-center ms-3">
                     <i class="ti ti-plus text-white me-1 fs-5"></i> Pengguna
                 </a>
-            </div>
+            </div> --}}
         </div>
     </div>
 
@@ -26,8 +26,7 @@
                 <th>Nama Lengkap</th>
                 <th>Email</th>
                 <th>Role</th>
-                <th>Jumlah Hak Akses</th>
-                <th>Aksi</th>
+                {{-- <th>Aksi</th> --}}
             @endslot
 
             @slot('slotBody')
@@ -42,15 +41,12 @@
                         <td class="text-capitalize">
                             {{ $item->role }}
                         </td>
-                        <td class="text-capitalize">
-                            {{ $item?->permission_summary }}
-                        </td>
-                        <td class="action-btn d-flex gap-2">
+                        {{-- <td class="action-btn d-flex gap-2"> --}}
                             {{-- <a href="{{ route('news.edit', ['id' => $item->id]) }}" class="text-success edit">
                                 <i class="ti ti-pencil fs-5"></i>
                             </a>
                             <x-card.deleted route="{{ route('news.destroy', ['id' => $item->id]) }}" /> --}}
-                        </td>
+                        {{-- </td> --}}
                     </tr>
                 @endforeach
             @endslot

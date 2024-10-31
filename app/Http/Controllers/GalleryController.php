@@ -14,11 +14,18 @@ class GalleryController extends Controller
     use ManageFiles;
     public function index()
     {
-
         if (Auth::check()) {
-            $galleries = GalleryModel::with('category')->get();
+            if (isSuperAdmin()) {
+                $galleries = GalleryModel::with('category')->get();
 
-            $categories = GalleryCategoryModel::all();
+                $categories = GalleryCategoryModel::all();
+            } else {
+                $galleries = GalleryModel::whereHas('category', function ($query) {
+                    $query->where('departement_id', auth()->user()->departement_id);
+                })->with('category')->get();
+
+                $categories = GalleryCategoryModel::where('departement_id', auth()->user()->departement_id)->get();
+            }
             return view('after-login.gallery.index', compact('galleries', 'categories'));
         } else {
             $galleries = GalleryModel::with('category')->paginate(6);

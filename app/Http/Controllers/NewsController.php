@@ -13,15 +13,24 @@ class NewsController extends Controller
     use ManageFiles;
     public function index()
     {
-        $news = NewsModel::with('category')->get();
+        if (isSuperAdmin()) {
+            $news = NewsModel::with('category')->get();
 
-        $categories = NewsCategoryModel::all();
+            $categories = NewsCategoryModel::all();
+        } else {
+            $news = NewsModel::whereHas('category', function ($query) {
+                $query->where('departement_id', auth()->user()->departement_id);
+            })->with('category')->get();
+
+            $categories = NewsCategoryModel::where('departement_id', auth()->user()->departement_id)->get();
+        }
+
         return view('after-login.news.index', compact('news', 'categories'));
     }
 
     public function create()
     {
-        $categories = NewsCategoryModel::all();
+        $categories = NewsCategoryModel::where('departement_id', auth()->user()->departement_id)->get();
         return view('after-login.news.create', compact('categories'));
     }
 
@@ -113,7 +122,8 @@ class NewsController extends Controller
     public function edit(string $id)
     {
         try {
-            $categories = NewsCategoryModel::all();
+            $categories = NewsCategoryModel::where('departement_id', auth()->user()->departement_id)->get();
+
             $news = NewsModel::findOrFail($id);
             return view('after-login.news.edit', compact('categories', 'news'));
         } catch (Exception $e) {

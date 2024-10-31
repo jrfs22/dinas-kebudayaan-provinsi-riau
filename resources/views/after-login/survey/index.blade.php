@@ -102,7 +102,7 @@
         </div>
     </x-modal.lg>
 
-    <x-modal.lg id="EditSurvey" title="Tambah Survey Baru" action="{{ route('gallery.store') }}" isUpdate=1>
+    <x-modal.lg id="EditSurvey" title="Edit Survey" action="{{ route('gallery.store') }}" isUpdate=1>
         <div class="row">
             <div class="col-12">
                 <x-forms.input name="title" id="edt_title" label="Judul Survey" placeholder="Survey Kepuasan" />

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DepartementModel;
 use Exception;
 use Illuminate\Http\Request;
 use App\Models\NewsCategoryModel;
@@ -13,14 +14,14 @@ use App\Traits\ManageRolesAndPermissionTrait;
 class NewsCategoryController extends Controller
 {
     use ManageRolesAndPermissionTrait;
-    
+
     public function index()
     {
-        $categories = NewsCategoryModel::all();
+        $categories = NewsCategoryModel::with('departement')->get();
 
-        $roles = Role::where('name', '!=', 'super-admin')->get();
+        $departement = DepartementModel::whereNot('name', 'Disbud')->get();
 
-        return view('after-login.news.category', compact('categories', 'roles'));
+        return view('after-login.news.category', compact('categories', 'departement'));
     }
 
     public function store(Request $request)
@@ -28,25 +29,15 @@ class NewsCategoryController extends Controller
         try {
             $request->validate([
                 'name' => 'required|unique:news_categories,name',
-                'roles' => 'sometimes|exists:roles,id'
+                'departement_id' => 'required|exists:departement,id'
             ], [
                 'name.required' => 'Nama Kategori tidak boleh kosong',
                 'name.unique' => 'Nama Kategori sudah ada',
-                'roles.exists' => 'Hak Akses tidak ditemukan',
+                'departement_id.required' => 'Departement ID harus ada',
+                'departement_id.exists' => 'Departement ID tidak sesuai',
             ]);
 
             $category = NewsCategoryModel::create($request->all());
-
-            // if ($category) {
-            //     if ($request->has('roles')) {
-            //         $permission = Permission::create(['name' => "view news " . $request->name]);
-
-            //         foreach ($request->roles as $item) {
-            //             $role = Role::findById($item);
-            //             $role->givePermissionTo($permission);
-            //         }
-            //     }
-            // }
 
             $this->alert(
                 'Kategori Berita',
@@ -68,12 +59,13 @@ class NewsCategoryController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'required|unique:news_categories,name',
-                'roles' => 'required'
+                'name' => 'required|unique:news_categories,name,' . $id,
+                'departement_id' => 'required|exists:departement,id'
             ], [
                 'name.required' => 'Nama Kategori tidak boleh kosong',
                 'name.unique' => 'Nama Kategori sudah ada',
-                'roles.required' => 'Hak Akses harus di pilih',
+                'departement_id.required' => 'Departement ID harus ada',
+                'departement_id.exists' => 'Departement ID tidak sesuai',
             ]);
 
             $updateNewsCategory = NewsCategoryModel::findOrFail($id);

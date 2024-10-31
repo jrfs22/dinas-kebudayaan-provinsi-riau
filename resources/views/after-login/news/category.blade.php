@@ -25,6 +25,7 @@
         <x-table.basic>
             @slot('slotHead')
                 <th>Nama Kategori</th>
+                <th>Departement</th>
                 <th>Aksi</th>
             @endslot
 
@@ -34,9 +35,14 @@
                         <td>
                             {{ $item->name }}
                         </td>
+                        <td>
+                            {{ $item->departement->name }}
+                        </td>
                         <td class="action-btn d-flex gap-2">
                             <a href="javascript:void(0)" class="text-success edit" data-id="{{ $item->id }}"
-                                data-name="{{ $item->name }}" onclick="modalEditNews(this)">
+                                data-name="{{ $item->name }}"
+                                data-departement_id="{{ $item->departement_id }}"
+                                onclick="modalEditNews(this)">
                                 <i class="ti ti-pencil fs-5"></i>
                             </a>
 
@@ -52,17 +58,13 @@
                 <div class="col-12">
                     <x-forms.input name="name" label="Nama Kategori" placeholder="Nama Kategori" />
                 </div>
-                {{-- <div class="col-12 mb-3">
-                    <label class="fw-bold mb-1">Hak Akses</label>
-                    @foreach ($roles as $key => $item)
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="{{ $item->id }}" id="flexCheckChecked-{{ $key+1 }}" name="roles[]">
-                            <label class="form-check-label text-capitalize" for="flexCheckChecked-{{ $key+1 }}">
-                                {{ $item->name }}
-                            </label>
-                        </div>
-                    @endforeach
-                </div> --}}
+                <div class="col-12 mb-3">
+                    <x-forms.select name="departement_id" label="Deprtement Penanggung Jawab">
+                        @foreach ($departement as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @endforeach
+                    </x-forms.select>
+                </div>
             </div>
         </x-modal.basic>
 
@@ -71,17 +73,13 @@
                 <div class="col-12">
                     <x-forms.input name="name" id="edt_name" label="Nama Kategori" placeholder="Nama Kategori" />
                 </div>
-                {{-- <div class="col-12 mb-3">
-                    <label class="fw-bold mb-1">Hak Akses</label>
-                    @foreach ($roles as $key => $item)
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="{{ $item->id }}" id="flexCheckChecked-{{ $key+1 }}" name="roles[]">
-                            <label class="form-check-label text-capitalize" for="flexCheckChecked-{{ $key+1 }}">
-                                {{ $item->name }}
-                            </label>
-                        </div>
-                    @endforeach
-                </div> --}}
+                <div class="col-12 mb-3">
+                    <x-forms.select name="departement_id" id="edtDepartement" label="Deprtement Penanggung Jawab">
+                        @foreach ($departement as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @endforeach
+                    </x-forms.select>
+                </div>
             </div>
         </x-modal.basic>
     </div>
@@ -93,12 +91,13 @@
         function modalEditNews(element) {
             var id = $(element).data('id');
             var name = $(element).data('name');
+            var departement_id = $(element).data('departement_id');
 
             var route = {!! json_encode(route('news.category.update') . '/') !!} + id
 
-
             $("#EditNews form").attr('action', route)
             $("#input-edt_name").val(name)
+            $("#edtDepartement").val(departement_id).change()
 
             $("#EditNews").modal('show')
         }

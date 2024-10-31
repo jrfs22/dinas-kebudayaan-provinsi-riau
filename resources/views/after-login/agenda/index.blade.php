@@ -13,14 +13,18 @@
                 <x-search.basic placeholder="Agenda" />
             </div>
             <div class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
-                <x-search.filter>
-                    @foreach ($categories as $item)
-                        <option value="{{ $item->name }}">{{ $item->name }}</option>
-                    @endforeach
-                </x-search.filter>
-                <a href="{{ route('agenda.create') }}" class="btn btn-primary d-flex align-items-center ms-3">
-                    <i class="ti ti-plus text-white me-1 fs-5"></i> Agenda
-                </a>
+                @role('super admin')
+                    <x-search.filter>
+                        @foreach ($categories as $item)
+                            <option value="{{ $item->name }}">{{ $item->name }}</option>
+                        @endforeach
+                    </x-search.filter>
+                @endrole
+                @if ($categories->isNotEmpty())
+                    <a href="{{ route('agenda.create') }}" class="btn btn-primary d-flex align-items-center ms-3">
+                        <i class="ti ti-plus text-white me-1 fs-5"></i> Agenda
+                    </a>
+                @endif
             </div>
         </div>
     </div>
@@ -46,9 +50,9 @@
                         <td>
                             {{ indonesianDate($item->date) }}
                         </td>
-                        <td >
+                        <td>
                             <div class="action-btn d-flex gap-2">
-                                <a href="{{ route('agenda.edit', ['id' => $item->id]) }}" class="text-success edit" >
+                                <a href="{{ route('agenda.edit', ['id' => $item->id]) }}" class="text-success edit">
                                     <i class="ti ti-pencil fs-5"></i>
                                 </a>
 
@@ -87,7 +91,8 @@
         <x-modal.lg id="Editagenda" title="Edit agenda" action="{{ route('agenda.store') }}" isUpdate=1>
             <div class="row">
                 <div class="col-12">
-                    <img class="mb-3" src="" id="edtNewImage" width="100%" height="400" style="object-fit:contain;">
+                    <img class="mb-3" src="" id="edtNewImage" width="100%" height="400"
+                        style="object-fit:contain;">
                 </div>
                 <div class="col-12">
                     <x-forms.input name="name" id="edt_name" label="Keterangan" placeholder="Penemuan Budaya" />

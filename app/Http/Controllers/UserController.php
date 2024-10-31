@@ -11,15 +11,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::with('roles.permissions')->get();
-
-        if ($users->isNotEmpty()) {
-            foreach ($users as $user) {
-                $roleName = $user->getRoleNames()->first();
-
-                $user->permission_summary = count($this->getPermissionsByRoleName($roleName));
-            }
-        }
+        $users = User::where('role', '!=', 'super admin')->get();
 
         return view('after-login.pengguna.index', compact('users'));
     }

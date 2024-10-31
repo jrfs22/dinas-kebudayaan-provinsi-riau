@@ -9,7 +9,7 @@ trait ManageFiles
 {
     function storeFile($file, $folder)
     {
-        $filename = time() . '.' . $file->getClientOriginalExtension();
+        $filename = time() . '-' . uniqid() . '.' . $file->getClientOriginalExtension();
 
         $path = $file->storeAs('public/' . $folder, $filename);
 

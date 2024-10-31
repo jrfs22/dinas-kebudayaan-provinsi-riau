@@ -13,14 +13,18 @@
                 <x-search.basic placeholder="Gallery" />
             </div>
             <div class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
-                <x-search.filter>
-                    @foreach ($categories as $item)
-                        <option value="{{ $item->name }}">{{ $item->name }}</option>
-                    @endforeach
-                </x-search.filter>
-                <button data-bs-toggle="modal" data-bs-target="#defaultModal" class="btn btn-primary d-flex align-items-center ms-3">
-                    <i class="ti ti-plus text-white me-1 fs-5"></i> Gallery
-                </button>
+                @role('super admin')
+                    <x-search.filter>
+                        @foreach ($categories as $item)
+                            <option value="{{ $item->name }}">{{ $item->name }}</option>
+                        @endforeach
+                    </x-search.filter>
+                @endrole
+                @if ($categories->isNotEmpty())
+                    <button data-bs-toggle="modal" data-bs-target="#defaultModal" class="btn btn-primary d-flex align-items-center ms-3">
+                        <i class="ti ti-plus text-white me-1 fs-5"></i> Gallery
+                    </button>
+                @endif
             </div>
         </div>
     </div>

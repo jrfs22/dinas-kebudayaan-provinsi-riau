@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('gallery_categories', function (Blueprint $table) {
+        Schema::create('departement', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('departement_id')->nullable();
             $table->timestamps();
-
-            $table->foreign('departement_id')->references('id')->on('departement');
         });
     }
 
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('gallery_categories');
+        Schema::dropIfExists('departement');
     }
 };

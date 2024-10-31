@@ -409,13 +409,34 @@
                                             </ul>
                                         </li>
                                         <li class="sidebar-item">
-                                            <a class="sidebar-link" href="{{ route('pengguna') }}"
-                                                aria-expanded="false">
-                                                <span>
+                                            <a class="sidebar-link has-arrow "
+                                                href="javascript:void(0)" aria-expanded="false">
+                                                <span class="d-flex">
                                                     <i class="ti ti-users"></i>
                                                 </span>
                                                 <span class="hide-menu">Pengguna</span>
                                             </a>
+                                            <ul aria-expanded="false"
+                                                class="collapse first-level">
+                                                <li class="sidebar-item">
+                                                    <a href="{{ route('departement') }}" class="sidebar-link">
+                                                        <div
+                                                            class="round-16 d-flex align-items-center justify-content-center">
+                                                            <i class="ti ti-circle"></i>
+                                                        </div>
+                                                        <span class="hide-menu">Departement</span>
+                                                    </a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a href="{{ route('pengguna') }}" class="sidebar-link">
+                                                        <div
+                                                            class="round-16 d-flex align-items-center justify-content-center">
+                                                            <i class="ti ti-circle"></i>
+                                                        </div>
+                                                        <span class="hide-menu">List</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </li>
                                     @endhasrole
                                 </ul>

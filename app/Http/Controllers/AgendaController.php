@@ -15,9 +15,17 @@ class AgendaController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $agenda = AgendaModel::with('category')->get();
+            if (isSuperAdmin()) {
+                $agenda = AgendaModel::with('category')->get();
 
-            $categories = AgendaCategoryModel::all();
+                $categories = AgendaCategoryModel::all();
+            } else {
+                $agenda = AgendaModel::whereHas('category', function ($query) {
+                    $query->where('departement_id', auth()->user()->departement_id);
+                })->with('category')->get();
+
+                $categories = AgendaCategoryModel::where('departement_id', auth()->user()->departement_id)->get();
+            }
             return view('after-login.agenda.index', compact('agenda', 'categories'));
         } else {
             $agenda = AgendaModel::with('category')->paginate(3);
@@ -30,7 +38,7 @@ class AgendaController extends Controller
 
     public function create()
     {
-        $categories = AgendaCategoryModel::all();
+        $categories = AgendaCategoryModel::where('departement_id', auth()->user()->departement_id)->get();
         return view('after-login.agenda.create', compact('categories'));
     }
 
@@ -126,7 +134,8 @@ class AgendaController extends Controller
     public function edit(string $id)
     {
         try {
-            $categories = AgendaCategoryModel::all();
+            $categories = AgendaCategoryModel::where('departement_id', auth()->user()->departement_id)->get();
+
             $agenda = AgendaModel::findOrFail($id);
             return view('after-login.agenda.edit', compact('categories', 'agenda'));
         } catch (Exception $e) {
