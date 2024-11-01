@@ -5,9 +5,15 @@
 @section('content')
     <x-card.guest.breadcrumb currentPage="Event Budaya" />
 
+
     <!-- MAIN CONTENT START -->
     <div class="ed-event-details-content py-[120px] xl:py-[80px] md:py-[60px]">
         <div class="mx-[19.71%] xxxl:mx-[14.71%] xxl:mx-[9.71%] xl:mx-[5.71%] md:mx-[12px]">
+            @if ($agenda->count() === 0)
+                <span class="text-red-800 !bg-edyellow" role="alert">
+                    Tidak ada agenda terkait.
+                </span>
+            @endif
             <div class="flex gap-[30px] lg:gap-[20px] md:flex-col md:items-center">
                 <div class="left grow space-y-[30px] md:space-y-[20px]">
                     @foreach ($agenda as $item)
@@ -28,7 +34,7 @@
                 <!-- right sidebar -->
                 <div class="right max-w-full w-[370px] lg:w-[360px] shrink-0 space-y-[30px] md:space-y-[25px]">
                     <!-- search widget -->
-                    <x-widget.guest.search />
+                    <x-widget.guest.search route="{{ route('public.agenda.search') }}"/>
 
                     <!-- Categories widget -->
                     <x-widget.guest.category>

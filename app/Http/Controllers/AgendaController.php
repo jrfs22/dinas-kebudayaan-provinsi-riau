@@ -38,12 +38,31 @@ class AgendaController extends Controller
 
     public function create()
     {
-        if(isSuperAdmin()) {
+        if (isSuperAdmin()) {
             $categories = AgendaCategoryModel::all();
         } else {
             $categories = AgendaCategoryModel::where('departement_id', auth()->user()->departement_id)->get();
         }
         return view('after-login.agenda.create', compact('categories'));
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
+
+        $request->validate([
+            'search' => 'required|string|min:1',
+        ]);
+
+        $agenda = AgendaModel::where(function ($q) use ($query) {
+            $q->where('name', 'LIKE', "%{$query}%")
+                ->orWhere('slug', 'LIKE', "%{$query}%")
+                ->orWhere('content', 'LIKE', "%{$query}%");
+        })->paginate(3);
+
+        $categories = AgendaCategoryModel::whereHas('agenda')->paginate(3);
+
+        return view('before-login.agenda.list', compact('agenda', 'categories'));
     }
 
     public function show($id)
@@ -56,7 +75,9 @@ class AgendaController extends Controller
             $recent = AgendaModel::where('id', '!=', $id)->orderBy('date', 'desc')->take(3)->get();
 
             return view('before-login.detail.agenda', compact(
-                'agenda', 'agendaCategories', 'recent'
+                'agenda',
+                'agendaCategories',
+                'recent'
             ));
         } catch (Exception $e) {
             return redirect()->route('beranda');
@@ -140,7 +161,7 @@ class AgendaController extends Controller
     public function edit(string $id)
     {
         try {
-            if(isSuperAdmin()) {
+            if (isSuperAdmin()) {
                 $categories = AgendaCategoryModel::all();
             } else {
                 $categories = AgendaCategoryModel::where('departement_id', auth()->user()->departement_id)->get();

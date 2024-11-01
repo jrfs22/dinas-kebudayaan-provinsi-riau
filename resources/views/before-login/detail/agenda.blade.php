@@ -14,7 +14,9 @@
         :url="url()->current()"
     />
 
-    <iframe src="{{ $agenda->location }}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-full h-[280px] rounded-[5px]"></iframe>
+    @if (isValidGoogleMapsEmbedURL($agenda->location))
+        <iframe src="{{ $agenda->location }}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-full h-[280px] rounded-[5px]"></iframe>
+    @endif
 
     <x-widget.guest.recent widgetTitle="Recent Agenda">
         @foreach ($recent as $item)
