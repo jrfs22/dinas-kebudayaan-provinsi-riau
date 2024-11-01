@@ -178,3 +178,12 @@ function kategoriInformasiColorIcon($index) {
 function filterClassFormat($phrase) {
     return strtolower(str_replace(' ', '-', $phrase));
 }
+
+
+function isValidGoogleMapsEmbedURL($url) {
+    if (filter_var($url, FILTER_VALIDATE_URL) === false) {
+        return false;
+    }
+
+    return strpos($url, "https://www.google.com/maps/embed") === 0;
+}

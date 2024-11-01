@@ -203,6 +203,7 @@ Route::middleware('guest')->group(function () {
 
     Route::prefix('informasi')->group(function () {
         Route::get('event-budaya', [AgendaController::class, 'index'])->name('public.agenda');
+        Route::post('event-budaya', [AgendaController::class, 'search'])->name('public.agenda.search');
     });
 
     Route::get('news/detil/{id}', [NewsController::class, 'show'])->name('news.detail');
