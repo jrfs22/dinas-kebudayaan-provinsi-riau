@@ -15,6 +15,7 @@
                     name="image_path"
                     label="Gambar"
                     type="file"
+                    fileLabel="Maksimal 2Mb"
                 />
             </div>
             <div class="col-12">

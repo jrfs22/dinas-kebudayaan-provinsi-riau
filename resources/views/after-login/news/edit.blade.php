@@ -15,11 +15,11 @@
             <div class="row">
                 <div class="col-12">
                     <x-forms.input name="title" label="Judul" placeholder="Penemuan Budaya"
-                        value="{{ $news->title }}" />
+                        value="{{ $news->title }}" required=1/>
                 </div>
                 <div class="col-12">
                     <x-forms.input name="slug" label="Ringkasan Berita" placeholder="Penemuan Budaya Baru"
-                        value="{{ $news->slug }}" />
+                        value="{{ $news->slug }}" required=1/>
                 </div>
                 <div class="col-12 col-lg-6">
                     <div class="mb-3">
@@ -34,13 +34,13 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-6">
-                    <x-forms.input name="cover_image_path" label="Gambar Cover" type="file" />
+                    <x-forms.input name="cover_image_path" label="Gambar Cover" type="file" fileLabel="Maksimal 4MB & Dimensi 330 x 223"/>
                 </div>
                 <div class="col-12 col-lg-6">
-                    <x-forms.input name="image_path" label="Gambar Utama" type="file" />
+                    <x-forms.input name="image_path" label="Gambar Utama" type="file" fileLabel="Maksimal 4MB & Dimensi 770 x 381"/>
                 </div>
                 <div class="col-12 col-lg-6">
-                    <x-forms.select name="category_id" label="Kategori">
+                    <x-forms.select name="category_id" label="Kategori" required=1>
                         @foreach ($categories as $item)
                             <option value="{{ $item->id }}" @if ($item->id === $news->category_id) selected @endif>
                                 {{ $item->name }}
@@ -49,15 +49,15 @@
                     </x-forms.select>
                 </div>
                 <div class="col-12 col-lg-6">
-                    <x-forms.input name="date" label="Tanggal" type="date" value="{{ $news->date }}" />
+                    <x-forms.input name="date" label="Tanggal" type="date" value="{{ $news->date }}" required=1/>
                 </div>
                 <div class="col-12">
-                    <x-forms.richeditor name="content" label="Isi Berita" id="edt_content" value="{{ $news->content }}">
+                    <x-forms.richeditor name="content" label="Isi Berita" id="edt_content" value="{{ $news->content }}" required=1>
                     </x-forms.richeditor>
                 </div>
 
                 <div class="col-12">
-                    <x-forms.hastag name="hashtags" label="Hastag" />
+                    <x-forms.hastag name="hashtags" label="Hastag" required=1/>
                 </div>
 
                 <div class="col-12 mb-3 fs-4">

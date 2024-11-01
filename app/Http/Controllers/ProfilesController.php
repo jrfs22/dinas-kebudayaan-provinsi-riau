@@ -147,6 +147,14 @@ class ProfilesController extends Controller
                     $pageTitle = 'Tentang Kami';
 
                     return view('after-login.settings.index', compact('content', 'pageTitle', 'type'));
+                case 'informasi':
+                    $content = $content->whereIn('category', [
+                        'informasi-category',
+                    ])->get();
+
+                    $pageTitle = 'Informasi';
+
+                    return view('after-login.settings.index', compact('content', 'pageTitle', 'type'));
                 case 'museum':
                     $content = $content->whereIn('category', [
                         'upt-museum-background',
@@ -260,10 +268,10 @@ class ProfilesController extends Controller
 
             if ($request->hasFile('image_path')) {
                 $request->validate([
-                    'image_path' => 'mimes:jpeg,jpg,png|max:512'
+                    'image_path' => 'mimes:jpeg,jpg,png,svg|max:2048'
                 ], [
-                    'image_path.mimes' => 'Hanya menerima file ekstension (jpg, png, jpeg)',
-                    'image_path.max' => 'Maksimal file berukuran 512kb'
+                    'image_path.mimes' => 'Hanya menerima file ekstension (jpg, png, jpeg, svg)',
+                    'image_path.max' => 'Maksimal file berukuran 2MB'
                 ]);
 
                 $contents->image_path = $this->updateFile(
@@ -308,9 +316,8 @@ class ProfilesController extends Controller
 
             if ($request->hasFile('image_path')) {
                 $request->validate([
-                    'image_path' => 'mimes:jpeg,jpg,png|max:512'
+                    'image_path' => 'max:512'
                 ], [
-                    'image_path.mimes' => 'Hanya menerima file ekstension (jpg, png, jpeg)',
                     'image_path.max' => 'Maksimal file berukuran 512kb'
                 ]);
 

@@ -30,7 +30,7 @@ class AgendaController extends Controller
         } else {
             $agenda = AgendaModel::with('category')->paginate(3);
 
-            $categories = AgendaCategoryModel::paginate(3);
+            $categories = AgendaCategoryModel::whereHas('agenda')->paginate(3);
 
             return view('before-login.agenda.list', compact('agenda', 'categories'));
         }
@@ -38,7 +38,11 @@ class AgendaController extends Controller
 
     public function create()
     {
-        $categories = AgendaCategoryModel::where('departement_id', auth()->user()->departement_id)->get();
+        if(isSuperAdmin()) {
+            $categories = AgendaCategoryModel::all();
+        } else {
+            $categories = AgendaCategoryModel::where('departement_id', auth()->user()->departement_id)->get();
+        }
         return view('after-login.agenda.create', compact('categories'));
     }
 
@@ -69,8 +73,8 @@ class AgendaController extends Controller
                 'location' => 'required',
                 'start_time' => 'required',
                 'end_time' => 'required',
-                'cover_image_path' => 'sometimes|mimes:jpeg,jpg,png|max:512',
-                'image_path' => 'sometimes|mimes:jpeg,jpg,png|max:512',
+                'cover_image_path' => 'sometimes|mimes:jpeg,jpg,png|max:4096',
+                'image_path' => 'sometimes|mimes:jpeg,jpg,png|max:4096',
                 'date' => 'required',
                 'agenda_category_id' => 'required|exists:agenda_categories,id',
             ], [
@@ -85,6 +89,8 @@ class AgendaController extends Controller
                 'date.required' => 'Tanggal harus ada',
                 'image_path.mimes' => 'Hanya menerima file ekstension (jpg, png, jpeg)',
                 'cover_image_path.mimes' => 'Hanya menerima file ekstension (jpg, png, jpeg)',
+                'cover_image_path.max' => 'Maksimal Ukuran file 4096 kb',
+                'image_path.max' => 'Maksimal Ukuran file 4096 kb',
             ]);
 
             $agenda = new AgendaModel();
@@ -134,7 +140,11 @@ class AgendaController extends Controller
     public function edit(string $id)
     {
         try {
-            $categories = AgendaCategoryModel::where('departement_id', auth()->user()->departement_id)->get();
+            if(isSuperAdmin()) {
+                $categories = AgendaCategoryModel::all();
+            } else {
+                $categories = AgendaCategoryModel::where('departement_id', auth()->user()->departement_id)->get();
+            }
 
             $agenda = AgendaModel::findOrFail($id);
             return view('after-login.agenda.edit', compact('categories', 'agenda'));
@@ -154,8 +164,8 @@ class AgendaController extends Controller
             $request->validate([
                 'name' => 'required',
                 'location' => 'required',
-                'cover_image_path' => 'sometimes|mimes:jpeg,jpg,png|max:512',
-                'image_path' => 'sometimes|mimes:jpeg,jpg,png|max:512',
+                'cover_image_path' => 'sometimes|mimes:jpeg,jpg,png|max:4096',
+                'image_path' => 'sometimes|mimes:jpeg,jpg,png|max:4096',
                 'date' => 'required',
                 'agenda_category_id' => 'required|exists:agenda_categories,id',
             ], [
@@ -166,8 +176,8 @@ class AgendaController extends Controller
                 'date.required' => 'Tanggal harus ada',
                 'cover_image_path.mimes' => 'Hanya menerima file ekstension (jpg, png, jpeg)',
                 'image_path.mimes' => 'Hanya menerima file ekstension (jpg, png, jpeg)',
-                'cover_image_path.max' => 'Maksimal Ukuran file 512 kb',
-                'image_path.max' => 'Maksimal Ukuran file 512 kb',
+                'cover_image_path.max' => 'Maksimal Ukuran file 4096 kb',
+                'image_path.max' => 'Maksimal Ukuran file 4096 kb',
             ]);
 
             $agenda = AgendaModel::findOrFail($id);

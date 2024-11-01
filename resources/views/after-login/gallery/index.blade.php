@@ -70,20 +70,20 @@
         <x-modal.lg title="Tambah Gallery" action="{{ route('gallery.store') }}">
             <div class="row">
                 <div class="col-12">
-                    <x-forms.input name="name" label="Keterangan" placeholder="Penemuan Budaya" />
+                    <x-forms.input name="name" label="Keterangan" placeholder="Penemuan Budaya" required=1/>
                 </div>
                 <div class="col-12">
-                    <x-forms.select name="gallery_category_id" label="Kategori">
+                    <x-forms.select name="gallery_category_id" label="Kategori" required=1>
                         @foreach ($categories as $item)
                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach
                     </x-forms.select>
                 </div>
                 <div class="col-12">
-                    <x-forms.input name="image_path" label="Gambar" type="file" />
+                    <x-forms.input name="image_path" label="Gambar" type="file" required=1/>
                 </div>
                 <div class="col-12">
-                    <x-forms.input name="date" label="Tanggal" type="date" />
+                    <x-forms.input name="date" label="Tanggal" type="date" required=1/>
                 </div>
             </div>
         </x-modal.lg>
@@ -94,20 +94,20 @@
                     <img class="mb-3" src="" id="edtNewImage" width="100%" height="400" style="object-fit:contain;">
                 </div>
                 <div class="col-12">
-                    <x-forms.input name="name" id="edt_name" label="Keterangan" placeholder="Penemuan Budaya" />
+                    <x-forms.input name="name" id="edt_name" label="Keterangan" placeholder="Penemuan Budaya" required=1/>
                 </div>
                 <div class="col-12">
-                    <x-forms.select name="gallery_category_id" id="edt_gallery_category_id" label="Kategori">
+                    <x-forms.select name="gallery_category_id" id="edt_gallery_category_id" label="Kategori" required=1>
                         @foreach ($categories as $item)
                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach
                     </x-forms.select>
                 </div>
                 <div class="col-12">
-                    <x-forms.input name="image_path" id="edt_image_path" label="Gambar Gallery" type="file" />
+                    <x-forms.input name="image_path" id="edt_image_path" label="Gambar Gallery" type="file" required=1/>
                 </div>
                 <div class="col-12">
-                    <x-forms.input name="date" id="edt_date" label="Tanggal" type="date" />
+                    <x-forms.input name="date" id="edt_date" label="Tanggal" type="date" required=1/>
                 </div>
             </div>
         </x-modal.lg>

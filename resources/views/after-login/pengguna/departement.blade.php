@@ -51,7 +51,7 @@
         <x-modal.basic title="Tambah Departement" action="{{ route('departement.store') }}">
             <div class="row">
                 <div class="col-12">
-                    <x-forms.input name="name" label="Nama Departement" placeholder="Nama Departement" />
+                    <x-forms.input name="name" label="Nama Departement" placeholder="Nama Departement" required=1/>
                 </div>
             </div>
         </x-modal.basic>
@@ -59,7 +59,7 @@
         <x-modal.basic id="EditDepartement" title="Edit Departement" action="{{ route('departement.store') }}" isUpdate=1>
             <div class="row">
                 <div class="col-12">
-                    <x-forms.input name="name" id="edt_name" label="Nama Departement" placeholder="Nama Departement" />
+                    <x-forms.input name="name" id="edt_name" label="Nama Departement" placeholder="Nama Departement" required=1/>
                 </div>
             </div>
         </x-modal.basic>

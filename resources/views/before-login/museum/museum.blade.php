@@ -4,7 +4,7 @@
 
 @section('content')
     <!-- ABOUT SECTION START -->
-    <x-card.guest.breadcrumb currentPage="UPT Museum"/>
+    <x-card.guest.breadcrumb currentPage="UPT Museum" />
     <section
         class="ed-2-about bg-edoffwhite py-[120px] xl:py-[80px] md:py-[60px] relative z-[1] before:absolute before:inset-0 before:-z-[1] before:bg-[url('../assets/img/about-us-bg.png')] before:opacity-[5%] before:bg-no-repeat before:bg-cover before:bg-center before:mix-blend-multiply">
         <div class="mx-[19.7%] xxxl:mx-[14.7%] xxl:mx-[9.7%] xl:mx-[3.2%] md:mx-[15px]">
@@ -12,22 +12,19 @@
                 <!-- left -->
                 <div class="max-w-[46%] md:max-w-full grow shrink-0">
                     <div class="relative flex items-end">
-                        <img src="{{ isFileExist('storage/'. isDataNull($aboutMuseumMainImage),asset('assets/guest/img/about-2-image-1.png')) }}" alt="About Image"
-                            class="border-[12px] border-white rounded-full" />
-                        <div class="relative shrink-0 -ml-[202px] lg:-ml-[262px] md:-ml-[202px] xs:-ml-[242px] -mb-[24px]">
-                            <img src="{{ isFileExist('storage/'.isDataNull($aboutMuseumThumnailImage),asset('assets/guest/img/about-2-image-2.png')) }}" alt="About Image"
-                                class="border-[8px] border-white rounded-full w-[292px] xs:w-[252px] aspect-square" />
-                            <a href="{{ $aboutMuseumYt }}" data-fslightbox="gallery"
-                                class="flex items-center justify-center w-[60px] aspect-square bg-white rounded-full text-edyellow absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] before:border before:absolute before:top-[50%] before:-translate-y-[50%] before:left-[50%] before:-translate-x-[50%] before:w-[calc(100%+15px)] before:h-[calc(100%+15px)] before:rounded-full before:transition before:duration-[400ms] hover:bg-edgreen hover:text-white hover:before:border-edgreen"><i
-                                    class="fa-solid fa-play"></i></a>
-                        </div>
+                        <img src="{{ isFileExist('storage/' . isDataNull($aboutMuseumMainImage), asset('assets/guest/img/about-2-image-1.png')) }}" alt="About Image"
+                            class="border-[12px] border-white rounded-full" style="width: 432px; height: 432px; object-fit: cover;">
+
+                        <a href="{{ $aboutMuseumYt }}" data-fslightbox="gallery"
+                            class="flex items-center justify-center w-[60px] aspect-square bg-white rounded-full text-edyellow absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] before:border before:absolute before:top-[50%] before:-translate-y-[50%] before:left-[50%] before:-translate-x-[50%] before:w-[calc(100%+15px)] before:h-[calc(100%+15px)] before:rounded-full before:transition before:duration-[400ms] hover:bg-edgreen hover:text-white hover:before:border-edgreen"><i
+                                class="fa-solid fa-play"></i></a>
 
                         <!-- vectors -->
                         <div>
                             <img src="{{ asset('assets/guest/img/about-2-img-vector.svg') }}" alt="vector"
-                                class="absolute pointer-events-none top-[60px] right-[65px] -z-[1]" />
+                                class="absolute pointer-events-none top-[60px] right-[65px] -z-[1]">
                             <img src="{{ asset('assets/guest/img/about-2-img-vector-2.svg') }}" alt="vector"
-                                class="absolute pointer-events-none -bottom-[30px] right-0 -z-[1] md:hidden" />
+                                class="absolute pointer-events-none -bottom-[30px] right-0 -z-[1] md:hidden">
                         </div>
                     </div>
                 </div>
@@ -119,7 +116,8 @@
 
                 <!-- image -->
                 <div class="mr-[40px] lg:mr-0 relative z-[1] shrink-0">
-                    <img src="{{ isFileExist('storage/' . isDataNull($klasifikasi->image_path), asset('assets/guest/img/cta-2-img.png')) }}" alt="image" />
+                    <img src="{{ isFileExist('storage/' . isDataNull($klasifikasi->image_path), asset('assets/guest/img/cta-2-img.png')) }}"
+                        alt="image" />
                     <!-- vector -->
                     <div
                         class="aspect-square w-[386px] border-[57px] border-edyellow rounded-full absolute bottom-0 right-[25%] translate-y-[50%] -z-[1]">
@@ -144,25 +142,19 @@
             <!-- news cards -->
             <div class="grid grid-cols-2 md:grid-cols-1 gap-[30px]">
                 @if ($museumNews->count() > 0)
-                    <x-card.guest.newsBig
-                        image="{{ asset('storage/' . isDataNull($museumNews[0]->image_path)) }}"
-                        title="{{ $museumNews[0]->title }}"
-                        date="{{ $museumNews[0]->date }}"
+                    <x-card.guest.newsBig image="{{ asset('storage/' . isDataNull($museumNews[0]->image_path)) }}"
+                        title="{{ $museumNews[0]->title }}" date="{{ $museumNews[0]->date }}"
                         author="admin {{ $museumNews[0]->author->departement }}"
-                        detail="{{ route('news.detail', ['id' => $museumNews[0]->id]) }}"
-                    />
+                        detail="{{ route('news.detail', ['id' => $museumNews[0]->id]) }}" />
                 @endif
 
                 <!-- right / news small cards -->
                 <div class="bg-edoffwhite rounded-[20px] p-[30px] xxs:p-[20px] space-y-[26px]">
                     @foreach ($museumNews->slice(1) as $item)
-                        <x-card.guest.newsSmall
-                            image="{{ asset('storage/' . $item[0]->cover_image_path) }}"
-                            title="{{ $item[0]->title }}"
-                            date="{{ $item[0]->date }}"
+                        <x-card.guest.newsSmall image="{{ asset('storage/' . $item[0]->cover_image_path) }}"
+                            title="{{ $item[0]->title }}" date="{{ $item[0]->date }}"
                             author="admin {{ $item->author->departement }}"
-                            detail="{{ route('news.detail', ['id' => $item->id]) }}"
-                        />
+                            detail="{{ route('news.detail', ['id' => $item->id]) }}" />
                     @endforeach
                 </div>
             </div>

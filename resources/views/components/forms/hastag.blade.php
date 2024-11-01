@@ -1,4 +1,7 @@
-@props(['name' => 'hashtags', 'label'])
+@props([
+    'name' => 'hashtags',
+    'label',
+    'required' =>false])
 
 @push('headers')
     <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
@@ -7,7 +10,7 @@
 <div class="mb-3">
     @if ($label != '')
         <label class="fw-bold mb-1">
-            {{ $label }}
+            {{ $label }} @if ($required) <span class="text-danger">*</span> @endif
         </label>
     @endif
     <input name="{{ $name }}" placeholder="Add hashtags" class="form-control" id="hashtagsInput">

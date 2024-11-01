@@ -30,7 +30,12 @@ class NewsController extends Controller
 
     public function create()
     {
-        $categories = NewsCategoryModel::where('departement_id', auth()->user()->departement_id)->get();
+        if(isSuperAdmin()) {
+            $categories = NewsCategoryModel::all();
+        } else {
+            $categories = NewsCategoryModel::where('departement_id', auth()->user()->departement_id)->get();
+        }
+
         return view('after-login.news.create', compact('categories'));
     }
 
@@ -39,7 +44,7 @@ class NewsController extends Controller
         try {
             $news = NewsModel::findOrFail($id);
 
-            $newsCategories = NewsCategoryModel::all();
+            $categories = NewsCategoryModel::all();
 
             return view('before-login.detail.news', compact(
                 'news', 'newsCategories'
@@ -57,8 +62,8 @@ class NewsController extends Controller
                 'slug' => 'required|max:75',
                 'date' => 'required',
                 'category_id' => 'required|exists:news_categories,id',
-                'image_path' => 'required|mimes:jpeg,jpg,png|max:512',
-                'cover_image_path' => 'required|mimes:jpeg,jpg,png|max:512',
+                'image_path' => 'required|mimes:jpeg,jpg,png|max:4096',
+                'cover_image_path' => 'required|mimes:jpeg,jpg,png|max:4096',
                 'content' => 'required',
                 'hashtags' => 'required'
             ], [
@@ -73,6 +78,8 @@ class NewsController extends Controller
                 'cover_image_path.mimes' => 'Hanya menerima file ekstension (jpg, png, jpeg)',
                 'image_path.required' => 'Gambar berita harus ada',
                 'image_path.mimes' => 'Hanya menerima file ekstension (jpg, png, jpeg)',
+                'cover_image_path.max' => 'Maksimal ukuran cover gambar adalah 4MB',
+                'image_path.max' => 'Maksimal ukuran gambar berita 4MB',
                 'content.required' => 'Isi berita harus ada',
                 'hashtags.required' => 'Hastag harus di isi.'
             ]);
@@ -122,8 +129,11 @@ class NewsController extends Controller
     public function edit(string $id)
     {
         try {
-            $categories = NewsCategoryModel::where('departement_id', auth()->user()->departement_id)->get();
-
+            if(isSuperAdmin()) {
+                $categories = NewsCategoryModel::all();
+            } else {
+                $categories = NewsCategoryModel::where('departement_id', auth()->user()->departement_id)->get();
+            }
             $news = NewsModel::findOrFail($id);
             return view('after-login.news.edit', compact('categories', 'news'));
         } catch (Exception $e) {
@@ -144,8 +154,8 @@ class NewsController extends Controller
                 'slug' => 'required|max:75',
                 'date' => 'required',
                 'category_id' => 'required|exists:news_categories,id',
-                'image_path' => 'sometimes|mimes:jpeg,jpg,png|max:512',
-                'cover_image_path' => 'sometimes|mimes:jpeg,jpg,png|max:512',
+                'image_path' => 'sometimes|mimes:jpeg,jpg,png|max:4096',
+                'cover_image_path' => 'sometimes|mimes:jpeg,jpg,png|max:4096',
                 'content' => 'required',
                 'hashtags' => 'required'
             ], [
@@ -158,8 +168,8 @@ class NewsController extends Controller
                 'date.required' => 'Tanggal harus ada',
                 'cover_image_path.mimes' => 'Hanya menerima file ekstension (jpg, png, jpeg)',
                 'image_path.mimes' => 'Hanya menerima file ekstension (jpg, png, jpeg)',
-                'cover_image_path.max' => 'Maksimal ukuran file 512 Kb',
-                'image_path.max' => 'Maksimal ukuran file 512 Kb',
+                'cover_image_path.max' => 'Maksimal ukuran cover gambar adalah 4MB',
+                'image_path.max' => 'Maksimal ukuran gambar berita 4MB',
                 'content.required' => 'Isi berita harus ada',
                 'hashtags.required' => 'Hastag harus di isi.'
             ]);

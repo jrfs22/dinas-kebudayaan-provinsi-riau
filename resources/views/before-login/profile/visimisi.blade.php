@@ -18,7 +18,7 @@
             <div class="flex sm:flex-col items-start justify-between">
                 <div class="max-w-[50%] sm:max-w-full mb-[60px]">
                     <h2 class="ed-section-title">Visi & Misi</h2>
-                    <img src="{{ asset('assets/guest/img/news-details-img-2.jpg') }}" alt="Image" class="rounded-[10px]" />
+                    <img src="{{ isFileExist('storage/' . $visi->image_path,asset('assets/guest/img/news-details-img-2.jpg')) }}" alt="Image" class="rounded-[10px] w-[370px] h-[269px] object-cover" />
                 </div>
                 <div class="max-w-[50%] sm:max-w-full mb-[60px]">
                     <h2 class="ed-section-heading mb-[16px] font-bold">Visi</h2>

@@ -94,7 +94,7 @@
                                                             class="round-16 d-flex align-items-center justify-content-center">
                                                             <i class="ti ti-circle"></i>
                                                         </div>
-                                                        <span class="hide-menu">Gallery</span>
+                                                        <span class="hide-menu">List</span>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -137,7 +137,7 @@
                                                             class="round-16 d-flex align-items-center justify-content-center">
                                                             <i class="ti ti-circle"></i>
                                                         </div>
-                                                        <span class="hide-menu">Agenda</span>
+                                                        <span class="hide-menu">List</span>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -154,7 +154,7 @@
                                         </li>
                                     @endhasrole
                                     @hasrole('super admin|admin')
-                                        @if (in_array(auth()->user()->departement, ['super admin', 'UPT Museum']))
+                                        @if (in_array(auth()->user()->departement_id, [1,2]))
                                             <li class="sidebar-item">
                                                 <a class="sidebar-link has-arrow {{ isRouteActive('klasifikasi.create') ? 'active' : (isRouteActive('klasifikasi.edit') ? 'active' : '') }}"
                                                     href="javascript:void(0)" aria-expanded="false">
@@ -346,6 +346,16 @@
                                             </a>
                                             <ul aria-expanded="false"
                                                 class="collapse first-level {{ isRouteActive('settings.edit') ? 'in' : '' }}">
+                                                <li class="sidebar-item">
+                                                    <a href="{{ route('settings', ['type' => 'informasi']) }}"
+                                                        class="sidebar-link">
+                                                        <div
+                                                            class="round-16 d-flex align-items-center justify-content-center">
+                                                            <i class="ti ti-circle"></i>
+                                                        </div>
+                                                        <span class="hide-menu">Kategori Informasi</span>
+                                                    </a>
+                                                </li>
                                                 <li class="sidebar-item">
                                                     <a href="{{ route('settings', ['type' => 'breadcrumb']) }}"
                                                         class="sidebar-link">

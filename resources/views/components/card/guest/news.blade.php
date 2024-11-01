@@ -8,7 +8,7 @@
     'detail'
 ])
 
-<div class="ed-2-single-course mix {{ $categoryName }} border border-[#e5e5e5] rounded-[10px] p-[20px] group">
+<div class="ed-2-single-course mix {{ filterClassFormat($categoryName) }} border border-[#e5e5e5] rounded-[10px] p-[20px] group">
     <!-- course image  -->
     <div class="relative overflow-hidden rounded-[10px] mb-[24px]">
         <img src="{{ $image }}" alt="Gambar {{ $title }}"

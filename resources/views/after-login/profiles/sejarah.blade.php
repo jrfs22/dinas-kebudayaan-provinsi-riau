@@ -20,7 +20,7 @@
                         name="image_path"
                         label="Gambar"
                         type="file"
-                        fileLabel="Maksimal 512kb & Dimensi 370 x 375"
+                        fileLabel="Maksimal 2Mb & Dimensi 370 x 375"
                     />
                 </div>
                 <div class="col-12">

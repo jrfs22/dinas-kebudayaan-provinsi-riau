@@ -151,3 +151,30 @@ function isSuperAdmin()
 {
     return auth()->user()->role === 'super admin' ? true : false;
 }
+
+
+function kategoriInformasiColor($index) {
+    $colorCard = [
+        'border-[#e5e5e5] hover:bg-[#F8B81F] hover:border-[#F8B81F]',
+        'border-[#e5e5e5] hover:bg-[#39C0FA] hover:border-[#39C0FA]',
+        'border-[#e5e5e5] hover:bg-[#F92596] hover:border-[#F92596]',
+        'border-[#e5e5e5] hover:bg-[#5866EB] hover:border-[#5866EB]',
+    ];
+
+    return $colorCard[$index];
+}
+
+function kategoriInformasiColorIcon($index) {
+    $colorIcon = [
+        'bg-[#F8B81F]',
+        'bg-[#39C0FA]',
+        'bg-[#F92596]',
+        'bg-[#5866EB]',
+    ];
+
+    return $colorIcon[$index];
+}
+
+function filterClassFormat($phrase) {
+    return strtolower(str_replace(' ', '-', $phrase));
+}
