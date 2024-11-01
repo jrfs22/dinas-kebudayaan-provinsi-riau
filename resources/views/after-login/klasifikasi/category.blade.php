@@ -50,7 +50,7 @@
         <x-modal.basic title="Tambah Kategori" action="{{ route('klasifikasi.category.store') }}">
             <div class="row">
                 <div class="col-12">
-                    <x-forms.input name="name" label="Nama Kategori" placeholder="Nama Kategori" />
+                    <x-forms.input name="name" label="Nama Kategori" placeholder="Nama Kategori" required=1/>
                 </div>
             </div>
         </x-modal.basic>
@@ -58,7 +58,7 @@
         <x-modal.basic id="Editklasifikasi" title="Edit News" action="{{ route('klasifikasi.category.store') }}" isUpdate=1>
             <div class="row">
                 <div class="col-12">
-                    <x-forms.input name="name" id="edt_name" label="Nama Kategori" placeholder="Nama Kategori" />
+                    <x-forms.input name="name" id="edt_name" label="Nama Kategori" placeholder="Nama Kategori" required=1/>
                 </div>
             </div>
         </x-modal.basic>

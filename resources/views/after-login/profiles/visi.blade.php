@@ -17,6 +17,14 @@
                     </x-forms.richeditor>
                 </div>
                 <div class="col-12">
+                    <x-forms.input
+                        name="image_path"
+                        label="Gambar Visi & Misi"
+                        type="file"
+                        fileLabel="Maksimal 2Mb & Dimensi 370 x 269"
+                    />
+                </div>
+                <div class="col-12">
                     <x-forms.select
                         name="status"
                         label="Status">
@@ -31,6 +39,7 @@
         @endslot
 
         @slot('slotResult')
+            <img class="img-fluid mb-2" src="{{ asset('storage/' . $content->image_path) }}" alt="Gambar {{ $content->title }}" style="max-height: 250px; object-fit: contain;">
             <h5>Visi</h5>
             {!! $content->content !!}
         @endslot

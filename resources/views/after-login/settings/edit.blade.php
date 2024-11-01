@@ -19,6 +19,18 @@
                 </div>
             @endif
 
+            @if ($content->title != null)
+                <div class="col-12">
+                    <x-forms.input name="title" value="{{ $content->title }}" label="Judul"/>
+                </div>
+            @endif
+
+            @if ($content->description != null)
+                <div class="col-12">
+                    <x-forms.input name="description" value="{{ $content->description }}" label="Deskripsi"/>
+                </div>
+            @endif
+
             @if ($content->url_path != null)
                 <x-forms.textarea
                     name="url_path"

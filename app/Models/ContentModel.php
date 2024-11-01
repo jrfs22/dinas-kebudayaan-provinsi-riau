@@ -37,7 +37,6 @@ protected static function clearContentCache()
         'hero-secondary-image',
         'tentang-kami-deskripsi',
         'tentang-kami-gambar-utama',
-        'tentang-kami-gambar-thumnail',
         'tentang-kami-channel-yt',
         'sitari',
         'email',
@@ -45,12 +44,12 @@ protected static function clearContentCache()
         'upt-museum-gambar-utama',
         'upt-museum-deskripsi',
         'upt-museum-background',
-        'upt-museum-gambar-thumnail',
         'upt-museum-channel-yt',
         'klasifikasi',
         'footer-background',
         'breadcrumb',
         'media-social',
+        'informasi-category'
     ];
 
     foreach ($keys as $key) {

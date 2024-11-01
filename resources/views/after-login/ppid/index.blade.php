@@ -79,7 +79,7 @@
         <div class="row">
             <input type="hidden" name="ppid_category_id" value="{{ $ppid_category->id }}">
             <div class="col-12">
-                <x-forms.input name="name" label="Nama PPID" placeholder="Pelayanan" required=1/>
+                <x-forms.input name="name" label="Nama PPID" placeholder="Pelayanan" required=1 />
             </div>
             @if ($ppid_category->type === 'non dokumen')
                 <div class="col-12">

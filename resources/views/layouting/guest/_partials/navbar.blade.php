@@ -25,7 +25,7 @@
                             <a {{ isRouteParamActive('profiles', 'type', 'sejarah') ? 'class=active' : '' }} href="{{ route('profiles', ['type' => 'sejarah']) }}">Sejarah Singkat</a>
                         </li>
                         <li class="has-sub-menu relative">
-                            <a {{ isRouteParamActive('profiles', 'type', 'visi-misi') ? 'class=active' : '' }} href="{{ route('profiles', ['type' => 'visi-misi']) }}">Visi Misi</a>
+                            <a {{ isRouteParamActive('profiles', 'type', 'visi-misi') ? 'class=active' : '' }} href="{{ route('profiles', ['type' => 'visi-misi']) }}">Visi & Misi</a>
                         </li>
                         <li class="has-sub-menu relative">
                             <a {{ isRouteParamActive('profiles', 'type', 'struktur-organisasi') ? 'class=active' : '' }} href="{{ route('profiles', ['type' => 'struktur-organisasi']) }}">Struktur Organisasi</a>

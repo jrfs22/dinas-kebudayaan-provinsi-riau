@@ -19,7 +19,7 @@
                     All
                 </button>
                 @foreach ($categories as $item)
-                    <button class="hover:bg-edgreen hover:text-white capitalize" data-filter=".{{ $item->name }}">
+                    <button class="hover:bg-edgreen hover:text-white capitalize" data-filter=".{{ filterClassFormat($item->name) }}">
                         {{ $item->name }}
                     </button>
                 @endforeach

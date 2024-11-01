@@ -68,11 +68,11 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <x-forms.input name="cover_image_path" label="Gambar Cover" type="file"
-                        fileLabel="Maksimal 512kb & Dimensi 215 x 203 " />
+                        fileLabel="Maksimal 4MB & Dimensi 215 x 203 " />
                 </div>
                 <div class="col-12 col-md-6">
                     <x-forms.input name="image_path" label="Gambar Utama" type="file"
-                        fileLabel="Maksimal 512kb & Dimensi 770 x 411 " />
+                        fileLabel="Maksimal 4MB & Dimensi 770 x 411 " />
                 </div>
 
                 <div class="col-12 mb-3 fs-4">

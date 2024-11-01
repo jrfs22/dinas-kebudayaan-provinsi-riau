@@ -2733,6 +2733,10 @@ input[type="radio"] {
     padding-bottom: 158px;
 }
 
+.pb-\[96px\] {
+    padding-bottom: 96px;
+}
+
 .pb-\[15px\] {
     padding-bottom: 15px;
 }
@@ -2835,6 +2839,10 @@ input[type="radio"] {
 
 .pt-\[120px\] {
     padding-top: 120px;
+}
+
+.pt-\[128px\] {
+    padding-top: 128px;
 }
 
 .pt-\[15px\] {
@@ -3097,6 +3105,11 @@ input[type="radio"] {
     color: rgb(36 20 66 / var(--tw-text-opacity)) !important;
 }
 
+.text-edblue {
+    --tw-text-opacity: 1;
+    color: rgb(36 20 66 / var(--tw-text-opacity)) !important;
+}
+
 .\!text-edgreen {
     --tw-text-opacity: 1 !important;
     color: rgb(10 184 83 / var(--tw-text-opacity)) !important;
@@ -3166,10 +3179,10 @@ input[type="radio"] {
     color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
-.text-edblue {
+/* .text-edblue {
     --tw-text-opacity: 1;
     color: rgb(36 20 66 / var(--tw-text-opacity));
-}
+} */
 
 .text-edgray {
     --tw-text-opacity: 1;

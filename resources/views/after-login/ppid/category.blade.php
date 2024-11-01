@@ -56,12 +56,13 @@
         <x-modal.basic title="Tambah Kategori" action="{{ route('ppid.category.store') }}">
             <div class="row">
                 <div class="col-12">
-                    <x-forms.input name="name" label="Nama Kategori" placeholder="Nama Kategori" />
+                    <x-forms.input name="name" label="Nama Kategori" placeholder="Nama Kategori" required=1/>
                 </div>
                 <div class="col-12">
                     <x-forms.select
                         name="type"
-                        label="Tipe">
+                        label="Tipe"
+                        required=1>
                         <option value="dokumen">Dokumen</option>
                         <option value="non dokumen">Non Dokumen</option>
                     </x-forms.select>
@@ -72,13 +73,14 @@
         <x-modal.basic id="Editppid" title="Edit News" action="{{ route('ppid.category.store') }}" isUpdate=1>
             <div class="row">
                 <div class="col-12">
-                    <x-forms.input name="name" id="edt_name" label="Nama Kategori" placeholder="Nama Kategori" />
+                    <x-forms.input name="name" id="edt_name" label="Nama Kategori" placeholder="Nama Kategori" required=1/>
                 </div>
                 <div class="col-12">
                     <x-forms.select
                         name="type"
                         label="Tipe"
-                        id="edt_type">
+                        id="edt_type"
+                        required=1>
                         <option value="dokumen">Dokumen</option>
                         <option value="non dokumen">Non Dokumen</option>
                     </x-forms.select>

@@ -25,7 +25,7 @@
         <x-table.basic>
             @slot('slotHead')
                 <th>Nama Kategori</th>
-                <th>Departement</th>
+                <th>Departement Penanggung Jawab</th>
                 <th>Aksi</th>
             @endslot
 
@@ -56,10 +56,10 @@
         <x-modal.basic title="Tambah Kategori" action="{{ route('agenda.category.store') }}">
             <div class="row">
                 <div class="col-12">
-                    <x-forms.input name="name" label="Nama Kategori" placeholder="Nama Kategori" />
+                    <x-forms.input name="name" label="Nama Kategori" placeholder="Nama Kategori" required=1/>
                 </div>
                 <div class="col-12 mb-3">
-                    <x-forms.select name="departement_id" label="Deprtement Penanggung Jawab">
+                    <x-forms.select name="departement_id" label="Deprtement Penanggung Jawab" required=1>
                         @foreach ($departement as $item)
                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach
@@ -71,10 +71,10 @@
         <x-modal.basic id="Editagenda" title="Edit Kategori " action="{{ route('agenda.category.store') }}" isUpdate=1>
             <div class="row">
                 <div class="col-12">
-                    <x-forms.input name="name" id="edt_name" label="Nama Kategori" placeholder="Nama Kategori" />
+                    <x-forms.input name="name" id="edt_name" label="Nama Kategori" placeholder="Nama Kategori" required=1/>
                 </div>
                 <div class="col-12 mb-3">
-                    <x-forms.select name="departement_id" id="edtDepartement" label="Deprtement Penanggung Jawab">
+                    <x-forms.select name="departement_id" id="edtDepartement" label="Deprtement Penanggung Jawab" required=1>
                         @foreach ($departement as $item)
                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach

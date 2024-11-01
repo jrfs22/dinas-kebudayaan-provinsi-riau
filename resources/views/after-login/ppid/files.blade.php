@@ -95,10 +95,10 @@
         <div class="row">
             <input type="hidden" name="ppid_id" value="{{ $id }}">
             <div class="col-12">
-                <x-forms.input name="file_name" label="Nama File" placeholder="Laporan Akuntabilitas Kinerja Akuntansi Pemerintah (LAKIP) - Tahun 2014" />
+                <x-forms.input name="file_name" label="Nama File" placeholder="Laporan Akuntabilitas Kinerja Akuntansi Pemerintah (LAKIP) - Tahun 2014" required=1/>
             </div>
             <div class="col-12">
-                <x-forms.input name="file_number" label="Nomor Surat" placeholder="No 12" />
+                <x-forms.input name="file_number" label="Nomor Surat" placeholder="No 12" required=1/>
             </div>
             <div class="col-12">
                 <x-forms.input name="file_path" type="file" label="File" fileLabel="Maksimal 5mb"/>
@@ -113,13 +113,13 @@
         <div class="row">
             <input type="hidden" name="ppid_id" value="{{ $id }}">
             <div class="col-12">
-                <x-forms.input name="file_name" id="edt_file_name" label="Nama File" placeholder="Laporan Akuntabilitas Kinerja Akuntansi Pemerintah (LAKIP) - Tahun 2014" />
+                <x-forms.input name="file_name" id="edt_file_name" label="Nama File" placeholder="Laporan Akuntabilitas Kinerja Akuntansi Pemerintah (LAKIP) - Tahun 2014" required=1/>
             </div>
             <div class="col-12">
-                <x-forms.input name="file_number" id="edt_file_number" label="Nomor Surat" placeholder="No 12" />
+                <x-forms.input name="file_number" id="edt_file_number" label="Nomor Surat" placeholder="No 12" required=1/>
             </div>
             <div class="col-12">
-                <x-forms.input name="file_path" type="file" label="File" fileLabel="Maksimal 5mb"/>
+                <x-forms.input name="file_path" type="file" label="File" fileLabel="Maksimal 5mb" />
             </div>
             <div class="col-12">
                 <x-forms.input name="release_date" type="date" id="edt_release_date" label="Tanggal" />

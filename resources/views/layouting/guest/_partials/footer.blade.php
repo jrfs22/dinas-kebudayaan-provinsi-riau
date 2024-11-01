@@ -1,10 +1,5 @@
-<style>
-    .background::before {
-        background-image: url({{ 'storage/' . $footer->image_path }});
-    }
-</style>
 
-<footer style="background-color: black"
+<footer style="background-color: black; background-image: url('../../{{ 'storage/' . $footer->image_path }}');background-repeat: no-repeat; background-size: cover;"
 class="relative z-[1] before:absolute before:inset-0 before:-z-[1] background before:opacity-[7%] before:bg-no-repeat before:bg-cover before:bg-center text-white">
 <div class="mx-[19.71%] xxxl:mx-[14.71%] xxl:mx-[9.71%] xl:mx-[5.71%] md:mx-[12px]">
     <!-- footer top -->
@@ -65,7 +60,7 @@ class="relative z-[1] before:absolute before:inset-0 before:-z-[1] background be
             </h6>
 
             <div>
-                <iframe aria-hidden="true" frameborder="0" tabindex="-1" style="z-index: -1; position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; border: none; opacity: 0;"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15958.67732615472!2d101.4547997!3d0.4951528!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d5aedd2565414f%3A0x61f21d93f231fbf!2sDinas%20Kebudayaan%20Riau!5e0!3m2!1sen!2sid!4v1730348259663!5m2!1sen!2sid" aria-hidden="true" frameborder="0" tabindex="-1"></iframe>
 
                 <!-- social links -->
                 <div class="flex gap-[20px] mt-[30px]">
