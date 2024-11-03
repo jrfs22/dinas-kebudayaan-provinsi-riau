@@ -19,7 +19,7 @@
         </label>
     @endif
 
-    <textarea class="form-control" name="{{ $name }}" id="input-{{ $id }}" cols="30" rows="5">{{ $value }}</textarea>
+    <textarea class="form-control" name="{{ $name }}" id="input-{{ $id }}" cols="30" rows="5" placeholder="{{ $placeholder }}">{{ $value }}</textarea>
     <div class="invalid-feedback">
         {{ $message }}
     </div>

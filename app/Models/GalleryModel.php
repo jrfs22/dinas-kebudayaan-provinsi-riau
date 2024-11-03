@@ -29,6 +29,6 @@ class GalleryModel extends Model
 
     public function images(): HasMany
     {
-        return $this->hasMany(GalleryImageModel::class);
+        return $this->hasMany(GalleryImageModel::class, 'gallery_id');
     }
 }

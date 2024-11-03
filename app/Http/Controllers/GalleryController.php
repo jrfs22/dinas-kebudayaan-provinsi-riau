@@ -35,9 +35,13 @@ class GalleryController extends Controller
         }
     }
 
-    public function show($slug, $time)
+    public function show(string $time, string $slug)
     {
-        return view('before-login.gallery.detail');
+        $slug = $time . '/' . $slug;
+
+        $gallery = GalleryModel::where('slug', $slug)->first();
+
+        return view('before-login.gallery.detail', compact('gallery'));
     }
 
     public function store(Request $request)

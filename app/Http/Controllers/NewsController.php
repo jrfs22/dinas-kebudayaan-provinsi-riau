@@ -39,7 +39,7 @@ class NewsController extends Controller
         return view('after-login.news.create', compact('categories'));
     }
 
-    public function show($time, $slug)
+    public function show(string $slug, string $time)
     {
         try {
             $slug = $time . '/' . $slug;

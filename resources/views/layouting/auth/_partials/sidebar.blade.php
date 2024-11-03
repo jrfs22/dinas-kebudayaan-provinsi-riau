@@ -71,14 +71,14 @@
                                     @endhasrole
                                     @hasrole('super admin')
                                         <li class="sidebar-item">
-                                            <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                            <a class="sidebar-link has-arrow {{ isRouteActive('gallery.images') ? 'active' : '' }}" href="javascript:void(0)"
                                                 aria-expanded="false">
                                                 <span class="d-flex">
                                                     <i class="ti ti-photo"></i>
                                                 </span>
                                                 <span class="hide-menu">Gallery</span>
                                             </a>
-                                            <ul aria-expanded="false" class="collapse first-level">
+                                            <ul aria-expanded="false" class="collapse first-level {{ isRouteActive('gallery.images') ? 'in' : '' }}">
                                                 <li class="sidebar-item">
                                                     <a href="{{ route('gallery.category') }}" class="sidebar-link">
                                                         <div
@@ -89,7 +89,7 @@
                                                     </a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a href="{{ route('gallery') }}" class="sidebar-link">
+                                                    <a href="{{ route('gallery') }}" class="sidebar-link {{ isRouteActive('gallery.images') ? 'active' : '' }}">
                                                         <div
                                                             class="round-16 d-flex align-items-center justify-content-center">
                                                             <i class="ti ti-circle"></i>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\BeforeLoginController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\DepartementController;
+use App\Http\Controllers\GalleryImageController;
 use App\Http\Controllers\KlasifikasiCategoryController;
 use App\Http\Controllers\KlasifikasiController;
 use App\Http\Controllers\SurveyQuestionController;
@@ -77,6 +78,13 @@ Route::middleware('auth')->group(function () {
             Route::put('{id?}', [GalleryCategoryController::class, 'update'])->name('gallery.category.update');
 
             Route::delete('{id}', [GalleryCategoryController::class, 'destroy'])->name('gallery.category.destroy');
+        });
+
+        Route::prefix('images')->group(function () {
+            Route::get('{id}', [GalleryImageController::class, 'index'])->name('gallery.images');
+            Route::post('{id}', [GalleryImageController::class, 'store'])->name('gallery.images.post');
+            Route::put('{id?}', [GalleryImageController::class, 'update'])->name('gallery.images.update');
+            Route::delete('{id?}', [GalleryImageController::class, 'destroy'])->name('gallery.images.destroy');
         });
     });
 
