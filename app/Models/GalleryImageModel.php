@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class GalleryImageModel extends Model
 {
@@ -17,4 +18,9 @@ class GalleryImageModel extends Model
         'description',
         'image_path',
     ];
+
+    public function gallery(): BelongsTo
+    {
+        return $this->belongsTo(GalleryModel::class, 'gallery_id');
+    }
 }

@@ -65,7 +65,7 @@ class AgendaController extends Controller
         return view('before-login.agenda.list', compact('agenda', 'categories'));
     }
 
-    public function show($time, $slug)
+    public function show(string $slug, string $time)
     {
         try {
             $slug = $time . '/' . $slug;

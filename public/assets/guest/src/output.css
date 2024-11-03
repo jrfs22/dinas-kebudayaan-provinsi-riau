@@ -624,6 +624,10 @@ video {
     margin-bottom: 3rem;
 }
 
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
 .relative {
     position: relative;
 }
@@ -757,6 +761,10 @@ video {
     right: 0px;
 }
 
+.right-8 {
+    right: 2rem!important;
+  }
+
 .right-\[0\] {
     right: 0;
 }
@@ -837,6 +845,10 @@ video {
     left: 45%;
 }
 
+.left-8 {
+    left: 2rem!important;
+  }
+
 .left-\[65\%\] {
     left: 65%;
 }
@@ -892,7 +904,7 @@ video {
     margin-left: 19.71%;
     margin-right: 19.71%;
 }
-.mx-\[24\%\]  {
+.mx-\[24\%\] {
     margin-left: 24%;
     margin-right: 24%;
 }
@@ -1114,6 +1126,10 @@ video {
     margin-right: 40px;
 }
 
+.mt-4 {
+    margin-top: 1rem;
+}
+
 .mt-\[100px\] {
     margin-top: 100px;
 }
@@ -1283,6 +1299,10 @@ video {
     height: 60px !important;
 }
 
+.h-16 {
+    height: 4rem!important;
+  }
+
 .h-\[100px\] {
     height: 100px;
 }
@@ -1350,6 +1370,10 @@ video {
 .max-h-\[380px\] {
     max-height: 380px;
 }
+
+.w-16 {
+    width: 4rem!important;
+  }
 
 .w-\[110px\] {
     width: 110px;
@@ -1570,6 +1594,10 @@ video {
 
 .max-w-\[46\%\] {
     max-width: 46%;
+}
+
+.max-w-5xl {
+    max-width: 64rem;
 }
 
 .max-w-\[460px\] {
@@ -2096,6 +2124,10 @@ video {
 
 .rounded-xl {
     border-radius: 0.75rem;
+}
+
+.rounded-2xl {
+    border-radius: 1rem;
 }
 
 .rounded-lg {
@@ -2903,6 +2935,15 @@ input[type="radio"] {
 
 .\!text-\[30px\] {
     font-size: 30px !important;
+}
+
+.text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+.font-semibold {
+    font-weight: 600;
 }
 
 .text-\[12px\] {

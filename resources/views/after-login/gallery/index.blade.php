@@ -34,6 +34,7 @@
             @slot('slotHead')
                 <th>Kategori</th>
                 <th>Judul</th>
+                <th>Jumlah Gambar</th>
                 <th>Tanggal</th>
                 <th>Aksi</th>
             @endslot
@@ -46,6 +47,12 @@
                         </td>
                         <td>
                             {{ $item->title }}
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-primary fw-semibold fs-4" href="{{ route('gallery.images', ['id' => $item->id]) }}">
+                                {{ $item->images()->count() }}
+                                <i class="ti ti-search text-white me-1 fs-4 ms-1"></i>
+                            </a>
                         </td>
                         <td>
                             {{ indonesianDate($item->date) }}
