@@ -33,7 +33,9 @@
                         image="{{ asset('storage/' . $item->image_path) }}"
                         categoryName="{{ $item->category->name }}"
                         date="{{ indonesianDate($item->date) }}"
-                        title="{{ $item->name }}"
+                        title="{{ $item->title }}"
+                        detail="{{ route('gallery.detail', [
+                        'slug' => $item->slug]) }}"
                     />
                 @endforeach
 

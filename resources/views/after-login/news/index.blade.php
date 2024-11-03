@@ -49,7 +49,7 @@
                             {{ $item->title }}
                         </td>
                         <td class="w-200px">
-                            {{ $item->slug }}
+                            {{ $item->summary }}
                         </td>
                         <td>
                             {{ indonesianDate($item->date) }}

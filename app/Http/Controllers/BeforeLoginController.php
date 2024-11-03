@@ -28,7 +28,7 @@ class BeforeLoginController extends Controller
         if(isset($newsCategory)) {
             $news = NewsModel::with('category')->where('category_id', '!=', $newsCategory->id)->get();
         } else {
-            $news = NewsModel::with(['category', 'author'])->get();
+            $news = NewsModel::with(['category.departement'])->get();
         }
 
         $agendaCategory = AgendaCategoryModel::whereIn('name', $museumName)->first();

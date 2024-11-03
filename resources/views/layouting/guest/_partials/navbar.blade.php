@@ -54,7 +54,7 @@
 
                     <ul class="ed-header-submenu">
                         <li>
-                            <a {{ isRouteActive('public.agenda') ? 'class=active' : '' }}  href="{{ route('public.agenda') }}">Event Budaya</a>
+                            <a {{ isRouteActive('public.agenda') ? 'class=active' : '' }}  href="{{ route('public.agenda') }}">Kegiatan Disbud</a>
                         </li>
                         <li>
                             <a {{ isRouteActive('gallery') ? 'class=active' : '' }} href="{{ route('gallery') }}">Gallery</a>

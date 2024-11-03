@@ -14,12 +14,12 @@
             @method('PUT')
             <div class="row">
                 <div class="col-12">
-                    <x-forms.input name="name" label="Judul Kegiatan" placeholder="Festival" required=1
-                        value="{{ $agenda->name }}" />
+                    <x-forms.input name="title" label="Judul Kegiatan" placeholder="Festival" required=1
+                        value="{{ $agenda->title }}" />
                 </div>
                 <div class="col-12">
-                    <x-forms.input name="slug" label="Ringkasan Kegiatan" placeholder="Festival" required=1
-                        value="{{ $agenda->slug }}" />
+                    <x-forms.input name="summary" label="Ringkasan Kegiatan" placeholder="Festival" required=1
+                        value="{{ $agenda->summary }}" />
                 </div>
                 <div class="col-12">
                     <x-forms.richeditor name="content" label="Detail Kegiatan" id="edt_content"

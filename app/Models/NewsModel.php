@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\GenerateUniqueSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class NewsModel extends Model
 {
-    use HasFactory;
+    use HasFactory, GenerateUniqueSlug;
 
     protected $table = 'news';
 
@@ -16,6 +17,7 @@ class NewsModel extends Model
         'title',
         'content',
         'slug',
+        'summary',
         'date',
         'image_path',
         'cover_image_path',

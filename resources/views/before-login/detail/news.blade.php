@@ -1,14 +1,14 @@
 @extends('before-login.detail.layout')
 
-@section('title', 'Detil Berita')
+@section('title', 'Detail Berita')
 @section('breadcrumb', 'Berita')
 
 @section('leftContent')
     <x-card.guest.detail
         gambar="{{ asset('assets/' . $news->image_path) }}"
         categoryName="{{ $news->category->name }}"
-        title="{{ $news->name }}"
-        author="admin {{ $news->author->departement }}"
+        title="{{ $news->title }}"
+        author="Bidang {{ $news?->category?->departement?->name }}"
         date="{{ $news->date }}"
         content="{!! $news->content !!}"
     />

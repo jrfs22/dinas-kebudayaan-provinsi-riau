@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('news', function (Blueprint $table) {
             $table->id();
             $table->uuid('user_id');
-            $table->string('title');
+            $table->text('title');
             $table->text('content');
-            $table->string('slug');
+            $table->string('summary');
+            $table->text('slug');
             $table->date('date');
             $table->text('cover_image_path');
             $table->text('image_path');

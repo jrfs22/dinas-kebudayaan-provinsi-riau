@@ -22,7 +22,7 @@ class GalleryCategoryController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'required|unique:news_categories,name',
+                'name' => 'required|unique:gallery_categories,name',
                 'departement_id' => 'required|exists:departement,id'
             ], [
                 'name.required' => 'Nama Kategori tidak boleh kosong',

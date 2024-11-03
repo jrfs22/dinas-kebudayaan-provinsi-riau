@@ -1,6 +1,6 @@
 @props([
     'title',
-    'slug',
+    'summary',
     'detail',
     'image',
     'time',
@@ -28,7 +28,7 @@
             </a>
         </h5>
         <p class="text-edgray mb-[15px] line-clamp-3">
-            {{ $slug }}
+            {{ $summary }}
         </p>
         <a href="{{ $detail }}"
             class="font-medium text-edgreen flex items-center gap-[10px] hover:text-black">Selengkapnya

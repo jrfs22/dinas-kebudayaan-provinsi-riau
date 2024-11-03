@@ -45,7 +45,7 @@
                             {{ $item->category?->name }}
                         </td>
                         <td>
-                            {{ $item->name }}
+                            {{ $item->title }}
                         </td>
                         <td>
                             {{ indonesianDate($item->date) }}
@@ -53,7 +53,7 @@
                         <td class="action-btn d-flex gap-2">
                             <a href="javascript:void(0)" class="text-success edit" data-id="{{ $item->id }}"
                                 data-date="{{ $item->date }}"
-                                data-name="{{ $item->name }}"
+                                data-title="{{ $item->title }}"
                                 data-image_path="{{ $item->image_path }}"
                                 data-gallery_category_id="{{ $item->gallery_category_id }}"
                                 onclick="modalEditGallery(this)">
@@ -70,7 +70,7 @@
         <x-modal.lg title="Tambah Gallery" action="{{ route('gallery.store') }}">
             <div class="row">
                 <div class="col-12">
-                    <x-forms.input name="name" label="Keterangan" placeholder="Penemuan Budaya" required=1/>
+                    <x-forms.input name="title" label="Keterangan" placeholder="Penemuan Budaya" required=1/>
                 </div>
                 <div class="col-12">
                     <x-forms.select name="gallery_category_id" label="Kategori" required=1>
@@ -94,7 +94,7 @@
                     <img class="mb-3" src="" id="edtNewImage" width="100%" height="400" style="object-fit:contain;">
                 </div>
                 <div class="col-12">
-                    <x-forms.input name="name" id="edt_name" label="Keterangan" placeholder="Penemuan Budaya" required=1/>
+                    <x-forms.input name="title" id="edt_title" label="Keterangan" placeholder="Penemuan Budaya" required=1/>
                 </div>
                 <div class="col-12">
                     <x-forms.select name="gallery_category_id" id="edt_gallery_category_id" label="Kategori" required=1>
@@ -120,7 +120,7 @@
         function modalEditGallery(element) {
             var id = $(element).data('id');
             var image_path = $(element).data('image_path');
-            var name = $(element).data('name');
+            var title = $(element).data('title');
             var date = $(element).data('date');
             var gallery_category_id = $(element).data('gallery_category_id');
 
@@ -128,7 +128,7 @@
 
 
             $("#EditGallery form").attr('action', route)
-            $("#input-edt_name").val(name)
+            $("#input-edt_title").val(title)
             $("#edt_gallery_category_id").val(gallery_category_id).change();
             $("#edtNewImage").attr("src", "{{ asset('') }}" + "storage/" + image_path)
             $("#input-edt_date").val(date)

@@ -83,7 +83,7 @@
                 <div class="max-w-[46%] md:max-w-full grow shrink-0">
                     <div class="relative flex items-end">
                         <img src="{{ isFileExist('storage/' . $sambutan->image_path, asset('assets/guest/img/about-2-image-1.png')) }}" alt="About Image"
-                            class="border-[50px] border-white rounded-full" />
+                            class="border-[50px] border-white rounded-full" style="width: 412px;height: 412px;object-fit:cover;"/>
                     </div>
                 </div>
             </div>

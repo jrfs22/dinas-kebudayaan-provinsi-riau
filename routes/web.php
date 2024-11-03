@@ -206,11 +206,13 @@ Route::middleware('guest')->group(function () {
         Route::post('event-budaya', [AgendaController::class, 'search'])->name('public.agenda.search');
     });
 
-    Route::get('news/detil/{id}', [NewsController::class, 'show'])->name('news.detail');
+    Route::get('gallery/{slug}/{time?}', [GalleryController::class, 'show'])->name('gallery.detail');
 
-    Route::get('agenda/detil/{id}', [AgendaController::class, 'show'])->name('agenda.detail');
+    Route::get('news/{slug}/{time?}', [NewsController::class, 'show'])->name('news.detail');
 
-    Route::get('surveys/detil/{id}/{slugs}', [SurveyController::class, 'show'])->name('survey.detail');
+    Route::get('agenda/{slug}/{time?}', [AgendaController::class, 'show'])->name('agenda.detail');
+
+    Route::get('surveys/{slug}', [SurveyController::class, 'show'])->name('survey.detail');
 
     Route::post('contact_us', [ContactUSController::class, 'store'])->name('contact_us.store');
 

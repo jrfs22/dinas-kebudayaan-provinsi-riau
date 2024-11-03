@@ -18,8 +18,8 @@
                         value="{{ $news->title }}" required=1/>
                 </div>
                 <div class="col-12">
-                    <x-forms.input name="slug" label="Ringkasan Berita" placeholder="Penemuan Budaya Baru"
-                        value="{{ $news->slug }}" required=1/>
+                    <x-forms.input name="summary" label="Ringkasan Berita" placeholder="Penemuan Budaya Baru"
+                        value="{{ $news->summary }}" required=1/>
                 </div>
                 <div class="col-12 col-lg-6">
                     <div class="mb-3">
