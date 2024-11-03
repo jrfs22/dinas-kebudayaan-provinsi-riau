@@ -111,9 +111,9 @@
                 @foreach ($news as $item)
                     <x-card.guest.news image="{{ asset('storage/' . isDataNull($item->cover_image_path)) }}"
                         categoryName="{{ $item->category->name }}" date="{{ indonesianDate($item->date) }}"
-                        title="{{ $item->title }}" slug="{{ $item->slug }}"
-                        author="admin {{ $item->author->departement }}"
-                        detail="{{ route('news.detail', ['id' => $item->id]) }}" />
+                        title="{{ $item->title }}" summary="{{ $item->summary }}"
+                        author="Bidang {{ $item?->category?->departement?->name }}"
+                        detail="{{ route('news.detail', ['slug' => $item->slug]) }}" />
                 @endforeach
             </div>
         </div>
@@ -201,8 +201,10 @@
                             <div class="swiper-slide w-[50%]">
                                 <div class="space-y-[30px]">
                                     @foreach ($chunkAgenda as $item)
-                                        <x-card.guest.event title="{{ $item->name }}" slug="{{ $item->slug }}"
-                                            detail="{{ route('agenda.detail', ['id' => $item->id]) }}"
+                                        <x-card.guest.event
+                                            title="{{ $item->title }}"
+                                            summary="{{ $item->summary }}"
+                                            detail="{{ route('agenda.detail', ['slug' => $item->slug]) }}"
                                             image="{{ asset('storage/' . isDataNull($item->image_path)) }}"
                                             time="{{ getTime($item->start_time) . ' - ' . getTime($item->end_time) }}" />
                                     @endforeach
@@ -224,7 +226,7 @@
                 <!-- text -->
                 <div class="max-w-[600px] md:max-w-full shrink-0 relative">
                     <h3
-                        class="font-semibold text-[36px] sm:text-[32px] xxs:text-[28px] text-white leading-[1.4] mb-[41px] xxs:mb-[31px]">
+                        class="font-semibold text-[36px] sm:text-[32px] xxs:text-[28px] text-white leading-[1.4] mb-[41px]  xxs:mb-[31px]">
                         {{ $sitari->title }}
                     </h3>
                     <!-- <p class="text-gray-50">menyajikan virtual tour dan informasi cgara budaya</p> -->

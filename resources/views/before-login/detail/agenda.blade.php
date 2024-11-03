@@ -1,10 +1,10 @@
 @extends('before-login.detail.layout')
 
-@section('title', 'Detil Event')
+@section('title', 'Detail Event')
 @section('breadcrumb', 'Event')
 
 @section('leftContent')
-    <x-card.guest.eventDetail gambar="{{ asset('assets/' . $agenda->image_path) }}" title="{{ $agenda->name }}"
+    <x-card.guest.eventDetail gambar="{{ asset('assets/' . $agenda->image_path) }}" title="{{ $agenda->title }}"
         date="{{ $agenda->date }}" start_time="{{ getTime($agenda->start_time) }}" end_time="{{ getTime($agenda->end_time) }}"
         content="{!! $agenda->content !!}" />
 @endsection

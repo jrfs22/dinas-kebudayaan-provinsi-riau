@@ -31,21 +31,26 @@ class GalleryController extends Controller
             $galleries = GalleryModel::with('category')->paginate(6);
 
             $categories = GalleryCategoryModel::whereHas('gallery')->get();
-            return view('before-login.galleries', compact('galleries', 'categories'));
+            return view('before-login.gallery.list', compact('galleries', 'categories'));
         }
+    }
+
+    public function show($slug, $time)
+    {
+        return view('before-login.gallery.detail');
     }
 
     public function store(Request $request)
     {
         try {
             $request->validate([
-                'name' => 'required',
-                'image_path' => 'required|mimes:jpeg,jpg,png|max:512',
+                'title' => 'required',
+                'image_path' => 'required|mimes:jpeg,jpg,png|max:4098',
                 'date' => 'required',
                 'gallery_category_id' => 'required|exists:gallery_categories,id',
             ], [
-                'name.required' => 'Nama Kegiatan tidak boleh kosong',
-                'gallery_category_id.required' => 'Kategori berita harus ada.',
+                'title.required' => 'Nama Kegiatan tidak boleh kosong',
+                'gallery_category_id.required' => 'Kategori berita harus adas.',
                 'gallery_category_id.exists' => 'Kategori berita tidak sesuai.',
                 'date.required' => 'Tanggal harus ada',
                 'image_path.required' => 'Gambar Cover berita harus ada',
@@ -55,7 +60,7 @@ class GalleryController extends Controller
             $gallery = new GalleryModel();
 
             $gallery->fill($request->only([
-                'name',
+                'title',
                 'date',
                 'gallery_category_id'
             ]));
@@ -87,12 +92,12 @@ class GalleryController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'required',
-                'image_path' => 'sometimes|mimes:jpeg,jpg,png|max:512',
+                'title' => 'required',
+                'image_path' => 'sometimes|mimes:jpeg,jpg,png|max:4098',
                 'date' => 'required',
                 'gallery_category_id' => 'required|exists:gallery_categories,id',
             ], [
-                'name.required' => 'Nama Kegiatan tidak boleh kosong',
+                'title.required' => 'Nama Kegiatan tidak boleh kosong',
                 'gallery_category_id.required' => 'Kategori berita harus ada.',
                 'gallery_category_id.exists' => 'Kategori berita tidak sesuai.',
                 'date.required' => 'Tanggal harus ada',
@@ -102,7 +107,7 @@ class GalleryController extends Controller
             $gallery = GalleryModel::findOrFail($id);
 
             $gallery->fill($request->only([
-                'name',
+                'title',
                 'date',
                 'gallery_category_id'
             ]));

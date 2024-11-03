@@ -16,7 +16,7 @@
                     <x-forms.input name="title" label="Judul" placeholder="Penemuan Budaya" required=1/>
                 </div>
                 <div class="col-12">
-                    <x-forms.input name="slug" label="Ringkasan Berita" placeholder="Penemuan Budaya Baru"  required=1/>
+                    <x-forms.input name="summary" label="Ringkasan Berita" placeholder="Penemuan Budaya Baru"  required=1/>
                 </div>
                 <div class="col-6">
                     <x-forms.input name="cover_image_path" label="Gambar Cover" type="file" fileLabel="Maksimal 4MB & Dimensi 330 x 223" required=1/>

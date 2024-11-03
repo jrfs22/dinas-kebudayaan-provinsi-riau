@@ -85,7 +85,7 @@
                             <div class="space-y-[30px]">
                                 @foreach ($chunkAgenda as $item)
                                     <x-card.guest.event title="{{ $item->name }}" slug="{{ $item->slug }}"
-                                        detail="{{ route('agenda.detail', ['id' => $item->id]) }}"
+                                        detail="{{ route('agenda.detail', ['slug' => $item->slug]) }}"
                                         image="{{ asset('storage/' . isDataNull($item->image_path)) }}"
                                         time="{{ getTime($item->start_time) . ' - ' . getTime($item->end_time) }}" />
                                 @endforeach
@@ -145,7 +145,7 @@
                     <x-card.guest.newsBig image="{{ asset('storage/' . isDataNull($museumNews[0]->image_path)) }}"
                         title="{{ $museumNews[0]->title }}" date="{{ $museumNews[0]->date }}"
                         author="admin {{ $museumNews[0]->author->departement }}"
-                        detail="{{ route('news.detail', ['id' => $museumNews[0]->id]) }}" />
+                        detail="{{ route('news.detail', ['slug' => $museumNews[0]->slug]) }}" />
                 @endif
 
                 <!-- right / news small cards -->
@@ -154,7 +154,7 @@
                         <x-card.guest.newsSmall image="{{ asset('storage/' . $item[0]->cover_image_path) }}"
                             title="{{ $item[0]->title }}" date="{{ $item[0]->date }}"
                             author="admin {{ $item->author->departement }}"
-                            detail="{{ route('news.detail', ['id' => $item->id]) }}" />
+                            detail="{{ route('news.detail', ['slug' => $item->slug]) }}" />
                     @endforeach
                 </div>
             </div>

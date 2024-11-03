@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('agenda', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('slug');
+            $table->text('title');
+            $table->text('summary');
             $table->text('content');
             $table->text('location');
+            $table->text('slug');
             $table->time('start_time')->nullable();
             $table->time('end_time')->nullable();
             $table->text('cover_image_path')->nullable();

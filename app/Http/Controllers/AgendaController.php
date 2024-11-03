@@ -55,8 +55,8 @@ class AgendaController extends Controller
         ]);
 
         $agenda = AgendaModel::where(function ($q) use ($query) {
-            $q->where('name', 'LIKE', "%{$query}%")
-                ->orWhere('slug', 'LIKE', "%{$query}%")
+            $q->where('title', 'LIKE', "%{$query}%")
+                ->orWhere('summary', 'LIKE', "%{$query}%")
                 ->orWhere('content', 'LIKE', "%{$query}%");
         })->paginate(3);
 
@@ -65,14 +65,16 @@ class AgendaController extends Controller
         return view('before-login.agenda.list', compact('agenda', 'categories'));
     }
 
-    public function show($id)
+    public function show($time, $slug)
     {
         try {
-            $agenda = AgendaModel::findOrFail($id);
+            $slug = $time . '/' . $slug;
+
+            $agenda = AgendaModel::where('slug' ,$slug)->first();
 
             $agendaCategories = AgendaCategoryModel::all();
 
-            $recent = AgendaModel::where('id', '!=', $id)->orderBy('date', 'desc')->take(3)->get();
+            $recent = AgendaModel::where('slug', '!=', $slug)->orderBy('date', 'desc')->take(3)->get();
 
             return view('before-login.detail.agenda', compact(
                 'agenda',
@@ -88,8 +90,8 @@ class AgendaController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'required',
-                'slug' => 'required',
+                'title' => 'required',
+                'summary' => 'required',
                 'content' => 'required',
                 'location' => 'required',
                 'start_time' => 'required',
@@ -99,8 +101,8 @@ class AgendaController extends Controller
                 'date' => 'required',
                 'agenda_category_id' => 'required|exists:agenda_categories,id',
             ], [
-                'name.required' => 'Nama Kegiatan tidak boleh kosong',
-                'slug.required' => 'Ringkasan Kegiatan tidak boleh kosong',
+                'title.required' => 'Nama Kegiatan tidak boleh kosong',
+                'summary.required' => 'Ringkasan Kegiatan tidak boleh kosong',
                 'content.required' => 'Detail Kegiatan tidak boleh kosong',
                 'start_time.required' => 'Waktu Mulai Kegiatan tidak boleh kosong',
                 'date_time.required' => 'Waktu Berakhir Kegiatan tidak boleh kosong',
@@ -118,8 +120,8 @@ class AgendaController extends Controller
 
             $agenda->fill(array_merge(
                 $request->only([
-                    'name',
-                    'slug',
+                    'title',
+                    'summary',
                     'content',
                     'location',
                     'start_time',
@@ -183,14 +185,14 @@ class AgendaController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'required',
+                'title' => 'required',
                 'location' => 'required',
                 'cover_image_path' => 'sometimes|mimes:jpeg,jpg,png|max:4096',
                 'image_path' => 'sometimes|mimes:jpeg,jpg,png|max:4096',
                 'date' => 'required',
                 'agenda_category_id' => 'required|exists:agenda_categories,id',
             ], [
-                'name.required' => 'Nama Kegiatan tidak boleh kosong',
+                'title.required' => 'Nama Kegiatan tidak boleh kosong',
                 'location.required' => 'Lokasi Kegiatan tidak boleh kosong',
                 'agenda_category_id.required' => 'Kategori berita harus ada.',
                 'agenda_category_id.exists' => 'Kategori berita tidak sesuai.',
@@ -204,7 +206,7 @@ class AgendaController extends Controller
             $agenda = AgendaModel::findOrFail($id);
 
             $agenda->fill($request->only([
-                'name',
+                'title',
                 'location',
                 'start_time',
                 'end_time',

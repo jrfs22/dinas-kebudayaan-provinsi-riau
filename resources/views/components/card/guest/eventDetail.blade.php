@@ -8,6 +8,10 @@
 ])
 
 
+<h4 class="text-[30px] xs:text-[25px] xxs:text-[22px] font-semibold text-edblue mb-[11px] mt-[27px]">
+    {{ $title }}
+</h4>
+
 <div class="relative rounded-[8px] overflow-hidden mb-[30px]">
     <img src="{{ $image }}" alt="event-details-img" class="rounded-[8px]">
 </div>
@@ -28,10 +32,6 @@
             <span>{{ $start_time }}  - {{ $end_time }}</span>
         </div>
     </div>
-
-    <h4 class="text-[30px] xs:text-[25px] xxs:text-[22px] font-semibold text-edblue mb-[11px] mt-[27px]">
-        {{ $title }}
-    </h4>
 
     <p class="font-normal text-[16px] text-edgray mb-[15px]">
         {!! $content !!}

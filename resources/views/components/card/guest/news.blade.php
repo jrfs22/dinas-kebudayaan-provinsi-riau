@@ -3,7 +3,7 @@
     'categoryName' => 'pelestarian',
     'date',
     'title',
-    'slug',
+    'summary',
     'author',
     'detail'
 ])
@@ -31,7 +31,7 @@
         <a href="{{ $detail }}" class="hover:text-edgreen line-clamp-2">{{ $title }}</a>
     </h5>
     <h2 class="text-edgray text-xs line-clamp-3">
-        {{ $slug }}
+        {{ $summary }}
     </h2>
     <br />
     <hr />

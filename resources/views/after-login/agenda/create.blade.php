@@ -13,10 +13,10 @@
             @csrf
             <div class="row">
                 <div class="col-12">
-                    <x-forms.input name="name" label="Judul Kegiatan" placeholder="Festival" required=1/>
+                    <x-forms.input name="title" label="Judul Kegiatan" placeholder="Festival" required=1/>
                 </div>
                 <div class="col-12">
-                    <x-forms.input name="slug" label="Ringkasan Kegiatan" placeholder="Festival" required=1 />
+                    <x-forms.input name="summary" label="Ringkasan Kegiatan" placeholder="Festival" required=1 />
                 </div>
                 <div class="col-12">
                     <x-forms.richeditor name="content" label="Detail Kegiatan" id="edt_content" required=1>

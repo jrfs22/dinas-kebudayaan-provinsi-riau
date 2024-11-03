@@ -2,19 +2,21 @@
 
 namespace App\Models;
 
+use App\Traits\GenerateUniqueSlug;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class AgendaModel extends Model
 {
-    use HasFactory;
+    use HasFactory, GenerateUniqueSlug;
 
     protected $table = 'agenda';
 
     protected $fillable = [
-        'name',
+        'title',
         'slug',
+        'summary',
         'content',
         'location',
         'start_time',

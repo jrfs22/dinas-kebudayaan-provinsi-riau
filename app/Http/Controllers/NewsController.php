@@ -39,12 +39,14 @@ class NewsController extends Controller
         return view('after-login.news.create', compact('categories'));
     }
 
-    public function show($id)
+    public function show($time, $slug)
     {
         try {
-            $news = NewsModel::findOrFail($id);
+            $slug = $time . '/' . $slug;
 
-            $categories = NewsCategoryModel::all();
+            $news = NewsModel::with('category.departement')->where('slug' ,$slug)->first();
+
+            $newsCategories = NewsCategoryModel::all();
 
             return view('before-login.detail.news', compact(
                 'news', 'newsCategories'
@@ -58,8 +60,8 @@ class NewsController extends Controller
     {
         try {
             $request->validate([
-                'title' => 'required|max:50',
-                'slug' => 'required|max:75',
+                'title' => 'required',
+                'summary' => 'required',
                 'date' => 'required',
                 'category_id' => 'required|exists:news_categories,id',
                 'image_path' => 'required|mimes:jpeg,jpg,png|max:4096',
@@ -68,9 +70,7 @@ class NewsController extends Controller
                 'hashtags' => 'required'
             ], [
                 'title.required' => 'Judul berita harus ada',
-                'title.max' => 'Judul berita maksimal 50 kata',
-                'slug.required' => 'Ringakasan Berita harus ada',
-                'slug.max' => 'Ringkasan maksimal 75 kata',
+                'summary.required' => 'Ringakasan Berita harus ada',
                 'category_id.required' => 'Kategori berita harus ada.',
                 'category_id.exists' => 'Kategori berita tidak sesuai.',
                 'date.required' => 'Tanggal harus ada',
@@ -88,7 +88,7 @@ class NewsController extends Controller
 
             $news->fill($request->only([
                 'title',
-                'slug',
+                'summary',
                 'date',
                 'category_id',
                 'content'
@@ -151,7 +151,7 @@ class NewsController extends Controller
         try {
             $request->validate([
                 'title' => 'required|max:50',
-                'slug' => 'required|max:75',
+                'summary' => 'required|max:75',
                 'date' => 'required',
                 'category_id' => 'required|exists:news_categories,id',
                 'image_path' => 'sometimes|mimes:jpeg,jpg,png|max:4096',
@@ -161,8 +161,8 @@ class NewsController extends Controller
             ], [
                 'title.required' => 'Judul berita harus ada',
                 'title.max' => 'Judul berita maksimal 50 kata',
-                'slug.required' => 'Ringakasan Berita harus ada',
-                'slug.max' => 'Ringkasan maksimal 75 kata',
+                'summary.required' => 'Ringakasan Berita harus ada',
+                'summary.max' => 'Ringkasan maksimal 75 kata',
                 'category_id.required' => 'Kategori berita harus ada.',
                 'category_id.exists' => 'Kategori berita tidak sesuai.',
                 'date.required' => 'Tanggal harus ada',
@@ -178,7 +178,7 @@ class NewsController extends Controller
 
             $news->fill($request->only([
                 'title',
-                'slug',
+                'summary',
                 'date',
                 'category_id',
                 'content'

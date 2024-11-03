@@ -34,7 +34,7 @@ class KlasifikasiController extends Controller
         try {
             $request->validate([
                 'name' => 'required',
-                'image_path' => 'required|mimes:jpeg,jpg,png|max:512',
+                'image_path' => 'required|mimes:jpeg,jpg,png|max:4098',
                 'total' => 'required',
                 'jenis' => 'required',
                 'klasifikasi_category_id' => 'required|exists:klasifikasi_categories,id',
@@ -85,7 +85,7 @@ class KlasifikasiController extends Controller
         try {
             $request->validate([
                 'name' => 'required',
-                'image_path' => 'sometimes|mimes:jpeg,jpg,png|max:512',
+                'image_path' => 'sometimes|mimes:jpeg,jpg,png|max:4098',
                 'jenis' => 'required',
                 'total' => 'required',
                 'klasifikasi_category_id' => 'required|exists:klasifikasi_categories,id',

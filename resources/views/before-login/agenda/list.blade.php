@@ -1,9 +1,9 @@
 @extends('layouting.guest.main')
 
-@section('title', 'Event Budaya')
+@section('title', 'Kegiatan Disbud')
 
 @section('content')
-    <x-card.guest.breadcrumb currentPage="Event Budaya" />
+    <x-card.guest.breadcrumb currentPage="Kegiatan Disbud" />
 
 
     <!-- MAIN CONTENT START -->
@@ -20,11 +20,11 @@
                         <x-card.guest.agenda
                             gambar="{{ asset('assets/' . $item->image_path) }}"
                             categoryName="{{ $item->category->name }}"
-                            title="{{ $item->name }}"
-                            slug="{{ $item->slug }}"
+                            title="{{ $item->title }}"
+                            slug="{{ $item->summary }}"
                             author="{{ $item->user->role }}"
                             date="{{ $item->date }}"
-                            detail="{{ route('agenda.detail', ['id' =>  $item->id]) }}"
+                            detail="{{ route('agenda.detail', ['slug' => $item->slug]) }}"
                         />
                     @endforeach
 
