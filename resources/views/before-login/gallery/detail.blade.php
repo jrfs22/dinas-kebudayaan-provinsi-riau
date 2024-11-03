@@ -59,7 +59,6 @@
                             </div>
                         </div>
                     @endforeach
-                    <!-- Slides -->
                 </div>
 
                 <!-- If we need navigation buttons -->
