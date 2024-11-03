@@ -24,8 +24,6 @@
                     </button>
                 @endforeach
             </div>
-
-            <!-- course cards -->
             <div
                 class="ed-2-courses-container grid grid-cols-3 xl:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 gap-[30px] xxl:gap-[20px]">
                 @foreach ($galleries as $item)
