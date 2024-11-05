@@ -1,7 +1,8 @@
 @extends('before-login.detail.layout')
 
-@section('title', 'Detail Berita')
-@section('breadcrumb', 'Berita')
+@section('title', 'Kegiatan Disbud')
+@section('breadcrumb', 'Kegiatan Disbud')
+
 
 @section('leftContent')
     <x-card.guest.detail

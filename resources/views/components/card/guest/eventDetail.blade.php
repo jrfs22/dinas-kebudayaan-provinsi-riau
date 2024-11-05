@@ -13,7 +13,7 @@
 </h4>
 
 <div class="relative rounded-[8px] overflow-hidden mb-[30px]">
-    <img src="{{ $image }}" alt="event-details-img" class="rounded-[8px]">
+    <img src="{{ $image }}" alt="Event Detail {{ $title }}" class="rounded-[8px]">
 </div>
 
 <div>

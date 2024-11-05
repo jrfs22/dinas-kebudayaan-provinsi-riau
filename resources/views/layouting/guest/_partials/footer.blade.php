@@ -41,10 +41,10 @@ class="relative z-[1] before:absolute before:inset-0 before:-z-[1] background be
                     class="flex items-center gap-[10px] opacity-80 hover:text-edyellow"><span
                         class="icon"><img src="{{ asset('assets/guest/img/double-arrow.svg') }}" alt="icon" /></span>
                     Tentang Kami</a>
-                <a href="{{ route('public.agenda') }}"
+                <a href="{{ route('public.news') }}"
                     class="flex items-center gap-[10px] opacity-80 hover:text-edyellow"><span
                         class="icon"><img src="{{ asset('assets/guest/img/double-arrow.svg') }}" alt="icon" /></span>
-                    Event Budaya</a>
+                    Kegiatan Disbud</a>
                 <a href="{{ route('gallery') }}"
                     class="flex items-center gap-[10px] opacity-80 hover:text-edyellow"><span
                         class="icon"><img src="{{ asset('assets/guest/img/double-arrow.svg') }}" alt="icon" /></span>

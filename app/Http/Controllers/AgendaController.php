@@ -14,26 +14,28 @@ class AgendaController extends Controller
     use ManageFiles;
     public function index()
     {
-        if (Auth::check()) {
-            if (isSuperAdmin()) {
-                $agenda = AgendaModel::with('category')->get();
+        if (isSuperAdmin()) {
+            $agenda = AgendaModel::with('category')->get();
 
-                $categories = AgendaCategoryModel::all();
-            } else {
-                $agenda = AgendaModel::whereHas('category', function ($query) {
-                    $query->where('departement_id', auth()->user()->departement_id);
-                })->with('category')->get();
-
-                $categories = AgendaCategoryModel::where('departement_id', auth()->user()->departement_id)->get();
-            }
-            return view('after-login.agenda.index', compact('agenda', 'categories'));
+            $categories = AgendaCategoryModel::all();
         } else {
-            $agenda = AgendaModel::with('category')->paginate(3);
+            $agenda = AgendaModel::whereHas('category', function ($query) {
+                $query->where('departement_id', auth()->user()->departement_id);
+            })->with('category')->get();
 
-            $categories = AgendaCategoryModel::whereHas('agenda')->paginate(3);
-
-            return view('before-login.agenda.list', compact('agenda', 'categories'));
+            $categories = AgendaCategoryModel::where('departement_id', auth()->user()->departement_id)->get();
         }
+
+        return view('after-login.agenda.index', compact('agenda', 'categories'));
+    }
+
+    public function festival()
+    {
+        $festival = AgendaModel::whereHas('category', function ($query) {
+            $query->where('name', 'like', '%festival%');
+        })->paginate(4);
+
+        return view('before-login.agenda.list', compact('festival'));
     }
 
     public function create()
@@ -68,7 +70,7 @@ class AgendaController extends Controller
     public function show(string $slug, string $time)
     {
         try {
-            $slug = $time . '/' . $slug;
+            $slug = $slug . '/' . $time;
 
             $agenda = AgendaModel::where('slug' ,$slug)->first();
 

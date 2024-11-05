@@ -2,30 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\NewsCategoryModel;
+use Exception;
 use App\Models\NewsModel;
 use App\Traits\ManageFiles;
-use Exception;
 use Illuminate\Http\Request;
+use App\Models\NewsCategoryModel;
+use Illuminate\Support\Facades\Auth;
 
 class NewsController extends Controller
 {
     use ManageFiles;
     public function index()
     {
-        if (isSuperAdmin()) {
-            $news = NewsModel::with('category')->get();
+        if (Auth::check()) {
+            if (isSuperAdmin()) {
+                $news = NewsModel::with('category')->get();
 
-            $categories = NewsCategoryModel::all();
+                $categories = NewsCategoryModel::all();
+            } else {
+                $news = NewsModel::whereHas('category', function ($query) {
+                    $query->where('departement_id', auth()->user()->departement_id);
+                })->with('category')->get();
+
+                $categories = NewsCategoryModel::where('departement_id', auth()->user()->departement_id)->get();
+            }
+
+            return view('after-login.news.index', compact('news', 'categories'));
         } else {
-            $news = NewsModel::whereHas('category', function ($query) {
-                $query->where('departement_id', auth()->user()->departement_id);
-            })->with('category')->get();
+            $news = NewsModel::with('category')->paginate(3);
 
-            $categories = NewsCategoryModel::where('departement_id', auth()->user()->departement_id)->get();
+            $categories = NewsCategoryModel::whereHas('news')->paginate(3);
+
+            return view('before-login.news.list', compact('news', 'categories'));
         }
-
-        return view('after-login.news.index', compact('news', 'categories'));
     }
 
     public function create()
@@ -42,7 +51,7 @@ class NewsController extends Controller
     public function show(string $slug, string $time)
     {
         try {
-            $slug = $time . '/' . $slug;
+            $slug = $slug . '/' . $time;
 
             $news = NewsModel::with('category.departement')->where('slug' ,$slug)->first();
 
@@ -54,6 +63,25 @@ class NewsController extends Controller
         } catch (Exception $e) {
             return redirect()->route('beranda');
         }
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
+
+        $request->validate([
+            'search' => 'required|string|min:1',
+        ]);
+
+        $news = NewsModel::where(function ($q) use ($query) {
+            $q->where('title', 'LIKE', "%{$query}%")
+                ->orWhere('summary', 'LIKE', "%{$query}%")
+                ->orWhere('content', 'LIKE', "%{$query}%");
+        })->paginate(3);
+
+        $categories = NewsCategoryModel::whereHas('news')->paginate(3);
+
+        return view('before-login.news.list', compact('news', 'categories'));
     }
 
     public function store(Request $request)

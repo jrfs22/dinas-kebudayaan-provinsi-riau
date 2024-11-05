@@ -30,11 +30,7 @@ class CompanyProfilesSeeder extends Seeder
                 'title' => 'Kata Sambutan Direktur',
                 'description' => 'Kata sambutan dari Direktur.',
                 'content' => '
-                    <p><strong>Assalamu\'alaikum Warahmatullahi Wabarakatuh,</strong></p>
-                    <p>Puji syukur ke hadirat Allah SWT, kita dapat berkumpul dalam acara ini. Saya sangat menghargai kerja keras seluruh tim yang telah membantu perusahaan mencapai kemajuan ini. Inovasi dan kerja sama selalu menjadi nilai utama yang kita pegang, dan bersama-sama kita akan meraih lebih banyak kesuksesan di masa mendatang.</p>
-                    <p>Terima kasih atas kontribusi Anda semua. Semoga apa yang kita lakukan hari ini membawa kebaikan dan manfaat bagi kita semua.</p>
-                    <p><strong>Wassalamu\'alaikum Warahmatullahi Wabarakatuh.</strong></p>
-                    <p><strong>[Nama Direktur]</strong><br>Direktur [Nama Perusahaan]</p>
+                    <p><strong style="background-color: rgb(250, 249, 246);">Assalamu’alaikum warahmatullahi wabarakatuh. </strong></p><p><span style="background-color: rgb(250, 249, 246);">Selamat datang di website kebudayaan kami! Kami sangat senang Anda bergabung untuk menjelajahi kekayaan budaya yang ada di sekitar kita. Website ini dirancang sebagai sumber informasi menarik tentang seni, tradisi, dan sejarah yang membentuk identitas kita. Semoga platform ini memfasilitasi pertukaran ide dan memperkuat rasa cinta terhadap kebudayaan kita. Terima kasih atas kehadiran Anda, dan selamat menjelajahi! Wassalamu’alaikum warahmatullahi wabarakatuh.</span></p>
                 ',
                 'date' => now(),
                 'status' => 'published',
