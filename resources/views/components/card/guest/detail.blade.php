@@ -13,6 +13,19 @@
     <h3 class="text-[30px] lg:text-[27px] sm:text-[24px] xxs:text-[22px] font-semibold text-black mb-[18px]">
         {{ $title }}
     </h3>
+    <div class="flex items-center gap-[30px] mb-[24px]">
+        <!-- single info -->
+        <div class="flex gap-[10px] items-center">
+            <x-icon.user />
+            <span class="text-[14px] text-edgray">{{ $author }}</span>
+        </div>
+
+        <!-- single info -->
+        <div class="flex gap-[10px] items-center">
+            <x-icon.tag />
+            <span class="text-[14px] text-edgray"><a href="#">{{ $categoryName }}</a></span>
+        </div>
+    </div>
     <div class="img overflow-hidden rounded-[8px] mb-[30px] relative">
         <img src="{{ $image }}" alt="Gambar Utama" class="max-h-[380px] max-w-full aspect-[770/380]">
 
@@ -25,19 +38,7 @@
 
     <div>
         <!-- infos -->
-        <div class="flex items-center gap-[30px] mb-[7px]">
-            <!-- single info -->
-            <div class="flex gap-[10px] items-center">
-                <x-icon.user />
-                <span class="text-[14px] text-edgray">{{ $author }}</span>
-            </div>
 
-            <!-- single info -->
-            <div class="flex gap-[10px] items-center">
-                <x-icon.tag />
-                <span class="text-[14px] text-edgray"><a href="#">{{ $categoryName }}</a></span>
-            </div>
-        </div>
 
         <p class="font-normal text-[16px] text-edgray mb-[16px]">
             {!! $content !!}

@@ -13,7 +13,7 @@ class SurveyController extends Controller
 {
     public function index()
     {
-        if(Auth::check()) {
+        if (Auth::check()) {
             $surveys = SurveyModel::all();
             return view('after-login.survey.index', compact('surveys'));
         } else {
@@ -21,7 +21,7 @@ class SurveyController extends Controller
 
             $surveys = SurveyModel::select('*')->orderByRaw("CASE WHEN start_date >= ? AND end_date <= ? THEN 1 ELSE 2 END", [$today, $today])->orderByDesc('created_at')->where('status', '!=', 'inactive')->whereHas('questions')->get();
 
-            if($surveys->isNotEmpty()) {
+            if ($surveys->isNotEmpty()) {
                 foreach ($surveys as $survey) {
                     $survey->slugs = Str::slug($survey->title);
                 }
@@ -31,24 +31,17 @@ class SurveyController extends Controller
         }
     }
 
-    public function show(string $id, string $slugs)
+    public function show(string $time, string $slug)
     {
         try {
-            $survey = SurveyModel::with('questions')->where('id', $id)
-            ->whereRaw('LOWER(REPLACE(title, " ", "-")) = ?', [strtolower($slugs)])
-            ->firstOrFail();
+            $slug = $time . '/' . $slug;
+            $survey = SurveyModel::where('slug', $slug)->first();
 
-            if (isset($survey)) {
-                $survey->question_summary = $survey->questions()->count() + 2;
-
-                foreach ($survey->questions as $item) {
-                    if(in_array($item->question_type, ['radio', 'checkbox'])) {
-                        $item->option_decode = json_decode($item->options, true);
-                    }
-                }
+            if (Auth::check()) {
+                return view('after-login.survey.detail', compact('survey'));
+            } else {
+                return view('before-login.survey.detail', compact('survey'));
             }
-
-            return view('before-login.survey.detail', compact('survey'));
         } catch (Exception $e) {
             $this->alert(
                 'Survey',
@@ -65,15 +58,17 @@ class SurveyController extends Controller
         try {
             $request->validate([
                 'title' => 'required',
-                'slug' => 'required',
+                'summary' => 'required',
+                'url_path' => 'required',
                 'content' => 'required',
                 'start_date' => 'required',
                 'end_date' => 'required',
                 'status' => 'required|in:active,inactive,completed',
             ], [
                 'title.required' => 'Judul survey harus di isi.',
-                'slug.required' => 'Ringkasan survey harus di isi.',
+                'summary.required' => 'Ringkasan survey harus di isi.',
                 'content.required' => 'Detail survey harus di isi.',
+                'url_path.required' => 'Link Google Form Harus di isi.  ',
                 'start_date.required' => 'Waktu mulai survey harus di isi.',
                 'end_date.required' => 'Waktu berakhir survey harus di isi.',
                 'status.required' => 'Status survey harus di isi.',
@@ -82,12 +77,19 @@ class SurveyController extends Controller
 
             $survey = new SurveyModel();
 
-            $survey->fill(array_merge(
-                $request->all(),
-                [
-                    'user_id' => auth()->user()->id
-                ]
-            ));
+            $survey->fill(
+                $request->only([
+                    'title',
+                    'content',
+                    'summary',
+                    'url_path',
+                    'start_date',
+                    'end_date',
+                    'status',
+                ])
+            );
+
+            $survey->user_id = auth()->user()->id;
 
             $survey->save();
 
@@ -114,15 +116,17 @@ class SurveyController extends Controller
         try {
             $request->validate([
                 'title' => 'required',
-                'slug' => 'required',
+                'summary' => 'required',
+                'url_path' => 'required',
                 'content' => 'required',
                 'start_date' => 'required',
                 'end_date' => 'required',
                 'status' => 'required|in:active,inactive,completed',
             ], [
                 'title.required' => 'Judul survey harus di isi.',
-                'slug.required' => 'Ringkasan survey harus di isi.',
+                'summary.required' => 'Ringkasan survey harus di isi.',
                 'content.required' => 'Detail survey harus di isi.',
+                'url_path.required' => 'Link Google Form Harus di isi.',
                 'start_date.required' => 'Waktu mulai survey harus di isi.',
                 'end_date.required' => 'Waktu berakhir survey harus di isi.',
                 'status.required' => 'Status survey harus di isi.',
@@ -131,12 +135,17 @@ class SurveyController extends Controller
 
             $survey = SurveyModel::findOrFail($id);
 
-            $survey->fill(array_merge(
-                $request->all(),
-                [
-                    'user_id' => auth()->user()->id
-                ]
-            ));
+            $survey->fill(
+                $request->only([
+                    'title',
+                    'summary',
+                    'content',
+                    'url_path',
+                    'start_date',
+                    'end_date',
+                    'status',
+                ])
+            );
 
             $survey->update();
 
@@ -163,21 +172,13 @@ class SurveyController extends Controller
         try {
             $survey = SurveyModel::findOrFail($id);
 
-            if ($survey->questions()->exists() && $survey->responses()->exists()) {
-                $this->alert(
-                    'Survey',
-                    'Survey terdapat beberapa pertanyaan dan response, silahkan hapus terlebih dahulu',
-                    'error'
-                );
-            } else {
-                $survey->delete();
+            $survey->delete();
 
-                $this->alert(
-                    'Survey',
-                    'Survey berhasil dihapus.',
-                    'success'
-                );
-            }
+            $this->alert(
+                'Survey',
+                'Survey berhasil dihapus.',
+                'success'
+            );
 
             return redirect()->back();
         } catch (Exception $e) {

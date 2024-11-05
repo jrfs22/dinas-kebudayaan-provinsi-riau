@@ -227,7 +227,7 @@
                                             </ul>
                                         </li>
                                         <li class="sidebar-item">
-                                            <a class="sidebar-link {{ isRouteActive('survey.questions') ? 'active' : (isRouteActive('survey.responden') ? 'active' : '') }}"
+                                            <a class="sidebar-link {{ isRouteActive('survey.detail') ? 'active' : ''}}"
                                                 href="{{ route('survey') }}" aria-expanded="false">
                                                 <span>
                                                     <i class="ti ti-zoom-question"></i>

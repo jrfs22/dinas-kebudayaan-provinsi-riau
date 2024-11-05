@@ -1,6 +1,6 @@
 @extends('layouting.guest.main')
 @php
-    $breadcrumb = 'Detail ' . $__env->yieldContent('breadcrumb');
+    $breadcrumb = $__env->yieldContent('breadcrumb');
 @endphp
 
 

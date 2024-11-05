@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->uuid('user_id');
             $table->string('title');
+            $table->string(column: 'summary');
             $table->string('slug');
             $table->text('content');
+            $table->text('url_path');
             $table->timestamp('start_date')->nullable();
             $table->timestamp('end_date')->nullable();
             $table->enum('status', ['active', 'inactive', 'completed']);

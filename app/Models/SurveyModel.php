@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\GenerateUniqueSlug;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class SurveyModel extends Model
 {
-    use HasFactory;
+    use HasFactory, GenerateUniqueSlug;
 
     protected $table = 'surveys';
 
@@ -16,19 +17,11 @@ class SurveyModel extends Model
         'user_id',
         'title',
         'slug',
+        'summary',
         'content',
+        'url_path',
         'start_date',
         'end_date',
         'status',
     ];
-
-    public function questions(): HasMany
-    {
-        return $this->hasMany(SurveyQuestionModel::class, 'survey_id');
-    }
-
-    public function responses(): HasMany
-    {
-        return $this->hasMany(SurveyResponseModel::class, 'survey_id');
-    }
 }

@@ -50,11 +50,14 @@
                     <a {{ isRouteActive('museum') ? 'class=active' : (isRouteActive('klasifikasi') ? 'class=active' : '') }}  href="{{ route('museum') }}">UPT Museum</a>
                 </li>
                 <li class="has-sub-menu relative">
-                    <a {{ isRouteActive('public.agenda') ? 'class=active' : (isRouteActive('gallery') ? 'class=active' : (isRouteActive('survey') ? 'class=active' : (isRouteActive('survey.detail') ? 'class=active' : ''))) }} role="button">Informasi</a>
+                    <a {{ isRouteActive('public.news') ? 'class=active' : (isRouteActive('gallery') ? 'class=active' : (isRouteActive('survey') ? 'class=active' : (isRouteActive('survey.detail') ? 'class=active' : (isRouteActive('news.detail') ? 'class=active' : (isRouteActive('agenda.detail') ? 'class=active' : ''))))) }} role="button">Informasi</a>
 
                     <ul class="ed-header-submenu">
                         <li>
-                            <a {{ isRouteActive('public.agenda') ? 'class=active' : '' }}  href="{{ route('public.agenda') }}">Kegiatan Disbud</a>
+                            <a {{ isRouteActive('public.agenda') ? 'class=active' : (isRouteActive('agenda.detail') ? 'class=active' : '') }}  href="{{ route('public.agenda') }}">Event Budaya</a>
+                        </li>
+                        <li>
+                            <a {{ isRouteActive('public.news') ? 'class=active' : (isRouteActive('news.detail') ? 'class=active' : '') }}  href="{{ route('public.news') }}">Kegiatan Disbud</a>
                         </li>
                         <li>
                             <a {{ isRouteActive('gallery') ? 'class=active' : '' }} href="{{ route('gallery') }}">Gallery</a>

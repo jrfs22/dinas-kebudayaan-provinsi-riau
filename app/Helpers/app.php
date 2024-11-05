@@ -59,6 +59,13 @@ function getMonth($date)
     return $carbonDate->translatedFormat('F');
 }
 
+function getYear($date)
+{
+    $carbonDate = Carbon::parse($date);
+
+    return $carbonDate->translatedFormat('Y');
+}
+
 function isFileExist($path, $default)
 {
     if (file_exists(public_path($path))) {
