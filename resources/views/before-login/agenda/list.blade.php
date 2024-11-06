@@ -24,7 +24,7 @@
                         <!-- text -->
                         <div>
                             <h5 class="font-semibold text-[20px] mb-[7px]">
-                                <a href="detail-event-budaya.html" class="hover:text-edgreen line-clamp-2">
+                                <a href="{{ route('agenda.detail', ['slug' => $item->slug]) }}" class="hover:text-edgreen line-clamp-2">
                                     {{ $item->title }}
                                 </a>
                             </h5>

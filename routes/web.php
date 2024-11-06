@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ArticleCategoryController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\BeforeLoginController;
 use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\GalleryImageController;
@@ -56,6 +58,26 @@ Route::middleware('auth')->group(function () {
                 Route::post('', 'store')->name('news.category.store');
                 Route::put('{id?}', 'update')->name('news.category.update');
                 Route::delete('{id}', 'destroy')->name('news.category.destroy');
+            });
+        });
+    });
+
+    Route::prefix('artikel')->group(function () {
+        Route::controller(ArticleController::class)->group(function () {
+            Route::get('','index')->name('article');
+            Route::get('create','create')->name('article.create');
+            Route::get('{id}','edit')->name('article.edit');
+            Route::post('','store')->name('article.store');
+            Route::put('{id?}','update')->name('article.update');
+            Route::delete('{id}', action:'destroy')->name('article.destroy');
+        });
+
+        Route::prefix('kategori')->middleware('role:super admin')->group(function (): void {
+            Route::controller(ArticleCategoryController::class)->group(function () {
+                Route::get('list', 'index')->name('article.category');
+                Route::post('', 'store')->name('article.category.store');
+                Route::put('{id?}', 'update')->name('article.category.update');
+                Route::delete('{id}', 'destroy')->name('article.category.destroy');
             });
         });
     });

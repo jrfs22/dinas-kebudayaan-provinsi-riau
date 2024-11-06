@@ -50,7 +50,7 @@
                     <a {{ isRouteActive('museum') ? 'class=active' : (isRouteActive('klasifikasi') ? 'class=active' : '') }}  href="{{ route('museum') }}">UPT Museum</a>
                 </li>
                 <li class="has-sub-menu relative">
-                    <a {{ isRouteActive('public.news') ? 'class=active' : (isRouteActive('gallery') ? 'class=active' : (isRouteActive('survey') ? 'class=active' : (isRouteActive('survey.detail') ? 'class=active' : (isRouteActive('news.detail') ? 'class=active' : (isRouteActive('agenda.detail') ? 'class=active' : ''))))) }} role="button">Informasi</a>
+                    <a {{ isRouteActive('public.news') ? 'class=active' : (isRouteActive('gallery') ? 'class=active' : (isRouteActive('survey') ? 'class=active' : (isRouteActive('survey.detail') ? 'class=active' : (isRouteActive('news.detail') ? 'class=active' : (isRouteActive('public.agenda') ? 'class=active' : (isRouteActive('agenda.detail') ? 'class=active' : '')))))) }} role="button">Informasi</a>
 
                     <ul class="ed-header-submenu">
                         <li>

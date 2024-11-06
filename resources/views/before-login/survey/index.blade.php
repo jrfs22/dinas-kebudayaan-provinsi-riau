@@ -12,10 +12,9 @@
                 @foreach ($surveys as $item)
                     <x-card.guest.survey
                         title="{{ $item->title }}"
-                        description="{{ $item->slug }}"
+                        description="{{ $item->summary }}"
                         status="{{ surveyStatusOnGuest($item->status) }}"
-                        time="{{ ceil($item->questions->count() * 5 / 60) }} Menit"
-                        detail="{{ route('survey.detail', ['id' => $item->id, 'slugs' => $item->slugs]) }}"
+                        detail="{{ route('survey.detail', ['slug' => $item->slug]) }}"
                     />
                 @endforeach
             </div>
