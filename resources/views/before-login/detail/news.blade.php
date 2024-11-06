@@ -31,5 +31,14 @@
     </x-widget.guest.category>
 
     <!-- Recent Post widget -->
-    <x-widget.guest.recent widgetTitle="Berita Terkini"/>
+    <x-widget.guest.recent widgetTitle="Berita Terkini">
+        @foreach ($recent as $item)
+            <x-card.guest.recent
+                image="{{ asset('storage/' . $item->image_path) }}"
+                title="{{ $item->name }}"
+                date="{{ $item->date }}"
+                detail="{{ route('news.detail', ['slug' => $item->slug]) }}"
+            />
+        @endforeach
+    </x-widget.guest.recent>
 @endsection

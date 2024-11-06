@@ -938,6 +938,17 @@ video {
     margin-bottom: -24px;
 }
 
+.max-w-full {
+    max-width: 100%;
+}
+.max-h-\[380px\] {
+    max-height: 380px;
+}
+.aspect-\[770\/380\] {
+    aspect-ratio: 770 / 380;
+    background-size: cover;
+}
+
 .-ml-\[202px\] {
     margin-left: -202px;
 }

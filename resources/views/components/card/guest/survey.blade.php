@@ -2,7 +2,6 @@
     'title',
     'description',
     'status',
-    'time',
     'detail'
 ])
 
@@ -15,11 +14,6 @@
             <div
                 class="inline-flex items-center gap-[8px] rounded-[6px] px-[8px] py-[7px] font-semibold {{ $status == 'selesai' ? 'bg-edgreen' : 'bg-edyellow' }} text-white capitalize">
                 <span>{{ $status }}</span>
-            </div>
-            <div
-                class="inline-flex items-center gap-[8px] rounded-[6px] px-[8px] py-[7px] font-semibold border border-edgreen text-edgreen">
-                <x-icon.clock />
-                <span>{{ $time }}</span>
             </div>
         </div>
         <h5 class="font-semibold text-[20px] mb-[7px]">

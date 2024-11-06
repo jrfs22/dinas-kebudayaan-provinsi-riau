@@ -50,17 +50,26 @@
                     <a {{ isRouteActive('museum') ? 'class=active' : (isRouteActive('klasifikasi') ? 'class=active' : '') }}  href="{{ route('museum') }}">UPT Museum</a>
                 </li>
                 <li class="has-sub-menu relative">
-                    <a {{ isRouteActive('public.news') ? 'class=active' : (isRouteActive('gallery') ? 'class=active' : (isRouteActive('survey') ? 'class=active' : (isRouteActive('survey.detail') ? 'class=active' : (isRouteActive('news.detail') ? 'class=active' : (isRouteActive('agenda.detail') ? 'class=active' : ''))))) }} role="button">Informasi</a>
+                    <a {{ isRouteActiveArr([
+                        'public.news','gallery', 'survey', 'survey.detail',
+                        'news.detail', 'public.agenda', 'agenda.detail',
+                        'article', 'article.detail', 'gallery.detail'
+                    ]) }} role="button">Informasi</a>
 
                     <ul class="ed-header-submenu">
                         <li>
-                            <a {{ isRouteActive('public.agenda') ? 'class=active' : (isRouteActive('agenda.detail') ? 'class=active' : '') }}  href="{{ route('public.agenda') }}">Event Budaya</a>
+                            <a {{ isRouteActiveArr([
+                                'public.agenda','agenda.detail'
+                            ]) }}  href="{{ route('public.agenda') }}">Event Budaya</a>
                         </li>
                         <li>
                             <a {{ isRouteActive('public.news') ? 'class=active' : (isRouteActive('news.detail') ? 'class=active' : '') }}  href="{{ route('public.news') }}">Kegiatan Disbud</a>
                         </li>
                         <li>
-                            <a {{ isRouteActive('gallery') ? 'class=active' : '' }} href="{{ route('gallery') }}">Gallery</a>
+                            <a {{ isRouteActive('article') ? 'class=active' : (isRouteActive('article.detail') ? 'class=active' : '') }} href="{{ route('article') }}">Artikel</a>
+                        </li>
+                        <li>
+                            <a {{ isRouteActive('gallery') ? 'class=active' : (isRouteActive('gallery.detail') ? 'class=active' : '') }} href="{{ route('gallery') }}">Gallery</a>
                         </li>
                         <li>
                             <a {{ isRouteActive('survey') ? 'class=active' : (isRouteActive('survey.detail') ? 'class=active' : '') }} href="{{ route('survey') }}">Survey</a>

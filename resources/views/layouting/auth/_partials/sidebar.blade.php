@@ -71,6 +71,49 @@
                                     @endhasrole
                                     @hasrole('super admin')
                                         <li class="sidebar-item">
+                                            <a class="sidebar-link has-arrow {{ isRouteActive('article.create') ? 'active' : (isRouteActive('article.edit') ? 'active' : '') }}"
+                                                href="javascript:void(0)" aria-expanded="false">
+                                                <span class="d-flex">
+                                                    <i class="ti ti-article"></i>
+                                                </span>
+                                                <span class="hide-menu">Artikel</span>
+                                            </a>
+                                            <ul aria-expanded="false"
+                                                class="collapse first-level {{ isRouteActive('article.create') ? 'in' : (isRouteActive('article.edit') ? 'in' : '') }}">
+                                                <li class="sidebar-item">
+                                                    <a href="{{ route('article.category') }}" class="sidebar-link">
+                                                        <div
+                                                            class="round-16 d-flex align-items-center justify-content-center">
+                                                            <i class="ti ti-circle"></i>
+                                                        </div>
+                                                        <span class="hide-menu">Kategori</span>
+                                                    </a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a href="{{ route('article') }}"
+                                                        class="sidebar-link {{ isRouteActive('article.create') ? 'active' : (isRouteActive('article.edit') ? 'active' : '') }}">
+                                                        <div
+                                                            class="round-16 d-flex align-items-center justify-content-center">
+                                                            <i class="ti ti-circle"></i>
+                                                        </div>
+                                                        <span class="hide-menu">List</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    @else
+                                        <li class="sidebar-item">
+                                            <a class="sidebar-link {{ isRouteActive('article.create') ? 'active' : (isRouteActive('article.edit') ? 'active' : '') }}"
+                                                href="{{ route('article') }}" aria-expanded="false">
+                                                <span>
+                                                    <i class="ti ti-article"></i>
+                                                </span>
+                                                <span class="hide-menu">Berita</span>
+                                            </a>
+                                        </li>
+                                    @endhasrole
+                                    @hasrole('super admin')
+                                        <li class="sidebar-item">
                                             <a class="sidebar-link has-arrow {{ isRouteActive('gallery.images') ? 'active' : '' }}" href="javascript:void(0)"
                                                 aria-expanded="false">
                                                 <span class="d-flex">
@@ -156,7 +199,7 @@
                                     @hasrole('super admin|admin')
                                         @if (in_array(auth()->user()->departement_id, [1,2]))
                                             <li class="sidebar-item">
-                                                <a class="sidebar-link has-arrow {{ isRouteActive('klasifikasi.create') ? 'active' : (isRouteActive('klasifikasi.edit') ? 'active' : '') }}"
+                                                <a class="sidebar-link has-arrow {{ isRouteActiveArr(['klasifikasi.images', 'klasifikasi.informations'], 'active') }}"
                                                     href="javascript:void(0)" aria-expanded="false">
                                                     <span class="d-flex">
                                                         <i class="ti ti-wall"></i>
@@ -164,7 +207,7 @@
                                                     <span class="hide-menu">Klasifikasi</span>
                                                 </a>
                                                 <ul aria-expanded="false"
-                                                    class="collapse first-level {{ isRouteActive('klasifikasi.create') ? 'in' : (isRouteActive('klasifikasi.edit') ? 'in' : '') }}">
+                                                    class="collapse first-level {{ isRouteActiveArr(['klasifikasi.images', 'klasifikasi.informations'], 'in') }}">
                                                     <li class="sidebar-item">
                                                         <a href="{{ route('klasifikasi.category') }}"
                                                             class="sidebar-link">
@@ -177,7 +220,7 @@
                                                     </li>
                                                     <li class="sidebar-item">
                                                         <a href="{{ route('klasifikasi') }}"
-                                                            class="sidebar-link {{ isRouteActive('klasifikasi.create') ? 'active' : (isRouteActive('klasifikasi.edit') ? 'active' : '') }}">
+                                                            class="sidebar-link {{ isRouteActiveArr(['klasifikasi.images', 'klasifikasi.informations'], 'active') }}">
                                                             <div
                                                                 class="round-16 d-flex align-items-center justify-content-center">
                                                                 <i class="ti ti-circle"></i>

@@ -3,15 +3,15 @@
 namespace App\Models;
 
 use App\Traits\GenerateUniqueSlug;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class NewsModel extends Model
+class ArticleModel extends Model
 {
     use HasFactory, GenerateUniqueSlug;
 
-    protected $table = 'news';
+    protected $table = 'articles';
 
     protected $fillable = [
         'title',
@@ -28,15 +28,10 @@ class NewsModel extends Model
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(NewsCategoryModel::class);
+        return $this->belongsTo(ArticleCategoryModel::class);
     }
 
     public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function author(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

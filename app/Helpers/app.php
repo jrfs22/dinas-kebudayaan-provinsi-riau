@@ -7,6 +7,14 @@ function isRouteActive($route)
     return request()->route()->getName() === $route;
 }
 
+function isRouteActiveArr($routes, $activeClass = 'class=active')
+{
+    if (is_array($routes)) {
+        return in_array(request()->route()->getName(), $routes) ? $activeClass : '';
+    }
+    return request()->route()->getName() === $routes ? $activeClass : '';
+}
+
 // function isRouteParamActive($route, $param, $value)
 // {
 //     $currentRoute = request()->route()->getName();
