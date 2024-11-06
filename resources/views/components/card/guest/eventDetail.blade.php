@@ -13,7 +13,7 @@
 </h4>
 
 <div class="relative rounded-[8px] overflow-hidden mb-[30px]">
-    <img src="{{ $image }}" alt="Event Detail {{ $title }}" class="rounded-[8px]">
+    <img src="{{ $image }}" alt="Event Detail {{ $title }}" class="rounded-[8px]" style="object-fit: cover; aspect-ratio: 16 / 9; width:100%;">
 </div>
 
 <div>

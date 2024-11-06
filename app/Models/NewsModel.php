@@ -35,4 +35,9 @@ class NewsModel extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

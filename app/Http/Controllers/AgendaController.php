@@ -74,7 +74,7 @@ class AgendaController extends Controller
 
             $agenda = AgendaModel::where('slug' ,$slug)->first();
 
-            $agendaCategories = AgendaCategoryModel::all();
+            $agendaCategories = AgendaCategoryModel::whereHas('agenda')->get();
 
             $recent = AgendaModel::where('slug', '!=', $slug)->orderBy('date', 'desc')->take(3)->get();
 

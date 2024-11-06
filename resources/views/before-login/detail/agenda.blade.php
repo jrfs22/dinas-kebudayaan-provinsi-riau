@@ -28,7 +28,7 @@
                 image="{{ asset('storage/' . $item->image_path) }}"
                 title="{{ $item->name }}"
                 date="{{ $item->date }}"
-                detail="{{ route('agenda.detail', ['id' => $item->id]) }}"
+                detail="{{ route('agenda.detail', ['slug' => $item->slug]) }}"
             />
         @endforeach
     </x-widget.guest.recent>

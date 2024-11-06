@@ -31,9 +31,7 @@ class ArticleController extends Controller
         } else {
             $article = ArticleModel::with('category')->paginate(3);
 
-            $categories = ArticleCategoryModel::whereHas('article')->paginate(3);
-
-            return view('before-login.article.list', compact('article', 'categories'));
+            return view('before-login.article.list', compact('article'));
         }
     }
 
@@ -55,10 +53,12 @@ class ArticleController extends Controller
 
             $article = ArticleModel::with('category.departement')->where('slug' ,$slug)->first();
 
-            $articleCategories = ArticleCategoryModel::all();
+            $articleCategories = ArticleCategoryModel::whereHas('article')->get();
+
+            $recent = ArticleModel::where('slug', '!=', $slug)->orderBy('date', 'desc')->take(3)->get();
 
             return view('before-login.detail.article', compact(
-                'article', 'articleCategories'
+                'article', 'articleCategories', 'recent'
             ));
         } catch (Exception $e) {
             return redirect()->route('beranda');
@@ -67,21 +67,28 @@ class ArticleController extends Controller
 
     public function search(Request $request)
     {
-        $query = $request->input('search');
+        try {
+            $query = $request->input('search');
 
-        $request->validate([
-            'search' => 'required|string|min:1',
-        ]);
+            $request->validate([
+                'search' => 'required|string|min:1',
+            ]);
 
-        $article = ArticleModel::where(function ($q) use ($query) {
-            $q->where('title', 'LIKE', "%{$query}%")
-                ->orWhere('summary', 'LIKE', "%{$query}%")
-                ->orWhere('content', 'LIKE', "%{$query}%");
-        })->paginate(3);
+            $article = ArticleModel::where(function ($q) use ($query) {
+                $q->where('title', 'LIKE', "%{$query}%")
+                    ->orWhere('summary', 'LIKE', "%{$query}%")
+                    ->orWhere('content', 'LIKE', "%{$query}%");
+            })->first();
 
-        $categories = ArticleCategoryModel::whereHas('article')->paginate(3);
-
-        return view('before-login.article.list', compact('article', 'categories'));
+            return redirect()->route('article.detail', ['slug' => $article->slug]);
+        } catch (Exception $e) {
+            $this->alert(
+                'Artikel',
+                'Tidak ada data yang ditemukan',
+                'error'
+            );
+            return redirect()->back();
+        }
     }
 
     public function store(Request $request)

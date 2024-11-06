@@ -19,7 +19,7 @@ class ArticleCategoryModel extends Model
 
     public function article(): HasMany
     {
-        return $this->hasMany(ArticleModel::class, 'id');
+        return $this->hasMany(ArticleModel::class, 'category_id');
     }
 
     public function departement(): BelongsTo

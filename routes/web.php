@@ -7,6 +7,8 @@ use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\GalleryImageController;
 use App\Http\Controllers\KlasifikasiCategoryController;
 use App\Http\Controllers\KlasifikasiController;
+use App\Http\Controllers\KlasifikasiImageController;
+use App\Http\Controllers\KlasifikasiInformationController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
@@ -33,6 +35,8 @@ Route::get('profil/{type}', [ProfilesController::class, 'profiles'])->name('prof
 Route::get('ppid/{id}', [PPIDController::class, 'index'])->name('ppid');
 
 Route::get('galleries', [GalleryController::class, 'index'])->name('gallery');
+
+Route::get('artikel', [ArticleController::class, 'index'])->name('article');
 
 Route::get('klasifikasi', [KlasifikasiController::class, 'index'])->name('klasifikasi');
 
@@ -64,7 +68,6 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('artikel')->group(function () {
         Route::controller(ArticleController::class)->group(function () {
-            Route::get('','index')->name('article');
             Route::get('create','create')->name('article.create');
             Route::get('{id}','edit')->name('article.edit');
             Route::post('','store')->name('article.store');
@@ -143,6 +146,24 @@ Route::middleware('auth')->group(function () {
                 Route::post('', 'store')->name('klasifikasi.category.store');
                 Route::put('{id?}', 'update')->name('klasifikasi.category.update');
                 Route::delete('{id}', 'destroy')->name('klasifikasi.category.destroy');
+            });
+        });
+
+        Route::prefix('images')->group(function () {
+            Route::controller(KlasifikasiImageController::class,)->group(function () {
+                Route::get('{id}', 'index')->name('klasifikasi.images');
+                Route::post('{id}', 'store')->name('klasifikasi.images.post');
+                Route::put('{id?}', 'update')->name('klasifikasi.images.update');
+                Route::delete('{id?}', 'destroy')->name('klasifikasi.images.destroy');
+            });
+        });
+
+        Route::prefix('informations')->group(function () {
+            Route::controller(KlasifikasiInformationController::class,)->group(function () {
+                Route::get('{id}', 'index')->name('klasifikasi.informations');
+                Route::post('{id}', 'store')->name('klasifikasi.informations.post');
+                Route::put('{id?}', 'update')->name('klasifikasi.informations.update');
+                Route::delete('{id?}', 'destroy')->name('klasifikasi.informations.destroy');
             });
         });
     });
@@ -240,6 +261,9 @@ Route::middleware('guest')->group(function () {
     Route::get('gallery/{slug}/{time?}', [GalleryController::class, 'show'])->name('gallery.detail');
 
     Route::get('news/{slug}/{time?}', [NewsController::class, 'show'])->name('news.detail');
+
+    Route::get('artikel/{slug}/{time?}', [ArticleController::class, 'show'])->name('article.detail');
+    Route::post('artikel', [ArticleController::class, 'search'])->name('article.search');
 
     Route::get('agenda/{slug}/{time?}', [AgendaController::class, 'show'])->name('agenda.detail');
 

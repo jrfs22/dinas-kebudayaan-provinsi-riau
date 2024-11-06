@@ -144,7 +144,7 @@
                 @if ($museumNews->count() > 0)
                     <x-card.guest.newsBig image="{{ asset('storage/' . isDataNull($museumNews[0]->image_path)) }}"
                         title="{{ $museumNews[0]->title }}" date="{{ $museumNews[0]->date }}"
-                        author="admin {{ $museumNews[0]->author->departement }}"
+                        author="admin {{ $museumNews[0]->category->departement->name }}"
                         detail="{{ route('news.detail', ['slug' => $museumNews[0]->slug]) }}" />
                 @endif
 
@@ -153,7 +153,7 @@
                     @foreach ($museumNews->slice(1) as $item)
                         <x-card.guest.newsSmall image="{{ asset('storage/' . $item[0]->cover_image_path) }}"
                             title="{{ $item[0]->title }}" date="{{ $item[0]->date }}"
-                            author="admin {{ $item->author->departement }}"
+                            author="admin {{ $item->category->departement->name }}"
                             detail="{{ route('news.detail', ['slug' => $item->slug]) }}" />
                     @endforeach
                 </div>

@@ -57,8 +57,10 @@ class NewsController extends Controller
 
             $newsCategories = NewsCategoryModel::all();
 
+            $recent = NewsModel::where('slug', '!=', $slug)->orderBy('date', 'desc')->take(3)->get();
+
             return view('before-login.detail.news', compact(
-                'news', 'newsCategories'
+                'news', 'newsCategories', 'recent'
             ));
         } catch (Exception $e) {
             return redirect()->route('beranda');
