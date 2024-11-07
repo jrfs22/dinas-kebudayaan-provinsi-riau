@@ -41,7 +41,7 @@
                                     <i class="ti ti-pencil fs-5"></i>
                                 </a>
 
-                                <x-card.deleted route="{{ route('klasifikasi.informations.destroy', ['id' => $item->id]) }}" />
+                                <x-card.deleted route="{{ route('klasifikasi.images.destroy', ['id' => $item->id]) }}" />
                             </div>
                         </td>
                     </tr>
@@ -49,16 +49,16 @@
             @endslot
         </x-table.basic>
 
-        <x-modal.lg title="Tambah Gambar" action="{{ route('klasifikasi.informations.post', ['id' => $klasifikasi->id]) }}">
+        <x-modal.basic title="Tambah Gambar" action="{{ route('klasifikasi.images.post', ['id' => $klasifikasi->id]) }}">
             <div class="row">
                 <div class="col-12">
                     <x-forms.input name="image_path" label="Gambar" type="file"
                     fileLabel="Maksimal 4 Mb" required=1 />
                 </div>
             </div>
-        </x-modal.lg>
+        </x-modal.basic>
 
-        <x-modal.lg id="EditGambarKlasifikasi" title="Edit Gambar" action="{{ route('klasifikasi.store') }}" isUpdate=1>
+        <x-modal.basic id="EditGambarKlasifikasi" title="Edit Gambar" action="{{ route('klasifikasi.store') }}" isUpdate=1>
             <div class="row">
                 <div class="col-12">
                     <img class="mb-3" src="" id="edtNewImage" width="100%" height="400"
@@ -68,7 +68,7 @@
                     <x-forms.input name="image_path" id="edt_image_path" label="Gambar Gallery" type="file" />
                 </div>
             </div>
-        </x-modal.lg>
+        </x-modal.basic>
     </div>
 
 @endsection
@@ -79,7 +79,7 @@
             var id = $(element).data('id');
             var image_path = $(element).data('image_path');
 
-            var route = {!! json_encode(route('klasifikasi.informations.update') . '/') !!} + id
+            var route = {!! json_encode(route('klasifikasi.images.update') . '/') !!} + id
 
             $("#EditGambarKlasifikasi form").attr('action', route)
             $("#EditGambarKlasifikasi").modal('show')

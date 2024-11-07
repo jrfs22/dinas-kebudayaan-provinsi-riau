@@ -938,6 +938,32 @@ video {
     margin-bottom: -24px;
 }
 
+.w-80 {
+    width: 20rem;
+}
+
+.h-80 {
+    height: 20rem;
+}
+
+.py-5 {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+}
+
+.gap-x-3 {
+    -moz-column-gap: 0.75rem;
+    column-gap: 0.75rem;
+}
+
+.p-4 {
+    padding: 1rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
 .max-w-full {
     max-width: 100%;
 }
@@ -4439,6 +4465,38 @@ input[type="radio"] {
 
 .group.active .group-\[\.active\]\:opacity-100 {
     opacity: 1;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.text-\[120px\] {
+    font-size: 120px;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+.text-\[32px\] {
+    font-size: 32px;
+}
+.mb-\[3px\] {
+    margin-bottom: 3px;
+}
+
+.text-\[18px\] {
+    font-size: 18px;
+}
+.mb-\[32px\] {
+    margin-bottom: 32px;
+}
+p {
+    line-height: 1.75;
+}
+.bg-edred {
+    --tw-bg-opacity: 1;
+    background-color: rgb(194 22 62 / var(--tw-bg-opacity));
 }
 
 @media (max-width: 1880px) {
