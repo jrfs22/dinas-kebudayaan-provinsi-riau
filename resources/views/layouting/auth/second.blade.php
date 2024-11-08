@@ -10,8 +10,6 @@
     <body>
         @yield('content')
 
-
-
         @include('layouting.auth._partials.scripts')
     </body>
 

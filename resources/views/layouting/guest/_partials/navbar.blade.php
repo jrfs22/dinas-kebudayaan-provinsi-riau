@@ -1,5 +1,4 @@
-<header
-    style="background-color: white;"
+<header style="background-color: white;"
     class="bg-edyellow ed-header--2 relative z-[2] px-[7.9%] xxxxl:px-[6.5%] xxxl:px-[1%] lg:px-[15px] py-[25px] xxs:py-[16px] flex items-center justify-between to-be-fixed">
     <div class="logo xxs:max-w-[40%]">
         <a href="{{ route('beranda') }}" class="flex space-x-2">
@@ -13,22 +12,28 @@
             <!-- nav -->
             <ul
                 class="to-go-to-sidebar-in-mobile ed-header-nav flex lg:flex-col gap-x-[43px] xxl:gap-x-[33px] font-kanit text-[17px] font-normal">
-                <li><a {{ isRouteActive('beranda') ? 'class=active' : '' }} href="{{ route('beranda') }}">Beranda</a></li>
+                <li><a {{ isRouteActive('beranda') ? 'class=active' : '' }} href="{{ route('beranda') }}">Beranda</a>
+                </li>
                 <li class="has-sub-menu relative">
                     <a {{ isRouteActive('profiles') ? 'class=active' : '' }} role="button">Profil</a>
 
                     <ul class="ed-header-submenu">
                         <li class="has-sub-menu relative">
-                            <a {{ isRouteParamActive('profiles', 'type', 'about') ? 'class=active' : '' }} href="{{ route('profiles', ['type' => 'about']) }}">Tentang Kami</a>
+                            <a {{ isRouteParamActive('profiles', 'type', 'about') ? 'class=active' : '' }}
+                                href="{{ route('profiles', ['type' => 'about']) }}">Tentang Kami</a>
                         </li>
                         <li class="has-sub-menu relative">
-                            <a {{ isRouteParamActive('profiles', 'type', 'sejarah') ? 'class=active' : '' }} href="{{ route('profiles', ['type' => 'sejarah']) }}">Sejarah Singkat</a>
+                            <a {{ isRouteParamActive('profiles', 'type', 'sejarah') ? 'class=active' : '' }}
+                                href="{{ route('profiles', ['type' => 'sejarah']) }}">Sejarah Singkat</a>
                         </li>
                         <li class="has-sub-menu relative">
-                            <a {{ isRouteParamActive('profiles', 'type', 'visi-misi') ? 'class=active' : '' }} href="{{ route('profiles', ['type' => 'visi-misi']) }}">Visi & Misi</a>
+                            <a {{ isRouteParamActive('profiles', 'type', 'visi-misi') ? 'class=active' : '' }}
+                                href="{{ route('profiles', ['type' => 'visi-misi']) }}">Visi & Misi</a>
                         </li>
                         <li class="has-sub-menu relative">
-                            <a {{ isRouteParamActive('profiles', 'type', 'struktur-organisasi') ? 'class=active' : '' }} href="{{ route('profiles', ['type' => 'struktur-organisasi']) }}">Struktur Organisasi</a>
+                            <a {{ isRouteParamActive('profiles', 'type', 'struktur-organisasi') ? 'class=active' : '' }}
+                                href="{{ route('profiles', ['type' => 'struktur-organisasi']) }}">Struktur
+                                Organisasi</a>
                         </li>
                     </ul>
                 </li>
@@ -40,45 +45,62 @@
                         <ul class="ed-header-submenu">
                             @foreach ($ppid_categories as $item)
                                 <li>
-                                    <a {{ isRouteParamActive('ppid', 'id', $item->id) ? 'class=active' : '' }} href="{{ route('ppid', ['id' => $item->id]) }}">{{ $item->name }}</a>
+                                    <a {{ isRouteParamActive('ppid', 'id', $item->id) ? 'class=active' : '' }}
+                                        href="{{ route('ppid', ['id' => $item->id]) }}">{{ $item->name }}</a>
                                 </li>
                             @endforeach
                         </ul>
                     </li>
                 @endif
                 <li class="has-sub-menu relative">
-                    <a {{ isRouteActive('museum') ? 'class=active' : (isRouteActive('klasifikasi') ? 'class=active' : '') }}  href="{{ route('museum') }}">UPT Museum</a>
+                    <a {{ isRouteActive('ppkd') ? 'class=active' : '' }}
+                        href="{{ route('ppkd') }}">PPKD</a>
+                </li>
+                <li class="has-sub-menu relative">
+                    <a {{ isRouteActive('museum') ? 'class=active' : (isRouteActive('klasifikasi') ? 'class=active' : (isRouteActive('klasifikasi.detail') ? 'class=active' : '')) }}
+                        href="{{ route('museum') }}">UPT Museum</a>
                 </li>
                 <li class="has-sub-menu relative">
                     <a {{ isRouteActiveArr([
-                        'public.news','gallery', 'survey', 'survey.detail',
-                        'news.detail', 'public.agenda', 'agenda.detail',
-                        'article', 'article.detail', 'gallery.detail'
-                    ]) }} role="button">Informasi</a>
+                        'public.news',
+                        'gallery',
+                        'survey',
+                        'survey.detail',
+                        'news.detail',
+                        'public.agenda',
+                        'agenda.detail',
+                        'article',
+                        'article.detail',
+                        'gallery.detail',
+                    ]) }}
+                        role="button">Informasi</a>
 
                     <ul class="ed-header-submenu">
                         <li>
-                            <a {{ isRouteActiveArr([
-                                'public.agenda','agenda.detail'
-                            ]) }}  href="{{ route('public.agenda') }}">Event Budaya</a>
+                            <a {{ isRouteActiveArr(['public.agenda', 'agenda.detail']) }}
+                                href="{{ route('public.agenda') }}">Event Budaya</a>
                         </li>
                         <li>
-                            <a {{ isRouteActive('public.news') ? 'class=active' : (isRouteActive('news.detail') ? 'class=active' : '') }}  href="{{ route('public.news') }}">Kegiatan Disbud</a>
+                            <a {{ isRouteActive('public.news') ? 'class=active' : (isRouteActive('news.detail') ? 'class=active' : '') }}
+                                href="{{ route('public.news') }}">Kegiatan Disbud</a>
                         </li>
                         <li>
-                            <a {{ isRouteActive('article') ? 'class=active' : (isRouteActive('article.detail') ? 'class=active' : '') }} href="{{ route('article') }}">Artikel</a>
+                            <a {{ isRouteActive('article') ? 'class=active' : (isRouteActive('article.detail') ? 'class=active' : '') }}
+                                href="{{ route('article') }}">Artikel</a>
                         </li>
                         <li>
-                            <a {{ isRouteActive('gallery') ? 'class=active' : (isRouteActive('gallery.detail') ? 'class=active' : '') }} href="{{ route('gallery') }}">Gallery</a>
+                            <a {{ isRouteActive('gallery') ? 'class=active' : (isRouteActive('gallery.detail') ? 'class=active' : '') }}
+                                href="{{ route('gallery') }}">Gallery</a>
                         </li>
                         <li>
-                            <a {{ isRouteActive('survey') ? 'class=active' : (isRouteActive('survey.detail') ? 'class=active' : '') }} href="{{ route('survey') }}">Survey</a>
+                            <a {{ isRouteActive('survey') ? 'class=active' : (isRouteActive('survey.detail') ? 'class=active' : '') }}
+                                href="{{ route('survey') }}">Survey</a>
                         </li>
                     </ul>
                 </li>
 
                 <li>
-                    <a {{ isRouteActive('kontak') ? 'class=active' : '' }}  href="{{ route('kontak') }}">Kontak</a>
+                    <a {{ isRouteActive('kontak') ? 'class=active' : '' }} href="{{ route('kontak') }}">Kontak</a>
                 </li>
             </ul>
 

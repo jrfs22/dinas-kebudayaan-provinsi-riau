@@ -9,6 +9,7 @@ use App\Http\Controllers\KlasifikasiCategoryController;
 use App\Http\Controllers\KlasifikasiController;
 use App\Http\Controllers\KlasifikasiImageController;
 use App\Http\Controllers\KlasifikasiInformationController;
+use App\Http\Controllers\PpkdController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
@@ -39,6 +40,8 @@ Route::get('galleries', [GalleryController::class, 'index'])->name('gallery');
 Route::get('artikel', [ArticleController::class, 'index'])->name('article');
 
 Route::get('klasifikasi', [KlasifikasiController::class, 'index'])->name('klasifikasi');
+
+Route::get('ppkd', [PpkdController::class, 'index'])->name('ppkd');
 
 Route::get('surveys', [SurveyController::class, 'index'])->name('survey');
 Route::get('surveys/{slug}/{time?}', [SurveyController::class, 'show'])->name('survey.detail');
@@ -231,6 +234,16 @@ Route::middleware('auth')->group(function () {
                 Route::delete('{id}', 'destroy')->name('departement.destroy');
             });
         });
+
+        Route::prefix('ppkd')->group(function () {
+            Route::controller(PpkdController::class)->group(function () {
+                Route::get('create','create')->name('ppkd.create');
+                Route::get('edit/{id}','edit')->name('ppkd.edit');
+                Route::post('', 'store')->name('ppkd.store');
+                Route::put('{id?}', 'update')->name('ppkd.update');
+                Route::delete('{id}', 'destroy')->name('ppkd.destroy');
+            });
+        });
     });
 });
 
@@ -266,6 +279,8 @@ Route::middleware('guest')->group(function () {
     Route::post('artikel', [ArticleController::class, 'search'])->name('article.search');
 
     Route::get('agenda/{slug}/{time?}', [AgendaController::class, 'show'])->name('agenda.detail');
+
+    Route::get('klasifikasi/{slug}/{time?}', [KlasifikasiController::class, 'show'])->name('klasifikasi.detail');
 
     Route::post('contact_us', [ContactUSController::class, 'store'])->name('contact_us.store');
 });

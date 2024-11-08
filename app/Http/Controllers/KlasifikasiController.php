@@ -22,11 +22,34 @@ class KlasifikasiController extends Controller
             return view('after-login.klasifikasi.index', compact('galleries', 'categories'));
 
         } else {
-            $klasifikasiByCategory = KlasifikasiCategoryModel::with('klasifikasi')->get();
+            $categories = KlasifikasiCategoryModel::whereHas('klasifikasi')->get();
 
+            $klasifikasi = KlasifikasiModel::all();
 
-            return view('before-login.museum.klasifikasi', compact('klasifikasiByCategory'));
+            return view('before-login.museum.klasifikasi', compact('categories', 'klasifikasi'));
         }
+    }
+
+    public function show(string $slug, string $time)
+    {
+        // try {
+            $slug = $slug . '/' . $time;
+
+            $klasifikasi = KlasifikasiModel::with(['images', 'informations'])->where('slug' ,$slug)->first();
+
+            // dd($klasifikasi);
+            $klasifikasiCategories = KlasifikasiCategoryModel::whereHas('klasifikasi')->get();
+
+            $recent = KlasifikasiModel::take(3)->get();
+
+            return view('before-login.museum.detailKlasifikasi', compact(
+                'klasifikasi',
+                'klasifikasiCategories',
+                'recent'
+            ));
+        // } catch (Exception $e) {
+        //     return redirect()->route('beranda');
+        // }
     }
 
     public function store(Request $request)
