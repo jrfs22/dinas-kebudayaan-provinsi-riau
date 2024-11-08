@@ -238,6 +238,7 @@ Route::middleware('auth')->group(function () {
         Route::prefix('ppkd')->group(function () {
             Route::controller(PpkdController::class)->group(function () {
                 Route::get('create','create')->name('ppkd.create');
+                Route::get('edit/{id}','edit')->name('ppkd.edit');
                 Route::post('', 'store')->name('ppkd.store');
                 Route::put('{id?}', 'update')->name('ppkd.update');
                 Route::delete('{id}', 'destroy')->name('ppkd.destroy');

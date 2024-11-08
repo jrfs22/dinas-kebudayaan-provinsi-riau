@@ -270,7 +270,7 @@
                                             </ul>
                                         </li>
                                         <li class="sidebar-item">
-                                            <a class="sidebar-link {{ isRouteActive('survey.detail') ? 'active' : ''}}"
+                                            <a class="sidebar-link {{ isRouteActiveArr(['ppkd', 'ppkd.create', 'ppkd.edit'], 'active')}}"
                                                 href="{{ route('ppkd') }}" aria-expanded="false">
                                                 <span>
                                                     <i class="ti ti-files"></i>

@@ -26,6 +26,7 @@
                 <th>Kabupaten/Kota</th>
                 <th>Nama Dokumen</th>
                 <th>Tanggal</th>
+                <th>Status</th>
                 <th>Aksi</th>
             @endslot
 
@@ -33,16 +34,16 @@
                 @foreach ($ppkd as $item)
                     <tr class="search-items">
                         <td>
-                            {{ $item->category->name }}
+                            <a target="_blank" href="{{ asset('storage/' . $item->file_path) }}">{{ $item->regency_name }}</a>
                         </td>
                         <td class="w-200px">
                             {{ $item->title }}
                         </td>
                         <td class="w-200px">
-                            {{ $item->summary }}
+                            {{ indonesianDate($item->date) }}
                         </td>
                         <td>
-                            {{ indonesianDate($item->date) }}
+                            <span class="badge text-capitalize {{ $item->status == 'disahkan' ? 'bg-success ' : 'bg-secondary' }}">{{ $item->status }}</span>
                         </td>
                         <td class="action-btn d-flex gap-2">
                             <a href="{{ route('ppkd.edit', ['id' => $item->id]) }}" class="text-success edit">
