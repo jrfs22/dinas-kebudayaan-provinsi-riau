@@ -2,23 +2,70 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PpkdModel;
-use App\Traits\ApiWilayahTrait;
-use App\Traits\ManageFiles;
 use Exception;
+use App\Models\PpkdModel;
+use App\Traits\ManageFiles;
 use Illuminate\Http\Request;
+use App\Traits\ApiWilayahTrait;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class PpkdController extends Controller
 {
     use ApiWilayahTrait, ManageFiles;
-    public function index()
+    public function index(Request $request)
     {
         if (Auth::check()) {
             $ppkd = PpkdModel::all();
             return view('after-login.ppkd.index', compact('ppkd'));
         } else {
-            return view('before-login.ppkd.index');
+            $regency = PpkdModel::select('regency_id', 'regency_name')->distinct()->get();
+
+            $years = PpkdModel::select(DB::raw('YEAR(date) as year'))
+                ->distinct()
+                ->orderBy('year', 'desc')
+                ->pluck('year')
+                ->toArray();
+
+            $defaultRegency = 'all';
+            $defaultStatus = 'all';
+            $defaultYear = 'all';
+
+            $regencyParam = $request->input('regency', $defaultRegency);
+
+            if ($regencyParam !== $defaultRegency && !$regency->contains('regency_id', $regencyParam)) {
+                $regencyParam = $defaultRegency;
+            }
+
+            $statusParam = $request->input('status', $defaultStatus);
+            if (!in_array($statusParam, ['disusun', 'disahkan'])) {
+                $statusParam = $defaultStatus;
+            }
+
+            $yearParam = $request->input('year', $defaultYear);
+
+
+            if ($yearParam !== $defaultYear && !in_array($yearParam, haystack: $years)) {
+                dd($yearParam);
+                $yearParam = $defaultYear;
+            }
+
+            $ppkd = PpkdModel::query();
+
+            if ($yearParam !== 'all') {
+                $ppkd->whereYear('date', $yearParam);
+            }
+
+            if ($statusParam !== 'all') {
+                $ppkd->where('status', $statusParam);
+            }
+
+            if ($regencyParam !== 'all') {
+                $ppkd->where('regency_id', $regencyParam);
+            }
+
+            $ppkd = $ppkd->get();
+            return view('before-login.ppkd.index', compact('regency', 'ppkd', 'years', 'regencyParam', 'statusParam', 'yearParam'));
         }
     }
 
