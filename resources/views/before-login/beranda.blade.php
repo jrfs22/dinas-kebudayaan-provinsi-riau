@@ -9,25 +9,15 @@
                 <!-- banner text -->
                 <div class="max-w-[49%] xxxl:max-w-[45.5%] md:max-w-full shrink-0">
                     <h6 class="ed-section-sub-title !text-black before:!content-none">
-                        Jelajahi Keindahan
-                        <span class="text-edgreen">Warisan Budaya</span> Riau
+                        {!! $heroSubtitle !!}
                     </h6>
                     <h1
                         class="font-medium text-[clamp(35px,5.4vw,80px)] text-edblue tracking-tight leading-[1.12] mb-[25px]">
-                        Nikmati Ragam<span class="font-bold"><span
-                                class="inline-block text-edgreen relative before:absolute before:left-0 before:top-[calc(100%-6px)] before:w-[240px] before:h-[21px] before:bg-[url('../assets/img/banner-2-title-vector.svg')]">Budaya</span>
-                            Provinsi Riau</span>
+                        {!! $heroTitle !!}
                     </h1>
                     <p class="text-edgray font-medium mb-[41px]">
                         {!! $heroDescription !!}
                     </p>
-                    <div class="flex flex-wrap gap-[10px]">
-                        <!-- <a href="course-filter.html"
-                                                    class="ed-btn !bg-transparent border border-edgreen !text-edgreen hover:!bg-edgreen hover:!text-white"></a>
-                                                <a href="about.html"
-                                                    class="ed-btn !bg-transparent border border-black !text-black hover:!bg-black hover:!text-white">about
-                                                    us</a> -->
-                    </div>
                 </div>
 
                 <!-- banner image -->
@@ -73,13 +63,9 @@
             <div class="grid grid-cols-4 xl:grid-cols-3 md:grid-cols-2 xxs:grid-cols-1 gap-[20px]">
                 <!-- single category -->
                 @foreach ($categoryInformasi as $key => $item)
-                    <x-card.guest.category
-                        title="{{ $item->title }}"
-                        subtitle="{{ $item->description }}"
-                        icon="{{ asset('storage/' . $item->image_path) }}"
-                        color="{{ kategoriInformasiColor($key) }}"
-                        colorIcon="{{ kategoriInformasiColorIcon($key) }}"
-                    />
+                    <x-card.guest.category title="{{ $item->title }}" subtitle="{{ $item->description }}"
+                        icon="{{ asset('storage/' . $item->image_path) }}" color="{{ kategoriInformasiColor($key) }}"
+                        colorIcon="{{ kategoriInformasiColorIcon($key) }}" />
                 @endforeach
             </div>
         </div>
@@ -100,7 +86,8 @@
                     All
                 </button>
                 @foreach ($newsCategories as $item)
-                    <button class="hover:bg-edgreen hover:text-white capitalize" data-filter=".{{ filterClassFormat($item->name) }}">
+                    <button class="hover:bg-edgreen hover:text-white capitalize"
+                        data-filter=".{{ filterClassFormat($item->name) }}">
                         {{ $item->name }}
                     </button>
                 @endforeach
@@ -127,8 +114,9 @@
             <div class="flex md:flex-col gap-x-[75px] gap-y-[30px]">
                 <div class="max-w-[46%] md:max-w-full grow shrink-0">
                     <div class="relative flex items-end">
-                        <img src="{{ isFileExist('storage/'. isDataNull($aboutMainImage), asset('assets/guest/img/about-2-image-1.png')) }}" alt="About Image"
-                            class="border-[12px] border-white rounded-full" style="width: 432px; height: 432px; object-fit: cover;">
+                        <img src="{{ isFileExist('storage/' . isDataNull($aboutMainImage), asset('assets/guest/img/about-2-image-1.png')) }}"
+                            alt="About Image" class="border-[12px] border-white rounded-full"
+                            style="width: 432px; height: 432px; object-fit: cover;">
                         <a href="https://youtu.be/K88OhAy7x9c" data-fslightbox="gallery"
                             class="flex items-center justify-center w-[60px] aspect-square bg-white rounded-full text-edyellow absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] before:border before:absolute before:top-[50%] before:-translate-y-[50%] before:left-[50%] before:-translate-x-[50%] before:w-[calc(100%+15px)] before:h-[calc(100%+15px)] before:rounded-full before:transition before:duration-[400ms] hover:bg-edgreen hover:text-white hover:before:border-edgreen"><i
                                 class="fa-solid fa-play"></i></a>
@@ -148,21 +136,16 @@
                 <div class="max-w-[54%] md:max-w-full">
                     <h6 class="ed-section-sub-title">Tentang Kami</h6>
                     <h2 class="ed-section-title mb-[6px]">
-                        Pelajari dan Lestarikan
-                        <span
-                            class="inline-block text-edgreen font-bold relative before:absolute before:left-0 before:top-[calc(100%-6px)] before:w-[137px] before:h-[14px] before:bg-[url('../assets/img/banner-2-title-vector.svg')] before:bg-[length:100%_100%]">Warisan
-                            Budaya</span>
-                        untuk Masa Depan
+                        {!! $aboutTitle !!}
                     </h2>
                     <p class="text-edgray mb-[34px]">
-                        {!! $aboutDescription !!}
+                        {!! $aboutDescription ?? '' !!}
                     </p>
                     <ul
                         class="ed-about-list font-medium text-[18px] text-edblue grid grid-cols-2 xxs:grid-cols-1 gap-[20px] xxs:gap-[15px] mb-[52px] *:pl-[40px] *:relative *:before:absolute *:before:left-0 *:before:-top-[3px] *:before:w-[30px] *:before:aspect-square *:before:border *:before:border-edgreen *:before:rounded-full *:before:bg-[url(../assets/img/icon/checkmark.svg)] *:before:bg-no-repeat *:before:bg-[length:15px_13px] *:before:bg-center">
-                        <li>Pelestarian Budaya</li>
-                        <li>Komunitas Budaya</li>
-                        <li>Bimbingan Ahli</li>
-                        <li>Informasi Budaya</li>
+                        @foreach ($aboutValues as $item)
+                            <li>{{ $item->description }}</li>
+                        @endforeach
                     </ul>
                     <!-- <a href="#" class="ed-btn">know more</a> -->
                 </div>
@@ -201,9 +184,7 @@
                             <div class="swiper-slide w-[50%]">
                                 <div class="space-y-[30px]">
                                     @foreach ($chunkAgenda as $item)
-                                        <x-card.guest.event
-                                            title="{{ $item->title }}"
-                                            summary="{{ $item->summary }}"
+                                        <x-card.guest.event title="{{ $item->title }}" summary="{{ $item->summary }}"
                                             detail="{{ route('agenda.detail', ['slug' => $item->slug]) }}"
                                             image="{{ asset('storage/' . isDataNull($item->image_path)) }}"
                                             time="{{ getTime($item->start_time) . ' - ' . getTime($item->end_time) }}" />

@@ -7,6 +7,7 @@ use App\Traits\ManageFiles;
 use App\Models\ContentModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class ProfilesController extends Controller
 {
@@ -75,11 +76,29 @@ class ProfilesController extends Controller
 
                         return view('before-login.profile.sejarah', compact('content'));
                     case 'about':
-                        $about = $content->where('category', 'about')->first();
+                        $aboutDescription = Cache::rememberForever('tentang-kami-deskripsi', function () use ($content) {
+                            return $content->publish()->where('category', 'tentang-kami-deskripsi')->first()?->content;
+                        });
+
+                        $aboutTitle = Cache::rememberForever('tentang-kami-title', function () use ($content) {
+                            return $content->publish()->where('category', 'tentang-kami-title')->first()?->content;
+                        });
+
+                        $aboutMainImage = Cache::rememberForever('tentang-kami-gambar-utama', function () use ($content) {
+                            return $content->publish()->where('category', 'tentang-kami-gambar-utama')->first()?->image_path;
+                        });
+
+                        $aboutYt = Cache::rememberForever('tentang-kami-channel-yt', function () use ($content) {
+                            return $content->publish()->where('category', 'tentang-kami-channel-yt')->first()?->url_path;
+                        });
+
+                        $aboutValues = Cache::rememberForever('tentang-kami-values', function () use ($content) {
+                            return $content->publish()->where('category', 'tentang-kami-values')->get();
+                        });
 
                         $sambutan = $content->where('category', 'sambutan')->first();
 
-                        return view('before-login.profile.about-us', compact('content', 'sambutan'));
+                        return view('before-login.profile.about-us', compact('content', 'sambutan', 'aboutDescription', 'aboutTitle', 'aboutMainImage', 'aboutYt', 'aboutValues'));
                     case 'struktur-organisasi':
                         $content = $content->where('category', 'struktur organisasi')->first();
 
@@ -127,6 +146,8 @@ class ProfilesController extends Controller
                     return view($view, compact('content'));
                 case 'hero':
                     $content = $content->whereIn('category', [
+                        'hero-title',
+                        'hero-subtitle',
                         'hero-deskripsi',
                         'hero-main-image',
                         'hero-secondary-image'
@@ -141,7 +162,9 @@ class ProfilesController extends Controller
                         'tentang-kami-gambar-utama',
                         'tentang-kami-gambar-thumnail',
                         'tentang-kami-channel-yt',
-                        'tentang-kami-deskripsi'
+                        'tentang-kami-deskripsi',
+                        'tentang-kami-title',
+                        'tentang-kami-values',
                     ])->get();
 
                     $pageTitle = 'Tentang Kami';
@@ -157,6 +180,8 @@ class ProfilesController extends Controller
                     return view('after-login.settings.index', compact('content', 'pageTitle', 'type'));
                 case 'museum':
                     $content = $content->whereIn('category', [
+                        'upt-museum-title',
+                        'upt-museum-deskripsi',
                         'upt-museum-background',
                         'upt-museum-gambar-utama',
                         'upt-museum-gambar-thumnail',

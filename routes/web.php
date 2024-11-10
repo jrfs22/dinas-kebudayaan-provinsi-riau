@@ -49,6 +49,13 @@ Route::get('surveys/{slug}/{time?}', [SurveyController::class, 'show'])->name('s
 Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthenticationController::class, 'logout'])->name('logout');
 
+    Route::prefix('pengguna')->group(function () {
+        Route::controller(UserController::class)->group(function () {
+            Route::get('profile', 'profile')->name('pengguna.profile');
+            Route::put('profile', 'updateProfile')->name('pengguna.profile.update');
+        });
+    });
+
     Route::prefix('berita')->group(function () {
         Route::controller(NewsController::class)->group(function () {
             Route::get('','index')->name('news');
@@ -223,7 +230,11 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::prefix('pengguna')->group(function () {
-            Route::get('', [UserController::class, 'index'])->name('pengguna');
+            Route::controller(UserController::class)->group(function () {
+                Route::get('', 'index')->name('pengguna');
+                Route::post('', 'store')->name('pengguna.store');
+                Route::put('{id}?', 'update')->name('pengguna.update');
+            });
         });
 
         Route::prefix('departement')->group(function () {

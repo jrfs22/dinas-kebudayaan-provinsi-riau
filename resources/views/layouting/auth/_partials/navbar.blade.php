@@ -18,7 +18,9 @@
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                         <div class="message-body p-1">
                             <div class="ms-3">
-                                <h5 class="mb-1 fs-3">{{ auth()->user()->name }}</h5>
+                                <h5 class="mb-1 fs-3">
+                                    <a href="{{ route('pengguna.profile') }}">{{ auth()->user()->name }}</a>
+                                </h5>
                                 <span class="mb-1 d-block text-capitalize">{{ auth()->user()->role }}</span>
                                 <p class="mb-0 d-flex align-items-center gap-2" style="word-break: break-all;">
                                     <i class="ti ti-mail fs-4"></i> {{ auth()->user()->email }}
