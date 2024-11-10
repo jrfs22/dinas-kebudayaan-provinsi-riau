@@ -13,6 +13,7 @@
                     <x-card.guest.survey
                         title="{{ $item->title }}"
                         description="{{ $item->summary }}"
+                        periode="{{ formatDateRange($item->start_date, $item->end_date) }}"
                         status="{{ surveyStatusOnGuest($item->status) }}"
                         detail="{{ route('survey.detail', ['slug' => $item->slug]) }}"
                     />
@@ -20,7 +21,7 @@
             </div>
 
             <!-- PAGINATION START -->
-
+            <x-card.guest.pagination :data="$surveys" />
         </div>
     </div>
 @endsection

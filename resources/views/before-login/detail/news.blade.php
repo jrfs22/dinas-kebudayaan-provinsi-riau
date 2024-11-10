@@ -24,7 +24,7 @@
             <li class="text-black py-[16px] border-b border-t border-[#D9D9D9]">
                 <a href="#" class="flex items-center justify-between hover:text-edgreen">
                     <span>{{ $item->name }}</span>
-                    <span>({{ $item->news()->count() }})</span>
+                    <span>({{ $item->news->count() }})</span>
                 </a>
             </li>
         @endforeach
@@ -35,8 +35,8 @@
         @foreach ($recent as $item)
             <x-card.guest.recent
                 image="{{ asset('storage/' . $item->image_path) }}"
-                title="{{ $item->name }}"
-                date="{{ $item->date }}"
+                title="{{ $item->title }}"
+                date="{{ indonesianDate($item->date) }}"
                 detail="{{ route('news.detail', ['slug' => $item->slug]) }}"
             />
         @endforeach

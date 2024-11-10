@@ -28,7 +28,7 @@ class GalleryController extends Controller
             }
             return view('after-login.gallery.index', compact('galleries', 'categories'));
         } else {
-            $galleries = GalleryModel::with('category')->paginate(6);
+            $galleries = GalleryModel::with('category')->paginate(10);
 
             $categories = GalleryCategoryModel::whereHas('gallery')->get();
             return view('before-login.gallery.list', compact('galleries', 'categories'));

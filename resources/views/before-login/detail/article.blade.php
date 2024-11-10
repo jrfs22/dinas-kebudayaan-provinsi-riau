@@ -26,8 +26,8 @@
 
     <x-widget.guest.recent widgetTitle="Artikel Terkini">
         @foreach ($recent as $item)
-            <x-card.guest.recent image="{{ asset('storage/' . $item->image_path) }}" title="{{ $item->name }}"
-                date="{{ $item->date }}" detail="{{ route('article.detail', ['slug' => $item->slug]) }}" />
+            <x-card.guest.recent image="{{ asset('storage/' . $item->image_path) }}" title="{{ $item->title }}"
+                date="{{ indonesianDate($item->date) }}" detail="{{ route('article.detail', ['slug' => $item->slug]) }}" />
         @endforeach
     </x-widget.guest.recent>
 @endsection

@@ -19,7 +19,7 @@ class NewsCategoryModel extends Model
 
     public function news(): HasMany
     {
-        return $this->hasMany(NewsModel::class, 'id');
+        return $this->hasMany(NewsModel::class, 'category_id');
     }
 
     public function departement(): BelongsTo

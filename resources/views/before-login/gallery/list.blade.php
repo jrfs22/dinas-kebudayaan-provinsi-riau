@@ -31,7 +31,7 @@
                 @foreach ($galleries as $item)
                     <x-card.guest.gallery
                         image="{{ asset('storage/' . $item->image_path) }}"
-                        categoryName="{{ $item->category->name }}"
+                        categoryName="{!! $item->category->name !!}"
                         date="{{ indonesianDate($item->date) }}"
                         title="{{ $item->title }}"
                         detail="{{ route('gallery.detail', [

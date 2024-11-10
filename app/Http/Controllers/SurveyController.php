@@ -19,7 +19,18 @@ class SurveyController extends Controller
         } else {
             $today = Carbon::today();
 
-            $surveys = SurveyModel::select('*')->orderByRaw("CASE WHEN start_date >= ? AND end_date <= ? THEN 1 ELSE 2 END", [$today, $today])->orderByDesc('created_at')->where('status', '!=', 'inactive')->get();
+            $surveys = SurveyModel::select('*')
+                ->orderByRaw("CASE
+                    WHEN status = 'active' THEN 1
+                    ELSE 2
+                    END")
+                ->orderByRaw("CASE
+                    WHEN start_date <= ? AND end_date >= ? THEN 1
+                    ELSE 2
+                    END", [$today, $today])
+                ->orderByDesc('created_at')
+                ->where('status', '!=', 'inactive')
+                ->paginate(6);
 
             return view('before-login.survey.index', compact('surveys'));
         }

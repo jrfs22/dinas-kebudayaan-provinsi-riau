@@ -76,11 +76,13 @@
             <!-- events slider -->
             <div class="ed-2-events-slider swiper">
                 <div class="swiper-wrapper">
-                    @foreach ($agenda->chunk(3) as $chunkAgenda)
+                    @foreach ($agenda->chunk(1) as $chunkAgenda)
                         <div class="swiper-slide w-[50%]">
                             <div class="space-y-[30px]">
                                 @foreach ($chunkAgenda as $item)
-                                    <x-card.guest.event title="{{ $item->name }}" slug="{{ $item->slug }}"
+                                    <x-card.guest.event
+                                        title="{{ $item->name }}"
+                                        summary="{{ $item->summary }}"
                                         detail="{{ route('agenda.detail', ['slug' => $item->slug]) }}"
                                         image="{{ asset('storage/' . isDataNull($item->image_path)) }}"
                                         time="{{ getTime($item->start_time) . ' - ' . getTime($item->end_time) }}" />
@@ -147,8 +149,8 @@
                 <!-- right / news small cards -->
                 <div class="bg-edoffwhite rounded-[20px] p-[30px] xxs:p-[20px] space-y-[26px]">
                     @foreach ($museumNews->slice(1) as $item)
-                        <x-card.guest.newsSmall image="{{ asset('storage/' . $item[0]->cover_image_path) }}"
-                            title="{{ $item[0]->title }}" date="{{ $item[0]->date }}"
+                        <x-card.guest.newsSmall image="{{ asset('storage/' . $item->cover_image_path) }}"
+                            title="{{ $item->title }}" date="{{ $item->date }}"
                             author="admin {{ $item->category->departement->name }}"
                             detail="{{ route('news.detail', ['slug' => $item->slug]) }}" />
                     @endforeach
