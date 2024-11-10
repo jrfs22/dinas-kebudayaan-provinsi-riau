@@ -39,8 +39,8 @@
                     />
                 @endforeach
 
-                <x-card.guest.pagination :data="$galleries"/>
             </div>
+            <x-card.guest.pagination :data="$galleries"/>
         </div>
     </section>
 @endsection

@@ -92,24 +92,16 @@
                         <h1>Pesan dari {{ env('APP_URL') }}</h1>
                     </div>
 
-                    @php
-                        $data = [
-                            'name' => 'Syahrizal As',
-                            'email' => 'josep21ti@mahasiswa.pcr.ac.id',
-                            'message' => 'Test test',
-                        ];
-                    @endphp
-
                     <!-- Content -->
                     <div class="content">
                         <h2>Halo, Admin!</h2>
                         <p>Anda telah menerima pesan baru dari formulir Hubungi Kami di website:</p>
 
-                        <p><strong>Nama:</strong>{{ $data['name'] }}</p>
-                        <p><strong>Email:</strong> {{ $data['email'] }}</p>
+                        <p><strong>Nama:</strong>{{ $name }}</p>
+                        <p><strong>Email:</strong> {{ $receiver }}</p>
                         <p><strong>Pesan:</strong></p>
                         <p>
-                            {{ $data['message'] }}
+                            {{ $messages }}
                         </p>
 
                         <br>
