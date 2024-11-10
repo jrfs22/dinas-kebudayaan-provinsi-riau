@@ -32,12 +32,15 @@ class ContentModel extends Model
 protected static function clearContentCache()
 {
     $keys = [
+        'hero-title',
+        'hero-subtitle',
         'hero-deskripsi',
         'hero-main-image',
         'hero-secondary-image',
         'tentang-kami-deskripsi',
         'tentang-kami-gambar-utama',
         'tentang-kami-channel-yt',
+        'tentang-kami-values',
         'sitari',
         'email',
         'telepon',
@@ -49,7 +52,10 @@ protected static function clearContentCache()
         'footer-background',
         'breadcrumb',
         'media-social',
-        'informasi-category'
+        'informasi-category',
+        'tentang-kami-title',
+        'upt-museum-title',
+        'upt-museum-values'
     ];
 
     foreach ($keys as $key) {

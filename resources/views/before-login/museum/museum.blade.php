@@ -33,20 +33,16 @@
                 <div class="max-w-[54%] md:max-w-full">
                     <h6 class="ed-section-sub-title">Tentang Museum</h6>
                     <h2 class="ed-section-title mb-[6px]">
-                        Pelestarian Budaya Riau
-                        <span
-                            class="text-edgreen font-bold relative before:absolute before:left-0 before:top-[calc(100%-6px)] before:w-[137px] before:h-[14px] before:bg-[url('../assets/img/banner-2-title-vector.svg')] before:bg-[length:100%_100%]">Museum
-                            Sang Nila Utama</span>
+                        {!! $aboutMuseumTitle !!}
                     </h2>
                     <p class="text-edgray mb-[34px]">
                         {{ $aboutMuseumDescription }}
                     </p>
                     <ul
                         class="ed-about-list font-medium text-[18px] text-edblue grid grid-cols-2 xxs:grid-cols-1 gap-[20px] xxs:gap-[15px] mb-[52px] *:pl-[40px] *:relative *:before:absolute *:before:left-0 *:before:-top-[3px] *:before:w-[30px] *:before:aspect-square *:before:border *:before:border-edgreen *:before:rounded-full *:before:bg-[url(../assets/img/icon/checkmark.svg)] *:before:bg-no-repeat *:before:bg-[length:15px_13px] *:before:bg-center">
-                        <li>Pelestarian Budaya</li>
-                        <li>Komunitas Budaya</li>
-                        <li>Bimbingan Ahli</li>
-                        <li>Informasi Budaya</li>
+                        @foreach ($aboutMuseumValues as $item)
+                            <li>{{ $item->description }}</li>
+                        @endforeach
                     </ul>
                     <!-- <a href="#" class="ed-btn">know more</a> -->
                 </div>

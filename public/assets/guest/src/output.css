@@ -3894,7 +3894,7 @@ input[type="radio"] {
     background-image: url("../../../assets/guest/img/admission-title-vector.svg");
 }
 
-.before\:bg-\[url\(\'\.\.\/assets\/img\/banner-2-title-vector\.svg\'\)\]::before {
+.bg-banner-2-title-vector::before {
     content: var(--tw-content);
     background-image: url("../../../assets/guest/img/banner-2-title-vector.svg");
 }

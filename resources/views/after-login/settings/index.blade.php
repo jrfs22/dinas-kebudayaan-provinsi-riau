@@ -34,17 +34,22 @@
                             @if ($item->content != null)
                                 {!! $item->content !!}
                             @elseif ($item->image_path != null)
-                                <img style="max-height: 100px; object-fit: contain;" src="{{ asset('storage/' . $item->image_path) }}" alt="Gambar">
-                            @else
+                                <img style="max-height: 100px; object-fit: contain;"
+                                    src="{{ asset('storage/' . $item->image_path) }}" alt="Gambar">
+                            @elseif ($item->url_path != null)
                                 <a href="{{ $item->url_path }}">{{ $item->url_path }}</a>
+                            @else
+                                {!! $item->description !!}
                             @endif
                         </td>
                         <td>
-                            <span class="badge text-capitalize {{ $item->status == 'draft' ? 'bg-danger' : 'bg-success' }}">{{ $item->status }}</span>
+                            <span
+                                class="badge text-capitalize {{ $item->status == 'draft' ? 'bg-danger' : 'bg-success' }}">{{ $item->status }}</span>
                         </td>
-                        <td >
+                        <td>
                             <div class="action-btn d-flex gap-2">
-                                <a href="{{ route('settings.edit', ['id' => $item->id, 'type' => $type]) }}" class="text-success edit">
+                                <a href="{{ route('settings.edit', ['id' => $item->id, 'type' => $type]) }}"
+                                    class="text-success edit">
                                     <i class="ti ti-pencil fs-5"></i>
                                 </a>
                             </div>
