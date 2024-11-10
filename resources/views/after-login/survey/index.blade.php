@@ -81,7 +81,7 @@
                 </x-forms.richeditor>
             </div>
             <div class="col-12">
-                <x-forms.input name="url_path" label="Google Drive" placeholder="https://docs.google.com/forms" :required="true"/>
+                <x-forms.input name="url_path" label="Google Form" placeholder="https://docs.google.com/forms" :required="true"/>
             </div>
             <div class="col-12 col-lg-6">
                 <x-forms.input name="start_date" label="Tanggal Mulai" type="datetime-local" :required="true"/>
@@ -112,7 +112,7 @@
                 </x-forms.richeditor>
             </div>
             <div class="col-12">
-                <x-forms.input name="url_path" id="edt_url_path" label="Google Drive" placeholder="https://docs.google.com/forms" :required="true"/>
+                <x-forms.input name="url_path" id="edt_url_path" label="Google Form" placeholder="https://docs.google.com/forms" :required="true"/>
             </div>
             <div class="col-12 col-lg-6">
                 <x-forms.input name="start_date" id="edt_start_date" label="Tanggal Mulai" type="datetime-local" :required="true"/>

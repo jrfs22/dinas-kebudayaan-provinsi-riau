@@ -21,7 +21,10 @@ class DepartementSeeder extends Seeder
                 'name' => 'UPT Museum',
             ],
             [
-                'name' => 'Sekretariat',
+                'name' => 'Diplomasi & Promosi Budaya',
+            ],
+            [
+                'name' => 'Pelestarian Adat & Nilai Budaya',
             ],
         ]);
     }

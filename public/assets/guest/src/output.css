@@ -3884,6 +3884,11 @@ input[type="radio"] {
     background-color: rgb(10 184 83 / var(--tw-bg-opacity));
 }
 
+.px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
 .before\:bg-\[url\(\'\.\.\/assets\/img\/about-us-bg\.png\'\)\]::before {
     content: var(--tw-content);
     background-image: url("../../../assets/guest/img/about-us-bg.png");

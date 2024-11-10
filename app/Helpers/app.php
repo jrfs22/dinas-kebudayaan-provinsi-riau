@@ -168,7 +168,8 @@ function isSuperAdmin()
 }
 
 
-function kategoriInformasiColor($index) {
+function kategoriInformasiColor($index)
+{
     $colorCard = [
         'border-[#e5e5e5] hover:bg-[#F8B81F] hover:border-[#F8B81F]',
         'border-[#e5e5e5] hover:bg-[#39C0FA] hover:border-[#39C0FA]',
@@ -179,7 +180,8 @@ function kategoriInformasiColor($index) {
     return $colorCard[$index];
 }
 
-function kategoriInformasiColorIcon($index) {
+function kategoriInformasiColorIcon($index)
+{
     $colorIcon = [
         'bg-[#F8B81F]',
         'bg-[#39C0FA]',
@@ -190,15 +192,33 @@ function kategoriInformasiColorIcon($index) {
     return $colorIcon[$index];
 }
 
-function filterClassFormat($phrase) {
-    return strtolower(str_replace(' ', '-', $phrase));
+function filterClassFormat($phrase)
+{
+    return strtolower(str_replace([' ', '&'], '-', $phrase));
 }
 
 
-function isValidGoogleMapsEmbedURL($url) {
+function isValidGoogleMapsEmbedURL($url)
+{
     if (filter_var($url, FILTER_VALIDATE_URL) === false) {
         return false;
     }
 
     return strpos($url, "https://www.google.com/maps/embed") === 0;
+}
+
+function formatDateRange($startDate, $endDate)
+{
+    $start = Carbon::createFromTimestamp($startDate);
+    $end = Carbon::createFromTimestamp($endDate);
+
+    if ($start->year === $end->year && $start->month === $end->month) {
+        return $start->format('j') . ' - ' . $end->format('j F Y');
+    }
+
+    if ($start->year === $end->year) {
+        return $start->format('j F') . ' - ' . $end->format('j F Y');
+    }
+
+    return $start->format('j F Y') . ' - ' . $end->format('j F Y');
 }

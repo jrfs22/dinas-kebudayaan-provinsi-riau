@@ -16,7 +16,12 @@ class DatabaseSeeder extends Seeder
             RolesAndPermissionSeeder::class,
             UserSeeder::class,
             CompanyProfilesSeeder::class,
-            CategoriesSeeder::class
+            CategoriesSeeder::class,
+            AgendaSeeder::class,
+            ArticleSeeder::class,
+            GallerySeeder::class,
+            NewsSeeder::class,
+            SurveySeeder::class
         ]);
     }
 }

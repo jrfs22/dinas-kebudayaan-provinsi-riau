@@ -97,7 +97,7 @@
                 class="ed-2-courses-container grid grid-cols-4 xl:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 gap-[30px] xxl:gap-[20px]">
                 @foreach ($news as $item)
                     <x-card.guest.news image="{{ asset('storage/' . isDataNull($item->cover_image_path)) }}"
-                        categoryName="{{ $item->category->name }}" date="{{ indonesianDate($item->date) }}"
+                        categoryName="{!! $item->category->name !!}" date="{{ indonesianDate($item->date) }}"
                         title="{{ $item->title }}" summary="{{ $item->summary }}"
                         author="Bidang {{ $item?->category?->departement?->name }}"
                         detail="{{ route('news.detail', ['slug' => $item->slug]) }}" />
