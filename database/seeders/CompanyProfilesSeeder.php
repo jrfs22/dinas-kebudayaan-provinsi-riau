@@ -25,6 +25,7 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'visi',
                 'url_path' => 'visi-misi-kebudayaan-melayu',
                 'image_path' => 'images/culture-vision.jpg',
+                'dimension' => null
             ],
             [
                 'title' => 'Kata Sambutan Direktur',
@@ -37,6 +38,7 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'sambutan',
                 'url_path' => null,
                 'image_path' => 'images/director-speech.jpg',
+                'dimension' => null
             ],
             [
                 'title' => 'sejarah',
@@ -49,6 +51,7 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'sejarah',
                 'url_path' => null,
                 'image_path' => 'images/director-speech.jpg',
+                'dimension' => null
             ],
             [
                 'title' => 'Struktur Organisasi',
@@ -61,6 +64,7 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'struktur organisasi',
                 'url_path' => null,
                 'image_path' => 'images/director-speech.jpg',
+                'dimension' => null
             ],
             [
                 'title' => 'Telepon',
@@ -71,6 +75,7 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'telepon',
                 'url_path' => 'tel:+0812-3456-7890',
                 'image_path' => null,
+                'dimension' => null
             ],
             [
                 'title' => 'Email',
@@ -81,6 +86,7 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'email',
                 'url_path' => 'mailto:disbud@gmail.com',
                 'image_path' => null,
+                'dimension' => null
             ],
             [
                 'title' => 'Tugas & Fungsi Pokok',
@@ -92,6 +98,7 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'tugas pokok & fungsi',
                 'url_path' => null,
                 'image_path' => 'images/director-speech.jpg',
+                'dimension' => null
             ],
             [
                 'title' => 'Misi Kebudayaan Melayu',
@@ -102,6 +109,7 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'misi',
                 'url_path' => 'visi-misi-kebudayaan-melayu',
                 'image_path' => 'images/culture-vision.jpg',
+                'dimension' => null
             ],
             [
                 'title' => 'Hero Title',
@@ -114,6 +122,7 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'hero-title',
                 'url_path' => null,
                 'image_path' => null,
+                'dimension' => null
             ],
             [
                 'title' => 'Hero Subtitle',
@@ -125,6 +134,7 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'hero-subtitle',
                 'url_path' => null,
                 'image_path' => null,
+                'dimension' => null
             ],
             [
                 'title' => 'Hero Deskripsi',
@@ -135,36 +145,51 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'hero-deskripsi',
                 'url_path' => null,
                 'image_path' => null,
+                'dimension' => null
             ],
             [
                 'title' => 'Hero Gambar Utama 261x366',
-                'description' => '435x544',
+                'description' => null,
                 'content' => null,
                 'date' => now(),
                 'status' => 'published',
                 'category' => 'hero-main-image',
                 'url_path' => null,
                 'image_path' => 'assets/img/banner-2-img-2.jpg',
+                'dimension' => '435x544'
+            ],
+            [
+                'title' => 'Hero Background 1920x854',
+                'description' => null,
+                'content' => null,
+                'date' => now(),
+                'status' => 'published',
+                'category' => 'hero-background',
+                'url_path' => null,
+                'image_path' => 'assets/img/banner-2-img-1.jpg',
+                'dimension' => '1920x854'
             ],
             [
                 'title' => 'Hero Gambar Kedua 435x544',
-                'description' => '261x366',
+                'description' => null,
                 'content' => null,
                 'date' => now(),
                 'status' => 'published',
                 'category' => 'hero-secondary-image',
                 'url_path' => null,
                 'image_path' => 'assets/img/banner-2-img-1.jpg',
+                'dimension' => '435x544'
             ],
             [
                 'title' => 'Breadcrumb',
-                'description' => '1920x599',
+                'description' => null,
                 'content' => null,
                 'date' => now(),
                 'status' => 'published',
                 'category' => 'breadcrumb',
                 'url_path' => '/',
                 'image_path' => 'assets/guest/img/breadcrumb-bg.jpg',
+                'dimension' => '1920x599'
             ],
             [
                 'title' => 'Tentang Kami',
@@ -179,6 +204,7 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'tentang-kami-title',
                 'url_path' => null,
                 'image_path' => null,
+                'dimension' => null
             ],
             [
                 'title' => 'Tentang Kami',
@@ -189,36 +215,40 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'tentang-kami-deskripsi',
                 'url_path' => null,
                 'image_path' => null,
+                'dimension' => null
             ],
             [
                 'title' => 'Tentang Kami Background 1920x812',
-                'description' => '1920x812',
+                'description' => null,
                 'content' => null,
                 'date' => now(),
                 'status' => 'published',
                 'category' => 'tentang-kami-background',
                 'url_path' => null,
                 'image_path' => 'assets/guest/img/about-us-bg.png',
+                'dimension' => '1920x812'
             ],
             [
                 'title' => 'Tentang Kami Gambar Utama 412x412',
-                'description' => '412x412',
+                'description' => null,
                 'content' => null,
                 'date' => now(),
                 'status' => 'published',
                 'category' => 'tentang-kami-gambar-utama',
                 'url_path' => null,
                 'image_path' => 'assets/guest/img/about-2-image-1.png',
+                'dimension' => '412x412'
             ],
             [
                 'title' => 'Video Youtube Channel',
-                'description' => '276x276',
+                'description' => null,
                 'content' => null,
                 'date' => now(),
                 'status' => 'published',
                 'category' => 'tentang-kami-channel-yt',
                 'url_path' => 'https://youtu.be/K88OhAy7x9c',
                 'image_path' => null,
+                'dimension' => null
             ],
             [
                 'title' => 'Nilai - Nilai',
@@ -229,6 +259,7 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'tentang-kami-values',
                 'url_path' => null,
                 'image_path' => null,
+                'dimension' => null
             ],
             [
                 'title' => 'Nilai - Nilai',
@@ -239,6 +270,7 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'tentang-kami-values',
                 'url_path' => null,
                 'image_path' => null,
+                'dimension' => null
             ],
             [
                 'title' => 'Nilai - Nilai',
@@ -249,6 +281,7 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'tentang-kami-values',
                 'url_path' => null,
                 'image_path' => null,
+                'dimension' => null
             ],
             [
                 'title' => 'Nilai - Nilai',
@@ -259,16 +292,18 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'tentang-kami-values',
                 'url_path' => null,
                 'image_path' => null,
+                'dimension' => null
             ],
             [
                 'title' => 'Sistem Informasi Tanah Riau - Si-Tari',
-                'description' => '353x413',
+                'description' => null,
                 'content' => null,
                 'date' => now(),
                 'status' => 'published',
                 'category' => 'sitari',
                 'url_path' => 'http://sitari.disbud.riau.go.id/',
                 'image_path' => 'assets/guest/img/cta-2-img.png',
+                'dimension' => '353x413'
             ],
             [
                 'title' => 'UPT Museum Title',
@@ -282,6 +317,7 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'upt-museum-title',
                 'url_path' => null,
                 'image_path' => null,
+                'dimension' => null
             ],
             [
                 'title' => 'UPT Museum',
@@ -292,36 +328,40 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'upt-museum-deskripsi',
                 'url_path' => null,
                 'image_path' => null,
+                'dimension' => null
             ],
             [
                 'title' => 'UPT Museum Background 1920x812',
-                'description' => '1920x812',
+                'description' => null,
                 'content' => null,
                 'date' => now(),
                 'status' => 'published',
                 'category' => 'upt-museum-background',
                 'url_path' => null,
                 'image_path' => 'assets/guest/img/about-us-bg.png',
+                'dimension' => '1920x812'
             ],
             [
                 'title' => 'UPT Museum Gambar Utama 412x412',
-                'description' => '412x412',
+                'description' => null,
                 'content' => null,
                 'date' => now(),
                 'status' => 'published',
                 'category' => 'upt-museum-gambar-utama',
                 'url_path' => null,
                 'image_path' => 'assets/guest/img/about-2-image-1.png',
+                'dimension' => '412x412'
             ],
             [
                 'title' => 'UPT Museum Video Youtube Channel',
-                'description' => '276x276',
+                'description' => null,
                 'content' => null,
                 'date' => now(),
                 'status' => 'published',
                 'category' => 'upt-museum-channel-yt',
                 'url_path' => 'https://youtu.be/K88OhAy7x9c',
                 'image_path' => null,
+                'dimension' => null
             ],
             [
                 'title' => 'Nilai - Nilai Museum',
@@ -332,6 +372,7 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'upt-museum-values',
                 'url_path' => null,
                 'image_path' => null,
+                'dimension' => null
             ],
             [
                 'title' => 'Nilai - Nilai Museum',
@@ -342,6 +383,7 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'upt-museum-values',
                 'url_path' => null,
                 'image_path' => null,
+                'dimension' => null
             ],
             [
                 'title' => 'Nilai - Nilai Museum',
@@ -352,6 +394,7 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'upt-museum-values',
                 'url_path' => null,
                 'image_path' => null,
+                'dimension' => null
             ],
             [
                 'title' => 'Nilai - Nilai Museum',
@@ -362,26 +405,29 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'upt-museum-values',
                 'url_path' => null,
                 'image_path' => null,
+                'dimension' => null
             ],
             [
                 'title' => 'Klasifikasi Filologi',
-                'description' => '353x413',
+                'description' => null,
                 'content' => null,
                 'date' => now(),
                 'status' => 'published',
                 'category' => 'upt-museum-klasifikasi',
                 'url_path' => null,
                 'image_path' => 'assets/guest/img/about-2-image-2.png',
+                'dimension' => '353x413'
             ],
             [
                 'title' => 'Background Footer 1920x515',
-                'description' => '1920x515',
+                'description' => null,
                 'content' => null,
                 'date' => now(),
                 'status' => 'published',
                 'category' => 'footer-background',
                 'url_path' => null,
                 'image_path' => 'assets/guest/img/footer-bg.jpg',
+                'dimension' => '1920x515'
             ],
             [
                 'title' => 'Pelestarian',
@@ -392,6 +438,7 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'informasi-category',
                 'url_path' => null,
                 'image_path' => 'assets/guest/img/footer-bg.jpg',
+                'dimension' => 'Harus PNG tanpa memiliki background'
             ],
             [
                 'title' => 'Festival',
@@ -402,6 +449,7 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'informasi-category',
                 'url_path' => null,
                 'image_path' => 'assets/guest/img/footer-bg.jpg',
+                'dimension' => 'Harus PNG tanpa memiliki background'
             ],
             [
                 'title' => 'Pembinaan',
@@ -412,6 +460,7 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'informasi-category',
                 'url_path' => null,
                 'image_path' => 'assets/guest/img/footer-bg.jpg',
+                'dimension' => 'Harus PNG tanpa memiliki background'
             ],
             [
                 'title' => 'Informasi',
@@ -422,6 +471,7 @@ class CompanyProfilesSeeder extends Seeder
                 'category' => 'informasi-category',
                 'url_path' => null,
                 'image_path' => 'assets/guest/img/footer-bg.jpg',
+                'dimension' => 'Harus PNG tanpa memiliki background'
             ],
         ]);
     }

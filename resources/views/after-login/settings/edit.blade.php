@@ -44,7 +44,7 @@
                 @if ($content->image_path != null)
                     <div class="col-12">
                         <x-forms.input name="image_path" label="Gambar" type="file"
-                            fileLabel="Maksimal 512kb & Dimensi {{ $content->description }}" />
+                            fileLabel="Maksimal 512kb & Dimensi {{ $content->dimension }}" />
                     </div>
                 @endif
                 <div class="col-12">

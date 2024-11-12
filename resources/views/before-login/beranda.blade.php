@@ -3,7 +3,8 @@
 @section('title', 'Beranda')
 
 @section('content')
-    <section class="ed-2-banner bg-edoffwhite pt-[120px] pb-[190px] relative z-[1] overflow-hidden">
+    <section class="ed-2-banner bg-edoffwhite pt-[120px] pb-[190px] relative z-[1] overflow-hidden"
+        style="background-image: url('../../{{ 'storage/' . $heroBackground }}');background-repeat: no-repeat; background-size: cover;">
         <div class="container max-w-[71.6%] xxxl:max-w-[86.5%] xxl:max-w-[90.6%] mx-auto">
             <div class="flex md:flex-col gap-x-[112px] gap-y-[40px] items-center">
                 <!-- banner text -->
@@ -29,30 +30,34 @@
                         <img src="{{ isFileExist('storage/' . isDataNull($heroMainImage), asset('assets/guest/img/banner-2-img-2.jpg')) }}"
                             alt="Main image" class="rounded-[20px]" />
 
-                        <!-- vectors -->
-                        <div>
-                            <div
-                                class="w-[242px] aspect-square rounded-full bg-edgreen opacity-80 blur-[110px] absolute -z-[1] bottom-0 left-[163px]">
+                        @if (!isset($heroBackground))
+                            <!-- vectors -->
+                            <div>
+                                <div
+                                    class="w-[242px] aspect-square rounded-full bg-edgreen opacity-80 blur-[110px] absolute -z-[1] bottom-0 left-[163px]">
+                                </div>
+                                {{-- <img src="{{ asset('assets/guest/img/banner-2-img-vector-1.svg') }}" alt="vector"
+                                    class="pointer-events-none absolute -z[1] top-[30px] -left-[35px]" />
+                                <img src="{{ asset('assets/guest/img/banner-2-img-vector-2.svg') }}" alt="vector"
+                                    class="pointer-events-none absolute -z[1] -top-[50px] -right-[40px]" /> --}}
                             </div>
-                            <img src="{{ asset('assets/guest/img/banner-2-img-vector-1.svg') }}" alt="vector"
-                                class="pointer-events-none absolute -z[1] top-[30px] -left-[35px]" />
-                            <img src="{{ asset('assets/guest/img/banner-2-img-vector-2.svg') }}" alt="vector"
-                                class="pointer-events-none absolute -z[1] -top-[50px] -right-[40px]" />
-                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- vector -->
-        <div>
-            <img src="{{ asset('assets/guest/img/banner-2-vector-1.svg') }}" alt="vector"
-                class="pointer-events-none absolute -z-[1] top-[135px] left-[38px] xxxl:hidden" />
-            <img src="{{ asset('assets/guest/img/banner-2-vector-2.svg') }}" alt="vector"
-                class="pointer-events-none absolute -z-[1] bottom-0 left-0" />
-            <img src="{{ asset('assets/guest/img/banner-2-vector-3.svg') }}" alt="vector"
-                class="pointer-events-none absolute -z-[1] -bottom-[8px] right-0" />
-        </div>
+        @if (!isset($heroBackground))
+            <!-- vector -->
+            <div>
+                <img src="{{ asset('assets/guest/img/banner-2-vector-1.svg') }}" alt="vector"
+                    class="pointer-events-none absolute -z-[1] top-[135px] left-[38px] xxxl:hidden" />
+                {{-- <img src="{{ asset('assets/guest/img/banner-2-vector-2.svg') }}" alt="vector"
+                    class="pointer-events-none absolute -z-[1] bottom-0 left-0" /> --}}
+                {{-- <img src="{{ asset('assets/guest/img/banner-2-vector-3.svg') }}" alt="vector"
+                    class="pointer-events-none absolute -z-[1] -bottom-[8px] right-0" /> --}}
+            </div>
+        @endif
     </section>
     <!-- BANNER SECTION END -->
 

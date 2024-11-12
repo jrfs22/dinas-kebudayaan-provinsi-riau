@@ -11,6 +11,7 @@ use App\Http\Controllers\KlasifikasiImageController;
 use App\Http\Controllers\KlasifikasiInformationController;
 use App\Http\Controllers\PpkdController;
 use App\Http\Controllers\UserController;
+use App\Mail\SendContactUsResponseEmail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PPIDController;
@@ -31,6 +32,15 @@ Route::middleware('guest')->group(function () {
     Route::post('signin', [AuthenticationController::class, 'signin'])->name('signin');
 });
 
+Route::get('test-email', function () {
+    $data = [
+        'name' => 'Syahrizal As',
+        'email' => 'josep21ti@mahasiswa.pcr.ac.id',
+        'message' => 'Test test'
+    ];
+
+    Mail::to('josep21ti@mahasiswa.pcr.ac.id')->send(new SendContactUsResponseEmail($data));
+});
 Route::get('profil/{type}', [ProfilesController::class, 'profiles'])->name('profiles');
 
 Route::get('ppid/{id}', [PPIDController::class, 'index'])->name('ppid');

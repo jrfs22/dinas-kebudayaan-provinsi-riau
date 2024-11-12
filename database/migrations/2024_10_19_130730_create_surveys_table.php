@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('slug');
             $table->text('content');
             $table->text('url_path');
-            $table->timestamp('start_date')->nullable();
-            $table->timestamp('end_date')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->enum('status', ['active', 'inactive', 'completed']);
             $table->timestamps();
 

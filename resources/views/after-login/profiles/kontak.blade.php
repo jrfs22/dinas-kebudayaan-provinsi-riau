@@ -71,7 +71,6 @@
                         label="Kategori"
                         default=1>
                         <option value="telepon">Telepon</option>
-                        <option value="email">Email</option>
                         <option value="facebook">Facebook</option>
                         <option value="instagram">Instagram</option>
                         <option value="tiktok">Tiktok</option>

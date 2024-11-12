@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ContactUSModel;
-use App\Models\FaqsModel;
+use App\Models\ContentModel;
 use Exception;
+use App\Models\FaqsModel;
 use Illuminate\Http\Request;
+use App\Models\ContactUSModel;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendContactUsResponseEmail;
 
 class ContactUSController extends Controller
 {
@@ -29,7 +32,13 @@ class ContactUSController extends Controller
                 'messages.required' => 'Pesan tidak boleh kosong.',
             ]);
 
-            ContactUSModel::create($request->all());
+            $message = ContactUSModel::create($request->all());
+
+            if ($message) {
+                $email = ContentModel::where('category', 'email')->first();
+
+                Mail::to($email->content)->send(new SendContactUsResponseEmail($message->name, $message->email, $message->messages));
+            }
 
             $this->alert(
                 'Pesan',

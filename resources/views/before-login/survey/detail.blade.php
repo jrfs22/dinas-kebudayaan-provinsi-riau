@@ -44,7 +44,7 @@
                     <div class="flex flex-wrap gap-x-[16px] gap-y-[8px] mb-[31px]">
                         <div
                             class="inline-flex items-center rounded-[6px] px-[8px] py-[7px] font-semibold border border-edgreen text-edgreen">
-                            <span>Survey</span>
+                            <span>Silahkan melakukan pengisian survey</span>
                         </div>
                     </div>
                     <iframe class="survey-iframe" src="{{ $survey->url_path }}" frameborder="0"></iframe>
