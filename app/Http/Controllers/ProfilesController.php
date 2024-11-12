@@ -140,7 +140,7 @@ class ProfilesController extends Controller
 
             switch ($type) {
                 case 'breadcrumb':
-                    $content = $content->where('category', 'breadcrumb')->first();
+                    $content = $content->where('category', 'breadcrumb')->first()   ;
 
                     $view = 'after-login.settings.breadcrumb';
                     return view($view, compact('content'));
@@ -150,7 +150,8 @@ class ProfilesController extends Controller
                         'hero-subtitle',
                         'hero-deskripsi',
                         'hero-main-image',
-                        'hero-secondary-image'
+                        'hero-secondary-image',
+                        'hero-background',
                     ])->get();
 
                     $pageTitle = 'Hero Section';

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContentModel;
 use Exception;
 use App\Models\FaqsModel;
 use Illuminate\Http\Request;
@@ -34,7 +35,9 @@ class ContactUSController extends Controller
             $message = ContactUSModel::create($request->all());
 
             if ($message) {
-                Mail::to($message->email)->send(new SendContactUsResponseEmail($message->name, $message->email, $message->messages));
+                $email = ContentModel::where('category', 'email')->first();
+
+                Mail::to($email->content)->send(new SendContactUsResponseEmail($message->name, $message->email, $message->messages));
             }
 
             $this->alert(

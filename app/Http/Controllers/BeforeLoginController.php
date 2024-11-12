@@ -44,7 +44,7 @@ class BeforeLoginController extends Controller
 
         $content = new ContentModel();
 
-        list($heroTitle, $heroSubtitle, $heroDescription, $heroMainImage, $heroSecondaryImage, $aboutMainImage, $aboutYt, $sitari, $categoryInformasi, $aboutDescription, $aboutTitle, $aboutValues) = $this->berandaLayout();
+        list($heroBackground, $heroTitle, $heroSubtitle, $heroDescription, $heroMainImage, $heroSecondaryImage, $aboutMainImage, $aboutYt, $sitari, $categoryInformasi, $aboutDescription, $aboutTitle, $aboutValues) = $this->berandaLayout();
 
         return view('before-login.beranda', compact(
             'newsCategories',
@@ -61,7 +61,8 @@ class BeforeLoginController extends Controller
             'heroSubtitle',
             'aboutDescription',
             'aboutTitle',
-            'aboutValues'
+            'aboutValues',
+            'heroBackground'
         ));
     }
 
@@ -87,6 +88,10 @@ class BeforeLoginController extends Controller
 
         $heroSecondaryImage = Cache::rememberForever('hero-secondary-image', function () use ($content) {
             return $content->publish()->where('category', 'hero-secondary-image')->first()?->image_path;
+        });
+
+        $heroBackground = Cache::rememberForever('hero-background', function () use ($content) {
+            return $content->publish()->where('category', 'hero-background')->first()?->image_path;
         });
 
         $aboutDescription = Cache::rememberForever('tentang-kami-deskripsi', function () use ($content) {
@@ -117,7 +122,7 @@ class BeforeLoginController extends Controller
             return $content->publish()->where('category', 'informasi-category')->get();
         });
 
-        return [$heroTitle, $heroSubtitle, $heroDescription, $heroMainImage, $heroSecondaryImage, $aboutMainImage, $aboutYt, $sitari, $categoryInformasi, $aboutDescription, $aboutTitle, $aboutValues];
+        return [$heroBackground, $heroTitle, $heroSubtitle, $heroDescription, $heroMainImage, $heroSecondaryImage, $aboutMainImage, $aboutYt, $sitari, $categoryInformasi, $aboutDescription, $aboutTitle, $aboutValues];
     }
 
     public function museum()

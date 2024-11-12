@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('category')->nullable();
             $table->text('url_path')->nullable();
             $table->text('image_path')->nullable();
+            $table->text('dimension')->nullable();
             $table->timestamps();
         });
     }

@@ -108,7 +108,7 @@
                                                 <span>
                                                     <i class="ti ti-article"></i>
                                                 </span>
-                                                <span class="hide-menu">Berita</span>
+                                                <span class="hide-menu">Artikel</span>
                                             </a>
                                         </li>
                                     @endhasrole
