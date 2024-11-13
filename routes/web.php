@@ -32,15 +32,15 @@ Route::middleware('guest')->group(function () {
     Route::post('signin', [AuthenticationController::class, 'signin'])->name('signin');
 });
 
-Route::get('test-email', function () {
-    $data = [
-        'name' => 'Syahrizal As',
-        'email' => 'josep21ti@mahasiswa.pcr.ac.id',
-        'message' => 'Test test'
-    ];
+// Route::get('test-email', function () {
+//     $data = [
+//         'name' => 'Syahrizal As',
+//         'email' => 'josep21ti@mahasiswa.pcr.ac.id',
+//         'message' => 'Test test'
+//     ];
 
-    Mail::to('josep21ti@mahasiswa.pcr.ac.id')->send(new SendContactUsResponseEmail($data));
-});
+//     Mail::to('josep21ti@mahasiswa.pcr.ac.id')->send(new SendContactUsResponseEmail($data));
+// });
 Route::get('profil/{type}', [ProfilesController::class, 'profiles'])->name('profiles');
 
 Route::get('ppid/{id}', [PPIDController::class, 'index'])->name('ppid');
@@ -68,12 +68,12 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('berita')->group(function () {
         Route::controller(NewsController::class)->group(function () {
-            Route::get('','index')->name('news');
-            Route::get('create','create')->name('news.create');
-            Route::get('{id}','edit')->name('news.edit');
-            Route::post('','store')->name('news.store');
-            Route::put('{id?}','update')->name('news.update');
-            Route::delete('{id}', action:'destroy')->name('news.destroy');
+            Route::get('', 'index')->name('news');
+            Route::get('create', 'create')->name('news.create');
+            Route::get('{id}', 'edit')->name('news.edit');
+            Route::post('', 'store')->name('news.store');
+            Route::put('{id?}', 'update')->name('news.update');
+            Route::delete('{id}', action: 'destroy')->name('news.destroy');
         });
 
         Route::prefix('kategori')->middleware('role:super admin')->group(function () {
@@ -88,14 +88,14 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('artikel')->group(function () {
         Route::controller(ArticleController::class)->group(function () {
-            Route::get('create','create')->name('article.create');
-            Route::get('{id}','edit')->name('article.edit');
-            Route::post('','store')->name('article.store');
-            Route::put('{id?}','update')->name('article.update');
-            Route::delete('{id}', action:'destroy')->name('article.destroy');
+            Route::get('create', 'create')->name('article.create');
+            Route::get('{id}', 'edit')->name('article.edit');
+            Route::post('ssss', 'store')->name('article.store');
+            Route::put('{id?}', 'update')->name('article.update');
+            Route::delete('{id}', 'destroy')->name('article.destroy');  // Corrected this line
         });
 
-        Route::prefix('kategori')->middleware('role:super admin')->group(function (): void {
+        Route::prefix('kategori')->middleware('role:super admin')->group(function () {
             Route::controller(ArticleCategoryController::class)->group(function () {
                 Route::get('list', 'index')->name('article.category');
                 Route::post('', 'store')->name('article.category.store');
@@ -105,8 +105,9 @@ Route::middleware('auth')->group(function () {
         });
     });
 
+
     Route::prefix('galleries')->group(function () {
-        Route::controller(GalleryController::class)->group(function() {
+        Route::controller(GalleryController::class)->group(function () {
             Route::get('create', 'create')->name('gallery.create');
             Route::post('', 'store')->name('gallery.store');
             Route::put('{id?}', 'update')->name('gallery.update');
@@ -123,7 +124,7 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::prefix('images')->group(function () {
-            Route::controller(GalleryImageController::class,)->group(function () {
+            Route::controller(GalleryImageController::class, )->group(function () {
                 Route::get('{id}', 'index')->name('gallery.images');
                 Route::post('{id}', 'store')->name('gallery.images.post');
                 Route::put('{id?}', 'update')->name('gallery.images.update');
@@ -134,12 +135,12 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('agenda')->group(function () {
         Route::controller(AgendaController::class)->group(function () {
-            Route::get('','index')->name('agenda');
-            Route::get('create','create')->name('agenda.create');
-            Route::get('edit/{id}','edit')->name('agenda.edit');
-            Route::post('','store')->name('agenda.store');
-            Route::put('{id?}','update')->name('agenda.update');
-            Route::delete('{id}', action:'destroy')->name('agenda.destroy');
+            Route::get('', 'index')->name('agenda');
+            Route::get('create', 'create')->name('agenda.create');
+            Route::get('edit/{id}', 'edit')->name('agenda.edit');
+            Route::post('', 'store')->name('agenda.store');
+            Route::put('{id?}', 'update')->name('agenda.update');
+            Route::delete('{id}', action: 'destroy')->name('agenda.destroy');
         });
 
         Route::prefix('kategori')->middleware('role:super admin')->group(function () {
@@ -154,10 +155,10 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('klasifikasi')->group(function () {
         Route::controller(KlasifikasiController::class)->group(function () {
-            Route::get('create','create')->name('klasifikasi.create');
-            Route::post('','store')->name('klasifikasi.store');
-            Route::put('{id?}','update')->name('klasifikasi.update');
-            Route::delete('{id}', action:'destroy')->name('klasifikasi.destroy');
+            Route::get('create', 'create')->name('klasifikasi.create');
+            Route::post('', 'store')->name('klasifikasi.store');
+            Route::put('{id?}', 'update')->name('klasifikasi.update');
+            Route::delete('{id}', action: 'destroy')->name('klasifikasi.destroy');
         });
 
         Route::prefix('kategori')->group(function () {
@@ -170,7 +171,7 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::prefix('images')->group(function () {
-            Route::controller(KlasifikasiImageController::class,)->group(function () {
+            Route::controller(KlasifikasiImageController::class, )->group(function () {
                 Route::get('{id}', 'index')->name('klasifikasi.images');
                 Route::post('{id}', 'store')->name('klasifikasi.images.post');
                 Route::put('{id?}', 'update')->name('klasifikasi.images.update');
@@ -179,7 +180,7 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::prefix('informations')->group(function () {
-            Route::controller(KlasifikasiInformationController::class,)->group(function () {
+            Route::controller(KlasifikasiInformationController::class, )->group(function () {
                 Route::get('{id}', 'index')->name('klasifikasi.informations');
                 Route::post('{id}', 'store')->name('klasifikasi.informations.post');
                 Route::put('{id?}', 'update')->name('klasifikasi.informations.update');
@@ -200,10 +201,10 @@ Route::middleware('auth')->group(function () {
 
             Route::prefix('category')->group(function () {
                 Route::controller(PPIDCategoryController::class)->group(function () {
-                    Route::get('list',  'index')->name('ppid.category');
-                    Route::post('',  'store')->name('ppid.category.store');
-                    Route::put('{id?}',  'update')->name('ppid.category.update');
-                    Route::delete('{id}',  'destroy')->name('ppid.category.destroy');
+                    Route::get('list', 'index')->name('ppid.category');
+                    Route::post('', 'store')->name('ppid.category.store');
+                    Route::put('{id?}', 'update')->name('ppid.category.update');
+                    Route::delete('{id}', 'destroy')->name('ppid.category.destroy');
                 });
             });
 
@@ -218,7 +219,7 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::prefix('surveys')->group(function () {
-            Route::controller(SurveyController::class)->group(function() {
+            Route::controller(SurveyController::class)->group(function () {
                 Route::post('', 'store')->name('survey.store');
                 Route::put('{id?}', 'update')->name('survey.update');
                 Route::delete('{id}', 'destroy')->name('survey.destroy');
@@ -258,8 +259,8 @@ Route::middleware('auth')->group(function () {
 
         Route::prefix('ppkd')->group(function () {
             Route::controller(PpkdController::class)->group(function () {
-                Route::get('create','create')->name('ppkd.create');
-                Route::get('edit/{id}','edit')->name('ppkd.edit');
+                Route::get('create', 'create')->name('ppkd.create');
+                Route::get('edit/{id}', 'edit')->name('ppkd.edit');
                 Route::post('', 'store')->name('ppkd.store');
                 Route::put('{id?}', 'update')->name('ppkd.update');
                 Route::delete('{id}', 'destroy')->name('ppkd.destroy');

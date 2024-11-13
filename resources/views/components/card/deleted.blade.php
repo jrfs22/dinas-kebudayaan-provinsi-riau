@@ -8,7 +8,7 @@
     </form>
 </a>
 
-@push('scripts')
+{{-- @push('scripts')
     <script>
         function confirmDelete(element) {
             Swal.fire({
@@ -29,4 +29,4 @@
             });
         }
     </script>
-@endpush
+@endpush --}}

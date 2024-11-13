@@ -46,14 +46,16 @@
                         <td class="text-capitalize">
                             {{ $item->role }}
                         </td>
-                        <td class="action-btn d-flex gap-2">
-                            <a href="javascript:void(0)" class="text-success edit"
-                                data-id="{{ $item->id }}"
-                                data-name="{{ $item->name }}" data-email="{{ $item->email }}"
-                                data-name="{{ $item->name }}" data-departement_id="{{ $item->departement_id }}"
-                                onclick="modalEditPengguna(this)">
-                                <i class="ti ti-pencil fs-5"></i>
-                            </a>
+                        <td>
+                            <div class="action-btn d-flex gap-2">
+                                <a href="javascript:void(0)" class="text-success edit"
+                                    data-id="{{ $item->id }}"
+                                    data-name="{{ $item->name }}" data-email="{{ $item->email }}"
+                                    data-name="{{ $item->name }}" data-departement_id="{{ $item->departement_id }}"
+                                    onclick="modalEditPengguna(this)">
+                                    <i class="ti ti-pencil fs-5"></i>
+                                </a>
+                            </div>
                         </td>
                     </tr>
                 @endforeach

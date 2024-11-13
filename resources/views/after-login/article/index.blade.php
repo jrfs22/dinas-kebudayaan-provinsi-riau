@@ -54,11 +54,13 @@
                         <td>
                             {{ indonesianDate($item->date) }}
                         </td>
-                        <td class="action-btn d-flex gap-2">
-                            <a href="{{ route('article.edit', ['id' => $item->id]) }}" class="text-success edit">
-                                <i class="ti ti-pencil fs-5"></i>
-                            </a>
-                            <x-card.deleted route="{{ route('article.destroy', ['id' => $item->id]) }}" />
+                        <td>
+                            <div class="action-btn d-flex gap-2">
+                                <a href="{{ route('article.edit', ['id' => $item->id]) }}" class="text-success edit">
+                                    <i class="ti ti-pencil fs-5"></i>
+                                </a>
+                                <x-card.deleted route="{{ route('article.destroy', ['id' => $item->id]) }}" />
+                            </div>
                         </td>
                     </tr>
                 @endforeach

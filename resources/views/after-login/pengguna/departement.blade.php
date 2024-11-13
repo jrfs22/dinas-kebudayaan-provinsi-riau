@@ -34,14 +34,16 @@
                         <td>
                             {{ $item->name }}
                         </td>
-                        <td class="action-btn d-flex gap-2">
-                            <a href="javascript:void(0)" class="text-success edit" data-id="{{ $item->id }}"
-                                data-name="{{ $item->name }}""
-                                onclick="modalEditDepartement(this)">
-                                <i class="ti ti-pencil fs-5"></i>
-                            </a>
+                        <td>
+                            <div class="action-btn d-flex gap-2">
+                                <a href="javascript:void(0)" class="text-success edit" data-id="{{ $item->id }}"
+                                    data-name="{{ $item->name }}"
+                                    onclick="modalEditDepartement(this)">
+                                    <i class="ti ti-pencil fs-5"></i>
+                                </a>
 
-                            <x-card.deleted route="{{ route('departement.destroy', ['id' => $item->id]) }}" />
+                                <x-card.deleted route="{{ route('departement.destroy', ['id' => $item->id]) }}" />
+                            </div>
                         </td>
                     </tr>
                 @endforeach

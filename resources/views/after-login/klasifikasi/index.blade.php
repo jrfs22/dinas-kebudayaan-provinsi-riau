@@ -60,16 +60,18 @@
                                 <i class="ti ti-search text-white me-1 fs-4 ms-1"></i>
                             </a>
                         </td>
-                        <td class="action-btn d-flex gap-2">
-                            <a href="javascript:void(0)" class="text-success edit" data-id="{{ $item->id }}"
-                                data-title="{{ $item->title }}"
-                                data-description="{{ $item->description }}"
-                                data-klasifikasi_category_id="{{ $item->klasifikasi_category_id }}"
-                                onclick="modalEditKlasifikasi(this)">
-                                <i class="ti ti-pencil fs-5"></i>
-                            </a>
+                        <td>
+                            <div class="action-btn d-flex gap-2">
+                                <a href="javascript:void(0)" class="text-success edit" data-id="{{ $item->id }}"
+                                    data-title="{{ $item->title }}"
+                                    data-description="{{ $item->description }}"
+                                    data-klasifikasi_category_id="{{ $item->klasifikasi_category_id }}"
+                                    onclick="modalEditKlasifikasi(this)">
+                                    <i class="ti ti-pencil fs-5"></i>
+                                </a>
 
-                            <x-card.deleted route="{{ route('klasifikasi.destroy', ['id' => $item->id]) }}" />
+                                <x-card.deleted route="{{ route('klasifikasi.destroy', ['id' => $item->id]) }}" />
+                            </div>
                         </td>
                     </tr>
                 @endforeach

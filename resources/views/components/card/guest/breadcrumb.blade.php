@@ -16,11 +16,4 @@
             <li>{{ $currentPage }}</li>
         </ul>
     </div>
-
-    <div class="vectors">
-        <img src="{{ asset('assets/guest/img/breadcrumb-vector-1.svg') }}" alt="vector"
-            class="absolute -z-[1] pointer-events-none bottom-[34px] left-0 xl:left-auto xl:right-[90%]">
-        <img src="{{ asset('assets/guest/img/breadcrumb-vector-2.svg') }}" alt="vector"
-            class="absolute -z-[1] pointer-events-none bottom-0 right-0 xl:right-auto xl:left-[60%]">
-    </div>
 </section>
