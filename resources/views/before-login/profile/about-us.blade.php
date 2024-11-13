@@ -6,8 +6,14 @@
     <x-card.guest.breadcrumb currentPage="Tentang Kami" />
 
     <!-- ABOUT SECTION START -->
-    <section
-        class="ed-2-about bg-edoffwhite py-[120px] xl:py-[80px] md:py-[60px] relative z-[1] before:absolute before:inset-0 before:-z-[1] before:bg-[url('../assets/img/about-us-bg.png')] before:opacity-[5%] before:bg-no-repeat before:bg-cover before:bg-center before:mix-blend-multiply">
+    @isset($aboutBackground)
+        <section
+            class="ed-2-about bg-edoffwhite py-[120px] xl:py-[80px] md:py-[60px] relative z-[1] before:absolute before:inset-0 before:-z-[1] before:opacity-[5%] before:bg-no-repeat before:bg-cover before:bg-center before:mix-blend-multiply"
+            style="background-image: url('../../{{ 'storage/' . $aboutBackground }}');background-repeat: no-repeat; background-size: cover;">
+        @else
+            <section
+                class="ed-2-about bg-edoffwhite py-[120px] xl:py-[80px] md:py-[60px] relative z-[1] before:absolute before:inset-0 before:-z-[1] before:bg-[url('../assets/img/about-us-bg.png')] before:opacity-[5%] before:bg-no-repeat before:bg-cover before:bg-center before:mix-blend-multiply">
+            @endisset
         <div class="mx-[19.7%] xxxl:mx-[14.7%] xxl:mx-[9.7%] xl:mx-[3.2%] md:mx-[15px]">
             <div class="flex md:flex-col gap-x-[75px] gap-y-[30px]">
                 <div class="max-w-[46%] md:max-w-full grow shrink-0">

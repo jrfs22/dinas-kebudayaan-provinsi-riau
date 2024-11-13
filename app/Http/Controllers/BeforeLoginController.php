@@ -44,7 +44,7 @@ class BeforeLoginController extends Controller
 
         $content = new ContentModel();
 
-        list($heroBackground, $heroTitle, $heroSubtitle, $heroDescription, $heroMainImage, $heroSecondaryImage, $aboutMainImage, $aboutYt, $sitari, $categoryInformasi, $aboutDescription, $aboutTitle, $aboutValues) = $this->berandaLayout();
+        list($heroBackground, $heroTitle, $heroSubtitle, $heroDescription, $heroMainImage, $heroSecondaryImage, $aboutMainImage, $aboutYt, $sitari, $categoryInformasi, $aboutDescription, $aboutTitle, $aboutValues, $aboutBackground) = $this->berandaLayout();
 
         return view('before-login.beranda', compact(
             'newsCategories',
@@ -62,7 +62,8 @@ class BeforeLoginController extends Controller
             'aboutDescription',
             'aboutTitle',
             'aboutValues',
-            'heroBackground'
+            'heroBackground',
+            'aboutBackground'
         ));
     }
 
@@ -94,6 +95,10 @@ class BeforeLoginController extends Controller
             return $content->publish()->where('category', 'hero-background')->first()?->image_path;
         });
 
+        $aboutBackground = Cache::rememberForever('tentang-kami-background', function () use ($content) {
+            return $content->publish()->where('category', 'tentang-kami-background')->first()?->image_path;
+        });
+
         $aboutDescription = Cache::rememberForever('tentang-kami-deskripsi', function () use ($content) {
             return $content->publish()->where('category', 'tentang-kami-deskripsi')->first()?->content;
         });
@@ -122,7 +127,7 @@ class BeforeLoginController extends Controller
             return $content->publish()->where('category', 'informasi-category')->get();
         });
 
-        return [$heroBackground, $heroTitle, $heroSubtitle, $heroDescription, $heroMainImage, $heroSecondaryImage, $aboutMainImage, $aboutYt, $sitari, $categoryInformasi, $aboutDescription, $aboutTitle, $aboutValues];
+        return [$heroBackground, $heroTitle, $heroSubtitle, $heroDescription, $heroMainImage, $heroSecondaryImage, $aboutMainImage, $aboutYt, $sitari, $categoryInformasi, $aboutDescription, $aboutTitle, $aboutValues, $aboutBackground];
     }
 
     public function museum()
@@ -189,5 +194,10 @@ class BeforeLoginController extends Controller
         });
 
         return [$aboutMuseumMainImage, $aboutMuseumYt, $aboutMuseumDescription, $aboutMuseumBackground, $klasifikasi, $aboutMuseumTitle, $aboutMuseumValues];
+    }
+
+    public function getAboutUs()
+    {
+
     }
 }

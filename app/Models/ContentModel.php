@@ -62,7 +62,8 @@ class ContentModel extends Model
             'informasi-category',
             'tentang-kami-title',
             'upt-museum-title',
-            'upt-museum-values'
+            'upt-museum-values',
+            'tentang-kami-background'
         ];
 
         foreach ($keys as $key) {

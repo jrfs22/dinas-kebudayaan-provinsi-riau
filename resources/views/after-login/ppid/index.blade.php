@@ -48,26 +48,31 @@
                             <td style="word-break: break-all;">
                                 {{ $item->information_format }}
                             </td>
-                            <td style="word-break: break-all;">
-                                <a href="{{ route('ppid.files', ['id' => $item->id]) }}">{{ $item->file_summary }}</a>
+                            <td>
+                                <a class="btn btn-sm btn-primary fw-semibold fs-4" href="{{ route('ppid.files', ['id' => $item->id]) }}">
+                                    {{ $item->file_summary }}
+                                    <i class="ti ti-search text-white me-1 fs-4 ms-1"></i>
+                                </a>
                             </td>
 
                         @endif
-                        <td class="action-btn d-flex gap-2">
-                            <a href="javascript:void(0)" class="text-success edit" data-id="{{ $item->id }}"
-                                data-content="{{ $item->content }}"
-                                data-name="{{ $item->name }}"
-                                data-responsible_person="{{ $item->responsible_person }}"
-                                data-year_of_publication="{{ $item->year_of_publication }}"
-                                data-information_format="{{ $item->information_format }}"
-                                data-storage_duration="{{ $item->storage_duration }}"
-                                data-image_path="{{ $item->image_path ?? '' }}"
-                                data-ppid_category_id="{{ $item->ppid_category_id }}"
-                                onclick="modalEditppid(this)">
-                                <i class="ti ti-pencil fs-5"></i>
-                            </a>
+                        <td >
+                            <div class="action-btn d-flex gap-2">
+                                <a href="javascript:void(0)" class="text-success edit" data-id="{{ $item->id }}"
+                                    data-content="{{ $item->content }}"
+                                    data-name="{{ $item->name }}"
+                                    data-responsible_person="{{ $item->responsible_person }}"
+                                    data-year_of_publication="{{ $item->year_of_publication }}"
+                                    data-information_format="{{ $item->information_format }}"
+                                    data-storage_duration="{{ $item->storage_duration }}"
+                                    data-image_path="{{ $item->image_path ?? '' }}"
+                                    data-ppid_category_id="{{ $item->ppid_category_id }}"
+                                    onclick="modalEditppid(this)">
+                                    <i class="ti ti-pencil fs-5"></i>
+                                </a>
 
-                            <x-card.deleted route="{{ route('ppid.destroy', ['id' => $item->id]) }}" />
+                                <x-card.deleted route="{{ route('ppid.destroy', ['id' => $item->id]) }}" />
+                            </div>
                         </td>
                     </tr>
                 @endforeach

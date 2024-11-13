@@ -42,21 +42,23 @@
                         <td>
                             <span class="badge text-capitalize {{ $item->status == 'draft' ? 'bg-danger' : 'bg-success' }}">{{ $item->status }}</span>
                         </td>
-                        <td class="action-btn d-flex gap-2">
-                            <a href="javascript:void(0)" class="text-success edit"
-                                data-id="{{ $item->id }}"
-                                data-url_path="{{ $item->url_path }}"
-                                data-status="{{ $item->status }}"
-                                data-content="{{ $item->content }}"
+                        <td>
+                            <div  class="action-btn d-flex gap-2">
+                                <a href="javascript:void(0)" class="text-success edit"
+                                    data-id="{{ $item->id }}"
+                                    data-url_path="{{ $item->url_path }}"
+                                    data-status="{{ $item->status }}"
+                                    data-content="{{ $item->content }}"
 
-                                onclick="modalEditKontak(this)"
-                            >
-                                <i class="ti ti-pencil fs-5"></i>
-                            </a>
+                                    onclick="modalEditKontak(this)"
+                                >
+                                    <i class="ti ti-pencil fs-5"></i>
+                                </a>
 
-                            <x-card.deleted
-                                    route="{{ route('profiles.destroy', ['id'=>$item->id]) }}"
-                                />
+                                <x-card.deleted
+                                        route="{{ route('profiles.destroy', ['id'=>$item->id]) }}"
+                                    />
+                            </div>
                         </td>
                     </tr>
                 @endforeach

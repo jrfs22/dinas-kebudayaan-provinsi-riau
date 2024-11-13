@@ -45,7 +45,7 @@
                         <td>
                             {{ $item->category?->name }}
                         </td>
-                        <td>
+                        <td  class="w-200px">
                             {{ $item->title }}
                         </td>
                         <td>
@@ -57,17 +57,19 @@
                         <td>
                             {{ indonesianDate($item->date) }}
                         </td>
-                        <td class="action-btn d-flex gap-2">
-                            <a href="javascript:void(0)" class="text-success edit" data-id="{{ $item->id }}"
-                                data-date="{{ $item->date }}"
-                                data-title="{{ $item->title }}"
-                                data-image_path="{{ $item->image_path }}"
-                                data-gallery_category_id="{{ $item->gallery_category_id }}"
-                                onclick="modalEditGallery(this)">
-                                <i class="ti ti-pencil fs-5"></i>
-                            </a>
+                        <td>
+                            <div class="action-btn d-flex gap-2">
+                                <a href="javascript:void(0)" class="text-success edit" data-id="{{ $item->id }}"
+                                    data-date="{{ $item->date }}"
+                                    data-title="{{ $item->title }}"
+                                    data-image_path="{{ $item->image_path }}"
+                                    data-gallery_category_id="{{ $item->gallery_category_id }}"
+                                    onclick="modalEditGallery(this)">
+                                    <i class="ti ti-pencil fs-5"></i>
+                                </a>
 
-                            <x-card.deleted route="{{ route('gallery.destroy', ['id' => $item->id]) }}" />
+                                <x-card.deleted route="{{ route('gallery.destroy', ['id' => $item->id]) }}" />
+                            </div>
                         </td>
                     </tr>
                 @endforeach

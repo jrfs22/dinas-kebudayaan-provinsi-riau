@@ -45,11 +45,13 @@
                         <td>
                             <span class="badge text-capitalize {{ $item->status == 'disahkan' ? 'bg-success ' : 'bg-secondary' }}">{{ $item->status }}</span>
                         </td>
-                        <td class="action-btn d-flex gap-2">
-                            <a href="{{ route('ppkd.edit', ['id' => $item->id]) }}" class="text-success edit">
-                                <i class="ti ti-pencil fs-5"></i>
-                            </a>
-                            <x-card.deleted route="{{ route('ppkd.destroy', ['id' => $item->id]) }}" />
+                        <td>
+                            <div class="action-btn d-flex gap-2">
+                                <a href="{{ route('ppkd.edit', ['id' => $item->id]) }}" class="text-success edit">
+                                    <i class="ti ti-pencil fs-5"></i>
+                                </a>
+                                <x-card.deleted route="{{ route('ppkd.destroy', ['id' => $item->id]) }}" />
+                            </div>
                         </td>
                     </tr>
                 @endforeach

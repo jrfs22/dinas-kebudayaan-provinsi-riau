@@ -1,9 +1,9 @@
 @extends('layouting.guest.main')
 
-@section('title', 'Event Budaya')
+@section('title', 'Artikel')
 
 @section('content')
-    <x-card.guest.breadcrumb currentPage="Event Budaya" />
+    <x-card.guest.breadcrumb currentPage="Artikel" />
 
     <div class="py-[120px] xl:py-[80px] md:py-[60px]">
         <div class="mx-[19.71%] xxxl:mx-[14.71%] xxl:mx-[9.71%] xl:mx-[5.71%] md:mx-[12px]">

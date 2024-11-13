@@ -76,6 +76,11 @@ class ProfilesController extends Controller
 
                         return view('before-login.profile.sejarah', compact('content'));
                     case 'about':
+
+                        $aboutBackground = Cache::rememberForever('tentang-kami-background', function () use ($content) {
+                            return $content->publish()->where('category', 'tentang-kami-background')->first()?->image_path;
+                        });
+
                         $aboutDescription = Cache::rememberForever('tentang-kami-deskripsi', function () use ($content) {
                             return $content->publish()->where('category', 'tentang-kami-deskripsi')->first()?->content;
                         });
@@ -98,7 +103,7 @@ class ProfilesController extends Controller
 
                         $sambutan = $content->where('category', 'sambutan')->first();
 
-                        return view('before-login.profile.about-us', compact('content', 'sambutan', 'aboutDescription', 'aboutTitle', 'aboutMainImage', 'aboutYt', 'aboutValues'));
+                        return view('before-login.profile.about-us', compact('content', 'sambutan', 'aboutDescription', 'aboutTitle', 'aboutMainImage', 'aboutYt', 'aboutValues', 'aboutBackground'));
                     case 'struktur-organisasi':
                         $content = $content->where('category', 'struktur organisasi')->first();
 

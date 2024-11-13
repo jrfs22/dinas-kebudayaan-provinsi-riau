@@ -10,3 +10,23 @@ function setEndDateRestriction(startInputId, endInputId) {
         }
     });
 }
+
+
+function confirmDelete(element) {
+    Swal.fire({
+        title: "Are you sure?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var route = $(element).data('route');
+
+            $(element).find('form').attr('action', route);
+
+            $(element).find('form').submit();
+        }
+    });
+}
