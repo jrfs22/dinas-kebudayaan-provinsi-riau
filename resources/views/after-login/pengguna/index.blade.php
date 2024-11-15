@@ -70,7 +70,7 @@
                 <x-forms.input name="name" label="Nama Lengkap" placeholder="Jhon Doe" required=1 />
             </div>
             <div class="col-12">
-                <x-forms.input name="email" type="email" label="Email" placeholder="jhone.doe@example.com"
+                <x-forms.input name="email" type="email" label="Email  (Password default adalah email)" placeholder="jhone.doe@example.com"
                     required=1 />
             </div>
             <div class="col-12 mb-3">

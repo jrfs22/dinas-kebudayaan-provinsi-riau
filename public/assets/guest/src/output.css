@@ -1288,6 +1288,10 @@ video {
     aspect-ratio: 261/366;
 }
 
+.aspect-\[435\/544\] {
+    aspect-ratio: 435/544;
+}
+
 .aspect-\[310\/198\] {
     aspect-ratio: 310/198;
 }
@@ -1607,6 +1611,10 @@ video {
 
 .max-w-\[241px\] {
     max-width: 241px;
+}
+
+.max-w-\[425px\] {
+    max-width: 425px;
 }
 
 .max-w-\[25\%\] {

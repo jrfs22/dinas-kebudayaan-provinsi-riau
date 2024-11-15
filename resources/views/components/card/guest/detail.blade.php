@@ -17,13 +17,13 @@
         <!-- single info -->
         <div class="flex gap-[10px] items-center">
             <x-icon.user />
-            <span class="text-[14px] text-edgray">{{ $author }}</span>
+            <span class="text-[14px] text-edgray">{!! $author !!}</span>
         </div>
 
         <!-- single info -->
         <div class="flex gap-[10px] items-center">
             <x-icon.tag />
-            <span class="text-[14px] text-edgray"><a href="#">{{ $categoryName }}</a></span>
+            <span class="text-[14px] text-edgray"><a href="#">{!! $categoryName !!}</a></span>
         </div>
     </div>
     <div class="img overflow-hidden rounded-[8px] mb-[30px] relative">

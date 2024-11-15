@@ -23,7 +23,7 @@
                             <div class="txt">
                                 <span class="font-normal">Telepon</span>
                                 <h4 class="font-medium text-[24px] xxs:text-[22px]">
-                                    <a href="tel:+208-555-0112">0812-3456-7890</a>
+                                    <a href="tel:+208-555-0112">{{ $telepon->content }}</a>
                                 </h4>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                             <div class="txt">
                                 <span class="font-normal">Email</span>
                                 <h4 class="font-medium text-[24px] xxs:text-[22px]">
-                                    <a href="mailto:eventek@gmail.com">disbud@gmail.com</a>
+                                    <a href="mailto:eventek@gmail.com">{{ $email->content }}</a>
                                 </h4>
                             </div>
                         </div>
