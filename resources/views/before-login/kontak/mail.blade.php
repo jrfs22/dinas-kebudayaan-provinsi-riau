@@ -1,122 +1,107 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body,
-        table,
-        td,
-        a {
-            text-size-adjust: 100%;
-        }
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
-        table,
-        td {
-            mso-table-lspace: 0pt;
-            mso-table-rspace: 0pt;
-        }
-
-        img {
-            -ms-interpolation-mode: bicubic;
-        }
-
-        /* Container */
         body {
+            font-family: "poppins", Arial, sans-serif;
             margin: 0;
             padding: 0;
-            width: 100% !important;
-            font-family: Arial, sans-serif;
-            color: #333;
+            background-color: #f6f6f6;
         }
 
         .email-container {
             max-width: 600px;
-            margin: auto;
-            background: #f9f9f9;
+            margin: 0 auto;
+            background-color: #ffffff;
             padding: 20px;
-        }
-
-        /* Main */
-        .header {
-            background: #f2bb15;
-            color: #fff;
-            padding: 20px;
+            border: 1px solid #dddddd;
+            border-radius: 26px;
             text-align: center;
         }
 
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
+        .header {
+            background-color: #f8bc24;
+            border-radius: 16px;
+            color: #ffffff;
+            padding: 10px;
+            text-align: center;
         }
 
         .content {
             padding: 20px;
-            background: #fff;
-            border-radius: 8px;
+            color: #241442;
         }
 
-        .content h2 {
-            font-size: 20px;
-            color: #f2bb15;
-            margin: 0 0 10px;
-        }
-
-        .content p {
-            line-height: 1.6;
-            color: #666;
-            margin: 5px 0;
-            font-size: 14px;
-            font-weight: 400;
-        }
-
-        /* Footer */
         .footer {
-            text-align: center;
+            background-color: #f6f6f6;
+            color: #888888;
             padding: 10px;
+            text-align: center;
             font-size: 12px;
-            color: #999;
-            font-weight: 600;
+        }
+
+        .logo {
+            width: auto;
+            height: 64px;
+            padding-right: 4px;
+        }
+
+        .button {
+            padding: 16px 24px;
+            font-size: 16px;
+            border-radius: 12px;
+            color: white;
+            background-color: #c2163e;
+            border: 0px;
+            cursor: pointer;
+            margin-top: 16px;
+        }
+
+        .name {
+            font-weight: bold;
+        }
+
+        .description {
+            color: #4f536c;
+        }
+
+        .closing {
+            margin-top: 64px;
         }
     </style>
 </head>
 
 <body>
-    <table role="presentation" cellspacing="0" cellpadding="0" width="100%">
-        <tr>
-            <td>
-                <div class="email-container">
-                    <!-- Header -->
-                    <div class="header">
-                        <h1>Pesan dari {{ env('APP_URL') }}</h1>
-                    </div>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="header">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                    <td align="center" style="padding: 10px">
+                        <img src="{{ asset('assets/guest/img/image/logo-riau.png') }}" alt="Logo 1" class="logo" />
+                        <img src="{{ asset('assets/guest/img/image/logo-disbud.png') }}" alt="Logo 2" class="logo" />
+                    </td>
+                </tr>
+            </table>
+        </div>
 
-                    <!-- Content -->
-                    <div class="content">
-                        <h2>Halo, Admin!</h2>
-                        <p>Anda telah menerima pesan baru dari formulir Hubungi Kami di website:</p>
-
-                        <p><strong>Nama:</strong>{{ $name }}</p>
-                        <p><strong>Email:</strong> {{ $receiver }}</p>
-                        <p><strong>Pesan:</strong></p>
-                        <p>
-                            {{ $messages }}
-                        </p>
-
-                        <br>
-                        <br>
-                        <p>Terima kasih!</p>
-                    </div>
-
-                    <!-- Footer -->
-                    <div class="footer">
-                        <p>&copy; Copyright {{ now()->year }} by {{ config('app.name') }}</p>
-                    </div>
-                </div>
-            </td>
-        </tr>
-    </table>
+        <!-- Content -->
+        <div class="content">
+            <p>Halo <span class="name">Dinas Kebudayaan</span>,</p>
+            <p class="description"> 
+                {{ $messages }}
+            </p>
+            <p class="closing">
+                <span class="description">Salam hangat,</span><br />
+                {{ $name }} <br>
+                {{ $sender }}
+            </p>
+        </div>
+    </div>
 </body>
 
 </html>

@@ -24,7 +24,7 @@ class CompanyProfilesSeeder extends Seeder
                 'status' => 'published',
                 'category' => 'visi',
                 'url_path' => 'visi-misi-kebudayaan-melayu',
-                'image_path' => 'images/culture-vision.jpg',
+                'image_path' => 'images/content/visi/1731456845-6733ef4d6f8f3.jpg',
                 'dimension' => null
             ],
             [
@@ -50,7 +50,7 @@ class CompanyProfilesSeeder extends Seeder
                 'status' => 'published',
                 'category' => 'sejarah',
                 'url_path' => null,
-                'image_path' => 'images/director-speech.jpg',
+                'image_path' => 'images/content/sejarah/1731456737-6733eee1b40b6.jpg',
                 'dimension' => null
             ],
             [
@@ -61,9 +61,9 @@ class CompanyProfilesSeeder extends Seeder
                 ',
                 'date' => now(),
                 'status' => 'published',
-                'category' => 'struktur organisasi',
+                'category' => 'struktur-organisasi',
                 'url_path' => null,
-                'image_path' => 'images/director-speech.jpg',
+                'image_path' => 'images/content/struktur-organisasi/1731456793-6733ef19344f3.png',
                 'dimension' => null
             ],
             [
@@ -80,11 +80,11 @@ class CompanyProfilesSeeder extends Seeder
             [
                 'title' => 'Email',
                 'description' => 'Email',
-                'content' => 'disbud@gmail.com',
+                'content' => 'josep21ti@mahasiswa.pcr.ac.id',
                 'date' => now(),
                 'status' => 'published',
                 'category' => 'email',
-                'url_path' => 'mailto:disbud@gmail.com',
+                'url_path' => 'mailto:josep21ti@mahasiswa.pcr.ac.id',
                 'image_path' => null,
                 'dimension' => null
             ],
@@ -302,7 +302,7 @@ class CompanyProfilesSeeder extends Seeder
                 'status' => 'published',
                 'category' => 'sitari',
                 'url_path' => 'http://sitari.disbud.riau.go.id/',
-                'image_path' => 'assets/guest/img/cta-2-img.png',
+                'image_path' => 'images/content/sitari/sitari.png',
                 'dimension' => '353x413'
             ],
             [
@@ -437,7 +437,7 @@ class CompanyProfilesSeeder extends Seeder
                 'status' => 'published',
                 'category' => 'informasi-category',
                 'url_path' => null,
-                'image_path' => 'assets/guest/img/footer-bg.jpg',
+                'image_path' => 'images/content/informasi-category/cultural.png',
                 'dimension' => 'Harus PNG tanpa memiliki background'
             ],
             [
@@ -448,7 +448,7 @@ class CompanyProfilesSeeder extends Seeder
                 'status' => 'published',
                 'category' => 'informasi-category',
                 'url_path' => null,
-                'image_path' => 'assets/guest/img/footer-bg.jpg',
+                'image_path' => 'images/content/informasi-category/festival.png',
                 'dimension' => 'Harus PNG tanpa memiliki background'
             ],
             [
@@ -459,7 +459,7 @@ class CompanyProfilesSeeder extends Seeder
                 'status' => 'published',
                 'category' => 'informasi-category',
                 'url_path' => null,
-                'image_path' => 'assets/guest/img/footer-bg.jpg',
+                'image_path' => 'images/content/informasi-category/leadership.png',
                 'dimension' => 'Harus PNG tanpa memiliki background'
             ],
             [
@@ -470,7 +470,7 @@ class CompanyProfilesSeeder extends Seeder
                 'status' => 'published',
                 'category' => 'informasi-category',
                 'url_path' => null,
-                'image_path' => 'assets/guest/img/footer-bg.jpg',
+                'image_path' => 'images/content/informasi-category/informative.png',
                 'dimension' => 'Harus PNG tanpa memiliki background'
             ],
         ]);

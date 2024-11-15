@@ -11,10 +11,10 @@
 <script src="{{ asset('assets/user/js/customs.js') }}?v={{ date('Ymd') }}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<x-sweetalert />
 
 
 @vite('resources/js/app.js')
 
-<x-sweetalert />
 
 @stack('scripts')

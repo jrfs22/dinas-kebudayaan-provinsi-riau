@@ -207,18 +207,39 @@ function isValidGoogleMapsEmbedURL($url)
     return strpos($url, "https://www.google.com/maps/embed") === 0;
 }
 
+
 function formatDateRange($startDate, $endDate)
 {
-    $start = Carbon::createFromTimestamp($startDate);
-    $end = Carbon::createFromTimestamp($endDate);
+    Carbon::setLocale('id_ID');
+
+    $months = [
+        1 => 'Januari',
+        'Februari',
+        'Maret',
+        'April',
+        'Mei',
+        'Juni',
+        'Juli',
+        'Agustus',
+        'September',
+        'Oktober',
+        'November',
+        'Desember'
+    ];
+
+    $start = Carbon::parse($startDate);
+    $end = Carbon::parse($endDate);
+
+    $startMonth = $months[$start->month];
+    $endMonth = $months[$end->month];
 
     if ($start->year === $end->year && $start->month === $end->month) {
-        return $start->format('j') . ' - ' . $end->format('j F Y');
+        return $start->format('j') . ' - ' . $end->format('j ') . $startMonth . ' ' . $start->year;
     }
 
     if ($start->year === $end->year) {
-        return $start->format('j F') . ' - ' . $end->format('j F Y');
+        return $start->format('j ') . $startMonth . ' - ' . $end->format('j ') . $endMonth . ' ' . $start->year;
     }
 
-    return $start->format('j F Y') . ' - ' . $end->format('j F Y');
+    return $start->format('j ') . $startMonth . ' ' . $start->year . ' - ' . $end->format('j ') . $endMonth . ' ' . $end->year;
 }

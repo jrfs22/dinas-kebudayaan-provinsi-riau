@@ -10,7 +10,7 @@
             <div class="flex items-start justify-center gap-[15px]">
                 <h2 class="ed-section-title mb-[25px]">Struktur Organisasi</h2>
             </div>
-            <img src="{{ asset('storage/' . $content->image_path) }}" alt="Gambar Struktur Organisasi" class="rounded-xl" />
+            <img src="{{ asset('storage/' . $content?->image_path) }}" alt="Gambar Struktur Organisasi" class="rounded-xl" />
         </div>
     </section>
 @endsection

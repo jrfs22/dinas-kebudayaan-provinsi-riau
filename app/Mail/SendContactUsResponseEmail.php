@@ -13,11 +13,11 @@ class SendContactUsResponseEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $receiver, $name, $messages;
+    public $sender, $name, $messages;
 
-    public function __construct($name, $receiver, $messages)
+    public function __construct($name, $sender, $messages)
     {
-        $this->receiver = $receiver;
+        $this->sender = $sender;
         $this->name = $name;
         $this->messages = $messages;
     }
@@ -28,7 +28,7 @@ class SendContactUsResponseEmail extends Mailable
                     ->view('before-login.kontak.mail')
                     ->with([
                         'name' => $this->name,
-                        'receiver' => $this->receiver,
+                        'sender' => $this->sender,
                         'messages' => $this->messages,
                     ]);
     }

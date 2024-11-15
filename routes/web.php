@@ -32,15 +32,9 @@ Route::middleware('guest')->group(function () {
     Route::post('signin', [AuthenticationController::class, 'signin'])->name('signin');
 });
 
-// Route::get('test-email', function () {
-//     $data = [
-//         'name' => 'Syahrizal As',
-//         'email' => 'josep21ti@mahasiswa.pcr.ac.id',
-//         'message' => 'Test test'
-//     ];
-
-//     Mail::to('josep21ti@mahasiswa.pcr.ac.id')->send(new SendContactUsResponseEmail($data));
-// });
+Route::get('test-email', function () {
+    return view('before-login.kontak.mail');
+});
 Route::get('profil/{type}', [ProfilesController::class, 'profiles'])->name('profiles');
 
 Route::get('ppid/{id}', [PPIDController::class, 'index'])->name('ppid');

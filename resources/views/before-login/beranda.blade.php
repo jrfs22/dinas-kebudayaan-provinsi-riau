@@ -28,7 +28,7 @@
                             alt="banner image"
                             class="border-[10px] border-white rounded-[20px] max-w-[241px] aspect-[261/366] object-cover" />
                         <img src="{{ isFileExist('storage/' . isDataNull($heroMainImage), asset('assets/guest/img/banner-2-img-2.jpg')) }}"
-                            alt="Main image" class="rounded-[20px]" />
+                            alt="Main image" class="rounded-[20px] max-w-[425px] aspect-[435/544] object-cover" />
 
                         @if (!isset($heroBackground))
                             <!-- vectors -->
@@ -92,7 +92,7 @@
                     <x-card.guest.news image="{{ asset('storage/' . isDataNull($item->cover_image_path)) }}"
                         categoryName="{!! $item->category->name !!}" date="{{ indonesianDate($item->date) }}"
                         title="{{ $item->title }}" summary="{{ $item->summary }}"
-                        author="Bidang {{ $item?->category?->departement?->name }}"
+                        author="Bidang {!! $item?->category?->departement?->name !!}"
                         detail="{{ route('news.detail', ['slug' => $item->slug]) }}" />
                 @endforeach
             </div>

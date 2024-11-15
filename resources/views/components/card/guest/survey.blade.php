@@ -3,7 +3,7 @@
 <div
     class="bg-white flex lg:flex-col items-start gap-x-[20px] gap-y-[10px] shadow-[0_4px_30px_rgba(0,0,0,0.1)] rounded-[20px] p-[30px] xxs:p-[20px]">
     <!-- text -->
-    <div>
+    <div class="flex flex-col justify-between h-full w-full">
         <!-- infos -->
         <div class="flex flex-wrap gap-x-[16px] gap-y-[8px] mb-[16px]">
             <div

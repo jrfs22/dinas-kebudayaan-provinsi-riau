@@ -45,8 +45,8 @@ p {
 }
 
 .ed-btn {
-    background-color: var(--ed-purple);
-    color: var(--white);
+    background-color: rgb(252, 185, 0);
+    color: black;
     border-radius: 99px;
     display: inline-flex;
     align-items: center;
@@ -57,7 +57,7 @@ p {
     text-transform: uppercase;
 }
 .ed-btn:hover {
-    background-color: var(--ed-blue);
+    background-color: var(--ed-yellow);
 }
 
 .ed-section-sub-title {
@@ -426,4 +426,9 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.site-title {
+    font-weight: 600;
+
 }

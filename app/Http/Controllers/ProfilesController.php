@@ -24,7 +24,7 @@ class ProfilesController extends Controller
                         $view = 'after-login.profiles.sejarah';
                         break;
                     case 'struktur-organisasi':
-                        $content = $content->where('category', 'struktur organisasi')->first();
+                        $content = $content->where('category', 'struktur-organisasi')->first();
                         $view = 'after-login.profiles.struktur';
                         break;
                     case 'tugas-pokok':
@@ -105,7 +105,7 @@ class ProfilesController extends Controller
 
                         return view('before-login.profile.about-us', compact('content', 'sambutan', 'aboutDescription', 'aboutTitle', 'aboutMainImage', 'aboutYt', 'aboutValues', 'aboutBackground'));
                     case 'struktur-organisasi':
-                        $content = $content->where('category', 'struktur organisasi')->first();
+                        $content = $content->where('category', 'struktur-organisasi')->first();
 
                         return view('before-login.profile.struktur-organisasi', compact('content'));
                     case 'visi-misi':

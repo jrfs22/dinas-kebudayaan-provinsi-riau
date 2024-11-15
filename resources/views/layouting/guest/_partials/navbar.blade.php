@@ -4,6 +4,9 @@
         <a href="{{ route('beranda') }}" class="flex space-x-2">
             <img src="{{ asset('assets/guest/img/image/logo-riau.png') }}" class="w-[50px]" alt="logo-riau" />
             <img src="{{ asset('assets/guest/img/image/logo-disbud.png') }}" class="w-[50px]" alt="logo-disbud" />
+            <div class="text-black font-medium border-l border-gray-300 p-4">
+                <p>Dinas Kebudayaan<br>Provinsi Riau</p>
+            </div>
         </a>
     </div>
 
@@ -53,8 +56,7 @@
                     </li>
                 @endif
                 <li class="has-sub-menu relative">
-                    <a {{ isRouteActive('ppkd') ? 'class=active' : '' }}
-                        href="{{ route('ppkd') }}">PPKD</a>
+                    <a {{ isRouteActive('ppkd') ? 'class=active' : '' }} href="{{ route('ppkd') }}">PPKD</a>
                 </li>
                 <li class="has-sub-menu relative">
                     <a {{ isRouteActive('museum') ? 'class=active' : (isRouteActive('klasifikasi') ? 'class=active' : (isRouteActive('klasifikasi.detail') ? 'class=active' : '')) }}
